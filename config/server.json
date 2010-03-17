@@ -1,6 +1,6 @@
 {
   "chef-test-01": {
-    "url_type": "https",
+    "url_type": "http",
     "init_style": "runit",
     "server_ssl_req": "/C=UK/ST=Several/L=London/O=Map of Medicine/OU=Support/CN=chef-test-01.foxdev.mapofmedicine.com/emailAddress=support@mapofmedicine.com",
     "server_fqdn": "chef-test-01.foxdev.mapofmedicine.com"
