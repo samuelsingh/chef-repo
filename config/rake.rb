@@ -3,22 +3,22 @@
 ###
 
 # The company name - used for SSL certificates, and in srvious other places
-COMPANY_NAME = "Example Com"
+COMPANY_NAME = "Map of Medicine"
 
 # The Country Name to use for SSL Certificates
-SSL_COUNTRY_NAME = "US"
+SSL_COUNTRY_NAME = "UK"
 
 # The State Name to use for SSL Certificates
 SSL_STATE_NAME = "Several"
 
 # The Locality Name for SSL - typically, the city
-SSL_LOCALITY_NAME = "Locality"
+SSL_LOCALITY_NAME = "London"
 
 # What department?
-SSL_ORGANIZATIONAL_UNIT_NAME = "Operations"
+SSL_ORGANIZATIONAL_UNIT_NAME = "Support"
 
 # The SSL contact email address
-SSL_EMAIL_ADDRESS = "ops@example.com"
+SSL_EMAIL_ADDRESS = "support@mapofmedicine.com"
 
 # License for new Cookbooks
 # Can be :apachev2 or :none
@@ -29,13 +29,13 @@ NEW_COOKBOOK_LICENSE = :apachev2
 ##########################
 
 # Where to install upstream cookbooks for serving
-COOKBOOK_PATH = "/srv/chef/cookbooks"
+COOKBOOK_PATH = "/var/shared/global/chef-experimental/cookbooks"
 
 # Where to install site-local modifications to upstream cookbooks
-SITE_COOKBOOK_PATH = "/srv/chef/site-cookbooks"
+SITE_COOKBOOK_PATH = "/var/shared/global/chef-experimental/site-cookbooks"
 
 # Where to install roles
-ROLE_PATH = "/srv/chef/roles"
+ROLE_PATH = "/var/shared/global/chef-experimental/roles"
 
 # Chef Config Path
 CHEF_CONFIG_PATH = "/etc/chef"
