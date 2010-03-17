@@ -1,9 +1,10 @@
 {
   "chef-test-01": {
-    "url_type": "http",
+    "url_type": "https",
     "init_style": "runit",
     "server_ssl_req": "/C=UK/ST=Several/L=London/O=Map of Medicine/OU=Support/CN=chef-test-01.foxdev.mapofmedicine.com/emailAddress=support@mapofmedicine.com",
-    "server_fqdn": "chef-test-01.foxdev.mapofmedicine.com"
+    "server_fqdn": "chef-test-01.foxdev.mapofmedicine.com",
+    "path": "/var/shared/global/chef-experimental"
   },
   "recipes": "chef::server_proxy"
 }
