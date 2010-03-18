@@ -1,41 +1,48 @@
 {
-    "dependencies": {
-      "packages": [
+  "recipes": {
+    "stompserver": ""
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "version": "0.7.0",
+  "suggestions": {
 
-      ],
-      "runit": [
+  },
+  "platforms": {
+    "debian": [
 
-      ]
-    },
-    "replacing": {
-    },
-    "description": "Installs stompserver and sets up a runit_service",
-    "groupings": {
-    },
-    "platforms": {
-      "ubuntu": [
+    ],
+    "ubuntu": [
 
-      ],
-      "debian": [
+    ]
+  },
+  "description": "Installs stompserver and sets up a runit_service",
+  "conflicting": {
 
-      ]
-    },
-    "version": "0.7.0",
-    "recommendations": {
-    },
-    "name": "stompserver",
-    "maintainer": "Opscode, Inc.",
-    "long_description": "",
-    "recipes": {
-    },
-    "suggestions": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "attributes": {
-    },
-    "conflicting": {
-    },
-    "license": "Apache 2.0",
-    "providing": {
-    }
+  },
+  "providing": {
+    "stompserver": [
+
+    ]
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "dependencies": {
+    "runit": [
+
+    ],
+    "packages": [
+
+    ]
+  },
+  "name": "stompserver",
+  "attributes": {
+
+  },
+  "license": "Apache 2.0",
+  "maintainer": "Opscode, Inc.",
+  "recommendations": {
+
   }
+}

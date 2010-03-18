@@ -1,53 +1,64 @@
 {
-    "dependencies": {
-      "erlang": [
+  "recipes": {
+    "couchdb::source": "",
+    "couchdb": ""
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "version": "0.10.0",
+  "suggestions": {
 
-      ]
-    },
-    "replacing": {
-    },
-    "description": "Installs CouchDB package and starts service",
-    "groupings": {
-    },
-    "platforms": {
-      "rhel": [
+  },
+  "platforms": {
+    "rhel": [
 
-      ],
-      "freebsd": [
+    ],
+    "openbsd": [
 
-      ],
-      "ubuntu": [
-        ">= 8.10"
-      ],
-      "openbsd": [
+    ],
+    "debian": [
+      ">= 5.0"
+    ],
+    "fedora": [
 
-      ],
-      "fedora": [
+    ],
+    "centos": [
 
-      ],
-      "centos": [
+    ],
+    "freebsd": [
 
-      ],
-      "debian": [
-        ">= 5.0"
-      ]
-    },
-    "version": "0.9.0",
-    "recommendations": {
-    },
-    "name": "couchdb",
-    "maintainer": "Opscode, Inc.",
-    "long_description": "Installs the CouchDB package if it is available from an package repository on\nthe node. If the package repository is not available, CouchDB needs to be \ninstalled via some other method, either a backported package, or compiled \ndirectly from source. CouchDB is available on Red Hat-based systems through\nthe EPEL Yum Repository.\n",
-    "recipes": {
-    },
-    "suggestions": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "attributes": {
-    },
-    "conflicting": {
-    },
-    "license": "Apache 2.0",
-    "providing": {
-    }
+    ],
+    "ubuntu": [
+      ">= 8.10"
+    ]
+  },
+  "description": "Installs CouchDB package and starts service",
+  "conflicting": {
+
+  },
+  "providing": {
+    "couchdb": [
+
+    ],
+    "couchdb::source": [
+
+    ]
+  },
+  "long_description": "Installs the CouchDB package if it is available from an package repository on\nthe node. If the package repository is not available, CouchDB needs to be \ninstalled via some other method, either a backported package, or compiled \ndirectly from source. CouchDB is available on Red Hat-based systems through\nthe EPEL Yum Repository.\n",
+  "replacing": {
+
+  },
+  "dependencies": {
+    "erlang": [
+
+    ]
+  },
+  "name": "couchdb",
+  "attributes": {
+
+  },
+  "license": "Apache 2.0",
+  "maintainer": "Opscode, Inc.",
+  "recommendations": {
+
   }
+}

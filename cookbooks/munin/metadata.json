@@ -1,35 +1,51 @@
 {
-    "dependencies": {
-    },
-    "replacing": {
-    },
-    "description": "Instsalls and configures munin",
-    "groupings": {
-    },
-    "platforms": {
-      "ubuntu": [
+  "recipes": {
+    "munin::client": "",
+    "munin": "",
+    "munin::server": ""
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "version": "0.8.0",
+  "suggestions": {
 
-      ],
-      "debian": [
+  },
+  "platforms": {
+    "debian": [
 
-      ]
-    },
-    "version": "0.8.0",
-    "recommendations": {
-    },
-    "name": "munin",
-    "maintainer": "Opscode, Inc.",
-    "long_description": "",
-    "recipes": {
-    },
-    "suggestions": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "attributes": {
-    },
-    "conflicting": {
-    },
-    "license": "Apache 2.0",
-    "providing": {
-    }
+    ],
+    "ubuntu": [
+
+    ]
+  },
+  "description": "Instsalls and configures munin",
+  "conflicting": {
+
+  },
+  "providing": {
+    "munin::client": [
+
+    ],
+    "munin": [
+
+    ],
+    "munin::server": [
+
+    ]
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "dependencies": {
+
+  },
+  "name": "munin",
+  "attributes": {
+
+  },
+  "license": "Apache 2.0",
+  "maintainer": "Opscode, Inc.",
+  "recommendations": {
+
   }
+}

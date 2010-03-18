@@ -1,35 +1,42 @@
 {
-    "dependencies": {
-      "apt": [
+  "recipes": {
+    "ubuntu": ""
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "version": "0.8.0",
+  "suggestions": {
 
-      ]
-    },
-    "replacing": {
-    },
-    "description": "Sets up sources for ubuntu",
-    "groupings": {
-    },
-    "platforms": {
-      "ubuntu": [
+  },
+  "platforms": {
+    "ubuntu": [
 
-      ]
-    },
-    "version": "0.8.0",
-    "recommendations": {
-    },
-    "name": "ubuntu",
-    "maintainer": "Opscode, Inc.",
-    "long_description": "",
-    "recipes": {
-    },
-    "suggestions": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "attributes": {
-    },
-    "conflicting": {
-    },
-    "license": "Apache 2.0",
-    "providing": {
-    }
+    ]
+  },
+  "description": "Sets up sources for ubuntu",
+  "conflicting": {
+
+  },
+  "providing": {
+    "ubuntu": [
+
+    ]
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "dependencies": {
+    "apt": [
+
+    ]
+  },
+  "name": "ubuntu",
+  "attributes": {
+
+  },
+  "license": "Apache 2.0",
+  "maintainer": "Opscode, Inc.",
+  "recommendations": {
+
   }
+}
