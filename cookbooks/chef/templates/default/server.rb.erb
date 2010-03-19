@@ -11,7 +11,7 @@ chef_server_url    "http://<%= @node[:chef][:server_fqdn] %>:<%= @node[:chef][:s
 signing_ca_path    "<%= @node[:chef][:path] %>/ca"
 couchdb_database   'chef'
 
-cookbook_path      [ "<%= @node[:chef][:serve_path] %>/cookbooks", "<%= @node[:chef][:serve_path] %>/site-cookbooks" ]
+cookbook_path      [ "<%= @node[:chef][:serve_path] %>/site-cookbooks", "<%= @node[:chef][:serve_path] %>/cookbooks" ]
 
 file_cache_path    "<%= @node[:chef][:cache_path] %>"
 node_path          "<%= @node[:chef][:serve_path] %>/nodes"
@@ -38,5 +38,9 @@ solr_home_path  File.join(supportdir, "solr", "home")
 solr_heap_size  "256M"
 
 umask <%= @node[:chef][:umask] %>
+
+authorized_openid_providers [ "http://<%= @node[:chef][:server_fqdn] %>:<%= @node[:chef][:server_port] %>", "http://<%= @node[:chef] %>:<%= @node[:chef][:server_port] %>", "http://mom-sys.myopenid.com"]
+
+validation_token   "8c62e915e6af575240a8916295e90ccd9c0acea510fc0e71f70b06b4a8438083"
 
 Mixlib::Log::Formatter.show_time = <%= @show_time %>
