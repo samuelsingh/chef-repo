@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
+directory "/var/shared" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+  not_if "test -d /var/shared"
+end
+
 mount "/var/shared" do
   device "192.168.35.18:/home/exportfs"
   fstype "nfs"
