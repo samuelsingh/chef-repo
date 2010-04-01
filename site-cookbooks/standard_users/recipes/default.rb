@@ -21,11 +21,12 @@ group "sysadmin"  do
   gid 10009
 end
 
-#user "sysadmin"  do
-#  comment "Standard Sysadmin User"
-#  uid "10009"
-#  gid "sysadmin"
-#  home "/home/sysadmin"
-#  shell "/bin/bash"
-#  password "$6$EftNV8G/$Z9PfDF/ss6.FGFyJLE8oeFGXfD9g20Bf72m6D5ShhImW3NIAzXx91y3D9uCU.cvtH0N/2a/VRjIxJp7bpN2nH."
-#end
+user "sysadmin"  do
+  comment "Standard Sysadmin User"
+  uid "10009"
+  gid "sysadmin"
+  home "/home/sysadmin"
+  shell "/bin/bash"
+  password "$6$EftNV8G/$Z9PfDF/ss6.FGFyJLE8oeFGXfD9g20Bf72m6D5ShhImW3NIAzXx91y3D9uCU.cvtH0N/2a/VRjIxJp7bpN2nH."
+  not_if "[ ! -z \"`who | grep sysadmin`\" ]"
+end
