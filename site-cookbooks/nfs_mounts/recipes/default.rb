@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-node[:zones][:name].each do |mountpoint|
+node[:nfs_mounts].each do |mountpoint|
 
   directory "#{mountpoint[:clientdir]}" do
     owner "root"
