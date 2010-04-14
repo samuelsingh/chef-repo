@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nfs_mounts
+# Cookbook Name:: foxdev_mounts
 # Recipe:: default
 #
 # Copyright 2010, Map of Medicine
@@ -16,3 +16,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+node[:zones][:name].each do |mountpoint|
+
+  directory "#{mountpoint[:clientdir]}" do
+    owner "root"
+    group "root"
+    mode "0755"
+    action :create
+    not_if "test -d #{mountpoint[:clientdir]}"
+  end
+
+  mount "#{mountpoint[:clientdir]}" do
+    device "#{mountpoint[:host]}:#{mountpoint[:hostdir]}"
+    fstype "nfs"
+    options "tcp,rsize=32768,wsize=32768,rw"
+    action [:mount, :enable]
+  end
+
+end
