@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-set[:nfs_mounts][:name] = ["var_shared", "dummy_mount"]
+set[:nfs_mounts] = {"dummy_mount" => {"host" => "dummyhost", "hostdir" => "/var/dummy", "clientdir" => "/var/clientdummy" }}
