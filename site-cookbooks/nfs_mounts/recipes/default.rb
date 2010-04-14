@@ -17,18 +17,18 @@
 # limitations under the License.
 #
 
-node[:nfs_mounts].each do |mountpoint|
+node[:nfs_mounts].each do |name,params|
 
-  directory "#{mountpoint[:clientdir]}" do
+  directory "#{params.fetch("clientdir")}" do
     owner "root"
     group "root"
     mode "0755"
     action :create
-    not_if "test -d #{mountpoint[:clientdir]}"
+    not_if "test -d #{params.fetch("clientdir")}"
   end
 
-  mount "#{mountpoint[:clientdir]}" do
-    device "#{mountpoint[:host]}:#{mountpoint[:hostdir]}"
+  mount "#{params.fetch("clientdir")}" do
+    device "#{params.fetch("host")}:#{params.fetch("hostdir")}"
     fstype "nfs"
     options "tcp,rsize=32768,wsize=32768,rw"
     action [:mount, :enable]
