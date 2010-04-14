@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-case [:zones][:name]
+case node[:zones][:name]
 when "dummy"
   set[:nfs_mounts] = {"dummy_mount" => {"host" => "dummyhost", "hostdir" => "/var/dummy", "clientdir" => "/var/clientdummy" }}
 when "foxdev"
