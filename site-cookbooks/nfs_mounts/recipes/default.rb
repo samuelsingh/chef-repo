@@ -19,7 +19,7 @@
 
 node[:nfs_mounts].each do |name,params|
 
-  if defined?(params.fetch("clientdir") && params.fetch("host") && params.fetch("hostdir")
+  if defined?(params.fetch("clientdir")) && defined?(params.fetch("host")) && defined?(params.fetch("hostdir"))
 
     directory "#{params.fetch("clientdir")}" do
       owner "root"
