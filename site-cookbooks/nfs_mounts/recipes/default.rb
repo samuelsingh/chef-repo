@@ -19,19 +19,23 @@
 
 node[:nfs_mounts].each do |name,params|
 
-  directory "#{params.fetch("clientdir")}" do
-    owner "root"
-    group "root"
-    mode "0755"
-    action :create
-    not_if "test -d #{params.fetch("clientdir")}"
-  end
+  if defined?(params.fetch("clientdir") && params.fetch("host") && params.fetch("hostdir")
 
-  mount "#{params.fetch("clientdir")}" do
-    device "#{params.fetch("host")}:#{params.fetch("hostdir")}"
-    fstype "nfs"
-    options "tcp,rsize=32768,wsize=32768,rw"
-    action [:mount, :enable]
+    directory "#{params.fetch("clientdir")}" do
+      owner "root"
+      group "root"
+      mode "0755"
+      action :create
+      not_if "test -d #{params.fetch("clientdir")}"
+    end
+
+    mount "#{params.fetch("clientdir")}" do
+      device "#{params.fetch("host")}:#{params.fetch("hostdir")}"
+      fstype "nfs"
+      options "tcp,rsize=32768,wsize=32768,rw"
+      action [:mount, :enable]
+    end
+
   end
 
 end
