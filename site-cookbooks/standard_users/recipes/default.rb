@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+package "libshadow-ruby1.8" do
+  action :install
+end
+
 group "sysadmin"  do
   gid 10009
 end
