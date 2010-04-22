@@ -21,29 +21,35 @@ package "portmap" do
   action :install
 end
 
-package "nfs-common" do
+package "nfs-kernel-server" do
   action :install
 end
 
-node[:nfs_mounts].each do |name,params|
+execute "exportfs" do
+  command "exportfs -ra" 
+  action :nothing
+end
 
-  if defined?(params.fetch("clientdir")) && defined?(params.fetch("host")) && defined?(params.fetch("hostdir"))
+nfsmounts = Array.new
 
-    directory "#{params.fetch("clientdir")}" do
-      owner "root"
-      group "root"
-      mode "0755"
-      action :create
-      not_if "test -d #{params.fetch("clientdir")}"
-    end
+# Creates an array of mountpoint and network
+# /home 192.168.0.0/255.255.255.0
 
-    mount "#{params.fetch("clientdir")}" do
-      device "#{params.fetch("host")}:#{params.fetch("hostdir")}"
-      fstype "nfs"
-      options "tcp,rsize=32768,wsize=32768,rw"
-      action [:mount, :enable]
-    end
-
+node[:nfs-server][:mounts].each do |name,params|
+  
+  if defined?(params.fetch("share")) && defined?(params.fetch("network"))
+    nfsmounts << [params.fetch("share"), params.fetch("network")].join(' ')
   end
+  
+end
 
+template "/etc/exports" do
+  source "exports.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+    :nfsmounts => nfsmounts
+  )
+  notifies :run, resources(:execute => "exportfs")
 end
