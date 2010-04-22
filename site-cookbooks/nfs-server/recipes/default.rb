@@ -35,7 +35,7 @@ nfsmounts = Array.new
 # Creates an array of mountpoint and network
 # /home 192.168.0.0/255.255.255.0
 
-node[:nfs-server][:mounts].each do |name,params|
+node[:nfs_server][:mounts].each do |name,params|
   
   if defined?(params.fetch("share")) && defined?(params.fetch("network"))
     nfsmounts << [params.fetch("share"), params.fetch("network")].join(' ')

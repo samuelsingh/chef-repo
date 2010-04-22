@@ -19,17 +19,17 @@
 case node[:zones][:name]
   
 when "dummy"
-  set[:nfs-server][:mounts] = {
+  set[:nfs_server][:mounts] = {
     "dummy_mount" => {"share" => "/var/dummy", "network" => "192.168.1.1/255.255.255.0" }
   }
   
 when "foxdev"
-  set[:nfs-server][:mounts] = {
+  set[:nfs_server][:mounts] = {
     "var_shared" => {"share" => "/home/exportfs", "network" => "192.168.35.0/255.255.255.0"}
   }
   
 when "euaws"
-  set node[:nfs-server][:mounts] = {
+  set [:nfs_server][:mounts] = {
     "var_shared" => {"share" => "/var/shared", "network" => "#{node[:ipaddress]}/255.255.254.0"}
   }
   
