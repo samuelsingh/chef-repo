@@ -20,7 +20,8 @@
 hosts     = {}
 localhost = nil
 
-search(:node, "*:*", %w(ipaddress fqdn dns_aliases)) do |n|
+#search(:node, "*:*") %w(ipaddress fqdn dns_aliases) do |n|
+search(:node, "*:*") do |n|
   # node own's record, store in localhost
   if n["ipaddress"] == node[:ipaddress]
     localhost = n

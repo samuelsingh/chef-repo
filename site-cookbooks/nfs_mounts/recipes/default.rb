@@ -17,33 +17,37 @@
 # limitations under the License.
 #
 
-package "portmap" do
-  action :install
-end
+unless defined?(node[:nfs_server])
 
-package "nfs-common" do
-  action :install
-end
-
-node[:nfs_mounts].each do |name,params|
-
-  if defined?(params.fetch("clientdir")) && defined?(params.fetch("host")) && defined?(params.fetch("hostdir"))
-
-    directory "#{params.fetch("clientdir")}" do
-      owner "root"
-      group "root"
-      mode "0755"
-      action :create
-      not_if "test -d #{params.fetch("clientdir")}"
-    end
-
-    mount "#{params.fetch("clientdir")}" do
-      device "#{params.fetch("host")}:#{params.fetch("hostdir")}"
-      fstype "nfs"
-      options "tcp,rsize=32768,wsize=32768,rw"
-      action [:mount, :enable]
-    end
-
+  package "portmap" do
+    action :install
   end
-
+  
+  package "nfs-common" do
+    action :install
+  end
+  
+  node[:nfs_mounts].each do |name,params|
+  
+    if defined?(params.fetch("clientdir")) && defined?(params.fetch("host")) && defined?(params.fetch("hostdir"))
+  
+      directory "#{params.fetch("clientdir")}" do
+        owner "root"
+        group "root"
+        mode "0755"
+        action :create
+        not_if "test -d #{params.fetch("clientdir")}"
+      end
+  
+      mount "#{params.fetch("clientdir")}" do
+        device "#{params.fetch("host")}:#{params.fetch("hostdir")}"
+        fstype "nfs"
+        options "tcp,rsize=32768,wsize=32768,rw"
+        action [:mount, :enable]
+      end
+  
+    end
+  
+  end
+  
 end
