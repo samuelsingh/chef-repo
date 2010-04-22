@@ -18,7 +18,7 @@
 #
 
 hosts     = {}
-localhost = nil
+#localhost = nil
 
 #search(:node, "*:*") %w(ipaddress fqdn dns_aliases) do |n|
 search(:node, "*:*") do |n|
@@ -33,6 +33,7 @@ end
 template "/etc/hosts" do
   source "hosts.erb"
   mode 0644
-  variables(:localhost => localhost, :hosts => hosts)
+#  variables(:localhost => localhost, :hosts => hosts)
+  variables(:hosts => hosts)
 end
 
