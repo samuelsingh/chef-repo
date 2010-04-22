@@ -29,7 +29,7 @@ when "foxdev"
   }
   
 when "euaws"
-  set[:nfs-server][:mounts] = {
+  set node[:nfs-server][:mounts] = {
     "var_shared" => {"share" => "/var/shared", "network" => "#{node[:ipaddress]}/255.255.254.0"}
   }
   
