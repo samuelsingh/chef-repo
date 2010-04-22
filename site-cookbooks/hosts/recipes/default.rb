@@ -26,7 +26,7 @@ search(:node, "*:*") do |n|
   if n["ipaddress"] == node[:ipaddress]
     localhost = n
   else
-    hosts[n["ipaddress"]] = n
+    hosts[n["ipaddress"]] = n unless n["ipaddress"].match('192.168')
   end
 end
 
