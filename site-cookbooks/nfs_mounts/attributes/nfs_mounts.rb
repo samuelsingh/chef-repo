@@ -17,11 +17,15 @@
 # limitations under the License.
 #
 
-case node[:zones][:name]
-when "dummy"
-  set[:nfs_mounts] = {"dummy_mount" => {"host" => "dummyhost", "hostdir" => "/var/dummy", "clientdir" => "/var/clientdummy" }}
-when "foxdev"
-  set[:nfs_mounts] = {"var_shared" => {"host" => "192.168.35.18", "hostdir" => "/home/exportfs", "clientdir" => "/var/shared" }, "var_vmstore" => {"host" => "192.168.35.18", "hostdir" => "/var/vmstore", "clientdir" => "/var/vmstore" }}
-when "euaws"
-  set[:nfs_mounts] = {"var_shared" => {"host" => "filer.euaws.mapofmedicine.com", "hostdir" => "/var/shared", "clientdir" => "/var/shared" }}
+if defined?(node[:zones][:name])
+  
+  case node[:zones][:name]
+    when "dummy"
+      set[:nfs_mounts] = {"dummy_mount" => {"host" => "dummyhost", "hostdir" => "/var/dummy", "clientdir" => "/var/clientdummy" }}
+    when "foxdev"
+      set[:nfs_mounts] = {"var_shared" => {"host" => "192.168.35.18", "hostdir" => "/home/exportfs", "clientdir" => "/var/shared" }, "var_vmstore" => {"host" => "192.168.35.18", "hostdir" => "/var/vmstore", "clientdir" => "/var/vmstore" }}
+    when "euaws"
+      set[:nfs_mounts] = {"var_shared" => {"host" => "filer.euaws.mapofmedicine.com", "hostdir" => "/var/shared", "clientdir" => "/var/shared" }}
+  end
+  
 end
