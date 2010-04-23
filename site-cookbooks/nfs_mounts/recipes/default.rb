@@ -17,7 +17,8 @@
 # limitations under the License.
 #
 
-unless defined?(node[:nfs_server])
+# Nasty hack, needs improving
+unless node[:hostname] = "filer"
 
   package "portmap" do
     action :install
