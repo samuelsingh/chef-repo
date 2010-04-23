@@ -18,7 +18,7 @@
 #
 
 # Nasty hack, needs improving
-unless node[:hostname] = "filer"
+unless node[:hostname] == "filer"
 
   package "portmap" do
     action :install
