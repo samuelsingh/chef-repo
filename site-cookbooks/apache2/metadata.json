@@ -38,10 +38,9 @@
     "apache2::mod_dir": "Apache module 'dir' with config file",
     "apache2::mod_proxy_balancer": "Apache module 'proxy_balancer'",
     "apache2::mod_authz_default": "Apache module 'authz_default'",
-    "apache2::mod_info", "Apache module 'info'",
-    "apache2::mod_include", "Apache module 'include'",
-    "apache2::mod_log_forensic", "Apache module 'log_forensic'"
-    
+    "apache2::mod_info": "Apache module 'info'",
+    "apache2::mod_include": "Apache module 'include'",
+    "apache2::mod_log_forensic": "Apache module 'log_forensic'"
   },
   "maintainer_email": "cookbooks@opscode.com",
   "version": "0.10.1",
