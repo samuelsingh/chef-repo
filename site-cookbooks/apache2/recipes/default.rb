@@ -116,6 +116,14 @@ directory "#{node[:apache][:dir]}/ssl" do
   group "root"
 end
 
+# Added as part of Fabric Apache configuration
+directory "/var/www/vhosts/default" do
+  action :create
+  mode 0755
+  owner "root"
+  group "root"
+end
+
 template "apache2.conf" do
   case node[:platform]
   when "centos","redhat","fedora"
