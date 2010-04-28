@@ -38,6 +38,8 @@ service "apache2" do
     reload_command "/sbin/service httpd reload && sleep 1"
   when "debian","ubuntu"
     service_name "apache2"
+    restart_command "/sbin/service httpd restart && sleep 1"
+    reload_command "/sbin/service httpd reload && sleep 1"
   end
   supports value_for_platform(
     "debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
