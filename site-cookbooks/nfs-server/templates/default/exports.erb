@@ -5,5 +5,5 @@
 #
 
 <% @nfsmounts.each do |nfsmount| -%>
-<%= nfsmount %>(rw,sync,no_subtree_check)
+<%= nfsmount %>(rw,sync,no_subtree_check,no_root_squash)
 <% end -%>
