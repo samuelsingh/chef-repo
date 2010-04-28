@@ -87,7 +87,7 @@ attribute "apache/listen_ports",
 attribute "apache/contact",
   :display_name => "Apache Contact",
   :description => "Email address of webmaster",
-  :default => "ops@example.com"
+  :default => "support@mapofmedicine.com"
 
 attribute "apache/timeout",
   :display_name => "Apache Timeout",

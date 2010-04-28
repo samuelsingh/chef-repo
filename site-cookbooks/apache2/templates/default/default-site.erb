@@ -1,12 +1,12 @@
 <VirtualHost *:80>
         ServerAdmin <%= @node[:apache][:contact] %>
 
-        DocumentRoot /var/www/
+        DocumentRoot "/var/www/vhosts/default"
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
         </Directory>
-        <Directory /var/www/>
+        <Directory /var/www/vhosts/default>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride None
                 Order allow,deny
@@ -23,15 +23,22 @@
                 Order allow,deny
                 Allow from all
         </Directory>
-
-        ErrorLog <%= @node[:apache][:log_dir] %>/error.log 
+        
+        # Updated as part of the standard Fabric Apache config
+        #
+        ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/error.log.%Y%m%d 86400"
 
         # Possible values include: debug, info, notice, warn, error, crit,
         # alert, emerg.
         LogLevel warn
 
-        CustomLog <%= @node[:apache][:log_dir] %>/access.log combined
-        ServerSignature On
+        # Updated as part of the standard Fabric Apache config
+        #
+        CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access.log.%Y%m%d 86400" combined
+        
+        # Changed to "Off" as part of the standard Fabric Apache config
+        #
+        ServerSignature Off
 
         Alias /doc/ "/usr/share/doc/"
         <Directory "/usr/share/doc/">
@@ -41,6 +48,14 @@
             Deny from all
             Allow from 127.0.0.0/255.0.0.0 ::1/128
         </Directory>
+        
+        # Added as part of the standard Fabric Apache config
+        # Bounces requests to anywhere other than the server-* pages to the corporate site
+        #
+        <IfModule mod_rewrite.c>
+                RewriteEngine On
+                RewriteRule !^/server http://www.mapofmedicine.com [R]
+        </IfModule>
 
         <% if @node[:platform] == "centos" || @node[:platform] == "redhat" || @node[:platform] == "fedora" -%>
         #

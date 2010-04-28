@@ -105,6 +105,15 @@ AccessFileName .htaccess
     Deny from all
 </Files>
 
+# Added as part of the standard Fabric Apache config
+# Denies access to the tomcat WEB-INF directory
+#
+<FilesMatch "^WEB-INF">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
 #
 # DefaultType is the default MIME type the server will use for a document
 # if it cannot otherwise determine one, such as from filename extensions.
@@ -128,12 +137,10 @@ DefaultType text/plain
 HostnameLookups Off
 
 # ErrorLog: The location of the error log file.
-# If you do not specify an ErrorLog directive within a <VirtualHost>
-# container, error messages relating to that virtual host will be
-# logged here.  If you *do* define an error logfile for a <VirtualHost>
-# container, that host's errors will be logged there and not here.
 #
-ErrorLog <%= @node[:apache][:log_dir] %>/error.log 
+# Updated as part of the standard Fabric Apache configuration to allow piped log file rotation
+#
+ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/error.log.%Y%m%d 86400"
 
 #
 # LogLevel: Control the number of messages logged to the error_log.
@@ -157,70 +164,17 @@ LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combine
 LogFormat "%h %l %u %t \"%r\" %>s %b" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
-#
 
-# Customizable error responses come in three flavors:
-# 1) plain text 2) local redirects 3) external redirects
+# Added as part of the Fabric Apache configuration to generate custom mtm logs that include JSESSIONID
 #
-# Some examples:
-#ErrorDocument 500 "The server made a boo boo."
-#ErrorDocument 404 /missing.html
-#ErrorDocument 404 "/cgi-bin/missing_handler.pl"
-#ErrorDocument 402 http://www.example.com/subscription_info.html
-#
+<IfModule mod_logio.c>
+    LogFormat "%v %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O \"%{JSESSIONID}C\"" mtm
+</IfModule>
+<IfModule !mod_logio.c>
+    LogFormat "%v %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{JSESSIONID}C\"" mtm
+</IfModule>
 
-#
-# Putting this all together, we can internationalize error responses.
-#
-# We use Alias to redirect any /error/HTTP_<error>.html.var response to
-# our collection of by-error message multi-language collections.  We use 
-# includes to substitute the appropriate text.
-#
-# You can modify the messages' appearance without changing any of the
-# default HTTP_<error>.html.var files by adding the line:
-#
-#   Alias /error/include/ "/your/include/path/"
-#
-# which allows you to create your own set of files by starting with the
-# /usr/share/apache2/error/include/ files and copying them to /your/include/path/, 
-# even on a per-VirtualHost basis.  The default include files will display
-# your Apache version number and your ServerAdmin email address regardless
-# of the setting of ServerSignature.
-#
-# The internationalized error documents require mod_alias, mod_include
-# and mod_negotiation.  To activate them, uncomment the following 30 lines.
-
-#    Alias /error/ "/usr/share/apache2/error/"
-#
-#    <Directory "/usr/share/apache2/error">
-#        AllowOverride None
-#        Options IncludesNoExec
-#        AddOutputFilter Includes html
-#        AddHandler type-map var
-#        Order allow,deny
-#        Allow from all
-#        LanguagePriority en cs de es fr it nl sv pt-br ro
-#        ForceLanguagePriority Prefer Fallback
-#    </Directory>
-#
-#    ErrorDocument 400 /error/HTTP_BAD_REQUEST.html.var
-#    ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var
-#    ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var
-#    ErrorDocument 404 /error/HTTP_NOT_FOUND.html.var
-#    ErrorDocument 405 /error/HTTP_METHOD_NOT_ALLOWED.html.var
-#    ErrorDocument 408 /error/HTTP_REQUEST_TIME_OUT.html.var
-#    ErrorDocument 410 /error/HTTP_GONE.html.var
-#    ErrorDocument 411 /error/HTTP_LENGTH_REQUIRED.html.var
-#    ErrorDocument 412 /error/HTTP_PRECONDITION_FAILED.html.var
-#    ErrorDocument 413 /error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
-#    ErrorDocument 414 /error/HTTP_REQUEST_URI_TOO_LARGE.html.var
-#    ErrorDocument 415 /error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
-#    ErrorDocument 500 /error/HTTP_INTERNAL_SERVER_ERROR.html.var
-#    ErrorDocument 501 /error/HTTP_NOT_IMPLEMENTED.html.var
-#    ErrorDocument 502 /error/HTTP_BAD_GATEWAY.html.var
-#    ErrorDocument 503 /error/HTTP_SERVICE_UNAVAILABLE.html.var
-#    ErrorDocument 506 /error/HTTP_VARIANT_ALSO_VARIES.html.var
-
+CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access.log.%Y%m%d 86400" mtm
 
 
 # Include generic snippets of statements
