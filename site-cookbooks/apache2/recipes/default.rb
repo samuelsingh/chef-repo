@@ -122,6 +122,8 @@ directory "/var/www/vhosts/default" do
   mode 0755
   owner "root"
   group "root"
+  recursive true
+  not_if "test -d /var/www/vhosts/default"
 end
 
 template "apache2.conf" do
