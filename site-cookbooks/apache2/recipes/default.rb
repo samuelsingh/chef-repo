@@ -38,8 +38,11 @@ service "apache2" do
     reload_command "/sbin/service httpd reload && sleep 1"
   when "debian","ubuntu"
     service_name "apache2"
-    restart_command "/sbin/service httpd restart && sleep 1"
-    reload_command "/sbin/service httpd reload && sleep 1"
+    # If restarted/reloaded too quickly httpd has a habit of failing.
+    # This may happen with multiple recipes notifying apache to restart - like
+    # during the initial bootstrap.
+    restart_command "/etc/init.d/apache2 restart && sleep 1"
+    reload_command "/etc/init.d/apache2 reload && sleep 1"
   end
   supports value_for_platform(
     "debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
