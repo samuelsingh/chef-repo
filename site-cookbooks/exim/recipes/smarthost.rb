@@ -45,6 +45,17 @@ template "/etc/exim4/update-exim4.conf.conf" do
   notifies :run, resources(:execute => "update-exim4")
 end
 
+template "/etc/exim4/exim4.conf.template" do
+  source "exim4.conf.template"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+    :deployment => "smarthost"
+  )
+  notifies :run, resources(:execute => "update-exim4")
+end
+
 remote_file "/etc/exim4/passwd" do
   source "passwd"
   mode 0644
