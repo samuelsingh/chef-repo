@@ -47,9 +47,9 @@ end
 
 remote_file "/etc/exim4/passwd.client" do
   source "passwd.client"
-  mode 0644
+  mode 0640
   owner "root"
-  group "root"
+  group "Debian-exim"
   notifies :run, resources(:execute => "update-exim4")
 end
 
