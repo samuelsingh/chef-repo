@@ -46,7 +46,7 @@ template "/etc/exim4/update-exim4.conf.conf" do
 end
 
 template "/etc/exim4/exim4.conf.template" do
-  source "exim4.conf.template"
+  source "exim4.conf.template.erb"
   mode 0644
   owner "root"
   group "root"
