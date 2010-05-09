@@ -1,0 +1,96 @@
+{
+  "recipes": {
+    "sudo": ""
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "version": "0.7.0",
+  "suggestions": {
+
+  },
+  "platforms": {
+    "debian": [
+
+    ],
+    "fedora": [
+
+    ],
+    "centos": [
+
+    ],
+    "freebsd": [
+
+    ],
+    "ubuntu": [
+
+    ],
+    "redhat": [
+
+    ]
+  },
+  "description": "Installs and configures sudo",
+  "conflicting": {
+
+  },
+  "providing": {
+    "sudo": [
+
+    ]
+  },
+  "long_description": "",
+  "replacing": {
+
+  },
+  "dependencies": {
+
+  },
+  "name": "sudo",
+  "attributes": {
+    "authorization\/sudoers\/groups": {
+      "required": false,
+      "default": "",
+      "type": "array",
+      "recipes": [
+
+      ],
+      "display_name": "Sudo Groups",
+      "description": "Groups who are allowed sudo ALL",
+      "multiple_values": false
+    },
+    "authorization": {
+      "required": false,
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "Authorization",
+      "description": "Hash of Authorization attributes",
+      "multiple_values": false
+    },
+    "authorization\/sudoers\/users": {
+      "required": false,
+      "default": "",
+      "type": "array",
+      "recipes": [
+
+      ],
+      "display_name": "Sudo Users",
+      "description": "Users who are allowed sudo ALL",
+      "multiple_values": false
+    },
+    "authorization\/sudoers": {
+      "required": false,
+      "type": "hash",
+      "recipes": [
+
+      ],
+      "display_name": "Authorization Sudoers",
+      "description": "Hash of Authorization\/Sudoers attributes",
+      "multiple_values": false
+    }
+  },
+  "license": "Apache 2.0",
+  "maintainer": "Opscode, Inc.",
+  "recommendations": {
+
+  }
+}
