@@ -17,5 +17,5 @@
 # limitations under the License.
 #
 
-set_unless[:mom-scripts][:svn_user] = "chef"
-set_unless[:mom-scripts][:svn_pass] = "aiVahx7s"
+set_unless[:mom_scripts][:svn_user] = "chef"
+set_unless[:mom_scripts][:svn_pass] = "aiVahx7s"
