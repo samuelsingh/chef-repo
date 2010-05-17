@@ -19,7 +19,7 @@
 
 subversion "Standard /usr" do
   repository "http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/usr"
-  revision "HEAD"
+  revision "1309"
   destination "/usr"
   svn_username "#{node[:mom_scripts][:svn_user]}"
   svn_password "#{node[:mom_scripts][:svn_pass]}"
