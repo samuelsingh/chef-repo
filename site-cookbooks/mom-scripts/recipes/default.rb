@@ -17,24 +17,29 @@
 # limitations under the License.
 #
 
-subversion "Standard /usr" do
-  repository "http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/usr"
-  revision "1309"
-  destination "/usr"
-  svn_username "chef"
-  svn_password "aiVahx7s"
-  svn_info_args "--no-auth-cache"
-  action :export
-end
+#subversion "Standard /usr" do
+#  repository "http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/usr"
+#  revision "HEAD"
+#  destination "/usr"
+#  svn_username "#{node[:mom_scripts][:svn_user]}"
+#  svn_password "#{node[:mom_scripts][:svn_pass]}"
+#  svn_info_args "--no-auth-cache"
+#  action :export
+#end
 
-subversion "Standard /etc" do
-  repository "http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/etc"
-  revision "HEAD"
-  destination "/etc"
-  svn_username "#{node[:mom_scripts][:svn_user]}"
-  svn_password "#{node[:mom_scripts][:svn_pass]}"
-  svn_info_args "--no-auth-cache"
-  action :export
+#subversion "Standard /etc" do
+#  repository "http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/etc"
+#  revision "HEAD"
+#  destination "/etc"
+#  svn_username "#{node[:mom_scripts][:svn_user]}"
+#  svn_password "#{node[:mom_scripts][:svn_pass]}"
+#  svn_info_args "--no-auth-cache"
+#  action :export
+#end
+
+execute "svn_standard_usr"  do
+  command "svn export --username #{node[:mom_scripts][:svn_user]} --password #{node[:mom_scripts][:svn_pass]} --no-auth-cache http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/usr" 
+  action :run
 end
 
 directory "/etc/map-fabric" do
