@@ -38,7 +38,7 @@
 #end
 
 execute "svn_standard_usr"  do
-  command "svn export --username #{node[:mom_scripts][:svn_user]} --password #{node[:mom_scripts][:svn_pass]} --no-auth-cache http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/usr" 
+  command "svn export --username #{node[:mom_scripts][:svn_user]} --password #{node[:mom_scripts][:svn_pass]} --no-auth-cache http://svn.mapofmedicine.com/map-sys/branches/INFRASTRUCTURE_3.0/standard/ALL/usr /usr" 
   action :run
 end
 
