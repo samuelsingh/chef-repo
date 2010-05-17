@@ -23,6 +23,7 @@ subversion "Standard /usr" do
   destination "/usr"
   svn_username "chef"
   svn_password "aiVahx7s"
+  svn_arguments "--no-auth-cache"
   action :export
 end
 
@@ -32,6 +33,7 @@ subversion "Standard /etc" do
   destination "/etc"
   svn_username "#{node[:mom_scripts][:svn_user]}"
   svn_password "#{node[:mom_scripts][:svn_pass]}"
+  svn_arguments "--no-auth-cache"
   action :export
 end
 
