@@ -20,5 +20,5 @@
 set_unless[:tomcat][:global_inf_base] = "/var/shared/global/infrastructure"
 set_unless[:tomcat][:role] = "app-server"
 set_unless[:tomcat][:version] = "apache-tomcat-6.0.18-mom"
-set_unless[:tomcat][:ajp_ports] = [ 9001 ]
+set_unless[:tomcat][:ajp_ports] = [ 9001, 9002 ]
 set_unless[:tomcat][:basedir] = "/var/tomcat"

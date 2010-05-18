@@ -102,7 +102,7 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
     )
   end
   
-    template "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf/Catalina/localhost/manager.xml" do
+  template "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf/Catalina/localhost/manager.xml" do
     source "manager.xml.erb"
     mode 0644
     owner "sysadmin"
@@ -110,6 +110,22 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
     variables(
       :ajp_port => ajp_port
     )
+  end
+
+  template "/etc/init.d/tomcat#{ajp_port}" do
+    source "tomcat.TEMPLATE.erb"
+    mode 0755
+    owner "root"
+    group "root"
+    variables(
+      :ajp_port => ajp_port
+    )
+  end
+
+    
+  service "tomcat#{ajp_port}"  do
+    supports :status => true, :restart => true, :reload => true
+    action [ :enable ]
   end
   
 end
