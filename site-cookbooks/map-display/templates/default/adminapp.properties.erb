@@ -1,0 +1,36 @@
+# roles allowed to access admin application
+adminUserRoles=Release Manager,Deployment Admin,Variant Manager,Variant Administrator
+# roles allowed to manage text localisations
+supportTextRoles=Deployment Admin
+# roles allowed to manage variant mapping
+variantMappingsRoles=Deployment Admin
+# roles allowed to manage alerts
+alertRoles=Deployment Admin
+# excluded roles - roles not visible in admin application
+#excludedRoles=Release Manager
+excludedRoles=
+
+
+# enable/disable user management functionality
+userManagementEnabled=true
+# enable/disable variant mappings functionality 
+variantMappingsEnabled=true
+# enable/disable listing of athens users
+excludeAthensUsers=true
+# enable/disable nacs variant mappings functionality
+nacsVariantMappingEnabled=true
+
+
+#email template for users registration confirmation
+adminapp.email.template.name=standardEmail.ftl
+adminapp.email.template.path=/WEB-INF/freemarker
+
+# mail account configuration
+mail.smtp.password=
+mail.smtp.username=
+
+#Base url for the link in the email sent to users on activation by the admin app
+mom.baseUrl=http://<%= @md_fqdn %>/mom
+
+mom.baseUrl.appendVariantPart=true
+feedbackReviewerRole=Feedback reviewer
