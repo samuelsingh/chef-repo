@@ -164,7 +164,7 @@ template "#{mtmpath}/config/mom.properties" do
   group "sysadmin"
   variables(
     :mtmpath => mtmpath,
-    :md_fqdn => md_fqdn,
+    :md_fqdn => md_fqdn
   )
 end
 
