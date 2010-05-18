@@ -131,7 +131,7 @@ template "#{mtmpath}/config/adminapp-log4j.xml" do
   group "sysadmin"
   variables(
     :mtmpath => mtmpath,
-    :md_fqdn => md_fqdn,
+    :md_fqdn => md_fqdn
   )
 end
 
@@ -142,7 +142,7 @@ template "#{mtmpath}/config/adminapp.properties" do
   group "sysadmin"
   variables(
     :mtmpath => mtmpath,
-    :md_fqdn => md_fqdn,
+    :md_fqdn => md_fqdn
   )
 end
 
@@ -153,7 +153,7 @@ template "#{mtmpath}/config/mom-log4j.xml" do
   group "sysadmin"
   variables(
     :mtmpath => mtmpath,
-    :md_fqdn => md_fqdn,
+    :md_fqdn => md_fqdn
   )
 end
 
