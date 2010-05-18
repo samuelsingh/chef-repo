@@ -19,5 +19,5 @@
 
 set_unless[:map_display][:mtmpath] = "/var/mtm"
 set_unless[:map_display][:md_fqdn] = "app.md-cloud-01.eu"
-set_unless[:map_display][:deploy_dir] = "/var/drshared/deploy-webapps/app"
+set_unless[:map_display][:deploy_dir] = "/var/shared/deployment/app"
 set_unless[:map_display][:version] = "2.6.2.MD.8"

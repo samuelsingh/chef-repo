@@ -208,9 +208,9 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         to "#{deploy_dir}/webapps-#{md_version}/adminapp"
       end
       
-      link "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/adminapp.xml"  do
+      link "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml"  do
         to "#{deploy_dir}/db_config/adminapp.xml"
-        only_if "test -d #{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost"
+        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
       end
       
     end
