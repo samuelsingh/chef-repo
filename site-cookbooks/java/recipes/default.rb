@@ -43,7 +43,7 @@ package java_pkg do
   end
 end
 
-package "ant"
+package "ant" do
   action :install
 end
 
