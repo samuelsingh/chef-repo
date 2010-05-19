@@ -27,6 +27,11 @@ md_fqdn = node[:map_display][:md_fqdn]
 deploy_dir = node[:map_display][:deploy_dir]
 md_version = node[:map_display][:version]
 
+dbuser = node[:map_display][:dbuser]
+dbpass = node[:map_display][:dbpass]
+dbhost = node[:map_display][:dbhost]
+dbname = node[:map_display][:dbname]
+
 # Dynamic directories, used by Tomcat
 #
 directory "#{mtmpath}"  do
@@ -187,8 +192,17 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         to "#{deploy_dir}/webapps-#{md_version}/mom"
       end
       
-      link "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mom.xml"  do
-        to "#{deploy_dir}/db_config/mom.xml"
+      template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mom.xml" do
+        source "mom.xml.erb"
+        mode 0644
+        owner "sysadmin"
+        group "sysadmin"
+        variables(
+          :dbuser => dbuser,
+          :dbpass => dbpass,
+          :dbhost => dbhost,
+          :dbname => dbname
+        )
         only_if "test -d #{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost"
       end
       
@@ -208,8 +222,17 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         to "#{deploy_dir}/webapps-#{md_version}/adminapp"
       end
       
-      link "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml"  do
-        to "#{deploy_dir}/db_config/adminapp.xml"
+      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml" do
+        source "adminapp.xml.erb"
+        mode 0644
+        owner "sysadmin"
+        group "sysadmin"
+        variables(
+          :dbuser => dbuser,
+          :dbpass => dbpass,
+          :dbhost => dbhost,
+          :dbname => dbname
+        )
         only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
       end
       

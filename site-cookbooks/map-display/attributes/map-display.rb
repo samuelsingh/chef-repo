@@ -21,3 +21,8 @@ set_unless[:map_display][:mtmpath] = "/var/mtm"
 set_unless[:map_display][:md_fqdn] = "app.md-cloud-01.eu"
 set_unless[:map_display][:deploy_dir] = "/var/shared/deployment/app"
 set_unless[:map_display][:version] = "2.6.2.MD.8"
+
+set_unless[:map_display][:dbuser] = "mtmuser"
+set_unless[:map_display][:dbpass] = "medic1"
+set_unless[:map_display][:dbhost] = "db"
+set_unless[:map_display][:dbname] = "mtmdb"
