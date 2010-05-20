@@ -39,7 +39,7 @@ if defined?(node[:apache][:dir])
       :tomcat_mgr_ips => tomcat_mgr_ips,
       :holding_page => holding_page
     )
-    only_if "test -d #{node[:apache][:dir]/sites-available}"
+    only_if "test -d #{node[:apache][:dir]}/sites-available"
   end
   
   link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
