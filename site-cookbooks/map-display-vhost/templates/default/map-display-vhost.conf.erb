@@ -95,7 +95,7 @@
     <IfModule mod_rewrite.c>
         RewriteEngine On
 
-        <% if @holding_page == "true" -%>
+        <% if @holding_page == 'true' -%>
         # The holding page is ENABLED
         RewriteRule ^/mom /holding.html [R]
         <% else -%>
