@@ -22,7 +22,7 @@ package "exim4" do
 end
 
 execute "update-exim4" do
-  command "update-exim4.conf && sleep 1" 
+  command "update-exim4.conf && /etc/init.d/exim4 restart && sleep 1" 
   action :nothing
 end
 

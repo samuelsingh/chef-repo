@@ -173,6 +173,10 @@ template "#{mtmpath}/config/mom.properties" do
   )
 end
 
+link "#{deploy_dir}/webapps-running"  do
+  to "#{deploy_dir}/webapps-#{md_version}"
+  only_if "test -d #{deploy_dir}/webapps-#{md_version}"
+end
 
 if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
   
@@ -190,6 +194,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       link "#{node[:tomcat][:basedir]}/server9001/webapps/mom"  do
         to "#{deploy_dir}/webapps-#{md_version}/mom"
+        only_if "test -d #{deploy_dir}/webapps-#{md_version}"
       end
       
       template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mom.xml" do
@@ -220,6 +225,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp"  do
         to "#{deploy_dir}/webapps-#{md_version}/adminapp"
+        only_if "test -d #{deploy_dir}/webapps-#{md_version}"
       end
       
       template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml" do
