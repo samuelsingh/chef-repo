@@ -48,6 +48,6 @@ if defined?(node[:apache][:dir])
   
 end
 
-service "apache2" do
-  action :reload
-end
+#service "apache2" do
+#  action :reload
+#end
