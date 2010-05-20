@@ -26,21 +26,21 @@ holding_page = node[:map_display_vhost][:holding_page]
 
 if defined?(node[:apache][:dir])
   
-#  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-#    source "map-display-vhost.conf.erb"
-#    mode 0644
-#    owner "sysadmin"
-#    group "sysadmin"
-#    variables(
-#      :hostname => hostname,
-#      :aliases => aliases,
-#      :deploy_dir => deploy_dir,
-#      :appserver => appserver,
-#      :tomcat_mgr_ips => tomcat_mgr_ips,
-#      :holding_page => holding_page
-#    )
-#    only_if "test -d #{node[:apache][:dir]}/sites-available"
-#  end
+  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+    source "map-display-vhost.conf.erb"
+    mode 0644
+    owner "sysadmin"
+    group "sysadmin"
+    variables(
+      :hostname => hostname,
+      :aliases => aliases,
+      :deploy_dir => deploy_dir,
+      :appserver => appserver,
+      :tomcat_mgr_ips => tomcat_mgr_ips,
+      :holding_page => holding_page
+    )
+    only_if "test -d #{node[:apache][:dir]}/sites-available"
+  end
   
   link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
     to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
