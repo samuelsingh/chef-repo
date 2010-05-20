@@ -78,6 +78,11 @@
         Order deny,allow
         Deny from all
         Allow from 127.0.0.1
+        <% unless @tomcat_mgr_ips.empty? -%>
+        <% @tomcat_mgr_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        <% end -%>
     </Location>
     
     # Use the specified error page (under DocumentRoot) for the specified error codes.
