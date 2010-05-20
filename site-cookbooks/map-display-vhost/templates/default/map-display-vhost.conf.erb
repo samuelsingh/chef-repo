@@ -29,10 +29,8 @@
     # the corporate site.
 
     ServerName <%= @hostname %>
-    <% unless @aliases.empty? -%>
-    <% @aliases.each do |alias| -%>
-    ServerAlias <%= alias %>
-    <% end -%>
+    <% @srv_aliases.each do |srv_alias| -%>
+    ServerAlias <%= srv_alias %>
     <% end -%>
 
     # The DocumentRoot isn't used for much, anything not inside a webapp.

@@ -18,7 +18,7 @@
 #
 
 hostname = node[:map_display_vhost][:hostname]
-aliases = node[:map_display_vhost][:aliases]
+srv_aliases = node[:map_display_vhost][:srv_aliases]
 deploy_dir = node[:map_display_vhost][:deploy_dir]
 appserver = node[:map_display_vhost][:appserver]
 tomcat_mgr_ips = node[:map_display_vhost][:tomcat_mgr_ips]
@@ -33,7 +33,7 @@ if defined?(node[:apache][:dir])
     group "sysadmin"
     variables(
       :hostname => hostname,
-      :aliases => aliases,
+      :srv_aliases => srv_aliases,
       :deploy_dir => deploy_dir,
       :appserver => appserver,
       :tomcat_mgr_ips => tomcat_mgr_ips,
