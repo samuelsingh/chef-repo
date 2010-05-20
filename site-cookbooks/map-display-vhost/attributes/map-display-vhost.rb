@@ -18,8 +18,8 @@
 #
 
 set_unless[:map_display_vhost][:hostname] = "app.map-cloud-01.eu"
-set_unless[:map_display_vhost][:aliases] = []
+set_unless[:map_display_vhost][:aliases] = Array.new
 set_unless[:map_display_vhost][:deploy_dir] = "/var/shared/deployment/app"
 set_unless[:map_display_vhost][:appserver] = "md-app-01.map-cloud-01.eu"
-set_unless[:map_display_vhost][:tomcat_mgr_ips] = []
+set_unless[:map_display_vhost][:tomcat_mgr_ips] = Array.new
 set_unless[:map_display_vhost][:holding_page] = "false"
