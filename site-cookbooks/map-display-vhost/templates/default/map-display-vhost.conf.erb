@@ -29,9 +29,6 @@
     # the corporate site.
 
     ServerName <%= @hostname %>
-    <% @aliases.each do |alias| -%>
-    ServerAlias <%= alias %>
-    <% end -%>
 
     # The DocumentRoot isn't used for much, anything not inside a webapp.
     # Mainly this is used for the holding page.
@@ -81,9 +78,6 @@
         Order deny,allow
         Deny from all
         Allow from 127.0.0.1
-        <% @tomcat_mgr_ips.each do |ip| -%>
-        Allow from <%= ip %>
-        <% end -%>
     </Location>
     
     # Use the specified error page (under DocumentRoot) for the specified error codes.
@@ -94,14 +88,6 @@
 
     <IfModule mod_rewrite.c>
         RewriteEngine On
-
-        <% if @holding_page == 'true' -%>
-        # The holding page is ENABLED
-        RewriteRule ^/mom /holding.html [R]
-        <% else -%>
-        # The holding page is DISABLED
-        RewriteRule ^/holding.html / [R]
-        <% end -%>
         
         # Redirect any access to the base URL to the mom index page, plus a few other
         # URL cleanups
