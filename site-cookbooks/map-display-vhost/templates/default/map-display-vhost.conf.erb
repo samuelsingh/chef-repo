@@ -132,6 +132,12 @@
     DocumentRoot /var/www/vhosts/<%= @hostname %>
 
     ProxyPass /mom/keepalive.html  ajp://<%= @appserver %>:9001/mom/keepalive.html
+    
+    <Location "/mom">
+        Options FollowSymLinks
+        Order allow,deny
+        Allow from all
+    </Location>
 
     <Directory "/var/www/vhosts/<%= @hostname %>">
         Options FollowSymLinks
@@ -141,6 +147,6 @@
     </Directory>
    
     CustomLog /dev/null common
-    ErrorLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/errors-<%= @hostname %>-keepalive.log.%Y%m%d 86400" 
+    ErrorLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/errors-<%= @hostname %>-keepalive.log.%Y%m%d 86400"
 
 </VirtualHost>
