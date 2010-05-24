@@ -23,6 +23,7 @@ deploy_dir = node[:map_display_vhost][:deploy_dir]
 appserver = node[:map_display_vhost][:appserver]
 tomcat_mgr_ips = node[:map_display_vhost][:tomcat_mgr_ips]
 holding_page = node[:map_display_vhost][:holding_page]
+is_load_balanced = node[:map_display_vhost][:is_load_balanced]
 
 if defined?(node[:apache][:dir])
   
@@ -37,7 +38,8 @@ if defined?(node[:apache][:dir])
       :deploy_dir => deploy_dir,
       :appserver => appserver,
       :tomcat_mgr_ips => tomcat_mgr_ips,
-      :holding_page => holding_page
+      :holding_page => holding_page,
+      :is_load_balanced => is_load_balanced
     )
     only_if "test -d #{node[:apache][:dir]}/sites-available"
   end
