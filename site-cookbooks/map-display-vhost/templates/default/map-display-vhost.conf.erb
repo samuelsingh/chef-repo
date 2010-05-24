@@ -125,3 +125,22 @@
 
 </VirtualHost>
 
+# This stansa is used by the ELB healthcheck
+
+<VirtualHost "*:8050">
+
+    DocumentRoot /var/www/vhosts/<%= @hostname %>
+
+    ProxyPass /mom/keepalive.html  ajp://<%= @appserver %>:9001/mom/keepalive.html
+
+    <Directory "/var/www/vhosts/<%= @hostname %>">
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+   
+    CustomLog /dev/null common
+    ErrorLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/errors-<%= @hostname %>-keepalive.log.%Y%m%d 86400" 
+
+</VirtualHost>
