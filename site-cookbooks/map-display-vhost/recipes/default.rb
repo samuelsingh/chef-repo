@@ -51,7 +51,7 @@ if defined?(node[:apache][:dir])
 end
 
 remote_directory "/var/www/vhosts/#{hostname}" do
-  source "docbase"
+  source "docroot"
   files_owner "sysadmin"
   files_group "sysadmin"
   files_mode "0644"
