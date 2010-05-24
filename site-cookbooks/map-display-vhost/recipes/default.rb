@@ -50,6 +50,24 @@ if defined?(node[:apache][:dir])
   
 end
 
+remote_directory "/var/www/vhosts/#{hostname}" do
+  source "docbase"
+  files_owner "sysadmin"
+  files_group "sysadmin"
+  files_mode "0644"
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0755"
+  recursive true
+end
+
+template "/var/www/vhosts/#{hostname}/holding.html" do
+  source "holding.html.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+end
+
 service "apache2" do
   action :reload
 end

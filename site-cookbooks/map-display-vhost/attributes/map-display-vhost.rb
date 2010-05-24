@@ -24,3 +24,4 @@ set_unless[:map_display_vhost][:appserver] = "md-app-01.map-cloud-01.eu"
 set_unless[:map_display_vhost][:tomcat_mgr_ips] = Array.new
 set_unless[:map_display_vhost][:holding_page] = "false"
 set_unless[:map_display_vhost][:is_load_balanced] = "false"
+set_unless[:map_display_vhost][:holding_page_msg] = "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
