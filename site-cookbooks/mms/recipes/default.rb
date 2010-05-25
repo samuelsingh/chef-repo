@@ -43,13 +43,13 @@ mom_dbname = node[:mms][:mom][:dbname]
 
 ## Creates MMS common configuration directories
 
-directory "#{mmpath}/logs"  do
+directory "#{logpath}"  do
   owner "tomcat"
   group "tomcat"
   mode "0755"
   recursive true
   action :create
-  not_if "test -d #{mmpath}/logs"
+  not_if "test -d #{logpath}"
 end
 
 directory "#{contentpath}/md-packages"  do
