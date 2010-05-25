@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+    this sample xml file is just example file, at least you need 
+    to fill the <LatestVersion> tag with CS' version number.
+-->
+<mapEditor>
+	<ContentService>http://<%= @fqdn %>/mapmanager/services/ContentWebService</ContentService>
+	<LatestVersion>7.6.7</LatestVersion>
+	<URLForLatestVersion>http://<%= @fqdn %>/mapmanager/mapeditor/MapEditor.msi</URLForLatestVersion>
+	<!-- <UrlToRedirectForPrint>http://<%= @fqdn %>/mom/preview/pwayPrt.pdf</UrlToRedirectForPrint> -->
+	<UrlToRedirectForPrint>http://<%= @fqdn %>/mom/preview/page.pdf</UrlToRedirectForPrint>
+	<UrlToRedirectForPreview>http://<%= @fqdn %>/mom/preview/page.html</UrlToRedirectForPreview>
+	<KeepAliveFlag>false</KeepAliveFlag>
+	<KeepAliveFrequency>1800000</KeepAliveFrequency>
+	<LatestDictionaryVersion>0.1</LatestDictionaryVersion>
+	<URLForLatestDictionary>http://<%= @fqdn %>/mapmanager/mapeditor/MapEditorDictionary_0.1.dict</URLForLatestDictionary>
+
+</mapEditor>
