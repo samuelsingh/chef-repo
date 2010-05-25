@@ -449,8 +449,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
       end
       
-            link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp"  do
-        to "#{deploy_dir}/webapps-#{version}/adminapp"
+      link "#{node[:tomcat][:basedir]}/server9002/webapps/previewloader"  do
+        to "#{deploy_dir}/webapps-#{version}/previewloader"
         only_if "test -d #{deploy_dir}/webapps-#{version}"
       end
       
