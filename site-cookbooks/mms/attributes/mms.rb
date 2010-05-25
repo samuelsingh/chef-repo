@@ -19,7 +19,7 @@
 
 set_unless[:mms][:fqdn] = "mms.md-cloud-01.eu"
 set_unless[:mms][:deploy_dir] = "/var/shared/deployment/mms"
-set_unless[:mms][:version] = "2.6.2.MMS.8"
+set_unless[:mms][:version] = "2.6.1.MMS.2"
 set_unless[:mms][:logpath] = "/var/mms/logs"
 set_unless[:mms][:contentpath] = "/var/mms/content"
 set_unless[:mms][:deployment_name] = "unset" # Should be either "Client MMS" or "Map of Medicine Root MMS"
@@ -35,7 +35,6 @@ set_unless[:mms][:multiple_views] = "true"
 set_unless[:mms][:dbuser] = "mtmuser"
 set_unless[:mms][:dbpass] = "medic1"
 set_unless[:mms][:dbhost] = "db"
-set_unless[:mms][:dbname] = "mtmdb"
 
 # Settings for the mapmanager webapp config
 set_unless[:mms][:mapmanager][:path] = "/var/mms/mapmanager"
@@ -51,3 +50,9 @@ set_unless[:mms][:mom][:dbuser] = node[:mms][:dbuser]
 set_unless[:mms][:mom][:dbpass] = node[:mms][:dbpass]
 set_unless[:mms][:mom][:dbhost] = node[:mms][:dbhost]
 set_unless[:mms][:mom][:dbname] = "mappreview"
+
+# Settings for the mcs database
+set_unless[:mms][:mapmanager][:dbuser] = node[:mms][:dbuser]
+set_unless[:mms][:mapmanager][:dbpass] = node[:mms][:dbpass]
+set_unless[:mms][:mapmanager][:dbhost] = node[:mms][:dbhost]
+set_unless[:mms][:mapmanager][:dbname] = "mcs"

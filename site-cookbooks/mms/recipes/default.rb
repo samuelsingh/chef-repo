@@ -281,6 +281,15 @@ end
 
 ## Creates configuration directories for the previewloader webapp
 
+directory "#{previewpath}/attachments"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{previewpath}/attachments"
+end
+
 directory "#{previewpath}/config"  do
   owner "sysadmin"
   group "sysadmin"
@@ -372,12 +381,29 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         not_if "test -d #{node[:tomcat][:basedir]}/server9001/webapps"
       end
       
-      link "#{node[:tomcat][:basedir]}/server9001/webapps/mom"  do
+      link "#{node[:tomcat][:basedir]}/server9001/webapps/mapmanager"  do
+        to "#{deploy_dir}/webapps-#{version}/mapmanager"
+        only_if "test -d #{deploy_dir}/webapps-#{version}"
+      end
+      
+    end
+    
+    if ajp_port == 9002
+      
+      directory "#{node[:tomcat][:basedir]}/server9002/webapps" do
+        owner "tomcat"
+        group "tomcat"
+        mode "0755"
+        action :create
+        not_if "test -d #{node[:tomcat][:basedir]}/server9002/webapps"
+      end
+      
+      link "#{node[:tomcat][:basedir]}/server9002/webapps/mom"  do
         to "#{deploy_dir}/webapps-#{version}/mom"
         only_if "test -d #{deploy_dir}/webapps-#{version}"
       end
       
-      template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mom.xml" do
+      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/mom.xml" do
         source "mom/mom.xml.erb"
         mode 0644
         owner "sysadmin"
@@ -388,12 +414,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :mom_dbhost => mom_dbhost,
           :mom_dbname => mom_dbname
         )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost"
+        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
       end
-      
-    end
-    
-    if ajp_port == 9002
       
       directory "#{node[:tomcat][:basedir]}/server9002/webapps" do
         owner "tomcat"
