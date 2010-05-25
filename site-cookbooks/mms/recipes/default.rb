@@ -165,7 +165,7 @@ template "#{mompath}/config/adminapp-log4j.xml" do
   owner "sysadmin"
   group "sysadmin"
   variables(
-    :mompath => logpath,
+    :logpath => logpath,
     :fqdn => fqdn
   )
 end
@@ -176,7 +176,6 @@ template "#{mompath}/config/adminapp.properties" do
   owner "sysadmin"
   group "sysadmin"
   variables(
-    :mompath => mompath,
     :fqdn => fqdn
   )
 end
@@ -187,7 +186,7 @@ template "#{mompath}/config/mom-log4j.xml" do
   owner "sysadmin"
   group "sysadmin"
   variables(
-    :mompath => logpath,
+    :logpath => logpath,
     :fqdn => fqdn
   )
 end

@@ -46,10 +46,10 @@ hibernate.query.substitutions=true 1, false 0, yes 'Y', no 'N'
 
 # The location of the Map of Medicine search index - this should point to a location for which the
 # application will have full read/write access
-search.index.location=<%= @mtmpath %>/index
-thesaurus.index.location=<%= @mtmpath %>/thesaurusindex
+search.index.location=<%= @mompath %>/index
+thesaurus.index.location=<%= @mompath %>/thesaurusindex
 thesaurus.index.term.separator=@@
-ipg.search.index.location=<%= @mtmpath %>/ipgIndex
+ipg.search.index.location=<%= @mompath %>/ipgIndex
 ipg.search.suggestion.scoreThreshold=0
 ipg.search.suggestion.countThreshold=0
 
@@ -217,7 +217,7 @@ securityRealm.homePagePublicUrl=http://<%= @md_fqdn %>/mapmanager
 # How long do we keep the autologin cookie 
 securityRealm.autologin.cookie.expiry.days=365
 #Athens security Realm
-securityRealm.athens.config.file=<%= @mtmpath %>/athens/athens_agent_conf.txt
+securityRealm.athens.config.file=<%= @mompath %>/athens/athens_agent_conf.txt
 #if default roles are added, permissions associated with those roles will not be cleared
 securityRealm.athensUsers.isClearPermission=false
 
@@ -268,7 +268,7 @@ nlh.mtmService.proxyPort=
 nlh.mtmService.proxyUser=
 nlh.mtmService.proxyPassword=
 
-nlh.local.index=<%= @mtmpath %>/nelhIndex
+nlh.local.index=<%= @mompath %>/nelhIndex
 
 # to active web service based nlh search set this value to true
 nlh.webservice_search=true
@@ -335,8 +335,8 @@ simul8.page.url=http://<%= @md_fqdn %>/mom/1/page.html?department-id=DEPARTMENT_
 ################################
 # Swedish synonyms configuration
 ################################
-translation.synonyms.file=file:<%= @mtmpath %>/translation/synonyms_se.txt
-translation.terms.file=file:<%= @mtmpath %>/translation/terms_se.txt
+translation.synonyms.file=file:<%= @mompath %>/translation/synonyms_se.txt
+translation.terms.file=file:<%= @mompath %>/translation/terms_se.txt
 translation.enabled=true
 translation.google.link=http://www.google.se/search?q=
 
