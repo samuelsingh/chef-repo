@@ -386,6 +386,20 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{deploy_dir}/webapps-#{version}"
       end
       
+      template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mapmanager.xml" do
+        source "mapmanager/mapmanager.xml.erb"
+        mode 0644
+        owner "sysadmin"
+        group "sysadmin"
+        variables(
+          :dbuser => node[:mms][:mapmanager][:dbuser],
+          :dbpass => node[:mms][:mapmanager][:dbpass],
+          :dbhost => node[:mms][:mapmanager][:dbhost],
+          :dbname => node[:mms][:mapmanager][:dbname]
+        )
+        only_if "test -d #{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost"
+      end
+      
     end
     
     if ajp_port == 9002
@@ -409,20 +423,12 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         owner "sysadmin"
         group "sysadmin"
         variables(
-          :mom_dbuser => mom_dbuser,
-          :mom_dbpass => mom_dbpass,
-          :mom_dbhost => mom_dbhost,
-          :mom_dbname => mom_dbname
+          :dbuser => mom_dbuser,
+          :dbpass => mom_dbpass,
+          :dbhost => mom_dbhost,
+          :dbname => mom_dbname
         )
         only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
-      end
-      
-      directory "#{node[:tomcat][:basedir]}/server9002/webapps" do
-        owner "tomcat"
-        group "tomcat"
-        mode "0755"
-        action :create
-        not_if "test -d #{node[:tomcat][:basedir]}/server9002/webapps"
       end
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp"  do
@@ -436,10 +442,29 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         owner "sysadmin"
         group "sysadmin"
         variables(
-          :mom_dbuser => mom_dbuser,
-          :mom_dbpass => mom_dbpass,
-          :mom_dbhost => mom_dbhost,
-          :mom_dbname => mom_dbname
+          :dbuser => node[:mms][:mapmanager][:dbuser],
+          :dbpass => node[:mms][:mapmanager][:dbpass],
+          :dbhost => node[:mms][:mapmanager][:dbhost],
+          :dbname => node[:mms][:mapmanager][:dbname]
+        )
+        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
+      end
+      
+            link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp"  do
+        to "#{deploy_dir}/webapps-#{version}/adminapp"
+        only_if "test -d #{deploy_dir}/webapps-#{version}"
+      end
+      
+      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/previewloader.xml" do
+        source "previewloader/previewloader.xml.erb"
+        mode 0644
+        owner "sysadmin"
+        group "sysadmin"
+        variables(
+          :dbuser => mom_dbuser,
+          :dbpass => mom_dbpass,
+          :dbhost => mom_dbhost,
+          :dbname => mom_dbname
         )
         only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
       end
