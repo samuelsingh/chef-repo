@@ -26,6 +26,7 @@ logpath         = node[:mms][:logpath]
 contentpath     = node[:mms][:contentpath]
 fqdn            = node[:mms][:fqdn]
 deploy_dir      = node[:mms][:deploy_dir]
+deployment_name = node[:mms][:deployment_name]
 version         = node[:mms][:version]
 athens_link     = node[:mms][:athens_link]
 multiple_views  = node[:mms][:multiple_views]
@@ -42,14 +43,32 @@ mom_dbname = node[:mms][:mom][:dbname]
 
 ## Creates MMS common configuration directories
 
- directory "#{deploy_dir}/logs"  do
-   owner "tomcat"
-   group "tomcat"
-   mode "0755"
-   recursive true
-   action :create
-   not_if "test -d #{deploy_dir}/logs"
- end
+directory "#{mmpath}/logs"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{mmpath}/logs"
+end
+
+directory "#{contentpath}/md-packages"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{contentpath}/md-packages"
+end
+
+directory "#{contentpath}/sync-packages"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{contentpath}/sync-packages"
+end
 
 ## Creates configuration directories for the mom webapp, used by full map preview
 
@@ -219,6 +238,7 @@ template "#{mmpath}/config/m2mr2-cs-base.properties" do
     :logpath => logpath,
     :contentpath => contentpath,
     :previewpath => previewpath,
+    :deployment_name => deployment_name,
     :previewhour => previewvals[1],
     :previewmin => previewvals[2],
     :fqdn => fqdn
@@ -257,6 +277,78 @@ template "#{mmpath}/config/mapmanager-log4j.xml" do
   variables(
     :logpath => logpath
   )
+end
+
+## Creates configuration directories for the previewloader webapp
+
+directory "#{previewpath}/config"  do
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{previewpath}/config"
+end
+
+directory "#{previewpath}/failure"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{previewpath}/failure"
+end
+
+directory "#{previewpath}/input"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{previewpath}/input"
+end
+
+directory "#{previewpath}/success"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{previewpath}/success"
+end
+
+directory "#{previewpath}/tmp"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{previewpath}/tmp"
+end
+
+template "#{previewpath}/config/previewloader-log4j.xml" do
+  source "previewloader/previewloader-log4j.properties.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+  variables(
+    :logpath => logpath
+  )
+end
+
+template "#{previewpath}/config/contentloader.properties" do
+  source "previewloader/contentloader.properties.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+  variables(
+    :previewpath => previewpath,
+    :mom_dbuser => mom_dbuser,
+    :mom_dbpass => mom_dbpass,
+    :mom_dbhost => mom_dbhost,
+    :mom_dbname => mom_dbname
+  )
+  only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
 end
 
 ## Tomcat base configuration

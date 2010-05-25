@@ -42,10 +42,12 @@ set_unless[:mms][:mapmanager][:path] = "/var/mms/mapmanager"
 
 # Settings for the mom/adminapp webapp config
 set_unless[:mms][:mom][:path] = "/var/mms/mom"
+
+# Settings for the previewloader webapp config
+set_unless[:mms][:previewloader][:path] = "/var/mms/previewloader"
+
+# Settings for the mappreview database
 set_unless[:mms][:mom][:dbuser] = node[:mms][:dbuser]
 set_unless[:mms][:mom][:dbpass] = node[:mms][:dbpass]
 set_unless[:mms][:mom][:dbhost] = node[:mms][:dbhost]
 set_unless[:mms][:mom][:dbname] = "mappreview"
-
-# Settings for the previewloader webapp config
-set_unless[:mms][:previewloader][:path] = "/var/mms/previewloader"

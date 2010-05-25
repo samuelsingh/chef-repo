@@ -1,0 +1,54 @@
+
+packager.input.dir=../packager/input
+packager.output.dir=../packager/output
+
+loader.input.dir=<%= @previewpath %>/input
+loader.success.dir=<%= @previewpath %>/success
+loader.failure.dir=<%= @previewpath %>/failure
+
+
+datasource.jndi.name=jdbc/mom
+hibernate.query.substitutions=true=1 false=0
+hibernate.show_sql=false
+log.capturer.pattern=%d{HH:mm:ss.SSS} %p - %m%n
+
+copy.attachments=false
+attachments.dir=
+
+
+metadata.referral.defaultURL=html/referral_forms/generic.html
+metadata.referral.defaultDescription=A brief description of this referral form, explaining context of use and so on.
+metadata.referral.defaultTitle=Standard referral form
+metadata.referral.titleSpecialtySeparator=-
+
+metadata.date.formats=yyyy,dd/MM/yyyy,yyyy/MM/dd,dd-MM-yyyy,yyyy-MM-dd
+# default references date should be in the same format as the fullDateFormat
+metadata.references.defaultDate=26/10/2005
+metadata.pages.lastReviewedDateFormat=dd-MM-yy
+metadata.pages.defaultLastReviewedDate=31-05-2006
+metadata.pages.expiryDateFormat=dd-MM-yy
+metadata.pages.defaultExpiryDate=30-11-2007
+metadata.pages.lastModifiedDateFormat=dd-MM-yy
+metadata.pages.defaultLastModifiedDate=31-05-2006
+
+
+# standard config for Oyster environment
+#db.user=root
+#db.password=
+#db.url=jdbc:mysql://localhost:3306/mcs
+#db.driver=com.mysql.jdbc.Driver
+#hibernate.dialect=net.sf.hibernate.dialect.MySQLDialect
+#deployment.guid=a0e519cdd6398a8813582d104a936bb318000
+deployment.guid=
+
+
+# example config for Accenture
+db.user=<%= @mom_dbuser %>
+db.password=<%= @mom_dbpass %>
+#db.url=jdbc:jtds:sqlserver://crxdatabase:1433/mappreview
+db.url=jdbc:jtds:sqlserver://<%= @mom_dbhost %>:1433/<%= @mom_dbname %>
+db.driver=net.sourceforge.jtds.jdbc.Driver
+hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+deployment.guid=
+
+
