@@ -348,7 +348,7 @@ template "#{previewpath}/config/contentloader.properties" do
     :mom_dbhost => mom_dbhost,
     :mom_dbname => mom_dbname
   )
-  only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
+  only_if "test -d #{previewpath}/config"
 end
 
 ## Tomcat base configuration
