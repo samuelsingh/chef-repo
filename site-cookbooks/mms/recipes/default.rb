@@ -224,6 +224,27 @@ template "#{mmpath}/config/cs-webservice.properties" do
   )
 end
 
+directory "#{mmpath}/crx"  do
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{mmpath}/crx"
+end
+
+mount "#{mmpath}/crx" do
+  device "/dev/sdh1"
+  fstype "ext3"
+  action [:mount, :enable]
+  only_if "test -b /dev/sdh1"
+end
+
+directory "#{mmpath}/crx"  do
+  mode "0755"
+  recursive true
+  owner "tomcat"
+  group "tomcat"
+end
+
 # Routine to figure out preview time values
 previewvals = /[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d):[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d)/.match("#{node[:mms][:preview_time]}")
 
