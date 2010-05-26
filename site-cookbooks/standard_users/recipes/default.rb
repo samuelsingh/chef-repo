@@ -21,10 +21,6 @@ package "libshadow-ruby1.8" do
   action :install
 end
 
-group "sysadmin"  do
-  gid 10009
-end
-
 user "sysadmin"  do
   comment "Standard Sysadmin User"
   uid "10009"
