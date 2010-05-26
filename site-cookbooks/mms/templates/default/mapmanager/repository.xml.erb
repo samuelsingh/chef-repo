@@ -1,0 +1,85 @@
+<Repository>
+  <FileSystem class="org.apache.jackrabbit.core.fs.db.CSFileSystem">
+    <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />
+    <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
+    <param name="user" value="<%= @dbuser %>" />
+    <param name="password" value="<%= @dbpass %>" />
+    <param name="schema" value="mssql" />
+    <param name="schemaObjectPrefix" value="rep_" />
+  </FileSystem>
+  <Security appName="Jackrabbit">
+    <SecurityManager class="org.apache.jackrabbit.core.security.simple.SimpleSecurityManager" workspaceName="security">
+      <!-- <param name="config" value="${rep.home}/security.xml"/> -->
+    </SecurityManager>
+    <AccessManager class="org.apache.jackrabbit.core.security.SimpleAccessManager" />
+    <LoginModule class="org.apache.jackrabbit.core.security.SimpleLoginModule">
+      <!-- anonymous user name ('anonymous' is the default value) -->
+      <param name="anonymousId" value="anonymous" />
+      <!--
+              default user name to be used instead of the anonymous user
+              when no login credentials are provided (unset by default)
+           -->
+      <!-- <param name="defaultUserId" value="superuser"/> -->
+    </LoginModule>
+  </Security>
+  <Workspaces rootPath="<%= @mmpath %>/crx/workspaces" defaultWorkspace="system" configRootPath="/workspaces" maxIdleTime="900" />
+  <Workspace name="${wsp.name}">
+    <FileSystem class="org.apache.jackrabbit.core.fs.db.CSFileSystem">
+      <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />
+      <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
+      <param name="user" value="<%= @dbuser %>" />
+      <param name="password" value="<%= @dbpass %>" />
+      <param name="schema" value="mssql" />
+      <param name="schemaObjectPrefix" value="${wsp.name}_" />
+    </FileSystem>
+    <PersistenceManager class="org.apache.jackrabbit.core.persistence.CSPersistenceManager">
+      <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />
+      <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
+      <param name="user" value="<%= @dbuser %>" />
+      <param name="password" value="<%= @dbpass %>" />
+      <param name="schema" value="mssql" />
+      <param name="schemaObjectPrefix" value="${wsp.name}_" />
+      <param name="bundleCacheSize" value="2" />
+    </PersistenceManager>
+    <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
+      <param name="path" value="${wsp.home}/index" />
+      <param name="analyzer" value="org.apache.lucene.analysis.standard.StandardAnalyzer" />
+      <param name="useCompoundFile" value="true" />
+      <param name="minMergeDocs" value="1000" />
+      <param name="maxMergeDocs" value="100000" />
+      <param name="mergeFactor" value="10" />
+      <param name="respectDocumentOrder" value="false" />
+      <param name="indexingConfiguration" value="${rep.home}/indexing_configuration.xml" />
+    </SearchIndex>
+  </Workspace>
+  <Versioning rootPath="${rep.home}/version">
+    <FileSystem class="org.apache.jackrabbit.core.fs.db.CSFileSystem">
+      <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />
+      <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
+      <param name="user" value="<%= @dbuser %>" />
+      <param name="password" value="<%= @dbpass %>" />
+      <param name="schema" value="mssql" />
+      <param name="schemaObjectPrefix" value="version_" />
+    </FileSystem>
+    <PersistenceManager class="org.apache.jackrabbit.core.persistence.CSPersistenceManager">
+      <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />
+      <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
+      <param name="user" value="<%= @dbuser %>" />
+      <param name="password" value="<%= @dbpass %>" />
+      <param name="schema" value="mssql" />
+      <param name="schemaObjectPrefix" value="version_" />
+      <param name="bundleCacheSize" value="2" />
+      <param name="ignoreReferences" value="true" />
+    </PersistenceManager>
+  </Versioning>
+  <DataStore class="org.apache.jackrabbit.core.data.db.DbDataStore">
+    <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
+    <param name="user" value="<%= @dbuser %>" />
+    <param name="password" value="<%= @dbpass %>" />
+    <param name="databaseType" value="sqlserver" />
+    <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />
+    <param name="minRecordLength" value="1024" />
+    <param name="maxConnections" value="3" />
+    <param name="copyWhenReading" value="true" />
+  </DataStore>
+</Repository>

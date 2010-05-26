@@ -238,11 +238,27 @@ mount "#{mmpath}/crx" do
   only_if "test -b /dev/sdh1"
 end
 
-directory "#{mmpath}/crx"  do
-  mode "0755"
-  recursive true
+directory "#{mmpath}/crx/workspaces"  do
   owner "tomcat"
   group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{mmpath}/crx/workspaces"
+end
+
+template "#{mmpath}/crx/repository.xml" do
+  source "mapmanager/repository.xml.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+  variables(
+    :mmpath => mmpath,
+    :dbuser => node[:mms][:repository][:dbuser],
+    :dbpass => node[:mms][:repository][:dbpass],
+    :dbhost => node[:mms][:repository][:dbhost],
+    :dbname => node[:mms][:repository][:dbname]
+  )
 end
 
 # Routine to figure out preview time values
