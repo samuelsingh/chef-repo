@@ -1,12 +1,12 @@
 <VirtualHost *:80>
         ServerAdmin <%= @node[:apache][:contact] %>
 
-        DocumentRoot /var/www/
+        DocumentRoot "/var/www/vhosts/default"
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
         </Directory>
-        <Directory /var/www/>
+        <Directory /var/www/vhosts/default>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride None
                 Order allow,deny
@@ -31,7 +31,8 @@
         LogLevel warn
 
         CustomLog <%= @node[:apache][:log_dir] %>/access.log combined
-        ServerSignature On
+        # Changed to "Off" as part of the standard Fabric Apache config
+        ServerSignature Off
 
         Alias /doc/ "/usr/share/doc/"
         <Directory "/usr/share/doc/">

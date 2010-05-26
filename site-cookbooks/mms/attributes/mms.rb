@@ -28,9 +28,9 @@ set_unless[:mms][:deployment][:external_start] = "0" # Should be set appropriate
 set_unless[:mms][:deployment][:external_end] = "0" # Should be set appropriately in JSON properties
 set_unless[:mms][:quartz][:user] = "quartz@mapofmedicine.com"
 set_unless[:mms][:quartz][:password] = "password"
-set_unless[:mms][:preview_time] = "22:00"
-set_unless[:mms][:athens_link] = "true"
-set_unless[:mms][:multiple_views] = "true"
+set_unless[:mms][:preview_time] = "22:00" # Format is HH:MM
+set_unless[:mms][:athens_link] = "true" # True for Client MMS, false for Root MMS
+set_unless[:mms][:multiple_views] = "true" # True for Client MMS, false for Root MMS
 
 set_unless[:mms][:dbuser] = "mtmuser"
 set_unless[:mms][:dbpass] = "medic1"
