@@ -334,7 +334,7 @@ directory "#{previewpath}/tmp"  do
   not_if "test -d #{previewpath}/tmp"
 end
 
-template "#{previewpath}/config/previewloader-log4j.xml" do
+template "#{previewpath}/config/previewloader-log4j.properties" do
   source "previewloader/previewloader-log4j.properties.erb"
   mode 0644
   owner "sysadmin"
