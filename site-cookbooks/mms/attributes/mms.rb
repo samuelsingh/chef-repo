@@ -56,3 +56,9 @@ set_unless[:mms][:mapmanager][:dbuser] = node[:mms][:dbuser]
 set_unless[:mms][:mapmanager][:dbpass] = node[:mms][:dbpass]
 set_unless[:mms][:mapmanager][:dbhost] = node[:mms][:dbhost]
 set_unless[:mms][:mapmanager][:dbname] = "mcs"
+
+# Settings for the jackrabbit repository database
+set_unless[:mms][:repository][:dbuser] = node[:mms][:dbuser]
+set_unless[:mms][:repository][:dbpass] = node[:mms][:dbpass]
+set_unless[:mms][:repository][:dbhost] = node[:mms][:dbhost]
+set_unless[:mms][:repository][:dbname] = "crx"
