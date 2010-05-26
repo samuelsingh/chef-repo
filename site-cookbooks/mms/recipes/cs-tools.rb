@@ -94,7 +94,7 @@ link "#{cstools}/lib"  do
   only_if "test -d #{deploy_dir}/cs-tools-#{version}"
 end
 
-link "#{cstools}/lib"  do
+link "#{cstools}/archive"  do
   to "#{deploy_dir}/cs-tools-#{version}/archive"
   only_if "test -d #{deploy_dir}/cs-tools-#{version}"
 end
