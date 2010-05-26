@@ -45,6 +45,9 @@ set_unless[:mms][:mom][:path] = "/var/mms/mom"
 # Settings for the previewloader webapp config
 set_unless[:mms][:previewloader][:path] = "/var/mms/previewloader"
 
+# Settings for cs-tools
+set_unless[:mms][:cstools][:path] = "/var/mms/cs-tools"
+
 # Settings for the mappreview database
 set_unless[:mms][:mom][:dbuser] = node[:mms][:dbuser]
 set_unless[:mms][:mom][:dbpass] = node[:mms][:dbpass]
