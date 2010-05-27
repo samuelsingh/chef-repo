@@ -36,6 +36,15 @@ remote_file "#{cstools}/cs-tools.sh" do
   mode "0755"
 end
 
+directory "#{cstools}/logs"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{cstools}/logs"
+end
+
 # cs-tools doesn't actually use values from this
 #
 template "#{cstools}/config/mom.properties" do
