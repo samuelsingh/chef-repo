@@ -20,6 +20,7 @@
 cstools    = node[:mms][:cstools][:path]
 version    = node[:mms][:version]
 deploy_dir = node[:mms][:deploy_dir]
+mmpath     = node[:mms][:mapmanager][:path]
 
 
 directory "#{cstools}/config"  do
@@ -70,6 +71,9 @@ template "#{cstools}/config/repository.properties" do
   mode 0644
   owner "sysadmin"
   group "sysadmin"
+    variables(
+    :mmpath => mmpath
+  )
 end
 
 link "#{cstools}/config/m2mr2-cs-base.properties"  do

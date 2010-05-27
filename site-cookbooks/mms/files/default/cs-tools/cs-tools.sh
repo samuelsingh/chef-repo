@@ -1,9 +1,9 @@
 #!/bin/bash
 
-CONFIG=config
+DIR=`dirname $0`
+CONFIG=$DIR/config
 CLASSPATH=""
 USER="tomcat"
-DIR=`dirname $0`
 
 for JAR in $DIR/lib/*.jar; do
     CLASSPATH="$CLASSPATH:$JAR"

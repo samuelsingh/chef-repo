@@ -229,6 +229,8 @@ directory "#{mmpath}/crx"  do
   recursive true
   action :create
   not_if "test -d #{mmpath}/crx"
+  owner "tomcat"
+  group "tomcat"
 end
 
 mount "#{mmpath}/crx" do
@@ -250,8 +252,8 @@ end
 template "#{mmpath}/crx/repository.xml" do
   source "mapmanager/repository.xml.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
+  owner "tomcat"
+  group "tomcat"
   variables(
     :mmpath => mmpath,
     :dbuser => node[:mms][:repository][:dbuser],
