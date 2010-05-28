@@ -90,7 +90,7 @@
         Order deny,allow
         Deny from all
         Allow from 127.0.0.1
-        <% @tomcat_mgr_ips.each do |ip| -%>
+        <% @restricted_ips.each do |ip| -%>
         Allow from <%= ip %>
         <% end -%>
     </Location>
