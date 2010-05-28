@@ -5,7 +5,7 @@ description "Configures apache vhosts for production use"
 run_list "recipe[mms-vhost]"
 
 override_attributes(
-  "mms-vhosts" => {
+  "mms-vhost" => {
     "mms.map-cloud-01.eu" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/root-mms",
