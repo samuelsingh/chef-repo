@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-node[:mms_vhost][:domains].each do |hostname,params|
+node[:mms_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-      source "map-display-vhost.conf.erb"
+      source "mms-vhost.conf.erb"
       mode 0644
       owner "sysadmin"
       group "sysadmin"
@@ -31,7 +31,7 @@ node[:mms_vhost][:domains].each do |hostname,params|
         :srv_aliases => params.fetch("srv_aliases"),
         :deploy_dir => params.fetch("deploy_dir"),
         :appserver => params.fetch("appserver"),
-        :tomcat_mgr_ips => params.fetch("tomcat_mgr_ips"),
+        :restricted_ips => params.fetch("restricted_ips"),
         :holding_page => params.fetch("holding_page"),
         :is_load_balanced => params.fetch("is_load_balanced")
       )

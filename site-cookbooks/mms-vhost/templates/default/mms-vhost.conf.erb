@@ -36,23 +36,24 @@
     # This alias points to where the webapp is installed, so the static
     # files can be found.
 
-    Alias /mom <%= @deploy_dir %>/webapps-running/mom
+    # Alias /mom <%= @deploy_dir %>/webapps-running/mom
     
     # This alias points to where the attachments are installed.  These have been
     # moved outside of the webapp context base
     
-    Alias /mom/attachments <%= @deploy_dir %>/attachments
+    # Alias /mom/attachments <%= @deploy_dir %>/attachments
     
     # This set of directives tells Apache NOT to use the ajp proxy to tomcat
     # to get files under these paths. So these are static files which will be
     # served directly by Apache, which improves performance.
 
-    ProxyPass /mom/i !
-    ProxyPass /mom/css !
-    ProxyPass /mom/attachments !
-    ProxyPass /mom/html !
-    ProxyPass /mom/help !
-    ProxyPass /mom/js !
+    # ProxyPass /path/to/static/file/directory !
+
+    # This is needed as a workaround for long transactions in the MMS.
+    # See OPS-11139 for some details, IST-5075 for request to optimize specific
+    # report in MMS that prompted this setting. Default is 300 seconds.
+    
+    ProxyTimeout 600
 
     # These are the main ajp proxy directives, they tell Apache to pass requests
     # to Tomcat.
@@ -60,9 +61,12 @@
     # In this iteration, one web server is hardlinked to a backend appserver. In
     # the future, we'll do somethis more clever with mod_proxy_balancer
 
-    ProxyPass /mom/  ajp://<%= @appserver %>:9001/mom/
-    ProxyPass /adminapp  ajp://<%= @appserver %>:9002/adminapp
-    ProxyPass /tomcat-manager  ajp://<%= @appserver %>:9001/tomcat-manager
+    ProxyPass /mapmanager     ajp://<%= @appserver %>:9001/mapmanager
+    ProxyPass /mom            ajp://<%= @appserver %>:9002/mom 
+    ProxyPass /adminapp       ajp://<%= @appserver %>:9002/adminapp
+    ProxyPass /previewloader  ajp://<%= @appserver %>:9002/previewloader
+    ProxyPass /manager9001    ajp://<%= @appserver %>:9001/manager9001
+    ProxyPass /manager9002    ajp://<%= @appserver %>:9002/manager9002
 
     # Main access block, this allows anonymous access to everything by default
     <Location "/">
@@ -73,6 +77,16 @@
 
     # Restricted access for the Tomcat manager webapp, locked by IP address.
     <Location "/tomcat-manager">
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+    </Location>
+    
+    # Batch control URL
+    <Location "/mapmanager/quartzcontroller">
         Order deny,allow
         Deny from all
         Allow from 127.0.0.1
@@ -100,16 +114,13 @@
         
         # Redirect any access to the base URL to the mom index page, plus a few other
         # URL cleanups
-
-        RewriteRule ^/$ /mom/1/index.html [R,L]
-        RewriteRule ^/mom/(\d+)/?$ /mom/$1/index.html [R,L]
+        
+        RewriteRule ^/$ /mapmanager [R,L]
         RewriteRule ^/admin$ /adminapp [R,L]
         
-        # Added to 'fix' issue in OPS-24530
+        # Added to 'fix' issue in OPS-24821
         
-        RewriteCond %{REQUEST_URI} ^/mom/(\d+)/login_page\.html$
-        RewriteCond %{QUERY_STRING} !.+
-        RewriteRule ^/mom/(\d+)/login_page\.html$ /mom/$1/index.html [R,L]
+        RewriteRule ^/\d+/index\.html$ / [R,L]
 
     </IfModule>
 
@@ -117,11 +128,6 @@
 
     CustomLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
     ErrorLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/errors-<%= @hostname %>.log.%Y%m%d 86400"
-
-
-<Location "/mom">       
-        Header append P3P 'CP="IDC DSP COR CUR ADM DEVo TAIo PSA PSDo IVA IVDo CONo HISo TELo OUR OTRo STP UNI"' 
-</Location>
 
 </VirtualHost>
 

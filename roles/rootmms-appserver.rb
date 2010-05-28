@@ -6,8 +6,8 @@ run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]"
 default_attributes(
   "mms" => {
     "quartz" => {
-      "user" => "quartz@mapofmedicine.com",
-      "password" => "password"
+      "user" => "scott@nhs.com",
+      "password" => "LetMe1n"
     },
     "dbhost" => "rootmms-db-01.map-cloud-01.eu"
   }
