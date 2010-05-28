@@ -132,7 +132,7 @@
 </VirtualHost>
 
 
-<% if defined?(@lb_alive_port) -%>
+<% if @lb_alive_port != 0 -%>
 # This part isn't currently used by MMS, so a @lb_alive_port shouldn't be set.
 # Configure as appropriate below if later required
 

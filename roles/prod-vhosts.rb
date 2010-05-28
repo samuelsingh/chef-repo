@@ -12,7 +12,8 @@ override_attributes(
       "appserver" => "rootmms-test-01.map-cloud-01.eu",
       "restricted_ips" => [],
       "holding_page" => "false",
-      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
+      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
+      "lb_alive_port" => 0
     }
   }
 )

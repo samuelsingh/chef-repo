@@ -33,7 +33,7 @@ node[:mms_vhost].each do |hostname,params|
         :appserver => params.fetch("appserver"),
         :restricted_ips => params.fetch("restricted_ips"),
         :holding_page => params.fetch("holding_page"),
-        :is_load_balanced => params.fetch("is_load_balanced")
+        :lb_alive_port => params.fetch("lb_alive_port")
       )
       only_if "test -d #{node[:apache][:dir]}/sites-available"
     end
