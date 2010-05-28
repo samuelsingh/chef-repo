@@ -60,6 +60,9 @@ node[:mms_vhost].each do |hostname,params|
     mode 0644
     owner "sysadmin"
     group "sysadmin"
+    variables(
+        :holding_page_msg => params.fetch("holding_page_msg")
+    )
   end
 
 end
