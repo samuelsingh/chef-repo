@@ -8,8 +8,8 @@ override_attributes(
   "map_display" => {
     "md_fqdn" =>  "app.map-cloud-01.eu",
     "deploy_dir" =>  "/var/shared/deployment/app",
-    "db_host" => "md-db-01.map-cloud-01.eu",
-    "db_name" => "live_mtmdb",
+    "dbhost" => "md-db-01.map-cloud-01.eu",
+    "dbname" => "live_mtmdb",
     "dbuser" => "mtmuser",
     "dbpass" => "medic1",
     "version" => "2.6.2.MD.8"
