@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "rsyslog"
+include_recipe "rsyslog_mom"
 
 rsyslog_server = node[:rsyslog][:server] ? node[:rsyslog][:server] : search(:node, "rsyslog_server:true").map { |n| n["fqdn"] }.first
 

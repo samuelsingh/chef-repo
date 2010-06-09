@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "rsyslog"
+include_recipe "rsyslog_mom"
 
 directory node[:rsyslog][:log_dir] do
   owner "root"
