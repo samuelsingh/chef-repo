@@ -49,19 +49,19 @@ set_unless[:mms][:previewloader][:path] = "/var/mms/previewloader"
 set_unless[:mms][:cstools][:path] = "/var/mms/cs-tools"
 
 # Settings for the mappreview database
-set_unless[:mms][:mom][:dbuser] = node[:mms][:dbuser]
-set_unless[:mms][:mom][:dbpass] = node[:mms][:dbpass]
-set_unless[:mms][:mom][:dbhost] = node[:mms][:dbhost]
+set[:mms][:mom][:dbuser] = node[:mms][:dbuser]
+set[:mms][:mom][:dbpass] = node[:mms][:dbpass]
+set[:mms][:mom][:dbhost] = node[:mms][:dbhost]
 set_unless[:mms][:mom][:dbname] = "mappreview"
 
 # Settings for the mcs database
-set_unless[:mms][:mapmanager][:dbuser] = node[:mms][:dbuser]
-set_unless[:mms][:mapmanager][:dbpass] = node[:mms][:dbpass]
-set_unless[:mms][:mapmanager][:dbhost] = node[:mms][:dbhost]
+set[:mms][:mapmanager][:dbuser] = node[:mms][:dbuser]
+set[:mms][:mapmanager][:dbpass] = node[:mms][:dbpass]
+set[:mms][:mapmanager][:dbhost] = node[:mms][:dbhost]
 set_unless[:mms][:mapmanager][:dbname] = "mcs"
 
 # Settings for the jackrabbit repository database
-set_unless[:mms][:repository][:dbuser] = node[:mms][:dbuser]
-set_unless[:mms][:repository][:dbpass] = node[:mms][:dbpass]
-set_unless[:mms][:repository][:dbhost] = node[:mms][:dbhost]
+set[:mms][:repository][:dbuser] = node[:mms][:dbuser]
+set[:mms][:repository][:dbpass] = node[:mms][:dbpass]
+set[:mms][:repository][:dbhost] = node[:mms][:dbhost]
 set_unless[:mms][:repository][:dbname] = "crx"
