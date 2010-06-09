@@ -5,10 +5,6 @@ description "Configures Client MMS application server"
 run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]"
 default_attributes(
   "mms" => {
-    "quartz" => {
-      "user" => "quartz@mapofmedicine.com",
-      "password" => "password"
-    },
     "dbhost" => "clientmms-db-01.map-cloud-01.eu"
   }
 )
@@ -22,7 +18,13 @@ override_attributes(
       "external_start" => "20000001",
       "external_end" => "30000000"
     },
+    "quartz" => {
+      "user" => "support@mapofmedicine.com",
+      "password" => "Ogohgha8"
+    },
     "athens_link" => "false",
-    "multiple_views" => "false"
+    "multiple_views" => "false",
+    "dbuser" => "mtmuser",
+    "dbpass" => "MtMUs3r"
   }
 )
