@@ -263,6 +263,13 @@ template "#{mmpath}/crx/repository.xml" do
   )
 end
 
+remote_file "#{mmpath}/crx/indexing_configuration.xml" do
+  source "mapmanager/indexing_configuration.xml"
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0644"
+end
+
 # Routine to figure out preview time values
 previewvals = /[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d):[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d)/.match("#{node[:mms][:preview_time]}")
 
