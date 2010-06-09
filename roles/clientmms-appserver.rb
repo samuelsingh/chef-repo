@@ -22,6 +22,9 @@ override_attributes(
       "user" => "support@mapofmedicine.com",
       "password" => "Ogohgha8"
     },
+    "mapmanager" => {
+      "dbname" => "mapmanager_mcs"
+    },
     "athens_link" => "false",
     "multiple_views" => "false",
     "dbuser" => "mtmuser",
