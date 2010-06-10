@@ -18,5 +18,5 @@
 #
 
 set_unless[:rsyslog][:log_dir] = "/var/shared/logs"
-set_unless[:rsyslog][:server] = true
+set_unless[:rsyslog][:server] = 10.226.198.63
 set_unless[:rsyslog][:protocol] = "tcp"
