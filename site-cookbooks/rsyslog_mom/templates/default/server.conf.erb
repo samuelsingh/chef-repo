@@ -28,7 +28,7 @@ $template PerHostNewsCrit,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/ne
 $template PerHostNewsErr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.err"
 $template PerHostNewsNotice,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.notice"
 $template PerHostDebug,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/debug"
-$template PerHostMessages,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/messages"
+$template PerHostMessages,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/messages_$now"
 
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
