@@ -25,8 +25,8 @@ override_attributes(
     "mapmanager" => {
       "dbname" => "mapmanager_mcs"
     },
-    "athens_link" => "false",
-    "multiple_views" => "false",
+    "athens_link" => "true",
+    "multiple_views" => "true",
     "dbuser" => "mtmuser",
     "dbpass" => "MtMUs3r"
   }
