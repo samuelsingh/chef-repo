@@ -13,22 +13,22 @@ $DirGroup root
 $DirCreateMode 0755
 $FileGroup root
 
-$template PerHostAuth,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/auth.log_%hostname%"
-$template PerHostCron,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/cron.log_%hostname%"
-$template PerHostSyslog,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/syslog_%hostname%"
-$template PerHostDaemon,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/daemon.log_%hostname%"
-$template PerHostKern,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/kern.log_%hostname%"
-$template PerHostLpr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/lpr.log_%hostname%"
-$template PerHostUser,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/user.log_%hostname%"
-$template PerHostMail,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.log_%hostname%"
-$template PerHostMailInfo,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.info_%hostname%"
-$template PerHostMailWarn,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.warn_%hostname%"
-$template PerHostMailErr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.err_%hostname%"
-$template PerHostNewsCrit,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.crit_%hostname%"
-$template PerHostNewsErr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.err_%hostname%"
-$template PerHostNewsNotice,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.notice_%hostname%"
-$template PerHostDebug,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/debug_%hostname%"
-$template PerHostMessages,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/messages_%hostname%"
+$template PerHostAuth,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/auth.log:%HOSTNAME%"
+$template PerHostCron,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/cron.log:%HOSTNAME%"
+$template PerHostSyslog,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/syslog:%HOSTNAME%"
+$template PerHostDaemon,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/daemon.log:%HOSTNAME%"
+$template PerHostKern,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/kern.log:%HOSTNAME%"
+$template PerHostLpr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/lpr.log:%HOSTNAME%"
+$template PerHostUser,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/user.log:%HOSTNAME%"
+$template PerHostMail,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.log:%HOSTNAME%"
+$template PerHostMailInfo,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.info:%HOSTNAME%"
+$template PerHostMailWarn,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.warn:%HOSTNAME%"
+$template PerHostMailErr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/mail.err:%HOSTNAME%"
+$template PerHostNewsCrit,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.crit:%HOSTNAME%"
+$template PerHostNewsErr,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.err:%HOSTNAME%"
+$template PerHostNewsNotice,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/news.notice:%HOSTNAME%"
+$template PerHostDebug,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/debug:%HOSTNAME%"
+$template PerHostMessages,"<%= @log_dir %>/%$YEAR%/%$MONTH%/%$DAY%/%HOSTNAME%/messages:%HOSTNAME%"
 
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
