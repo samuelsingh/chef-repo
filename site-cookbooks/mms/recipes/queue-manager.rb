@@ -64,7 +64,7 @@ directory "#{queuemgr}/logs"  do
 end
 
 template "#{queuemgr}/config/m2mr2-batch.properties" do
-  source "cs-tools/m2mr2-batch.properties.erb"
+  source "queue-manager/m2mr2-batch.properties.erb"
   mode 0644
   owner "sysadmin"
   group "sysadmin"
@@ -74,18 +74,18 @@ template "#{queuemgr}/config/m2mr2-batch.properties" do
 end
 
 remote_file "#{queuemgr}/config/log4j.xml" do
-  source "cs-tools/config/log4j.xml"
+  source "queue-manager/config/log4j.xml"
   mode 0644
   owner "sysadmin"
   group "sysadmin"
 end
 
 link "#{queuemgr}/lib"  do
-  to "#{deploy_dir}/mms-#{version}/queue-manager/lib"
+  to "#{deploy_dir}/mms-#{version}/batchProcessing/lib"
   only_if "test -d #{deploy_dir}/mms-#{version}"
 end
 
 link "#{queuemgr}/help"  do
-  to "#{deploy_dir}/mms-#{version}/queue-manager/help"
+  to "#{deploy_dir}/mms-#{version}/batchProcessing/help"
   only_if "test -d #{deploy_dir}/mms-#{version}"
 end
