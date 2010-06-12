@@ -22,6 +22,7 @@ set_unless[:mms][:deploy_dir] = "/var/shared/deployment/mms"
 set_unless[:mms][:version] = "2.6.1.MMS.2"
 set_unless[:mms][:logpath] = "/var/mms/logs"
 set_unless[:mms][:contentpath] = "/var/mms/content"
+set_unless[:mms][:content_in] = "/var/mms/content-in"
 set_unless[:mms][:deployment_name] = "unset" # Should be either "Client MMS" or "Map of Medicine Root MMS"
 set_unless[:mms][:deployment][:id] = "0" # Should be set appropriately in JSON properties
 set_unless[:mms][:deployment][:external_start] = "0" # Should be set appropriately in JSON properties
@@ -47,6 +48,9 @@ set_unless[:mms][:previewloader][:path] = "/var/mms/previewloader"
 
 # Settings for cs-tools
 set_unless[:mms][:cstools][:path] = "/var/mms/cs-tools"
+
+# Settings for batchProcessing
+set_unless[:mms][:queuemgr][:path] = "/var/mms/queue-manager"
 
 # Settings for the mappreview database
 set[:mms][:mom][:dbuser] = node[:mms][:dbuser]
