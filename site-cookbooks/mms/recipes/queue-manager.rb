@@ -32,8 +32,8 @@ directory "#{content_in}/import"  do
 end
 
 directory "#{content_in}/scheduled"  do
-  owner "tomcat"
-  group "tomcat"
+  owner "sysadmin"
+  group "sysadmin"
   mode "0755"
   recursive true
   action :create
@@ -55,8 +55,8 @@ remote_file "#{queuemgr}/queue-manager.sh" do
 end
 
 directory "#{queuemgr}/logs"  do
-  owner "tomcat"
-  group "tomcat"
+  owner "sysadmin"
+  group "sysadmin"
   mode "0755"
   recursive true
   action :create

@@ -4,7 +4,7 @@ DIR=`dirname $0`
 CONFIG="$DIR/config"
 HLP="$DIR/help"
 CLASSPATH=""
-USER="tomcat"
+USER="sysadmin"
 
 for JAR in $DIR/lib/*.jar; do
     CLASSPATH="$CLASSPATH:$JAR"
