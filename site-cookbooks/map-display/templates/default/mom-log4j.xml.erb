@@ -125,6 +125,16 @@
 		</filter>
 	</appender>
 
+	<appender name="SYSLOG" class="org.productivity.java.syslog4j.impl.log4j.Syslog4jAppender">
+		<param name="Protocol" value="tcp"/>
+		<param name="Facility" value="user"/>
+		<param name="SyslogHost" value="logger.map-cloud-01.eu"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m"/>
+		</layout>
+   </appender>
+ 
+
 	<!-- ***********************************************************************
 	Logger section - use the loggers to control logging according to message type
 	and level.
@@ -133,12 +143,14 @@
 	<logger name="com.oyster.mom" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="APPLICATION" />
+		<appender-ref ref="SYSLOG"/>
 	</logger>
 	
 	<logger name="com.oyster.mom.aspect.logging" additivity="false">
 		<level value="info" />
 		<appender-ref ref="SECURITYLOG"/>
 		<appender-ref ref="AUDITLOG"/>
+		<appender-ref ref="SYSLOG"/>
 		<!--<appender-ref ref="USERBATCHLOG-DISPLAY"/>-->
 		<!--<appender-ref ref="ADMINBATCHLOG-DISPLAY"/>-->
 		<!--<appender-ref ref="MTMAUDIT-DISPLAY-ADMIN"/>-->
@@ -148,16 +160,19 @@
 	<logger name="MoMSessionTerminationService" additivity="true">
 		<level value="debug" />
 		<appender-ref ref="SECURITYLOG" />
+		<appender-ref ref="SYSLOG"/>
 	</logger>
 
 	<logger name="exceptions" additivity="false">
 		<level value="warn" />
 		<appender-ref ref="EXCEPTIONS" />
+		<appender-ref ref="SYSLOG"/>
 	</logger>
 
 	<root>
 		<level value="error" />
 		<appender-ref ref="ERROR" />
+		<appender-ref ref="SYSLOG"/>
 	</root>
 
 </log4j:configuration>
