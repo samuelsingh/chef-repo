@@ -13,6 +13,7 @@ override_attributes(
     "fqdn" =>  "localise.map-cloud-01.eu",
     "deploy_dir" =>  "/var/shared/deployment/client-mms",
     "deployment_name" => "Client MMS",
+    "contentpath" => "/var/mms/content-out",
     "deployment" => {
       "id" => "3",
       "external_start" => "20000001",
