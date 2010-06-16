@@ -55,13 +55,13 @@ remote_file "#{queuemgr}/queue-manager" do
   mode "0755"
 end
 
-directory "#{queuemgr}/logs"  do
+directory "#{logpath}/queue-manager"  do
   owner "sysadmin"
   group "sysadmin"
   mode "0755"
   recursive true
   action :create
-  not_if "test -d #{queuemgr}/logs"
+  not_if "test -d #{logpath}/queue-manager"
 end
 
 template "#{queuemgr}/config/m2mr2-batch.properties" do
