@@ -75,7 +75,7 @@ template "#{queuemgr}/config/m2mr2-batch.properties" do
 end
 
 template "#{queuemgr}/config/log4j.xml" do
-  source "queue-manager/log4j.xml"
+  source "queue-manager/log4j.xml.erb"
   mode 0644
   owner "sysadmin"
   group "sysadmin"
