@@ -21,6 +21,7 @@ queuemgr   = node[:mms][:queuemgr][:path]
 version    = node[:mms][:version]
 deploy_dir = node[:mms][:deploy_dir]
 content_in = node[:mms][:content_in]
+logpath    = node[:mms][:logpath]
 
 directory "#{content_in}/import"  do
   owner "sysadmin"
@@ -49,7 +50,7 @@ directory "#{queuemgr}/config"  do
   not_if "test -d #{queuemgr}/config"
 end
 
-remote_file "#{queuemgr}/queue-manager.sh" do
+remote_file "#{queuemgr}/queue-manager" do
   source "queue-manager/queue-manager.sh"
   mode "0755"
 end
@@ -73,11 +74,24 @@ template "#{queuemgr}/config/m2mr2-batch.properties" do
   )
 end
 
-remote_file "#{queuemgr}/config/log4j.xml" do
-  source "queue-manager/config/log4j.xml"
+template "#{queuemgr}/config/log4j.xml" do
+  source "queue-manager/log4j.xml"
   mode 0644
   owner "sysadmin"
   group "sysadmin"
+  variables(
+    :logpath => logpath
+  )
+end
+
+template "/etc/profile.d/mms-queuemgr.sh" do
+  source "etc/profile.d/mms-queuemgr.sh.erb"
+  mode 0755
+  owner "root"
+  group "root"
+  variables(
+    :queuemgr_path => queuemgr
+  )
 end
 
 link "#{queuemgr}/lib"  do

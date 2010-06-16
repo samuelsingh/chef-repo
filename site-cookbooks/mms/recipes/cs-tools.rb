@@ -21,7 +21,7 @@ cstools    = node[:mms][:cstools][:path]
 version    = node[:mms][:version]
 deploy_dir = node[:mms][:deploy_dir]
 mmpath     = node[:mms][:mapmanager][:path]
-
+logpath    = node[:mms][:logpath]
 
 directory "#{cstools}/config"  do
   owner "sysadmin"
@@ -32,18 +32,18 @@ directory "#{cstools}/config"  do
   not_if "test -d #{cstools}/config"
 end
 
-remote_file "#{cstools}/cs-tools.sh" do
+remote_file "#{cstools}/cs-tools" do
   source "cs-tools/cs-tools.sh"
   mode "0755"
 end
 
-directory "#{cstools}/logs"  do
+directory "#{logpath}/cs-tools"  do
   owner "tomcat"
   group "tomcat"
   mode "0755"
   recursive true
   action :create
-  not_if "test -d #{cstools}/logs"
+  not_if "test -d #{logpath}/cs-tools"
 end
 
 # cs-tools doesn't actually use values from this
@@ -71,7 +71,7 @@ template "#{cstools}/config/repository.properties" do
   mode 0644
   owner "sysadmin"
   group "sysadmin"
-    variables(
+  variables(
     :mmpath => mmpath
   )
 end
@@ -88,11 +88,24 @@ remote_file "#{cstools}/config/auto-approve.properties" do
   group "sysadmin"
 end
 
-remote_file "#{cstools}/config/log4j.xml" do
-  source "cs-tools/config/log4j.xml"
+template "#{cstools}/config/log4j.xml" do
+  source "cs-tools/log4j.xml.erb"
   mode 0644
   owner "sysadmin"
   group "sysadmin"
+  variables(
+    :logpath => logpath
+  )
+end
+
+template "/etc/profile.d/mms-cstools.sh" do
+  source "etc/profile.d/mms-cstools.sh.erb"
+  mode 0755
+  owner "root"
+  group "root"
+  variables(
+    :cstools_path => cstools
+  )
 end
 
 remote_file "#{cstools}/config/m2mr2-cs-spring.properties" do
