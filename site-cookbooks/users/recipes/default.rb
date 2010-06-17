@@ -25,7 +25,7 @@ group "sysadmin" do
   gid 10009
 end
 
-node[:mms_vhost].each do |username,params|
+node[:users].each do |username,params|
   
   if defined?(params.fetch("home"))
     user_home = params.fetch("home")
