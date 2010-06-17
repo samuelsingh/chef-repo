@@ -27,7 +27,7 @@ end
 
 node[:users].each do |username,params|
   
-  if params.defined?("home")
+  if params.has_key?("home")
     user_home = params.fetch("home")
   else
     user_home = "/var/shared/home/#{username}"
