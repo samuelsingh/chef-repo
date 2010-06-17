@@ -27,7 +27,7 @@ end
 
 node[:users].each do |username,params|
   
-  if defined?(params.fetch("home"))
+  if params.defined?("home")
     user_home = params.fetch("home")
   else
     user_home = "/var/shared/home/#{username}"
@@ -44,13 +44,13 @@ node[:users].each do |username,params|
     not_if "[ ! -z \"`who | grep #{username}`\" ]"
   end
 
-end
-
-if params.fetch("is_admin") == "true"
-  
-  group "sysadmin" do
-    members ["#{username}"]
-    append true
+  if params.fetch("is_admin") == "true"
+    
+    group "sysadmin" do
+      members ["#{username}"]
+      append true
+    end
+    
   end
-  
+
 end
