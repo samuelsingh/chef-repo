@@ -37,7 +37,7 @@ node[:users].each do |username,params|
     comment "Managed by Chef"
     uid "#{params.fetch("uid")}"
     gid "#{username}"
-    home "#{params.fetch("home")}"
+    home "#{user_home}"
     shell "/bin/bash"
     supports :manage_home => true
     password "#{params.fetch("hash")}"
