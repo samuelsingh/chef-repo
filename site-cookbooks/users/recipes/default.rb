@@ -40,7 +40,7 @@ node[:users].each do |username,params|
     home "#{user_home}"
     shell "/bin/bash"
     supports :manage_home => true
-    password "#{params.fetch("hash")}"
+    password "#{params.fetch("pwd_hash")}"
     not_if "[ ! -z \"`who | grep #{username}`\" ]"
   end
 
