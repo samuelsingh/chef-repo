@@ -316,7 +316,7 @@ trusted_groups = MAIN_TRUSTED_GROUPS
 # Defines what hosts to 'advertise' STARTTLS functionality to. The
 # default, *, will advertise to all hosts that connect with EHLO.
 .ifndef MAIN_TLS_ADVERTISE_HOSTS
-MAIN_TLS_ADVERTISE_HOSTS = *
+MAIN_TLS_ADVERTISE_HOSTS = !79.125.47.202:*
 .endif
 tls_advertise_hosts = MAIN_TLS_ADVERTISE_HOSTS
 
