@@ -1,2 +1,3 @@
 MAIN_TLS_ENABLE = true
 AUTH_CLIENT_ALLOW_NOTLS_PASSWORDS = 1
+MAIN_RELAY_NETS = clientmms-db-01.map-cloud-01.eu
