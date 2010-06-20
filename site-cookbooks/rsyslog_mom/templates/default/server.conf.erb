@@ -37,6 +37,13 @@ $template PerHostMomExceptions,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DA
 $template PerHostMomError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-error.log.%$NOW%"
 $template PerHostMomApplication,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-application.log.%$NOW%"
 
+# Configuration for the mom (Map Display) webapp
+:msg, contains, "mom-audit.log"		?PerHostMomAudit
+:msg, contains, "mom-security.log"		?PerHostMomSecurity
+:msg, contains, "mom-exceptions.log"	?PerHostMomExceptions
+:msg, contains, "mom-error.log"		?PerHostMomError
+:msg, contains, "mom-application.log"	?PerHostMomApplication
+
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
 cron.*                  ?PerHostCron
@@ -62,11 +69,4 @@ news.notice             -?PerHostNewsNotice
   auth,authpriv.none;\
   cron,daemon.none;\
   mail,news.none        -?PerHostMessages
-
-# Configuration for the mom (Map Display) webapp
-:msg, contains, "mom-audit.log"		?PerHostMomAudit
-:msg, contains, "mom-security.log"		?PerHostMomSecurity
-:msg, contains, "mom-exceptions.log"	?PerHostMomExceptions
-:msg, contains, "mom-error.log"		?PerHostMomError
-:msg, contains, "mom-application.log"	?PerHostMomApplication
 
