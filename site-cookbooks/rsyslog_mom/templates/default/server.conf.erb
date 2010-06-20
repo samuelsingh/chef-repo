@@ -31,18 +31,23 @@ $template PerHostDebug,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/debug
 $template PerHostMessages,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/messages:%HOSTNAME%:%$NOW%"
 
 # Configuration for the mom (Map Display) webapp
-$template PerHostMomAudit,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-audit.log.%$NOW%"
-$template PerHostMomSecurity,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-security.log.%$NOW%"
-$template PerHostMomExceptions,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-exceptions.log.%$NOW%"
-$template PerHostMomError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-error.log.%$NOW%"
-$template PerHostMomApplication,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-application.log.%$NOW%"
+$template PerHostMomAudit,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.audit.log.%$NOW%"
+$template PerHostMomSecurity,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.security.log.%$NOW%"
+$template PerHostMomExceptions,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.exceptions.log.%$NOW%"
+$template PerHostMomError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.error.log.%$NOW%"
+$template PerHostMomApplication,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.application.log.%$NOW%"
 
 # Configuration for the mom (Map Display) webapp
-:msg, contains, "mom-audit.log"		?PerHostMomAudit
-:msg, contains, "mom-security.log"		?PerHostMomSecurity
+:msg, contains, "mom-audit.log"		?PerHostMomAudit	# Logs line
+:msg, contains, "mom-audit.log"		~ 			# And discards
+:msg, contains, "mom-security.log"	?PerHostMomSecurity
+:msg, contains, "mom-security.log"	~
 :msg, contains, "mom-exceptions.log"	?PerHostMomExceptions
+:msg, contains, "mom-exceptions.log"	~
 :msg, contains, "mom-error.log"		?PerHostMomError
+:msg, contains, "mom-error.log"		~
 :msg, contains, "mom-application.log"	?PerHostMomApplication
+:msg, contains, "mom-application.log"	~
 
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
