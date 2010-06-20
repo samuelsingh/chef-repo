@@ -30,6 +30,13 @@ $template PerHostNewsNotice,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/
 $template PerHostDebug,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/debug:%HOSTNAME%:%$NOW%"
 $template PerHostMessages,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/messages:%HOSTNAME%:%$NOW%"
 
+# Configuration for the mom (Map Display) webapp
+$template PerHostMomAudit,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-audit.log.%$NOW%"
+$template PerHostMomSecurity,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-security.log.%$NOW%"
+$template PerHostMomExceptions,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-exceptions.log.%$NOW%"
+$template PerHostMomError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-error.log.%$NOW%"
+$template PerHostMomApplication,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.mom-application.log.%$NOW%"
+
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
 cron.*                  ?PerHostCron
@@ -55,4 +62,11 @@ news.notice             -?PerHostNewsNotice
   auth,authpriv.none;\
   cron,daemon.none;\
   mail,news.none        -?PerHostMessages
+
+# Configuration for the mom (Map Display) webapp
+mom-audit.*		?PerHostMomAudit
+mom-security.*		?PerHostMomSecurity
+mom-exceptions.*	?PerHostMomExceptions
+mom-error.*		?PerHostMomError
+mom-application.*	?PerHostMomApplication
 
