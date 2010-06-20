@@ -64,9 +64,9 @@ news.notice             -?PerHostNewsNotice
   mail,news.none        -?PerHostMessages
 
 # Configuration for the mom (Map Display) webapp
-if $syslogfacility-text == 'mom-audit' then ?PerHostMomAudit
-if $syslogfacility-text == 'mom-security' then ?PerHostMomSecurity
-if $syslogfacility-text == 'mom-exceptions' then ?PerHostMomExceptions
-if $syslogfacility-text == 'mom-error' then ?PerHostMomError
-if $syslogfacility-text == 'mom-application' then ?PerHostMomApplication
+:msg, contains, "mom-audit.log"		?PerHostMomAudit
+:msg, contains, "mom-security.log"		?PerHostMomSecurity
+:msg, contains, "mom-exceptions.log"	?PerHostMomExceptions
+:msg, contains, "mom-error.log"		?PerHostMomError
+:msg, contains, "mom-application.log"	?PerHostMomApplication
 
