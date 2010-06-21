@@ -18,7 +18,7 @@ dc_eximconfig_configtype='satellite'
 dc_other_hostnames='<%= @node[:fqdn] %>'
 dc_local_interfaces='127.0.0.1'
 dc_readhost='<% @node[:domain] -%>'
-dc_relay_domains=''
+dc_relay_domains='<%= @node[:domain] %>:mapofmedicine.com'
 dc_smarthost='<%= @node[:exim][:smarthost] %>'
 dc_hide_mailname='true'
 <% end -%>
