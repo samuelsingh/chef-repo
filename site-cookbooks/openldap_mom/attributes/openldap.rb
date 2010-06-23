@@ -21,7 +21,7 @@ if domain.length > 0
   set_unless[:openldap][:server] = "ldap.#{domain}"
 end
 
-openldap[:rootpw] = "{SSHA}lEy3ajJDnWQQjS0ndWC9UKNaBT3o0WKd"
+openldap[:rootpw] = "\{SSHA\}lEy3ajJDnWQQjS0ndWC9UKNaBT3o0WKd"
 
 # File and directory locations for openldap.
 case platform
