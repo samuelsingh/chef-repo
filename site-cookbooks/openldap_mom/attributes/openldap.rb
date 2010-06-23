@@ -17,7 +17,7 @@
 #
 
 if domain.length > 0
-  set_unless[:openldap][:basedn] = "dc=mapofmedicine,dc=com")}"
+  set_unless[:openldap][:basedn] = "dc=mapofmedicine,dc=com"
   set_unless[:openldap][:server] = "ldap.#{domain}"
 end
 
