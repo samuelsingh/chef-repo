@@ -47,6 +47,20 @@ package "slapd" do
   action :upgrade
 end
 
+package "gosa" do
+  case node[:platform]
+  when "debian","ubuntu"
+  end
+  action :upgrade
+end
+
+package "gosa-schema" do
+  case node[:platform]
+  when "debian","ubuntu"
+  end
+  action :upgrade
+end
+
 #remote_file "#{node[:openldap][:ssl_dir]}/#{node[:openldap][:server]}.pem" do
  # source "ssl/#{node[:openldap][:server]}.pem"
  # mode 0644
