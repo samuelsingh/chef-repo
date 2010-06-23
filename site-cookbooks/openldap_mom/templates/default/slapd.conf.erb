@@ -78,11 +78,11 @@ dbconfig set_lk_max_lockers 1500
 ##
 # Indexes
 ##
-index default pres,eq,approx,sub
-index objectClass eq,pres
-index cn,ou,sn,uid,l,mail,gecos,memberUid,description
-index loginShell,homeDirectory pres,eq,approx
-index uidNumber,gidNumber pres,eq,sub
+index objectClass                       eq,pres
+index ou,cn,mail,surname,givenname      eq,pres,sub
+index uidNumber,gidNumber,loginShell    eq,pres
+index uid,memberUid                     eq,pres,sub
+index nisMapName,nisMapEntry            eq,pres,sub
 
 <% if @node[:openldap][:slapd_type] == "master" -%>
 overlay syncprov
