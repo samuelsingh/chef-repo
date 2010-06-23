@@ -51,7 +51,7 @@ script "update apt repo for gosa" do
   interpreter "bash"
   user "root"
   code <<-EOF
-  echo "deb http://oss.gonicus.de/pub/gosa/debian-etch/ ./ >> /etc/apt/sources.list"
+  echo "deb http://oss.gonicus.de/pub/gosa/debian-etch/ ./" >> /etc/apt/sources.list
   apt-get update
   EOF
 end
