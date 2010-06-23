@@ -16,11 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "openldap::client"
+include_recipe "openldap_mom::client"
 
 case node[:platform]
 when "debian","ubuntu"
-  remote_file "/var/cache/local/preseeding/slapd.seed" do
+  remote_file "/var/tmp/slapd.seed" do
     source "slapd.seed"
     mode 0600
     owner "root"
@@ -32,7 +32,7 @@ package "db4.2-util" do
   action :upgrade
 end
 
-remote_file "/var/cache/local/preseeding/slapd.seed" do
+remote_file "/var/tmp/slapd.seed" do
   source "slapd.seed"
   mode 0600 
   owner "root"
@@ -42,7 +42,7 @@ end
 package "slapd" do
   case node[:platform]
   when "debian","ubuntu"
-    response_file "/var/cache/local/preseeding/slapd.seed"
+    response_file "/var/tmp/slapd.seed"
   end
   action :upgrade
 end
