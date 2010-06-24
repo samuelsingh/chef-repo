@@ -72,13 +72,21 @@ package "gosa-schema" do
   options "--allow-unauthenticated"
 end
 
-#remote_file "#{node[:openldap][:ssl_dir]}/#{node[:openldap][:server]}.pem" do
- # source "ssl/#{node[:openldap][:server]}.pem"
- # mode 0644
- # owner "root"
- # group "root"
-#end
+package "gosa-plugin-ldapmanager" do
+  case node[:platform]
+  when "debian","ubuntu"
+  end
+  action :upgrade
+  options "--allow-unauthenticated"
+end
 
+package "gosa-plugin-addressbook" do
+  case node[:platform]
+  when "debian","ubuntu"
+  end
+  action :upgrade
+  options "--allow-unauthenticated"
+end
 service "slapd" do
   action [:enable, :start]
 end
