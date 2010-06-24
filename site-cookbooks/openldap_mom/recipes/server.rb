@@ -69,6 +69,7 @@ package "gosa-schema" do
   when "debian","ubuntu"
   end
   action :upgrade
+  options "--allow-unauthenticated"
 end
 
 #remote_file "#{node[:openldap][:ssl_dir]}/#{node[:openldap][:server]}.pem" do
