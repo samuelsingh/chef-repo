@@ -61,6 +61,7 @@ package "gosa" do
   when "debian","ubuntu"
   end
   action :upgrade
+  options "--allow-unauthenticated"
 end
 
 package "gosa-schema" do
