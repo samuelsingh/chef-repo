@@ -28,7 +28,7 @@ when "debian","ubuntu"
   end
 end
 
-package "db4.2-util" do
+package "db4.7-util" do
   action :upgrade
 end
 
