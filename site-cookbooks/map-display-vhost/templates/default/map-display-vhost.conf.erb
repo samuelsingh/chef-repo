@@ -76,7 +76,7 @@
         Order deny,allow
         Deny from all
         Allow from 127.0.0.1
-        <% @tomcat_mgr_ips.each do |ip| -%>
+        <% @restricted_ips.each do |ip| -%>
         Allow from <%= ip %>
         <% end -%>
     </Location>
@@ -125,10 +125,10 @@
 
 </VirtualHost>
 
-<% if @is_load_balanced == 'true' -%>
+<% if @lb_alive_port != 0 -%>
 # This stansa is used by the ELB healthcheck
 
-<VirtualHost "*:8050">
+<VirtualHost "*:<%= @lb_alive_port %>">
 
     DocumentRoot /var/www/vhosts/<%= @hostname %>
 

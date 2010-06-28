@@ -17,55 +17,54 @@
 # limitations under the License.
 #
 
-hostname = node[:map_display_vhost][:hostname]
-srv_aliases = node[:map_display_vhost][:srv_aliases]
-deploy_dir = node[:map_display_vhost][:deploy_dir]
-appserver = node[:map_display_vhost][:appserver]
-tomcat_mgr_ips = node[:map_display_vhost][:tomcat_mgr_ips]
-holding_page = node[:map_display_vhost][:holding_page]
-is_load_balanced = node[:map_display_vhost][:is_load_balanced]
+node[:map_display_vhost].each do |hostname,params|
 
-if defined?(node[:apache][:dir])
+  if defined?(node[:apache][:dir])
+    
+    template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+      source "map-display-vhost.conf.erb"
+      mode 0644
+      owner "sysadmin"
+      group "sysadmin"
+      variables(
+        :hostname => hostname,
+        :srv_aliases => params.fetch("srv_aliases"),
+        :deploy_dir => params.fetch("deploy_dir"),
+        :appserver => params.fetch("appserver"),
+        :restricted_ips => params.fetch("restricted_ips"),
+        :holding_page => params.fetch("holding_page"),
+        :lb_alive_port => params.fetch("lb_alive_port")
+      )
+      only_if "test -d #{node[:apache][:dir]}/sites-available"
+    end
+    
+    link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
+      to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
+    end
+    
+  end
   
-  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-    source "map-display-vhost.conf.erb"
+  remote_directory "/var/www/vhosts/#{hostname}" do
+    source "docroot"
+    files_owner "sysadmin"
+    files_group "sysadmin"
+    files_mode "0644"
+    owner "sysadmin"
+    group "sysadmin"
+    mode "0755"
+    recursive true
+  end
+  
+  template "/var/www/vhosts/#{hostname}/holding.html" do
+    source "holding.html.erb"
     mode 0644
     owner "sysadmin"
     group "sysadmin"
     variables(
-      :hostname => hostname,
-      :srv_aliases => srv_aliases,
-      :deploy_dir => deploy_dir,
-      :appserver => appserver,
-      :tomcat_mgr_ips => tomcat_mgr_ips,
-      :holding_page => holding_page,
-      :is_load_balanced => is_load_balanced
+        :holding_page_msg => params.fetch("holding_page_msg")
     )
-    only_if "test -d #{node[:apache][:dir]}/sites-available"
   end
-  
-  link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
-    to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
-  end
-  
-end
 
-remote_directory "/var/www/vhosts/#{hostname}" do
-  source "docroot"
-  files_owner "sysadmin"
-  files_group "sysadmin"
-  files_mode "0644"
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  recursive true
-end
-
-template "/var/www/vhosts/#{hostname}/holding.html" do
-  source "holding.html.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
 end
 
 service "apache2" do
