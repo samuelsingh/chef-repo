@@ -21,15 +21,6 @@ node[:generic_tomcat_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
     
-    # Finds the webapp tagged as primary
-    # There is only meant to be one of these, so strange behaviour is likely 
-    # if you have more than one defined!
-    #
-    @primary_webapp = nil
-    params.fetch("webapps").each do |webapp,p|
-      @primary_webapp = webapp if p.fetch("primary") == "true"
-    end
-    
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
       source "generic-tomcat-vhost.conf.erb"
       mode 0644
@@ -39,7 +30,7 @@ node[:generic_tomcat_vhost].each do |hostname,params|
         :hostname => hostname,
         :srv_aliases => params.fetch("srv_aliases"),
         :webapps => params.fetch("webapps"),
-        :primary_webapp => @primary_webapp,
+        :primary_webapp => params.fetch("primary_webapp"),
         :restricted_ips => params.fetch("restricted_ips"),
         :holding_page => params.fetch("holding_page")
       )

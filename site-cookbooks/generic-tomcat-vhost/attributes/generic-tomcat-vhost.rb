@@ -23,10 +23,10 @@ set_unless[:generic_tomcat_vhost] = {
     "webapps" => {
       "webapp" => {
         "port" => "9000",
-        "appserver" => "unset-app-01.map-cloud-01.eu",
-        "primary" => "true"
+        "appserver" => "unset-app-01.map-cloud-01.eu"
       }
     },
+    "primary_webapp" => "webapp",
     "restricted_ips" => [],
     "holding_page" => "false",
     "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
