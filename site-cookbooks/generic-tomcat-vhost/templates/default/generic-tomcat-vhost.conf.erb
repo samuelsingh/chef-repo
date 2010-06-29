@@ -80,7 +80,7 @@
         RewriteRule ^/holding.html / [R]
         <% end -%>
         
-        <% unless nil?(@primary_webapp) -%>
+        <% unless @primary_webapp.nil? -%>
         # Redirect access to the base URL to the <% @primary_webapp -%> index page
         RewriteRule ^/$ /<% @primary_webapp -%> [R,L]
         <% end -%>
