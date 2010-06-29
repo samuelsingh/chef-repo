@@ -80,8 +80,8 @@
         RewriteRule ^/holding.html / [R]
         <% end -%>
         
-        # Redirect access to the base URL to the <% @primary_webapp -%> index page
-        RewriteRule ^/$ /<% @primary_webapp -%> [R,L]
+        # Redirect access to the base URL to the <%= @primary_webapp %> index page
+        RewriteRule ^/$ /<%= @primary_webapp %> [R,L]
 
     </IfModule>
 
