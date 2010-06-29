@@ -25,9 +25,9 @@ node[:generic_tomcat_vhost].each do |hostname,params|
     # There is only meant to be one of these, so strange behaviour is likely 
     # if you have more than one defined!
     #
-    ##params.fetch("webapps").each do |webapp,params|
-    ##  primary_webapp = webapp if params.fetch("primary") == "true"
-    ##end
+    params.fetch("webapps").each do |webapp,p|
+      primary_webapp = webapp if p.fetch("primary") == "true"
+    end
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
       source "generic-tomcat-vhost.conf.erb"
