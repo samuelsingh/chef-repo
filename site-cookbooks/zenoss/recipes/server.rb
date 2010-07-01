@@ -17,6 +17,15 @@
 # limitations under the License.
 #
 
+directory "/usr/local/zenoss"  do
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d /usr/local/zenoss"
+  owner "tomcat"
+  group "tomcat"
+end
+
 mount "/usr/local/zenoss" do
   device "/dev/sdh1"
   fstype "ext3"
