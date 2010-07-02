@@ -25,7 +25,7 @@
 #   create database jiradb character set utf8;
 #   grant all privileges on jiradb.* to '$jira_user'@'localhost' identified by '$jira_password';
 #   flush privileges;
-
+include_recipe "java"
 include_recipe "tomcat"
 
 remote_file "/etc/init.d/tomcat9002" do
@@ -44,7 +44,7 @@ template "#{node[:jira][:install_path]}/conf/Catalina/localhost/jira.xml" do
 end
 
 template "#{node[:jira][:install_path]}/conf/Catalina/localhost/manager-jira.xml.erb" do
-  source "manager.xml.erb"
+  source "manager-jira.xml.erb"
   mode 0755
 end
  

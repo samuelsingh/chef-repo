@@ -18,7 +18,7 @@
 #
 
 # type-version-standalone
-set_unless[:jira][:version]           = "enterprise-4.1.2"
+set_unless[:jira][:version]           = "atlassian-jira-4.1.2"
 set_unless[:jira][:install_path]      = "/var/tomcat/server9002"
 set_unless[:jira][:run_user]          = "tomcat"
 set_unless[:jira][:database]          = "mysql"
