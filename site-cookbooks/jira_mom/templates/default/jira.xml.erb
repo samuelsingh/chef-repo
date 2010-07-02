@@ -1,0 +1,22 @@
+<Context path="/jira" 
+docBase="/var/shared/deployment/jira/webapps/<%= @node[:jira][:version] %>.war"
+	    reloadable="false"
+	    debug="0">
+
+    <Logger className="org.apache.catalina.logger.FileLogger"
+        prefix="webapp-jira." suffix=".log" timestamp="true"/>
+
+	<Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
+  
+  <Resource name="jdbc/JiraDS" 
+        auth="Container" 
+        type="javax.sql.DataSource"
+		username="<%= @node[:jira][:database_user] %>"
+		password="<%= @node[:jira][:database_password] %>"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:<%= @node[:jira][:database] %>://<%= @node[:jira][:database_host] %>:3306/jiradb?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8"/>
+
+	<Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"
+		factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>
+
+</Context>
