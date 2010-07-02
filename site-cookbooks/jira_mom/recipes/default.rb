@@ -43,7 +43,7 @@ template "#{node[:jira][:install_path]}/conf/Catalina/localhost/jira.xml" do
   mode 0755
 end
 
-template "#{node[:jira][:install_path]}/Catalina/localhost/manager.xml" do
+template "#{node[:jira][:install_path]}/Catalina/localhost/manager-jira.xml" do
   source "manager.xml.erb"
   mode 0755
 end
