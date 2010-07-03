@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-node[:zenoss][:server] = "true"
+@node[:zenoss][:server] = "true"
 
 directory "/usr/local/zenoss"  do
   mode "0755"
