@@ -18,7 +18,8 @@
 #
 
 # We should make this more intelligent, so that snmp looks for the Zenoss server corresponding to its domain
-monitoring_server = node[:zenoss][:server] ? node[:zenoss][:server] : search(:node, "zenoss_server:true").map { |n| n["ipaddress"] }.first
+# monitoring_server = node[:zenoss][:server] ? node[:zenoss][:server] : search(:node, "zenoss_server:true").map { |n| n["ipaddress"] }.first
+monitoring_server = search(:node, "zenoss_server:true").map { |n| n["ipaddress"] }.first
 
 package "snmpd" do
   case node[:platform]
