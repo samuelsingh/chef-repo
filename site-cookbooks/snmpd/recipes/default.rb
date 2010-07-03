@@ -45,6 +45,15 @@ template "/etc/snmp/snmpd.conf" do
     :syslocation => node[:snmpd][:syslocation],
     :syscontact => node[:snmpd][:syscontact]
   )
-  notifies :reload, resources(:service => "snmpd")
+  notifies :restart, resources(:service => "snmpd")
+  only_if "test -d /etc/snmp"
+end
+
+template "/etc/default/snmpd" do
+  source "snmpd.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, resources(:service => "snmpd")
   only_if "test -d /etc/snmp"
 end

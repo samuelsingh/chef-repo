@@ -13,6 +13,7 @@
 # com2sec   paranoid    default         public
 # com2sec   readonly    default         public
 # com2sec   readwrite   default         private
+com2sec     mom         localhost       <%= @community_string %>
 com2sec     mom         <%= @source_ip %>     <%= @community_string %>
 
 ####
@@ -25,9 +26,9 @@ group MyROSystem usm       paranoid
 group MyROGroup v1         readonly
 group MyROGroup v2c        readonly
 group MyROGroup usm        readonly
-group MomGroup v1          readonly
-group MomGroup v2c         readonly
-group MomGroup usm         readonly
+group MomGroup v1          mom
+group MomGroup v2c         mom
+group MomGroup usm         mom
 group MyRWGroup v1         readwrite
 group MyRWGroup v2c        readwrite
 group MyRWGroup usm        readwrite
@@ -53,5 +54,5 @@ access MyRWGroup ""      any       noauth    exact  all    all    none
 ####
 # System contact information
 
-syslocation <%= @syslocation %># map-cloud-01.eu, amazon eu-west-1
-syscontact systems@mapofmedicine.com
+syslocation <%= @syslocation %>
+syscontact <%= @syscontact %>
