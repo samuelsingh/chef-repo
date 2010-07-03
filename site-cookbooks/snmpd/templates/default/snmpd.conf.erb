@@ -13,7 +13,7 @@
 # com2sec   paranoid    default         public
 # com2sec   readonly    default         public
 # com2sec   readwrite   default         private
-com2sec     mom         <% @source_ip -%>     <% @community_string -%>
+com2sec     mom         <%= @source_ip %>     <%= @community_string %>
 
 ####
 # Second, map the security names into group names:
@@ -53,5 +53,5 @@ access MyRWGroup ""      any       noauth    exact  all    all    none
 ####
 # System contact information
 
-syslocation <% @syslocation -%># map-cloud-01.eu, amazon eu-west-1
+syslocation <%= @syslocation %># map-cloud-01.eu, amazon eu-west-1
 syscontact systems@mapofmedicine.com
