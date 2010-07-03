@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: zenoss
-# Recipe:: default
+# Recipe:: server
 #
 # Copyright 2010, Map of Medicine
 #
@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-@node[:zenoss][:server] = "true"
+set[:zenoss][:server] = "true"
 
 directory "/usr/local/zenoss"  do
   mode "0755"
