@@ -28,6 +28,11 @@ package "snmpd" do
   action :install
 end
 
+service "snmpd"  do
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
+end
+
 template "/etc/snmp/snmpd.conf" do
   source "snmpd.conf.erb"
   mode 0600
@@ -41,9 +46,4 @@ template "/etc/snmp/snmpd.conf" do
   )
   notifies :reload, resources(:service => "snmpd")
   only_if "test -d /etc/snmp"
-end
-
-service "snmpd"  do
-  supports :status => true, :restart => true, :reload => true
-  action [ :enable, :start ]
 end
