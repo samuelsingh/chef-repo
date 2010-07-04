@@ -20,3 +20,8 @@ if recipe?("zenoss::server")
   set[:zenoss][:server] = "true"
 end
 
+if recipe?("zenoss::vhost")
+  set_unless[:zenoss][:vhost][:hostname] = "unset.unset.com"
+  set_unless[:zenoss][:vhost][:srv_aliases] = []
+  set_unless[:apache][:restricted_ips] = []
+end

@@ -17,38 +17,7 @@
 # limitations under the License.
 #
 
-
-if defined?(node[:apache][:dir])
-  
-  hostname = node[:zenoss][:vhost][:hostname]
-  
-  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-    source "zenoss-vhost.conf.erb"
-    mode 0644
-    owner "sysadmin"
-    group "sysadmin"
-    variables(
-      :hostname => hostname,
-      :appserver => node[:zenoss][:vhost][:appserver],
-      :srv_aliases => node[:zenoss][:vhost][:srv_aliases],
-      :restricted_ips => node[:zenoss][:vhost][:restricted_ips]
-    )
-    notifies :reload, resources(:service => "apache2")
-    only_if "test -d #{node[:apache][:dir]}/sites-available"
-  end
-  
-  link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
-    to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
-  end
-  
-end
-
-directory "/var/www/vhosts/#{hostname}" do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  recursive true
-end
+zen_srv = search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
 
 service "apache2" do
   case node[:platform]
@@ -76,4 +45,36 @@ service "apache2" do
     "default" => { "default" => [:restart, :reload ] }
   )
   action :enable
+end
+
+if defined?(node[:apache][:dir])
+  
+  hostname = node[:zenoss][:vhost][:hostname]
+  
+  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+    source "zenoss-vhost.conf.erb"
+    mode 0644
+    owner "sysadmin"
+    group "sysadmin"
+    variables(
+      :hostname => hostname,
+      :appserver => zen_srv,
+      :srv_aliases => node[:zenoss][:vhost][:srv_aliases],
+      :restricted_ips => node[:apache][:restricted_ips]
+    )
+    notifies :reload, resources(:service => "apache2")
+    only_if "test -d #{node[:apache][:dir]}/sites-available"
+  end
+  
+  link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
+    to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
+  end
+  
+end
+
+directory "/var/www/vhosts/#{hostname}" do
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0755"
+  recursive true
 end
