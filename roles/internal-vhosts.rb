@@ -32,5 +32,11 @@ override_attributes(
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
     }
+  },
+  "zenoss" => {
+    "vhost" => {
+      "hostname" => "zen-master.mapofmedicine.com",
+      "srv_aliases" => [ "zen-master.map-cloud-01.eu" ]
+    }
   }
 )
