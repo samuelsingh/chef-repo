@@ -1345,7 +1345,7 @@ local_user:
   domains = +local_domains
   check_local_user
   local_parts = ! root
-  transport = LOCAL_DELIVERY
+  transport = dovecot
   cannot_route_message = Unknown user
 #####################################################
 ### end router/900_exim4-config_local_user
@@ -1413,6 +1413,26 @@ REMOTE_SMTP_HELO_DATA=${lookup dnsdb {ptr=$sending_ip_address}{$value}{$primary_
 .endif
 #####################################################
 ### end transport/10_exim4-config_transport-macros
+#####################################################
+####################################################
+### transport/20_exim4-config_dovecot 
+#####################################################
+
+#This transport configured to forward messages onto dovecot
+#that are intended for Jira issues
+#
+dovecot:
+  driver = pipe
+  command = /usr/lib/dovecot/deliver
+  message_prefix =
+  message_suffix =
+  log_output
+  delivery_date_add
+  envelope_to_add
+  return_path_add
+  temp_errors = 64 : 69 : 70: 71 : 72 : 73 : 74 : 75 : 78
+#####################################################
+### end transport/20_exim4-config_dovecot 
 #####################################################
 #####################################################
 ### transport/30_exim4-config_address_file
