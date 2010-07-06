@@ -20,12 +20,12 @@
 zen_srv = search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
 
 http_request "add_host" do
-  url "http://admin:noj4Ahe@#{zen_srv}:8080/zport/dmd/DeviceLoader/loadDevice?deviceName=#{node[:fqdn]}&devicePath=/Server/Linux&zSnmpCommunity=#{node[:snmpd][:community]}"
+  url "'http://admin:noj4Ahe@#{zen_srv}:8080/zport/dmd/DeviceLoader/loadDevice?deviceName=#{node[:fqdn]}&devicePath=/Server/Linux&zSnmpCommunity=#{node[:snmpd][:community]}'"
   action :nothing
 end
 
 template "/var/lock/zenoss-add"  do
   mode "0644"
   source "zenoss-add.erb"
-  notifies :put, resources(:http_request => "add_host")
+  notifies :get, resources(:http_request => "add_host")
 end
