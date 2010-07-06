@@ -18,7 +18,7 @@
 #
 
 restricted_ips = node[:apache][:restricted_ips]
-restricted_ips << search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
+restricted_ips << search(:node, "zenoss_server:true").map { |n| n["ipaddress"] }.first
 
 apache_module "status"
 
