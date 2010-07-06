@@ -25,8 +25,3 @@ if recipe?("zenoss::vhost")
   set_unless[:zenoss][:vhost][:srv_aliases] = []
   set_unless[:apache][:restricted_ips] = []
 end
-
-if recipe?("zenoss::client")
-  zen_srv = search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
-  set[:apache][:restricted_ips] << zen_srv
-end
