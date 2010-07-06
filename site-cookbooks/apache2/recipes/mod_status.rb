@@ -24,7 +24,7 @@ apache_module "status"
 
 template "#{node[:apache][:dir]}/mods-available/status.conf" do
   source "mods/status.conf.erb"
-  variables (
+  variables(
     :restricted_ips => restricted_ips
   )
   notifies :restart, resources(:service => "apache2")
