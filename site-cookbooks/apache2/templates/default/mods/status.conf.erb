@@ -10,7 +10,9 @@
     Order deny,allow
     Deny from all
     Allow from localhost ip6-localhost
-#    Allow from .example.com
+	<% @node[:apache][:restricted_ips].each do |ip| -%>
+		Allow from <%= ip %>
+	<% end -%>
 </Location>
 
 </IfModule>
