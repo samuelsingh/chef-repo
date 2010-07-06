@@ -1,0 +1,20 @@
+<Context path="/confluence" 
+		docBase="/var/shared/deployment/confluence/wars/<%= @node[:confluence][:version] =>.war"
+		reloadable="false" 
+		debug="0">
+
+	<Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
+
+    <Logger className="org.apache.catalina.logger.FileLogger"
+        prefix="webapp-confluence." suffix=".log" timestamp="true"/>
+
+
+  <Resource name="jdbc/ConfluenceDS"
+        auth="Container"
+        type="javax.sql.DataSource"
+		username="<%= @node[:confluence][:database_user]"
+		password="<%= @node[:confluence][:database_password]"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:<%= @node[:confluence][:database] =>://<%= @node[:confluence][:database_host] =>:3306/confluence?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8"/>
+
+</Context>
