@@ -28,5 +28,5 @@ end
 template "/var/lock/zenoss-add"  do
   mode "0644"
   source "zenoss-add.erb"
-  notifies :get, resources(:http_request => "add_host")
+  notifies :post, resources(:http_request => "add_host")
 end
