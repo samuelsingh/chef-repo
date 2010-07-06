@@ -35,8 +35,8 @@ override_attributes(
   },
   "zenoss" => {
     "vhost" => {
-      "hostname" => "zen-master.mapofmedicine.com",
-      "srv_aliases" => [ "zen-master.map-cloud-01.eu" ]
+      "hostname" => "zen-master.map-cloud-01.eu",
+      "srv_aliases" => [ "zen-master.mapofmedicine.com" ]
     }
   }
 )
