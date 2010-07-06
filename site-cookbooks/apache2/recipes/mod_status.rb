@@ -17,6 +17,15 @@
 # limitations under the License.
 #
 
-apache_module "status" do
-  conf true
+restricted_ips = node[:apache][:restricted_ips]
+restricted_ips << search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
+
+apache_module "status"
+
+template "#{node[:apache][:dir]}/mods-available/status.conf" do
+  source "mods/status.conf.erb"
+  variables (
+    :restricted_ips => restricted_ips
+  )
+  notifies :restart, resources(:service => "apache2")
 end
