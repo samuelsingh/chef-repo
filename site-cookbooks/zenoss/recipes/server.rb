@@ -22,8 +22,8 @@ directory "/usr/local/zenoss"  do
   recursive true
   action :create
   not_if "test -d /usr/local/zenoss"
-  owner "tomcat"
-  group "tomcat"
+  owner "root"
+  group "root"
 end
 
 mount "/usr/local/zenoss" do
