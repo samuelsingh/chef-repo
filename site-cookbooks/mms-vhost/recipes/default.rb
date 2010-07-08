@@ -31,7 +31,7 @@ node[:mms_vhost].each do |hostname,params|
         :srv_aliases => params.fetch("srv_aliases"),
         :deploy_dir => params.fetch("deploy_dir"),
         :appserver => params.fetch("appserver"),
-        :restricted_ips => params.fetch("restricted_ips"),
+        :restricted_ips => node[:apache][:restricted_ips],
         :holding_page => params.fetch("holding_page"),
         :lb_alive_port => params.fetch("lb_alive_port")
       )

@@ -22,7 +22,6 @@ set_unless[:mms_vhost] = {
     "srv_aliases" => [],
     "deploy_dir" => "/var/shared/deployment/mms",
     "appserver" => "unset-mms-app-01.map-cloud-01.eu",
-    "restricted_ips" => [],
     "holding_page" => "false",
     "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
     "lb_alive_port" => 0

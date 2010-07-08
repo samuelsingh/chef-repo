@@ -27,7 +27,6 @@ set_unless[:generic_tomcat_vhost] = {
       }
     },
     "primary_webapp" => "webapp",
-    "restricted_ips" => [],
     "holding_page" => "false",
     "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
   }

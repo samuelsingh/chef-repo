@@ -31,7 +31,7 @@ node[:generic_tomcat_vhost].each do |hostname,params|
         :srv_aliases => params.fetch("srv_aliases"),
         :webapps => params.fetch("webapps"),
         :primary_webapp => params.fetch("primary_webapp"),
-        :restricted_ips => params.fetch("restricted_ips"),
+        :restricted_ips => node[:apache][:restricted_ips],
         :holding_page => params.fetch("holding_page")
       )
       only_if "test -d #{node[:apache][:dir]}/sites-available"

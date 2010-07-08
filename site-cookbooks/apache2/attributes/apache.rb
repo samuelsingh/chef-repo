@@ -56,6 +56,7 @@ set_unless[:apache][:keepalivetimeout] = 5
 set_unless[:apache][:servertokens] = "Prod"
 set_unless[:apache][:serversignature] = "On"
 set_unless[:apache][:traceenable] = "On"
+set_unless[:apache][:restricted_ips] = Array.new
 
 # mod_auth_openids
 set_unless[:apache][:allowed_openids] = Array.new

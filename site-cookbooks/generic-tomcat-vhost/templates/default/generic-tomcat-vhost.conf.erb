@@ -87,7 +87,7 @@
 
     # Activity for this virtual host goes into separate logs
 
-    CustomLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
-    ErrorLog "|/usr/sbin/rotatelogs /usr/local/httpd-latest/logs/errors-<%= @hostname %>.log.%Y%m%d 86400"
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
+    ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
 
 </VirtualHost>
