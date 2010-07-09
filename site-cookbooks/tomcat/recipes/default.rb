@@ -34,7 +34,7 @@ end
 
 user "tomcat"  do
   comment "Tomcat"
-  uid "10008"
+  uid "10010"
   gid "tomcat"
   home "/home/tomcat"
   shell "/bin/bash"
