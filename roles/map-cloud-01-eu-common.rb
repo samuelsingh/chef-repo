@@ -12,7 +12,7 @@ override_attributes(
     "community" => "ufahji3K",
     "syslocation" => "map-cloud-01.eu, amazon eu-west-1",
     "syscontact" => "systems@mapofmedicine.com"
-  }
+  },
   "s3sync" => {
     "aws_calling_format" => "SUBDOMAIN" # Required for EU buckets
   },
