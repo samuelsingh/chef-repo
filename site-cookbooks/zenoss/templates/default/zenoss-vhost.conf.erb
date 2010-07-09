@@ -38,6 +38,11 @@
     # Zenoss access is restricted.
     # Locked by IP address.
     
+    # Workaround for secure access via ELB
+    <% @restricted_ips.each do |ip| -%>
+    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
+    <% end -%>
+    
     <Location "/">
         Order deny,allow
         Deny from all
@@ -45,6 +50,7 @@
         <% @restricted_ips.each do |ip| -%>
         Allow from <%= ip %>
         <% end -%>
+        Allow from env=ELBAUTH
     </Location>
     
 
