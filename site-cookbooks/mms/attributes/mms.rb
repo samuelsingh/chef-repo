@@ -19,7 +19,7 @@
 
 set_unless[:mms][:fqdn] = "mms.md-cloud-01.eu"
 set_unless[:mms][:deploy_dir] = "/var/shared/deployment/mms"
-set_unless[:mms][:version] = "2.6.1.MMS.2"
+set_unless[:mms][:version] = "1.1.1.ALL.1.1"
 set_unless[:mms][:logpath] = "/var/mms/logs"
 set_unless[:mms][:contentpath] = "/var/mms/content"
 set_unless[:mms][:content_in] = "/var/mms/content-in"

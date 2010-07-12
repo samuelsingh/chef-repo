@@ -116,11 +116,11 @@ remote_file "#{cstools}/config/m2mr2-cs-spring.properties" do
 end
 
 link "#{cstools}/lib"  do
-  to "#{deploy_dir}/cs-tools-#{version}/lib"
-  only_if "test -d #{deploy_dir}/cs-tools-#{version}"
+  to "#{deploy_dir}/mms-#{version}/cs-tools/lib"
+  only_if "test -d #{deploy_dir}/mms-#{version}/cs-tools"
 end
 
 link "#{cstools}/archive"  do
-  to "#{deploy_dir}/cs-tools-#{version}/archive"
-  only_if "test -d #{deploy_dir}/cs-tools-#{version}"
+  to "#{deploy_dir}/mms-#{version}/cs-tools/archive"
+  only_if "test -d #{deploy_dir}/mms-#{version}/cs-tools"
 end

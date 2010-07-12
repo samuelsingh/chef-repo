@@ -408,8 +408,8 @@ end
 ## Tomcat base configuration
 
 link "#{deploy_dir}/webapps-running"  do
-  to "#{deploy_dir}/webapps-#{version}"
-  only_if "test -d #{deploy_dir}/webapps-#{version}"
+  to "#{deploy_dir}/mms-#{version}/webapps"
+  only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
 end
 
 if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
@@ -427,8 +427,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       link "#{node[:tomcat][:basedir]}/server9001/webapps/mapmanager"  do
-        to "#{deploy_dir}/webapps-#{version}/mapmanager"
-        only_if "test -d #{deploy_dir}/webapps-#{version}"
+        to "#{deploy_dir}/mms-#{version}/webapps/mapmanager"
+        only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
       end
       
       template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mapmanager.xml" do
@@ -458,15 +458,15 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/mom"  do
-        to "#{deploy_dir}/webapps-#{version}/mom"
-        only_if "test -d #{deploy_dir}/webapps-#{version}"
+        to "#{deploy_dir}/mms-#{version}/webapps/mom"
+        only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
       end
       
       # Symlinks the (relocated) attachments directory into the webapp
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/mom/attachments"  do
         to "#{previewpath}/attachments"
-        only_if "test -d #{deploy_dir}/webapps-#{version}"
+        only_if "test -d #{node[:tomcat][:basedir]}/server9002/webapps/mom/attachments"
       end
       
       template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/mom.xml" do
@@ -484,8 +484,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp"  do
-        to "#{deploy_dir}/webapps-#{version}/adminapp"
-        only_if "test -d #{deploy_dir}/webapps-#{version}"
+        to "#{deploy_dir}/mms-#{version}/webapps/adminapp"
+        only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
       end
       
       template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml" do
@@ -503,8 +503,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/previewloader"  do
-        to "#{deploy_dir}/webapps-#{version}/previewloader"
-        only_if "test -d #{deploy_dir}/webapps-#{version}"
+        to "#{deploy_dir}/mms-#{version}/webapps/previewloader"
+        only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
       end
       
       template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/previewloader.xml" do
