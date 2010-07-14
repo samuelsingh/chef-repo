@@ -31,7 +31,7 @@ directory "#{contentloader_path}/bin"  do
   group "sysadmin"
   mode "0755"
   action :create
-  recursive :true
+  recursive true
   not_if "test -d #{contentloader_path}/bin"
 end
 
