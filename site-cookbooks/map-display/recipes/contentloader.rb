@@ -48,6 +48,7 @@ directory "#{contentloader_path}/loader/failure"  do
   group "sysadmin"
   mode "0755"
   action :create
+  recursive true
   not_if "test -d #{contentloader_path}/loader/failure"
 end
 
