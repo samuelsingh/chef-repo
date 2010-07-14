@@ -120,6 +120,6 @@ remote_file "#{contentloader_path}/config/thesaurusSearchServiceManager.properti
 end
 
 link "#{contentloader_path}/lib"  do
-  to "#{deploy_dir}/md-#{version}/contentloader/lib"
-  only_if "test -d #{deploy_dir}/md-#{version}"
+  to "#{deploy_dir}/md-#{md_version}/contentloader/lib"
+  only_if "test -d #{deploy_dir}/md-#{md_version}"
 end
