@@ -7,7 +7,7 @@
 <% case @deployment -%>
 <% when "smarthost" -%>
 dc_eximconfig_configtype='internet'
-dc_other_hostnames=''
+dc_other_hostnames='<%= [:domain] %>'
 dc_local_interfaces=''
 dc_readhost=''
 dc_relay_domains='<%= @node[:domain] %>'
