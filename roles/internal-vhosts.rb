@@ -11,7 +11,7 @@ override_attributes(
       "webapps" => {
         "confluence" => {
           "port" => "9001",
-          "appserver" => "jirawiki-app-01.map-cloud-01.eu"
+          "appserver" => "wikijira-app-01.map-cloud-01.eu"
         }
       },
       "primary_webapp" => "confluence",
@@ -24,7 +24,7 @@ override_attributes(
       "webapps" => {
         "jira" => {
           "port" => "9002",
-          "appserver" => "jirawiki-app-01.map-cloud-01.eu"
+          "appserver" => "wikijira-app-01.map-cloud-01.eu"
         }
       },
       "primary_webapp" => "jira",
