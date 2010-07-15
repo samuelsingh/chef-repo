@@ -17,18 +17,17 @@
 # limitations under the License.
 #
 
-package "exim4" do
-  action :install
-end
-
 package "spamassassin" do
   action :install
 end
 
 package "sa-exim" do
-  action :install 
+  action :install
 end
 
+package "exim4" do
+  action :install
+end
 
 execute "update-exim4" do
   command "update-exim4.conf && /etc/init.d/exim4 restart && sleep 1" 
@@ -70,6 +69,13 @@ template "/etc/exim4/exim4.conf.template" do
     :deployment => "smarthost"
   )
   notifies :run, resources(:execute => "update-exim4")
+end
+
+remote_file "/etc/aliases" do
+  source "aliases"
+  mode 0644
+  owner "root"
+  group "root"
 end
 
 remote_file "/etc/exim4/passwd" do
