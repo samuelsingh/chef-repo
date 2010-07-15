@@ -21,7 +21,7 @@
 
 package "dovecot-pop3d" do
    action :install 
-   options "--allow-unathenticated"
+   options "--allow-unauthenticated"
 end
 
 #service "dovecot-pop3d" do 
