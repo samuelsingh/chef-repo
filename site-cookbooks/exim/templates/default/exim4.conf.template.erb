@@ -832,6 +832,11 @@ acl_check_rcpt:
     endpass
     verify = recipient
 
+  accept
+     domains = +local_domains
+     endpass
+     verify  = recipient
+
 
   # At this point, the address has passed all the checks that have been
   # configured, so we accept it unconditionally.
@@ -952,13 +957,13 @@ begin routers
 # which is automatically done if you use the enable macro
 # MAIN_ALLOW_DOMAIN_LITERALS.
 
-.ifdef MAIN_ALLOW_DOMAIN_LITERALS
-domain_literal:
-  debug_print = "R: domain_literal for $local_part@$domain"
-  driver = ipliteral
-  domains = ! +local_domains
-  transport = remote_smtp
-.endif
+#ifdef MAIN_ALLOW_DOMAIN_LITERALS
+#domain_literal:
+#  debug_print = "R: domain_literal for $local_part@$domain"
+#  driver = ipliteral
+#  domains = ! +local_domains
+#  transport = remote_smtp
+#.endif
 #####################################################
 ### end router/100_exim4-config_domain_literal
 #####################################################
@@ -974,15 +979,15 @@ domain_literal:
 # see exim4-config_files(5) and spec.txt chapter 20.3 through 20.7 for
 # more detailed documentation.
 
-hubbed_hosts:
-  debug_print = "R: hubbed_hosts for $domain"
-  driver = manualroute
-  domains = "${if exists{CONFDIR/hubbed_hosts}\
-                   {partial-lsearch;CONFDIR/hubbed_hosts}\
-              fail}"
-  same_domain_copy_routing = yes
-  route_data = ${lookup{$domain}partial-lsearch{CONFDIR/hubbed_hosts}}
-  transport = remote_smtp
+#hubbed_hosts:
+#  debug_print = "R: hubbed_hosts for $domain"
+#  driver = manualroute
+#  domains = "${if exists{CONFDIR/hubbed_hosts}\
+#                   {partial-lsearch;CONFDIR/hubbed_hosts}\
+#              fail}"
+#  same_domain_copy_routing = yes
+#  route_data = ${lookup{$domain}partial-lsearch{CONFDIR/hubbed_hosts}}
+#  transport = remote_smtp
 #####################################################
 ### end router/150_exim4-config_hubbed_hosts
 #####################################################
@@ -1004,13 +1009,13 @@ hubbed_hosts:
 # the local admin is probably in a place where that broken MX record
 # could be fixed.
 
-dnslookup_relay_to_domains:
-  debug_print = "R: dnslookup_relay_to_domains for $local_part@$domain"
-  driver = dnslookup
-  domains = ! +local_domains : +relay_to_domains
-  transport = remote_smtp
-  same_domain_copy_routing = yes
-  no_more
+#dnslookup_relay_to_domains:
+#  debug_print = "R: dnslookup_relay_to_domains for $local_part@$domain"
+#  driver = dnslookup
+#  domains = ! +local_domains : +relay_to_domains
+#  transport = remote_smtp
+#  same_domain_copy_routing = yes
+#  no_more
 
 # deliver mail directly to the recipient. This router is only reached
 # for domains that we do not relay for. Since we most probably can't
@@ -1064,17 +1069,17 @@ nonlocal:
 # domains, you'll need to copy the dnslookup_relay_to_domains router
 # here so that mail to relay_domains is handled separately.
 
-smarthost:
-  debug_print = "R: smarthost for $local_part@$domain"
-  driver = manualroute
-  domains = ! +local_domains
-  transport = remote_smtp_smarthost
-  route_list = * DCsmarthost byname
-  host_find_failed = defer
-  same_domain_copy_routing = yes
-  no_more
-
-.endif
+#smarthost:
+ # debug_print = "R: smarthost for $local_part@$domain"
+#  driver = manualroute
+#  domains = ! +local_domains
+#  transport = remote_smtp_smarthost
+#  route_list = * DCsmarthost byname
+#  host_find_failed = defer
+#  same_domain_copy_routing = yes
+#  no_more
+	
+#.endif
 
 
 # The "no_more" above means that all later routers are for
@@ -1093,19 +1098,19 @@ smarthost:
 # processing. This can be used to inform a user of a broken .forward
 # file, for example. The userforward router does this.
 
-COND_LOCAL_SUBMITTER = "\
-               ${if match_ip{$sender_host_address}{:@[]}\
-                    {1}{0}\
-		}"
-
-real_local:
-  debug_print = "R: real_local for $local_part@$domain"
-  driver = accept
-  domains = +local_domains
-  condition = COND_LOCAL_SUBMITTER
-  local_part_prefix = real-
-  check_local_user
-  transport = LOCAL_DELIVERY
+#COND_LOCAL_SUBMITTER = "\
+#               ${if match_ip{$sender_host_address}{:@[]}\
+#                    {1}{0}\
+#		}"
+#
+#real_local:
+#  debug_print = "R: real_local for $local_part@$domain"
+#  driver = accept
+#  domains = +local_domains
+#  condition = COND_LOCAL_SUBMITTER
+#  local_part_prefix = real-
+#  check_local_user
+#  transport = LOCAL_DELIVERY
 
 #####################################################
 ### end router/300_exim4-config_real_local
