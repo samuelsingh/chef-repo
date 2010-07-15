@@ -21,9 +21,25 @@ package "exim4" do
   action :install
 end
 
+package "spamassassin" do
+  action :install
+end
+
+package "sa-exim" do
+  action :install 
+end
+
+
 execute "update-exim4" do
   command "update-exim4.conf && /etc/init.d/exim4 restart && sleep 1" 
   action :nothing
+end
+
+template "/etc/exim4/sa-exim.conf" do
+  source "sa-exim.conf.erb"
+  mode 0644
+  owner "root" 
+  group "root" 
 end
 
 template "/etc/mailname" do
