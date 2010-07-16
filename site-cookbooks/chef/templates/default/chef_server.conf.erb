@@ -20,7 +20,7 @@
   </Proxy>
 
   LogLevel info
-  ErrorLog <%= @params[:log_dir] %>/<%= @params[:api_proxy %>-error.log
+  ErrorLog <%= @params[:log_dir] %>/<%= @params[:api_proxy] %>-error.log
   CustomLog <%= @params[:log_dir] %>/<%= @params[:api_proxy] %>-access.log combined
 
   SSLEngine On
