@@ -1,9 +1,6 @@
 # Server Proxy for API
 <VirtualHost *:443>
   ServerName <%= @params[:api_proxy] %>
-  <% unless @params[:server_aliases].empty? do %>
-  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
-  <% end %>
 
   DocumentRoot /var/www/vhosts/<%= @params[:server_name] %>
 
@@ -37,9 +34,6 @@
 # Server Proxy for WebUI
 <VirtualHost *:443>
   ServerName <%= @params[:server_name] %>
-  <% unless @params[:server_aliases].empty? do %>
-  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
-  <% end %>
 
   DocumentRoot /var/www/vhosts/<%= @params[:server_name] %>
 
