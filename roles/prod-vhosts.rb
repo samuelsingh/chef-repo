@@ -23,6 +23,15 @@ override_attributes(
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 0
+    },
+    "training-mms.map-cloud-01.eu" => {
+      "srv_aliases" => [],
+      "deploy_dir" => "/var/shared/deployment/training-mms",
+      "appserver" => "trainingmms-app-01.map-cloud-01.eu",
+      "restricted_ips" => [],
+      "holding_page" => "false",
+      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
+      "lb_alive_port" => 0
     }
   }
 )
