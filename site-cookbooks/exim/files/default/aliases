@@ -667,9 +667,9 @@ spam:							patrick.clancey
 
 
 mom-tracking.mapofmedicine.com				bitbucket
-tracking:						tracking@cherry.mapofmedicine.com
+#tracking:						tracking@cherry.mapofmedicine.com
 #tracking:									bitbucket
-support:						tracking
+#support:						tracking
 #publicationrequest:					support
 support:						support@natbill.hostpilot.com
 oz-support:						support
@@ -911,3 +911,13 @@ kitlewis:						kit.lewis
 caite.ni.ceileachair: 	caite.ni@natbill.hostpilot.com
 
 auto-response:					auto-response@cherry.mapofmedicine.com
+
+#######################################
+#                                     #
+#Temp account for incoming Jira emails# 
+#                                     #
+#######################################
+
+jira-temp:					jira-temp@natbill.hostpilot.com
+tracking:                                       jira-temp@natbill.hostpilot.com
+
