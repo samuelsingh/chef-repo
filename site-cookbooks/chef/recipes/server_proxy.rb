@@ -63,8 +63,8 @@ web_app "chef_server" do
   server_name node[:chef_proxy][:fqdn]
   api_proxy = node[:chef_proxy][:api_fqdn]
   chef_server = chef_srv["fqdn"]
-  server_port = chef_srv["chef"].first["server_port"]
-  webui_port = chef_srv["chef"].first["webui_port"]
+  server_port = chef_srv["chef"]["server_port"]
+  webui_port = chef_srv["chef"]["webui_port"]
   server_aliases = Array.new
   log_dir node[:apache][:log_dir]
 end
