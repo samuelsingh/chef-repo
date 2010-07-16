@@ -41,3 +41,30 @@ directory "/var/mail" do
   group "root"
   mode "2777" 
 end
+
+user "desktop-support" do 
+  uid "10023"
+  home "/var/shared/home/desktop-support"
+  shell "/bin/bash"
+  supports :manage_home => true
+  password "$1$QkQeM6uJ$Db8HrWatgVbqrtrJCS8lx/"
+  not_if "[ ! -z \"`who | grep desktop-support`\" ]"
+end
+
+user "sdk-support" do
+  uid "10022"
+  home "/var/shared/home/sdk-support"
+  shell "/bin/bash"
+  supports :manage_home => true
+  password "$1$1H.F61Yu$E0eDQ/.KKPenuX6vdaqij1"
+  not_if "[ ! -z \"`who | grep sdk-support`\" ]"
+end
+
+user "tracking" do
+  uid "10024"
+  home "/var/shared/home/tracking"
+  shell "/bin/bash"
+  supports :manage_home => true
+  password "$1$6D/osFsS$BLDJiyTHodie0xuo9m7401"
+  not_if "[ ! -z \"`who | grep tracking`\" ]"
+end
