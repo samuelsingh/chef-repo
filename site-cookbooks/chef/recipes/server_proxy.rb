@@ -74,12 +74,12 @@ template "#{node[:apache][:dir]}/sites-available/#{node[:chef_proxy][:fqdn]}.con
   owner "sysadmin"
   group "sysadmin"
   variables(
-    :server_name => node[:chef_proxy][:fqdn],
+    :webui_proxy => node[:chef_proxy][:fqdn],
     :api_proxy => node[:chef_proxy][:api_fqdn],
     :chef_server => chef_srv["fqdn"],
     :server_port => chef_srv["chef"]["server_port"],
     :webui_port => chef_srv["chef"]["webui_port"],
-    :restricted_ips => node[:apache][:log_dir]
+    :log_dir => node[:apache][:log_dir]
   )
   # notifies :reload, resources(:service => "apache2")
   only_if "test -d #{node[:apache][:dir]}/sites-available"

@@ -1,8 +1,8 @@
 # Server Proxy for API
 <VirtualHost *:443>
-  ServerName <%= @params[:api_proxy] %>
+  ServerName <%= @api_proxy %>
 
-  DocumentRoot /var/www/vhosts/<%= @params[:server_name] %>
+  DocumentRoot /var/www/vhosts/<%= @server_proxy %>
 
   ExpiresActive On
   ExpiresByType text/css "access plus <%= node[:chef_proxy][:css_expire_hours] %> hours"
@@ -11,18 +11,18 @@
   ExpiresByType application/javascript "access plus <%= node[:chef_proxy][:js_expire_hours] %> hours"
 
   <Proxy balancer://chef_server>
-    BalancerMember http://<%= @params[:chef_server] %>:<%= @params[:server_port] %>
+    BalancerMember http://<%= @chef_server %>:<%= @server_port %>
     Order deny,allow
     Allow from all
   </Proxy>
 
   LogLevel info
-  ErrorLog <%= @params[:log_dir] %>/<%= @params[:api_proxy] %>-error.log
-  CustomLog <%= @params[:log_dir] %>/<%= @params[:api_proxy] %>-access.log combined
+  ErrorLog <%= @log_dir %>/<%= @api_proxy %>-error.log
+  CustomLog <%= @log_dir %>/<%= @api_proxy %>-access.log combined
 
   SSLEngine On
-  SSLCertificateFile /etc/chef/certificates/<%= @params[:server_name] %>.pem
-  SSLCertificateKeyFile /etc/chef/certificates/<%= @params[:server_name] %>.pem
+  SSLCertificateFile /etc/chef/certificates/<%= @server_proxy %>.pem
+  SSLCertificateKeyFile /etc/chef/certificates/<%= @server_proxy %>.pem
 
   RequestHeader set X_FORWARDED_PROTO 'https'
 
@@ -33,9 +33,9 @@
 
 # Server Proxy for WebUI
 <VirtualHost *:443>
-  ServerName <%= @params[:server_name] %>
+  ServerName <%= @server_proxy %>
 
-  DocumentRoot /var/www/vhosts/<%= @params[:server_name] %>
+  DocumentRoot /var/www/vhosts/<%= @server_proxy %>
 
   ExpiresActive On
   ExpiresByType text/css "access plus <%= node[:chef_proxy][:css_expire_hours] %> hours"
@@ -44,18 +44,18 @@
   ExpiresByType application/javascript "access plus <%= node[:chef_proxy][:js_expire_hours] %> hours"
 
   <Proxy balancer://chef_server>
-    BalancerMember http://<%= @params[:chef_server] %>:<%= node[:chef][:webui_port] %>
+    BalancerMember http://<%= @chef_server %>:<%= node[:chef][:webui_port] %>
     Order deny,allow
     Allow from all
   </Proxy>
 
   LogLevel info
-  ErrorLog <%= @params[:log_dir] %>/<%= @params[:name] %>-error.log
-  CustomLog <%= @params[:log_dir] %>/<%= @params[:name] %>-access.log combined
+  ErrorLog <%= @log_dir %>/<%= @server_proxy %>-error.log
+  CustomLog <%= @log_dir %>/<%= @server_proxy %>-access.log combined
 
   SSLEngine On
-  SSLCertificateFile /etc/chef/certificates/<%= @params[:server_name] %>.pem
-  SSLCertificateKeyFile /etc/chef/certificates/<%= @params[:server_name] %>.pem
+  SSLCertificateFile /etc/chef/certificates/<%= @server_proxy %>.pem
+  SSLCertificateKeyFile /etc/chef/certificates/<%= @server_proxy %>.pem
 
   RequestHeader set X_FORWARDED_PROTO 'https'
 
