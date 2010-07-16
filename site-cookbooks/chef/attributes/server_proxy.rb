@@ -17,8 +17,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_attribute "apache2"
-include_attribute "chef"
+# include_attribute "apache2"
+# include_attribute "chef"
 
 set_unless[:chef_proxy][:fqdn]  = "chef.unset.com"
 set_unless[:chef_proxy][:api_fqdn]  = "chef-api.unset.com"
