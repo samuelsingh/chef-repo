@@ -2,7 +2,7 @@ name "internal-vhosts"
 description "Configures apache vhosts for internal production use"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
-run_list "recipe[generic-tomcat-vhost]", "recipe[zenoss::vhost]"
+run_list "recipe[generic-tomcat-vhost]", "recipe[zenoss::vhost]", "recipe[chef::server_proxy]"
 
 override_attributes(
   "generic_tomcat_vhost" => {
@@ -38,5 +38,8 @@ override_attributes(
       "hostname" => "zen-master.map-cloud-01.eu",
       "srv_aliases" => [ "zen-master.mapofmedicine.com" ]
     }
+  },
+  "chef_proxy" => {
+    "fqdn" => "chef-live.map-cloud-01.eu"
   }
 )
