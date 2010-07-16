@@ -40,6 +40,7 @@ override_attributes(
     }
   },
   "chef_proxy" => {
-    "fqdn" => "chef-live.map-cloud-01.eu"
+    "fqdn" => "chef-live.map-cloud-01.eu",
+    "api_fqdn" => "chef-live-api.map-cloud-01.eu"
   }
 )
