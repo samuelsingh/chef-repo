@@ -25,6 +25,6 @@ when "foxdev"
   set[:exim][:smarthost] = 'mail.dummy.com'
   
 when "euaws"
-  set[:exim][:smarthost] = 'mail.map-cloud-01.eu'
+  set[:exim][:smarthost] = 'smarthost-01.map-cloud-01.eu'
   
 end
