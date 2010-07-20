@@ -82,8 +82,8 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   
   remote_directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf" do
     source "conf"
-    files_owner "sysadmin"
-    files_group "sysadmin"
+    files_owner "tomcat"
+    files_group "tomcat"
     files_mode "0644"
     owner "sysadmin"
     group "sysadmin"
