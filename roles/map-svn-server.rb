@@ -2,7 +2,7 @@ name "map-svn-server"
 description "Map of Medicine Subversion server"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
-run_list "recipe[subversion], recipe[apache2]", "recipe[apache2::mod_rewrite]", "recipe[apache2::mod_headers]", "recipe[apache2::mod_dav]", "recipe[apache2::mod_dav_svn]", "recipe[apache2::mod_authnz_ldap]", "recipe[apache2::mod_proxy_connect]", "recipe[apache2::mod_ldap]", "recipe[apache2::mod_proxy_http]", "recipe[apache2::mod_status]", "recipe[apache2::mod_cgi]", "recipe[apache2::mod_log_config]", "recipe[apache2::mod_expires]", "recipe[apache2::mod_include]", "recipe[apache2::mod_log_forensic]", "recipe[apache2::mod_info]"
+run_list "recipe[subversion], recipe[apache2]", "recipe[apache2::mod_rewrite]", "recipe[apache2::mod_headers]", "recipe[apache2::mod_dav]", "recipe[apache2::mod_dav_svn]", "recipe[apache2::mod_authnz_ldap]", "recipe[apache2::mod_proxy_connect]", "recipe[apache2::mod_ldap]", "recipe[apache2::mod_proxy_http]", "recipe[apache2::mod_status]", "recipe[apache2::mod_cgi]", "recipe[apache2::mod_log_config]", "recipe[apache2::mod_expires]", "recipe[apache2::mod_include]", "recipe[apache2::mod_log_forensic]", "recipe[apache2::mod_info]", "recipe[map-svn::server]", "recipe[map-svn::vhost]"
 
 override_attributes(
   "apache" => {
@@ -15,5 +15,36 @@ override_attributes(
       "81.6.222.205",     # Kief's home
       "82.34.165.170"     # Andrew's home
     ]
+  },
+  "map-svn" => {
+    "vhost" => {
+      "hostname" => "svn-01.map-cloud-01.eu",
+      "srv_aliases" => [ "svn.mapofmedicine.com" ]
+    },
+    "ldap" => {
+      "server" => "ldap",
+      "port" => "389",
+      "url_path" => "ou=users,dc=mapofmedicine,dc=com?uid",
+      "binddn" => "cn=ldapadmin,dc=mapofmedicine,dc=com",
+      "bindpassword" => "medic2cidem"
+    },
+    "svn_repos" => [
+       {
+         "repo_name" => "map-dev",
+         "auth_name" => "Map Development Source",
+         "ldap_group" => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
+       },
+       {
+         "repo_name" => "map-test",
+         "auth_name" => "Test Repository",
+         "ldap_group" => "cn=map-dev-committers,ou=groups,dc=mapofmedicine,dc=com"
+       },
+       {
+         "repo_name" => "map-sys",
+         "auth_name" => "Map Infrastructure Configuration",
+         "ldap_group" => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
+       }
+    ]
   }
+
 )

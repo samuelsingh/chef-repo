@@ -1,0 +1,67 @@
+<VirtualHost *:80>
+  ServerName <%= @params[:server_name] %>
+  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
+  DocumentRoot <%= @params[:docroot] %>
+  RewriteEngine On
+
+  <Location />
+    Order allow,deny
+    Deny from all
+
+    DAV svn
+    SVNParentPath <%= @params[:svn_root]
+  </Location>
+
+<% @params[:svn_repos].each do |repo| %>
+  <Location /<%= repo[:repo_name]
+    Order allow,deny
+    Allow from all
+
+    AuthName "<%= repo[:auth_name] %>"
+    AuthType Basic
+    AuthBasicProvider ldap
+
+    # Where the LDAP server is
+    AuthLDAPURL ldap://<%= [:ldap_host] %>:<%= [:ldap_port] %>/<%= [:ldap_path] %>
+
+    # Credentials for doing the LDAP lookup.
+    # Very naughty. We need to set up and use a RO account
+    AuthLDAPBindDN <%= [:ldap_binddn] %>
+    AuthLDAPBindPassword <%= [:ldap_bindpassword] %>
+
+    # Grant access to the mom-ias group (Support Team)
+    Require ldap-group <%= repo[:ldap_group] %>
+
+    # These configure how to identify a group in LDAP
+    AuthLDAPGroupAttribute memberUid
+    AuthLDAPGroupAttributeIsDN    off
+  </Location>
+
+<% end %>
+  
+  <Location /server-status>
+    SetHandler server-status
+
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1
+  </Location>
+
+  LogLevel info
+  ErrorLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-error.log
+  CustomLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-access.log combined
+
+  RewriteEngine On
+  RewriteLog <%= @node[:apache][:log_dir] %>/<%= @application_name %>-rewrite.log
+  RewriteLogLevel 0
+
+  # Canonical host, <%= @params[:server_name] %>
+  RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
+  RewriteCond %{HTTP_HOST}   !^$
+  RewriteRule ^/(.*)$        http://<%= @params[:server_name] %>/$1 [L,R=301]
+
+  RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+  RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+  RewriteRule ^.*$ /system/maintenance.html [L]
+</VirtualHost>
+
