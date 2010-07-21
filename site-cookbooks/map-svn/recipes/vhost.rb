@@ -45,41 +45,36 @@ service "apache2" do
   action :enable
 end
 
-if defined?(node[:apache][:dir])
-  
-  hostname = node[:map-svn][:vhost][:hostname]
-  
-  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-    source "map-svn-vhost.conf.erb"
-    mode 0644
-    owner "sysadmin"
-    group "sysadmin"
-    variables(
-      :name => name,
-      :hostname => hostname,
-      :srv_aliases => node[:map-svn][:vhost][:srv_aliases],
-      :restricted_ips => node[:apache][:restricted_ips],
-      :svn_root => node[:map-svn][:svn_root],
-      :svn_repos => node[:map-svn][:svn_repos],
-      :ldap_host => node[:map-svn][:ldap][:server],
-      :ldap_port => node[:map-svn][:ldap][:port],
-      :ldap_path => node[:map-svn][:ldap][:url_path],
-      :ldap_binddn => node[:map-svn][:ldap][:binddn],
-      :ldap_bindpassword => node[:map-svn][:ldap][:bindpassword],
-    )
-    notifies :reload, resources(:service => "apache2")
-    only_if "test -d #{node[:apache][:dir]}/sites-available"
-  end
-  
-  link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
-    to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
-  end
-  
+template "#{node[:apache][:dir]}/sites-available/#{node[:map-svn][:vhost][:hostname]}.conf" do
+  source "map-svn-vhost.conf.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+  variables(
+    :name => name,
+    :hostname => node[:map-svn][:vhost][:hostname],
+    :srv_aliases => node[:map-svn][:vhost][:srv_aliases],
+    :restricted_ips => node[:apache][:restricted_ips],
+    :svn_root => node[:map-svn][:svn_root],
+    :svn_repos => node[:map-svn][:svn_repos],
+    :ldap_host => node[:map-svn][:ldap][:server],
+    :ldap_port => node[:map-svn][:ldap][:port],
+    :ldap_path => node[:map-svn][:ldap][:url_path],
+    :ldap_binddn => node[:map-svn][:ldap][:binddn],
+    :ldap_bindpassword => node[:map-svn][:ldap][:bindpassword]
+  )
+  notifies :reload, resources(:service => "apache2")
+  only_if "test -d #{node[:apache][:dir]}/sites-available"
 end
-
-directory "/var/www/vhosts/#{hostname}" do
+  
+link "#{node[:apache][:dir]}/sites-enabled/#{node[:map-svn][:vhost][:hostname]}.conf"  do
+  to "#{node[:apache][:dir]}/sites-available/#{node[:map-svn][:vhost][:hostname]}.conf"
+end
+  
+directory "/var/www/vhosts/#{node[:map-svn][:vhost][:hostname]}" do
   owner "sysadmin"
   group "sysadmin"
   mode "0755"
   recursive true
 end
+
