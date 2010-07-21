@@ -1,9 +1,9 @@
 # Cookbook Name:: map-svn
 # Attribute File:: map-svn
 
-if recipe?("map-svn")
-  set[:map-svn] = "true"
-end
+#if recipe?("map-svn::vhost")
+#  set[:map-svn] = "true"
+#end
 
 if recipe?("map-svn::vhost")
   set_unless[:map-svn][:vhost][:hostname] = "unset.unset.com"
