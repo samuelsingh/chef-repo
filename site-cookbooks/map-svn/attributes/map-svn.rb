@@ -1,8 +1,8 @@
 # Cookbook Name:: map-svn
 # Attribute File:: map-svn
 
-if recipe?("map-svn::server")
-  set[:svn][:server] = "true"
+if recipe?("map-svn")
+  set[:map-svn] = "true"
 end
 
 if recipe?("map-svn::vhost")

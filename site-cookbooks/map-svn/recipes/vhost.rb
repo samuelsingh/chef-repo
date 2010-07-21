@@ -55,6 +55,7 @@ if defined?(node[:apache][:dir])
     owner "sysadmin"
     group "sysadmin"
     variables(
+      :name => name,
       :hostname => hostname,
       :srv_aliases => node[:map-svn][:vhost][:srv_aliases],
       :restricted_ips => node[:apache][:restricted_ips],
