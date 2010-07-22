@@ -54,9 +54,6 @@
     # report in MMS that prompted this setting. Default is 300 seconds.
     
     ProxyTimeout 600
-    
-    SetEnvIf X-FORWARDED-FOR (.*) REMOTE_ADDR=$1
-    SetEnvIf X-FORWARDED-FOR (.*) REMOTE_IP=$1
 
     # These are the main ajp proxy directives, they tell Apache to pass requests
     # to Tomcat.
