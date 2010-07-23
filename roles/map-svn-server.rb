@@ -16,7 +16,7 @@ override_attributes(
       "82.34.165.170"     # Andrew's home
     ]
   },
-  "map-svn" => {
+  "map_svn" => {
     "vhost" => {
       "hostname" => "svn-01.map-cloud-01.eu",
       "srv_aliases" => [ "svn.mapofmedicine.com" ]
