@@ -52,26 +52,26 @@ template "#{node[:apache][:dir]}/sites-available/svn-01.conf" do
   group "sysadmin"
   variables(
     :name => name,
-    :hostname => node[:map-svn][:vhost][:hostname],
-    :srv_aliases => node[:map-svn][:vhost][:srv_aliases],
+    :hostname => node[:map_svn][:vhost][:hostname],
+    :srv_aliases => node[:map_svn][:vhost][:srv_aliases],
     :restricted_ips => node[:apache][:restricted_ips],
-    :svn_root => node[:map-svn][:svn_root],
-    :svn_repos => node[:map-svn][:svn_repos],
-    :ldap_host => node[:map-svn][:ldap][:server],
-    :ldap_port => node[:map-svn][:ldap][:port],
-    :ldap_path => node[:map-svn][:ldap][:url_path],
-    :ldap_binddn => node[:map-svn][:ldap][:binddn],
-    :ldap_bindpassword => node[:map-svn][:ldap][:bindpassword]
+    :svn_root => node[:map_svn][:svn_root],
+    :svn_repos => node[:map_svn][:svn_repos],
+    :ldap_host => node[:map_svn][:ldap][:server],
+    :ldap_port => node[:map_svn][:ldap][:port],
+    :ldap_path => node[:map_svn][:ldap][:url_path],
+    :ldap_binddn => node[:map_svn][:ldap][:binddn],
+    :ldap_bindpassword => node[:map_svn][:ldap][:bindpassword]
   )
   notifies :reload, resources(:service => "apache2")
   only_if "test -d #{node[:apache][:dir]}/sites-available"
 end
   
-link "#{node[:apache][:dir]}/sites-enabled/#{node[:map-svn][:vhost][:hostname]}.conf"  do
-  to "#{node[:apache][:dir]}/sites-available/#{node[:map-svn][:vhost][:hostname]}.conf"
+link "#{node[:apache][:dir]}/sites-enabled/#{node[:map_svn][:vhost][:hostname]}.conf"  do
+  to "#{node[:apache][:dir]}/sites-available/#{node[:map_svn][:vhost][:hostname]}.conf"
 end
   
-directory "/var/www/vhosts/#{node[:map-svn][:vhost][:hostname]}" do
+directory "/var/www/vhosts/#{node[:map_svn][:vhost][:hostname]}" do
   owner "sysadmin"
   group "sysadmin"
   mode "0755"
