@@ -9,11 +9,11 @@
     Deny from all
 
     DAV svn
-    SVNParentPath <%= @params[:svn_root]
+    SVNParentPath <%= @params[:svn_root] %>
   </Location>
 
 <% @params[:svn_repos].each do |repo| %>
-  <Location /<%= repo[:repo_name]
+  <Location /<%= repo[:repo_name] %>>
     Order allow,deny
     Allow from all
 
