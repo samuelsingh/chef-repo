@@ -46,7 +46,7 @@ service "apache2" do
 end
 
 template "#{node[:apache][:dir]}/sites-available/svn-01.conf" do
-  source "map-svn-vhost.conf.erb"
+  source "svn_vhost.conf.erb"
   mode 0644
   owner "sysadmin"
   group "sysadmin"
