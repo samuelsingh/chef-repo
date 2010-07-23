@@ -45,7 +45,7 @@ service "apache2" do
   action :enable
 end
 
-template "#{node[:apache][:dir]}/sites-available/#{node[:map-svn][:vhost][:hostname]}.conf" do
+template "#{node[:apache][:dir]}/sites-available/svn-01.conf" do
   source "map-svn-vhost.conf.erb"
   mode 0644
   owner "sysadmin"
