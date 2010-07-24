@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-  ServerName <%= @params[:server_name] %>
-  ServerAlias <% @params[:server_aliases].each do |a| %><%= "#{a}" %> <% end %>
-  DocumentRoot <%= @params[:docroot] %>
+  ServerName <%= @server_name %>
+  ServerAlias <% @server_aliases.each do |a| %><%= "#{a}" %> <% end %>
+  DocumentRoot <%= @docroot %>
   RewriteEngine On
 
   <Location />
@@ -9,28 +9,28 @@
     Deny from all
 
     DAV svn
-    SVNParentPath <%= @params[:svn_root] %>
+    SVNParentPath <%= @svn_root %>
   </Location>
 
-<% @params[:svn_repos].each do |repo| %>
-  <Location /<%= repo[:repo_name] %>>
+<% @svn_repos.each do |repo| %>
+  <Location /<%= @repo.repo_name] %>>
     Order allow,deny
     Allow from all
 
-    AuthName "<%= repo[:auth_name] %>"
+    AuthName "<%= @repo.auth_name %>"
     AuthType Basic
     AuthBasicProvider ldap
 
     # Where the LDAP server is
-    AuthLDAPURL ldap://<%= [:ldap_host] %>:<%= [:ldap_port] %>/<%= [:ldap_path] %>
+    AuthLDAPURL ldap://<%= @ldap_host %>:<%= @ldap_port %>/<%= @ldap_path %>
 
     # Credentials for doing the LDAP lookup.
     # Very naughty. We need to set up and use a RO account
-    AuthLDAPBindDN <%= [:ldap_binddn] %>
-    AuthLDAPBindPassword <%= [:ldap_bindpassword] %>
+    AuthLDAPBindDN <%= @ldap_binddn %>
+    AuthLDAPBindPassword <%= @ldap_bindpassword %>
 
     # Grant access to the mom-ias group (Support Team)
-    Require ldap-group <%= repo[:ldap_group] %>
+    Require ldap-group <%= @repo.ldap_group %>
 
     # These configure how to identify a group in LDAP
     AuthLDAPGroupAttribute memberUid
@@ -48,20 +48,8 @@
   </Location>
 
   LogLevel info
-  ErrorLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-error.log
-  CustomLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-access.log combined
+  CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
+  ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
 
-  RewriteEngine On
-  RewriteLog <%= @node[:apache][:log_dir] %>/<%= @application_name %>-rewrite.log
-  RewriteLogLevel 0
-
-  # Canonical host, <%= @params[:server_name] %>
-  RewriteCond %{HTTP_HOST}   !^<%= @params[:server_name] %> [NC]
-  RewriteCond %{HTTP_HOST}   !^$
-  RewriteRule ^/(.*)$        http://<%= @params[:server_name] %>/$1 [L,R=301]
-
-  RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
-  RewriteCond %{SCRIPT_FILENAME} !maintenance.html
-  RewriteRule ^.*$ /system/maintenance.html [L]
 </VirtualHost>
 

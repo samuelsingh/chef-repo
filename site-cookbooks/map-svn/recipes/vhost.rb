@@ -61,7 +61,8 @@ template "#{node[:apache][:dir]}/sites-available/svn-01.conf" do
     :ldap_port => node[:map_svn][:ldap][:port],
     :ldap_path => node[:map_svn][:ldap][:url_path],
     :ldap_binddn => node[:map_svn][:ldap][:binddn],
-    :ldap_bindpassword => node[:map_svn][:ldap][:bindpassword]
+    :ldap_bindpassword => node[:map_svn][:ldap][:bindpassword],
+    :apache_log_dir =>@node[:apache][:log_dir]
   )
   notifies :reload, resources(:service => "apache2")
   only_if "test -d #{node[:apache][:dir]}/sites-available"
