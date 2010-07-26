@@ -86,8 +86,12 @@
     </IfModule>
 
     # Activity for this virtual host goes into separate logs
+    
+    # This statement figures out whether X-Forwarded-For is set.
+    SetEnvIf X-FORWARDED-FOR "^.*\..*\..*\..*" behind-elb
 
-    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm env=!behind-elb
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm-elb env=behind-elb
     ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
 
 </VirtualHost>
