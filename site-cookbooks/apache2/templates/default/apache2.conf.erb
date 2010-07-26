@@ -192,7 +192,7 @@ LogFormat "\"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %b" common-elb
 # This statement figures out whether X-Forwarded-For is set.
 # Something similar will need to be included in all Apache vhosts.
 #
-SetEnvIf X-Forwarder-For "^.*\..*\..*\..*" behind-elb
+SetEnvIf X-FORWARDED-FOR "^.*\..*\..*\..*" behind-elb
 
 # And picks the log format on that basis
 #
