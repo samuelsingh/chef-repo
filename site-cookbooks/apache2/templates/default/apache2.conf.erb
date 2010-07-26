@@ -160,6 +160,7 @@ Include <%= @node[:apache][:dir] %>/ports.conf
 # The following directives define some format nicknames for use with
 # a CustomLog directive (see below).
 #
+
 LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
 LogFormat "%h %l %u %t \"%r\" %>s %b" common
 LogFormat "%{Referer}i -> %U" referer
@@ -174,7 +175,29 @@ LogFormat "%{User-agent}i" agent
     LogFormat "%v %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{JSESSIONID}C\"" mtm
 </IfModule>
 
-CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access.log.%Y%m%d 86400" mtm
+# And the equivalents if behind ELB
+# These replace the %h variable with the value of X-Forwarded-For
+#
+
+LogFormat "\"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined-elb
+LogFormat "\"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %b" common-elb
+
+<IfModule mod_logio.c>
+    LogFormat "%v \"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O \"%{JSESSIONID}C\"" mtm-elb
+</IfModule>
+<IfModule !mod_logio.c>
+    LogFormat "%v \"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{JSESSIONID}C\"" mtm-elb
+</IfModule>
+
+# This statement figures out whether X-Forwarded-For is set.
+# Something similar will need to be included in all Apache vhosts.
+#
+SetEnvIf X-Forwarder-For "^.*\..*\..*\..*" behind-elb
+
+# And picks the log format on that basis
+#
+CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access.log.%Y%m%d 86400" mtm env=!behind-elb
+CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access.log.%Y%m%d 86400" mtm-elb env=behind-elb
 
 
 # Include generic snippets of statements
