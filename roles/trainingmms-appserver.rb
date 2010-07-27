@@ -15,7 +15,7 @@ override_attributes(
     "deployment_name" => "Training MMS",
     "contentpath" => "/var/mms/content-out",
     "content_in" => "/var/mms/content-in",
-    "version" => "2.6.4.3.ALL.4.36087",
+    "version" => "2.6.4.3.ALL.6.36227",
     "deployment" => {
       "id" => "50",
       "external_start" => "30000001",
