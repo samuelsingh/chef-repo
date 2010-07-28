@@ -12,23 +12,48 @@ remote_file "/etc/init.d/tomcat9001" do
   mode 0755
 end
 
-template "#{node[:hgmde][:install_path]}/conf/server.xml" do
+remote_file "/etc/init.d/tomcat9002" do
+  source "tomcat9002"
+  mode 0755
+end
+
+template "#{node[:hgmde][:hg_install_path]}/conf/server.xml" do
   source "server.xml.erb"
   mode 0755
 end
 
-template "#{node[:hgmde][:install_path]}/conf/web.xml" do
+template "#{node[:hgmde][:hg_install_path]}/conf/web.xml" do
   source "web.xml.erb"
   mode 0755
 end
 
-template "#{node[:hgmde][:install_path]}/conf/tomcat-users.xml" do
+template "#{node[:hgmde][:hg_install_path]}/conf/tomcat-users.xml" do
   source "tomcat-users.xml.erb"
   mode 0755
 end
 
-template "#{node[:hgmde][:install_path]}/conf/Catalina/localhost/choices.xml" do
+template "#{node[:hgmde][:hg_install_path]}/conf/Catalina/localhost/choices.xml" do
   source "choices.xml.erb"
+  mode 0755
+end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/server.xml" do
+  source "server.xml.erb"
+  mode 0755
+end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/web.xml" do
+  source "web.xml.erb"
+  mode 0755
+end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/tomcat-users.xml" do
+  source "tomcat-users.xml.erb"
+  mode 0755
+end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/Catalina/localhost/evidence.xml" do
+  source "evidence.xml.erb"
   mode 0755
 end
 
