@@ -48,17 +48,17 @@ override_attributes(
 		:svn_repos = [
 	  	{
 	  		:repo_name => "map-test",
-	  		:auth_name => "Test Repository",
+	  		:auth_name => "XTest Repository",
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	},
 	  	{
 	  		:repo_name => "map-dev",
-	  		:auth_name => "Map Development Source",
+	  		:auth_name => "XMap Development Source",
 	  		:ldap_group => "cn=map-dev-committers,ou=groups,dc=mapofmedicine,dc=com"
 	  	},
 	  	{
 	  		"repo_name" => "map-sys",
-	  		:auth_name => "Map Infrastructure Configuration",
+	  		:auth_name => "XMap Infrastructure Configuration",
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	}
   	],
