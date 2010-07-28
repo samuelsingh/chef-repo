@@ -53,7 +53,7 @@ template "#{node[:apache][:dir]}/sites-available/svn-01.conf" do
   variables(
     :name => name,
     :hostname => node[:map_svn][:vhost][:hostname],
-    :srv_aliases => node[:map_svn][:vhost][:srv_aliases],
+    :server_aliases => node[:map_svn][:vhost][:srv_aliases],
     :restricted_ips => node[:apache][:restricted_ips],
     :svn_root => node[:map_svn][:svn_root],
     :svn_repos => node[:map_svn][:svn_repos],

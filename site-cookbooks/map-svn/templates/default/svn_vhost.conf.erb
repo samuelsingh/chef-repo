@@ -1,8 +1,7 @@
 <VirtualHost *:80>
-  ServerName <%= @server_name %>
+  ServerName <%= @hostname %>
   ServerAlias <% @server_aliases.each do |a| %><%= "#{a}" %> <% end %>
-  DocumentRoot <%= @docroot %>
-  RewriteEngine On
+  DocumentRoot /var/www/vhosts/<%= @hostname %>
 
   <Location />
     Order allow,deny
@@ -48,8 +47,8 @@
   </Location>
 
   LogLevel info
-  CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
-  ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
+  CustomLog "|/usr/sbin/rotatelogs <%= @apache_log_dir %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm
+  ErrorLog "|/usr/sbin/rotatelogs <%= @apache_log_dir %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
 
 </VirtualHost>
 
