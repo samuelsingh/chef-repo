@@ -13,11 +13,11 @@
   </Location>
 
 <% @svn_repos.each do |repo| %>
-  <Location /<%= @repo.repo_name] %>>
+  <Location /<%= repo[:name] %>>
     Order allow,deny
     Allow from all
 
-    AuthName "<%= @repo.auth_name %>"
+    AuthName "<%= repo[:auth_name] %>"
     AuthType Basic
     AuthBasicProvider ldap
 
@@ -30,7 +30,7 @@
     AuthLDAPBindPassword <%= @ldap_bindpassword %>
 
     # Grant access to the mom-ias group (Support Team)
-    Require ldap-group <%= @repo.ldap_group %>
+    Require ldap-group <%= repo[:ldap_group] %>
 
     # These configure how to identify a group in LDAP
     AuthLDAPGroupAttribute memberUid
