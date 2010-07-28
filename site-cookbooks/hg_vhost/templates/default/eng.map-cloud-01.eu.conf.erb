@@ -7,8 +7,9 @@
 <VirtualHost "*:80">
     ServerName eng.map-cloud-01.eu
 	ServerAlias nhsevidence.map-cloud-01.eu
+      <% @webapps.each do |webapp,params| -%>
     DocumentRoot <%= params.fetch("document_root") %>
-
+     <% end -%>
 	ProxyPass /evidence/attachments !
 	ProxyPass /evidence/images !
 	ProxyPass /evidence/pdf !
@@ -27,8 +28,9 @@ alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
 
 
 
-
+ <% @webapps.each do |webapp,params| -%>
     <Directory "<%= params.fetch("document_root") %>">
+   <% end -%>
         DirectoryIndex index.jsp
         Options FollowSymLinks
         AllowOverride None
