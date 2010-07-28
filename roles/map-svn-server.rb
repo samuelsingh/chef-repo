@@ -2,7 +2,24 @@ name "map-svn-server"
 description "Map of Medicine Subversion server"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
-run_list "recipe[subversion], recipe[apache2]", "recipe[apache2::mod_rewrite]", "recipe[apache2::mod_headers]", "recipe[apache2::mod_dav]", "recipe[apache2::mod_dav_svn]", "recipe[apache2::mod_authnz_ldap]", "recipe[apache2::mod_proxy_connect]", "recipe[apache2::mod_ldap]", "recipe[apache2::mod_proxy_http]", "recipe[apache2::mod_status]", "recipe[apache2::mod_cgi]", "recipe[apache2::mod_log_config]", "recipe[apache2::mod_expires]", "recipe[apache2::mod_include]", "recipe[apache2::mod_log_forensic]", "recipe[apache2::mod_info]", "recipe[map-svn::vhost]"
+run_list "recipe[subversion]", 
+	"recipe[apache2]", 
+	"recipe[apache2::mod_rewrite]", 
+	"recipe[apache2::mod_headers]", 
+	"recipe[apache2::mod_dav]", 
+	"recipe[apache2::mod_dav_svn]", 
+	"recipe[apache2::mod_authnz_ldap]", 
+	"recipe[apache2::mod_proxy_connect]", 
+	"recipe[apache2::mod_ldap]", 
+	"recipe[apache2::mod_proxy_http]", 
+	"recipe[apache2::mod_status]", 
+	"recipe[apache2::mod_cgi]", 
+	"recipe[apache2::mod_log_config]", 
+	"recipe[apache2::mod_expires]", 
+	"recipe[apache2::mod_include]", 
+	"recipe[apache2::mod_log_forensic]", 
+	"recipe[apache2::mod_info]", 
+	"recipe[map-svn::vhost]"
 
 override_attributes(
   :apache => {
@@ -30,21 +47,22 @@ override_attributes(
     },
 		:svn_repos = [
 	  	{
-	  		:name => "map-test",
+	  		:repo_name => "map-test",
 	  		:auth_name => "Test Repository",
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	},
 	  	{
-	  		:name => "map-dev",
+	  		:repo_name => "map-dev",
 	  		:auth_name => "Map Development Source",
 	  		:ldap_group => "cn=map-dev-committers,ou=groups,dc=mapofmedicine,dc=com"
 	  	},
 	  	{
-	  		:name => "map-sys",
+	  		"repo_name" => "map-sys",
 	  		:auth_name => "Map Infrastructure Configuration",
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	}
-  	]
+  	],
+  	:svn_root => "/foo/bar"
   }
 
 )

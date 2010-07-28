@@ -12,7 +12,7 @@
   </Location>
 
 <% @svn_repos.each do |repo| %>
-  <Location /<%= repo[:name] %>>
+  <Location /<%= repo[:repo_name] %>>
     Order allow,deny
     Allow from all
 
