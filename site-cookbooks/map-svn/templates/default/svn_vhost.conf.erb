@@ -24,7 +24,6 @@
     AuthLDAPURL ldap://<%= @ldap_host %>:<%= @ldap_port %>/<%= @ldap_path %>
 
     # Credentials for doing the LDAP lookup.
-    # Very naughty. We need to set up and use a RO account
     AuthLDAPBindDN <%= @ldap_binddn %>
     AuthLDAPBindPassword <%= @ldap_bindpassword %>
 

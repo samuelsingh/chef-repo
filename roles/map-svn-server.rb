@@ -5,8 +5,8 @@ description "Map of Medicine Subversion server"
 run_list "recipe[subversion], recipe[apache2]", "recipe[apache2::mod_rewrite]", "recipe[apache2::mod_headers]", "recipe[apache2::mod_dav]", "recipe[apache2::mod_dav_svn]", "recipe[apache2::mod_authnz_ldap]", "recipe[apache2::mod_proxy_connect]", "recipe[apache2::mod_ldap]", "recipe[apache2::mod_proxy_http]", "recipe[apache2::mod_status]", "recipe[apache2::mod_cgi]", "recipe[apache2::mod_log_config]", "recipe[apache2::mod_expires]", "recipe[apache2::mod_include]", "recipe[apache2::mod_log_forensic]", "recipe[apache2::mod_info]", "recipe[map-svn::vhost]"
 
 override_attributes(
-  "apache" => {
-    "restricted_ips" => [
+  :apache => {
+    :restricted_ips => [
       "213.248.91.62",    # Fox Court IP (new)
       "80.239.136.230",   # Another Fox Court IP
       "80.239.136.226",   # Fox Court office (old)
@@ -16,35 +16,35 @@ override_attributes(
       "82.34.165.170"     # Andrew's home
     ]
   },
-  "map_svn" => {
-    "vhost" => {
-      "hostname" => "svn-01.map-cloud-01.eu",
-      "srv_aliases" => [ "svn.mapofmedicine.com" ]
+  :map_svn => {
+    :vhost => {
+      :hostname => "svn-01.map-cloud-01.eu",
+      :srv_aliases => [ "svn.mapofmedicine.com", "svn-01", "svn-test.mapofmedicine.com" ]
     },
-    "ldap" => {
-      "server" => "ldap",
-      "port" => "389",
-      "url_path" => "ou=users,dc=mapofmedicine,dc=com?uid",
-      "binddn" => "cn=ldapadmin,dc=mapofmedicine,dc=com",
-      "bindpassword" => "medic2cidem"
+    :ldap => {
+      :server => "ldap",
+      :port => "389",
+      :url_path => "ou=users,dc=mapofmedicine,dc=com?uid",
+      :binddn => "cn=ldapadmin,dc=mapofmedicine,dc=com",
+      :bindpassword => "medic2cidem"
     },
-    "svn_repos" => [
-       {
-         "repo_name" => "map-dev",
-         "auth_name" => "Map Development Source",
-         "ldap_group" => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
-       },
-       {
-         "repo_name" => "map-test",
-         "auth_name" => "Test Repository",
-         "ldap_group" => "cn=map-dev-committers,ou=groups,dc=mapofmedicine,dc=com"
-       },
-       {
-         "repo_name" => "map-sys",
-         "auth_name" => "Map Infrastructure Configuration",
-         "ldap_group" => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
-       }
-    ]
+		:svn_repos = [
+	  	{
+	  		:name => "map-test",
+	  		:auth_name => "Test Repository",
+	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
+	  	},
+	  	{
+	  		:name => "map-dev",
+	  		:auth_name => "Map Development Source",
+	  		:ldap_group => "cn=map-dev-committers,ou=groups,dc=mapofmedicine,dc=com"
+	  	},
+	  	{
+	  		:name => "map-sys",
+	  		:auth_name => "Map Infrastructure Configuration",
+	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
+	  	}
+  	]
   }
 
 )
