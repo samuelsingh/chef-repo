@@ -23,7 +23,9 @@ set_unless[:generic_tomcat_vhost] = {
     "webapps" => {
       "webapp" => {
         "port" => "9000",
-        "appserver" => "unset-app-01.map-cloud-01.eu"
+        "appserver" => "unset-app-01.map-cloud-01.eu",
+        "document_root" => "/var/www/vhosts",
+        "proxy_pass" => ["professional","choices"]
       }
     },
     "primary_webapp" => "webapp",

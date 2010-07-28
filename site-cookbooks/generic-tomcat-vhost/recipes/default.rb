@@ -22,7 +22,7 @@ node[:generic_tomcat_vhost].each do |hostname,params|
   if defined?(node[:apache][:dir])
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-      source "generic-tomcat-vhost.conf.erb"
+      source "#{hostname}.conf.erb"
       mode 0644
       owner "sysadmin"
       group "sysadmin"
@@ -67,5 +67,5 @@ node[:generic_tomcat_vhost].each do |hostname,params|
 end
 
 service "apache2" do
-  action :reload
+  action :restart
 end
