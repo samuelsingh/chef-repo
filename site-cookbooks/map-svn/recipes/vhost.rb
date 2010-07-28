@@ -68,8 +68,8 @@ template "#{node[:apache][:dir]}/sites-available/#{node[:map_svn][:vhost][:hostn
   only_if "test -d #{node[:apache][:dir]}/sites-available"
 end
   
-link "#{node[:apache][:dir]}/sites-enabled/svn-01.conf"  do
-  to "#{node[:apache][:dir]}/sites-available/svn-01.conf"
+link "#{node[:apache][:dir]}/sites-enabled/#{node[:map_svn][:vhost][:hostname]}.conf"  do
+  to "#{node[:apache][:dir]}/sites-available/#{node[:map_svn][:vhost][:hostname]}.conf"
 end
   
 directory "/var/www/vhosts/#{node[:map_svn][:vhost][:hostname]}" do
