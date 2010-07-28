@@ -1,45 +1,66 @@
 #
-# Cookbook Name:: Confluence 
+# Cookbook Name:: hgmde 
 # Recipe:: default
 #
-# Manual Steps!
 #
-# MySQL:
 #
-#   create database confluence character set utf8;
-#   grant all privileges on confluence.* to 'confluence'@'localhost' identified by '$confluence_password';
-#   flush privileges;
-include_recipe "java"
-include_recipe "tomcat"
+#include_recipe "java"
+#include_recipe "tomcat"
 
 remote_file "/etc/init.d/tomcat9001" do
   source "tomcat9001"
   mode 0755
 end
 
-template "#{node[:confluence][:install_path]}/conf/server.xml" do
+remote_file "/etc/init.d/tomcat9002" do
+  source "tomcat9002"
+  mode 0755
+end
+
+template "#{node[:hgmde][:hg_install_path]}/conf/server.xml" do
   source "server.xml.erb"
   mode 0755
 end
 
-template "#{node[:confluence][:install_path]}/conf/web.xml" do
+template "#{node[:hgmde][:hg_install_path]}/conf/web.xml" do
   source "web.xml.erb"
   mode 0755
 end
 
-template "#{node[:confluence][:install_path]}/conf/tomcat-users.xml" do
+template "#{node[:hgmde][:hg_install_path]}/conf/tomcat-users.xml" do
   source "tomcat-users.xml.erb"
   mode 0755
 end
 
-template "#{node[:confluence][:install_path]}/conf/Catalina/localhost/confluence.xml" do
-  source "confluence.xml.erb"
+template "#{node[:hgmde][:hg_install_path]}/conf/Catalina/localhost/choices.xml" do
+  source "choices.xml.erb"
   mode 0755
 end
 
-template "#{node[:confluence][:install_path]}/conf/Catalina/localhost/manager-confluence.xml" do
-  source "manager-confluence.xml.erb"
+template "#{node[:hgmde][:mde_install_path]}/conf/server.xml" do
+  source "server.xml.erb"
   mode 0755
 end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/web.xml" do
+  source "web.xml.erb"
+  mode 0755
+end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/tomcat-users.xml" do
+  source "tomcat-users.xml.erb"
+  mode 0755
+end
+
+template "#{node[:hgmde][:mde_install_path]}/conf/Catalina/localhost/evidence.xml" do
+  source "evidence.xml.erb"
+  mode 0755
+end
+
+template "#{node[:apache][:dir]}/mods-enabled/proxy.conf" do
+  source "proxy.conf.erb"
+  mode 0755
+end
+
  
 
