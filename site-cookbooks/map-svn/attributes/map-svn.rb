@@ -7,7 +7,7 @@
 
 if recipe?("map_svn::vhost")
   set_unless[:map_svn][:vhost][:hostname] = "unset.unset.com"
-  set_unless[:map_svn][:vhost][:srv_aliases] = []
+  set_unless[:map_svn][:vhost][:srv_aliases] = [ "svn01", "svn", "svn.mapofmedicine.com", "svn-test.mapofmedicine.com" ]
   set_unless[:map_svn][:svn_root] = "/var/svn"
   set_unless[:map_svn][:svn_repos] = [
   	{
