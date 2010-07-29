@@ -60,3 +60,10 @@ remote_file "/etc/exim4/exim4.conf.localmacros" do
   group "root"
   notifies :run, resources(:execute => "update-exim4")
 end
+
+remote_file "/etc/aliases" do 
+ source "aliases_s"
+ mode 0644
+ owner "root"
+ group "root"
+end

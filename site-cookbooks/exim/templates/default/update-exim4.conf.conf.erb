@@ -7,10 +7,10 @@
 <% case @deployment -%>
 <% when "smarthost" -%>
 dc_eximconfig_configtype='internet'
-dc_other_hostnames='<%= [:domain] %>:map-cloud-01.eu:mx2.mapofmedicine.com'
+dc_other_hostnames='<%= [:domain] %>:map-cloud-01.eu:mail.map-cloud-01.eu:*.mapofmedicine.com:mapofmedicine.com:mapofmedicine.eu:tracking.mapofmedicine.com:tracking2.mapofmedicine.com:medictomedic.com:*.map-cloud-01.eu'
 dc_local_interfaces=''
 dc_readhost=''
-dc_relay_domains='<%= @node[:domain] %>:mapofmedicine.com:mapofmedicine.eu:tracking.mapofmedicine.com:tracking2.mapofmedicine.com:mx2.mapofmedicine.com:mx1.mapofmedicine.com'
+dc_relay_domains='<%= @node[:domain] %>'
 dc_smarthost=''
 dc_hide_mailname=''
 <% when "satellite" -%>

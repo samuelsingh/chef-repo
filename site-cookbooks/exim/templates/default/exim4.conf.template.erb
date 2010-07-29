@@ -10,6 +10,8 @@
 
 # Added to the standard Ubuntu configuration
 primary_hostname = mail.map-cloud-01.eu
+smtp_accept_max = 500
+smtp_accept_queue_per_connection = 100
 
 # Just for reference and scripts. 
 # On Debian systems, the main binary is installed as exim4 to avoid
@@ -322,6 +324,9 @@ trusted_groups = MAIN_TRUSTED_GROUPS
 MAIN_TLS_ADVERTISE_HOSTS = !79.125.47.202:*
 .endif
 tls_advertise_hosts = MAIN_TLS_ADVERTISE_HOSTS
+
+# Added as per http://pkg-exim4.alioth.debian.org/README/README.Debian.html part 2.2.2
+tls_on_connect_ports = 465
 
 
 # Full paths to Certificate and Private Key. The Private Key file
@@ -1705,7 +1710,7 @@ begin retry
 # Address or Domain    Error       Retries
 # -----------------    -----       -------
 
-*                      *           F,2h,15m; G,16h,1h,1.5; F,4d,6h
+*                      *           F,2h,05m; G,16h,1h,1.5; F,4d,6h
 
 #####################################################
 ### end retry/30_exim4-config
