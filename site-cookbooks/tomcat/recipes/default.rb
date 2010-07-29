@@ -85,16 +85,16 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
     files_owner "tomcat"
     files_group "tomcat"
     files_mode "0644"
-    owner "sysadmin"
-    group "sysadmin"
+    owner "tomcat"
+    group "tomcat"
     mode "0755"
   end
   
   template "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf/server.xml" do
     source "server.xml.erb"
     mode 0644
-    owner "sysadmin"
-    group "sysadmin"
+    owner "tomcat"
+    group "tomcat"
     variables(
       :ajp_port => ajp_port,
       :shutdown_port => shutdown_port,
@@ -105,8 +105,8 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   template "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf/Catalina/localhost/manager.xml" do
     source "manager.xml.erb"
     mode 0644
-    owner "sysadmin"
-    group "sysadmin"
+    owner "tomcat"
+    group "tomcat"
     variables(
       :ajp_port => ajp_port
     )
