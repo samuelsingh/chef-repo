@@ -38,7 +38,7 @@ template "#{node[:hgmde][:hg_install_path]}/conf/Catalina/localhost/choices.xml"
 end
 
 template "#{node[:hgmde][:mde_install_path]}/conf/server.xml" do
-  source "server.xml.erb"
+  source "mde_server.xml.erb"
   mode 0755
 end
 
