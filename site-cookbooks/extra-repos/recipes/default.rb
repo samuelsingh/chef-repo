@@ -21,7 +21,7 @@ case node[:platform]
 when "ubuntu"
 
   execute "apt-update" do
-    command "apt-get update && sleep 1" 
+    command "sleep 5 && apt-get update && sleep 1" 
     action :nothing
   end
   
