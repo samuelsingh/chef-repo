@@ -174,8 +174,8 @@ template "#{mtmpath}/config/mom.properties" do
 end
 
 link "#{deploy_dir}/webapps-running"  do
-  to "#{deploy_dir}/webapps-#{md_version}"
-  only_if "test -d #{deploy_dir}/webapps-#{md_version}"
+  to "#{deploy_dir}/md-#{md_version}/webapps"
+  only_if "test -d #{deploy_dir}/md-#{md_version}/webapps"
 end
 
 if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
