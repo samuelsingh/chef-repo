@@ -12,7 +12,7 @@ USER=tomcat
 GROUP=tomcat
 
 JAVA_HOME=/usr/local/java
-JAVA_OPTS="-server -Xmx950m -Xms950m -XX:MaxPermSize=256m -Djava.awt.headless=true -Djava.library.path=/usr/local/apr/lib -Dbucket.indexing.threads.fixed=1 -Dorg.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true -Dmail.mime.decodeparameters=true"
+JAVA_OPTS="-server -Xmx1500m -Xms1500m -XX:MaxPermSize=512m -Djava.awt.headless=true -Djava.library.path=/usr/local/apr/lib -Dbucket.indexing.threads.fixed=1 -Dorg.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true -Dmail.mime.decodeparameters=true"
 #JAVA_OPTS="-server -Xmx1500m -Xms1500m -XX:MaxPermSize=256m -Djava.awt.headless=true -Djava.library.path=/usr/local/apr/lib -Dbucket.indexing.threads.fixed=1 -Dorg.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true -XX:+HeapDumpOnOutOfMemoryError"
 CATALINA_HOME=/usr/local/tomcat
 CATALINA_BASE=/var/tomcat/server9002
