@@ -667,11 +667,11 @@ spam:							patrick.clancey
 
 
 mom-tracking.mapofmedicine.com				bitbucket
-#tracking:						tracking@cherry.mapofmedicine.com
+tracking:						tracking@mapofmedicine.com
 #tracking:									bitbucket
-#support:						tracking
+support:						tracking
 #publicationrequest:					support
-support:						support@natbill.hostpilot.com
+#support:						support@natbill.hostpilot.com
 oz-support:						support
 user.admin:						support
 demo-help:						support
@@ -842,7 +842,7 @@ caroline.squires-int:				caroline.squires
 
 
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24759
-sdk-support:					sdk-support@cherry.mapofmedicine.com
+#sdk-support:					sdk-support@cherry.mapofmedicine.com
 sdk-support-queue:				michael.cole, naeem.malik, kief.morris
 
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24764
@@ -919,5 +919,5 @@ auto-response:					auto-response@cherry.mapofmedicine.com
 #######################################
 
 jira-temp:					jira-temp@natbill.hostpilot.com
-tracking:                                       jira-temp@natbill.hostpilot.com
+#tracking:                                       jira-temp@natbill.hostpilot.com
 

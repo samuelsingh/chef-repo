@@ -12,5 +12,5 @@ abuse: root
 noc: root
 security: root
 root: sysadmin 
-sysadmin: support-team
 support-team: support-team@natbill.hostpilot.com
+sysadmin: support-team
