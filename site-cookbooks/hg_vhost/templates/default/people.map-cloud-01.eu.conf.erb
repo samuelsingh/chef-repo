@@ -1,0 +1,29 @@
+# Redirect requests for www.<%= @hostname %> to <%= @hostname %>
+<VirtualHost "*:80">
+    ServerName www.<%= @hostname %>
+        RewriteEngine On
+        RewriteRule ^(.*)$ http://<%= @hostname %>$1 [R]
+</VirtualHost>
+
+
+<VirtualHost "*:80">
+	ServerName <%= @hostname %>  
+
+     <% @webapps.each do |webapp,params| -%>
+    DocumentRoot <%= params.fetch("document_root") %>
+     <% end -%>
+	
+    <Directory "/usr/share/gosa/html">
+        Options FollowSymLinks
+        AllowOverride None
+
+
+        Order allow,deny
+        Allow from all
+
+    </Directory>
+    
+    CustomLog logs/access-people.map-cloud-01.eu.log mtm
+    ErrorLog logs/errors-people.map-cloud-01.eu.log
+
+</VirtualHost>
