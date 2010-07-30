@@ -8,21 +8,13 @@
 
 <VirtualHost "*:80">
 	ServerName <%= @hostname %>  
-
-     <% @webapps.each do |webapp,params| -%>
-    DocumentRoot <%= params.fetch("document_root") %>
-     <% end -%>
-	
-    <Directory "/usr/share/gosa/html">
-        Options FollowSymLinks
-        AllowOverride None
+        ReWriteEngine On
+        ReWriteRule (.*) http://ldap01/gosa$1 [P]
+        ProxyPassReverse / http://ldap01/gosa$1
 
 
-        Order allow,deny
-        Allow from all
 
-    </Directory>
-    
+        
     CustomLog /var/log/apache2/access-people.map-cloud-01.eu.log mtm
     ErrorLog /var/log/apache2/errors-people.map-cloud-01.eu.log
 
