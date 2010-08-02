@@ -68,6 +68,31 @@ directory "#{contentloader_path}/loader/success"  do
   not_if "test -d #{contentloader_path}/loader/success"
 end
 
+directory "#{contentloader_path}/packager/input"  do
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0755"
+  action :create
+  recursive true
+  not_if "test -d #{contentloader_path}/packager/input"
+end
+
+directory "#{contentloader_path}/packager/output"  do
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0755"
+  action :create
+  not_if "test -d #{contentloader_path}/packager/output"
+end
+
+directory "#{contentloader_path}/attachments"  do
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0755"
+  action :create
+  not_if "test -d #{contentloader_path}/attachments"
+end
+
 directory "#{contentloader_path}/logs"  do
   owner "sysadmin"
   group "sysadmin"
