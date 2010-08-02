@@ -16,3 +16,10 @@ override_attributes(
     }
   }
 )
+default_attributes(
+  "map_display_vhost" => {
+    "euro-md.map-cloud-01.eu" => {
+      "appserver" => "euromd-app-01.map-cloud-01.eu"
+    }
+  }
+)
