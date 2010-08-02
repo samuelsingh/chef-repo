@@ -45,7 +45,7 @@ override_attributes(
       :binddn => "cn=ldapadmin,dc=mapofmedicine,dc=com",
       :bindpassword => "medic2cidem"
     },
-		:svn_repos = [
+		:svn_repos => [
 	  	{
 	  		:repo_name => "map-test",
 	  		:auth_name => "XTest Repository",
