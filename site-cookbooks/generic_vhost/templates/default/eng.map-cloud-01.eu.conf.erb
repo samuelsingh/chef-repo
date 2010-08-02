@@ -1,0 +1,84 @@
+<VirtualHost "*:80">
+    ServerName www.eng.map-cloud-01.eu
+	RewriteEngine on 
+	RewriteRule . http://eng.map-cloud-01.eu [R,L]
+</VirtualHost>
+
+<VirtualHost "*:80">
+    ServerName eng.map-cloud-01.eu
+	ServerAlias nhsevidence.map-cloud-01.eu
+      <% @webapps.each do |webapp,params| -%>
+    DocumentRoot <%= params.fetch("document_root") %>
+     <% end -%>
+	ProxyPass /evidence/attachments !
+	ProxyPass /evidence/images !
+	ProxyPass /evidence/pdf !
+	ProxyPass /evidence/policy !
+	ProxyPass /evidence/references !
+	ProxyPass /evidence/scripts !
+	ProxyPass /evidence/styles !
+	ProxyPass /evidence/thumbnails !
+
+	ProxyPass /evidence   ajp://127.0.0.1:9002/evidence
+
+<Location "/robots.txt">
+ SetHandler None
+</Location>
+alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
+
+
+
+ <% @webapps.each do |webapp,params| -%>
+    <Directory "<%= params.fetch("document_root") %>">
+   <% end -%>
+        DirectoryIndex index.jsp
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    <Location />
+
+        # This block adds expires headers to static files, allowing web browsers to
+        # cache them.
+        ExpiresActive On
+        ExpiresByType text/javascript "A604800"
+        ExpiresByType application/javascript "A604800"
+        ExpiresByType text/css "A604800"
+        ExpiresByType image/x-icon "A31536000"
+        ExpiresByType image/gif "A604800"
+        ExpiresByType image/jpg "A604800"
+        ExpiresByType image/jpeg "A604800"
+        ExpiresByType image/png "A604800"
+
+        Header set Cache-Control "must-revalidate"
+
+        # This block compresses asset files
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css application/javascript
+
+        # Make sure proxies don't deliver the wrong content
+        Header append Vary User-Agent env=!dont-vary
+
+    </Location>
+
+    
+	<IfModule mod_rewrite.c>
+		RewriteEngine on 
+		RewriteRule ^/$ /evidence [R,L]
+  		RewriteRule ^/evidence/selenium(.*) /evidence/map/index.html [R,L]
+
+
+	</IfModule>
+
+    CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/access-nhsevidence.log.%Y%m%d 86400" mtm
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/errors-nhsevidence.log.%Y%m%d 86400"
+
+
+
+    # Use the specified error page (under DocumentRoot) for the specified error codes.
+    # They are prettier than the standard Apache pages.
+
+    ErrorDocument 404 /404/index.html 
+
+</VirtualHost>

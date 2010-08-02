@@ -1,0 +1,21 @@
+# Redirect requests for www.<%= @hostname %> to <%= @hostname %>
+<VirtualHost "*:80">
+    ServerName www.<%= @hostname %>
+        RewriteEngine On
+        RewriteRule ^(.*)$ http://<%= @hostname %>$1 [R]
+</VirtualHost>
+
+
+<VirtualHost "*:80">
+	ServerName <%= @hostname %>  
+        ReWriteEngine On
+        ReWriteRule (.*) http://ldap01/gosa$1 [P]
+        ProxyPassReverse / http://ldap01/gosa$1
+
+
+
+        
+    CustomLog /var/log/apache2/access-people.map-cloud-01.eu.log mtm
+    ErrorLog /var/log/apache2/errors-people.map-cloud-01.eu.log
+
+</VirtualHost>
