@@ -13,6 +13,13 @@ override_attributes(
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 8050
     }
+  },
+  "apache" => {
+    "listen_ports" => [
+      80,
+      443,
+      8050
+    ]
   }
 )
 default_attributes(
