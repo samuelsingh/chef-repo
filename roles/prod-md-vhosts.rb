@@ -9,7 +9,6 @@ override_attributes(
     "euro-md.map-cloud-01.eu" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/euro-md",
-      "appserver" => "euromd-app-01.map-cloud-01.eu",
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 8050
