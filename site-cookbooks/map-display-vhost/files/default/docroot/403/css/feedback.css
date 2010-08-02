@@ -1,0 +1,60 @@
+#feedbackContent {padding-bottom:20px;}
+.feedbackContainer {padding:10px;clear:both;padding-bottom:20px;}
+DIV.feedbackContainer SPAN {line-height:20px;}
+.submitTitle {margin-left:10px;margin-bottom:5px;}
+.submitInfo {margin-left:10px;margin-bottom:5px;}
+.textPlate {width:670px;padding:10px 10px 10px 10px;margin-bottom:10px;background-color:#ecf0f7;}
+DIV.listHeader {width:680px;height:18px;background-color:#ecf0f7;padding:3px 0px 3px 10px;clear:both;}
+TR.listHeader {background-color:#ecf0f7;}
+TR.listHeader TH.first {padding-left:10px;}
+.listRow {width:680px;padding:1px 0px 1px 10px;clear:both;}
+.labelWidth {width:100px;}
+.commentField {width:565px;height:50px;margin-bottom:12px;}
+.reviewCommentField {width:554px;}
+.commentButtons {width:665px;}
+.commentButtons P {text-align:right;padding-right:2px;padding-bottom:2px;}
+.commentButtonsNew	{width:665px;text-align:right;padding-bottom:2px;}
+.commentButtonsNew TABLE	{border-collapse:collapse;margin:0;padding:0;}
+.leftcolLabel {line-height:20px;margin-right:5px;float:left;}
+.intro {width:660px;}
+.subjectLabel {line-height:20px;margin-right:5px;float:left;}
+.subjectField {width:295px;float:left;}
+.typeLabel {line-height:20px;margin-right:3px;float:left;}
+.initiateColumn1 {width:345px;float:left;}
+.initiateColumn2 {width:110px;float:left;}
+.initiateColumn3 {width:200px;float:left;}
+#spanPathwayText {line-height:20px;margin-left:-3px
+}
+DIV.Initiate SELECT {margin-right:4px;width:180px;}
+.submitFeedback {margin-left:5px;margin-right:5px;}
+.radioButtons {margin-left:5px;}
+.reviewColumn1 {width:200px;float:left;}
+.reviewColumn2 {width:200px;float:left;}
+.reviewColumn3 {width:140px;float:left;}
+.reviewColumn4 {width:140px;float:left;}
+.threadColumn1 {width:105px;float:left;}
+.threadColumn2 {width:150px;float:left;}
+.threadColumn3 {width:90px;float:left;}
+.threadColumn4 {width:263px;float:left;}
+.threadColumn5 {width:70px;float:left;}
+.actionItem {margin-right:10px;margin-bottom:10px;float:left;}
+.actionEdit {display:none;clear:both;}
+.actionComment {width:660px;height:50px;}
+.actionEditOn {text-decoration:underline;color:#0066cc;cursor:pointer;cursor:hand;}
+.actionEditOff {text-decoration:none;color:#333333;cursor:default;}
+.messageColumn1 {width:370px;float:left;margin-right:10px;}
+.messageColumn2 {width:285px;float:left;padding:0px 0px 3px 0px;}
+.messageColumn3 {width:90px;float:left;padding:0px 0px 3px 0px;}
+.messageColumn4 {width:180px;float:left;padding:0px 0px 3px 0px;}
+.shortText {display:none;}
+.remainingText {display:none;}
+.pathwayFormBox	TABLE {background:#ecf0f7;width:690px;}
+.pathwayFormBox	TABLE TR TD {padding-top:10px;padding-left:10px;padding-right:9px;}
+.pathwayFormBox TABLE TR TD.commentBox	{vertical-align:top;}
+.pathwayFormBox TABLE TR TD.bottomRow	{padding-bottom:12px;padding-top:0px;}
+.viewFeedTable	{padding:0;margin:0;}
+.viewFeedTable TABLE	{border-collapse:collapse;padding:0;margin:0;}
+.viewFeedTable TABLE TR TD	{font-weight:bold;color:#666;padding-right:5px;}
+.backLink {padding:4px 15px 10px 17px;* padding:4px 15px 4px 17px;border-top:1px solid #dcdcdc;background-color:#e7ecf4;margin-bottom:0;height:10px;min-height:10px;}
+.backLink p {padding:0;margin:0;}
+#tabs {padding-top:23px !important;}

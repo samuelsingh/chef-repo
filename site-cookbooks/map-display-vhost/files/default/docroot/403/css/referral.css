@@ -1,0 +1,35 @@
+SELECT.referralSelect {margin-left:0;margin-right:14px;}
+.lineSolid {border-bottom:1px solid #cccccc;margin-top:10px;margin-bottom:15px;}
+.lineDotted {border-bottom:1px dotted #cccccc;margin-top:10px;margin-bottom:15px;}
+.sectionTitle {margin-bottom:15px;}
+.localImage {margin-left:10px;margin-bottom:-3px;}
+.hiddenText {margin-left:10px;}
+.descriptionText {margin-top:5px;margin-bottom:2px;}
+.lastupdatedText {margin-top:4px;margin-bottom:10px;}
+.actionLink {margin-right:20px;}
+.listColumn1 {width:20px;float:left;}
+.listColumn2 {width:300px;overflow:hidden;height:auto;float:left;}
+.listColumn3 {padding-left:5px;width:50px;float:left;}
+TABLE.tableReferralLetterInfo {border-collapse:collapse;}
+TABLE.tableReferralLetterInfo TH,
+TABLE.tableReferralLetterInfo TD
+{vertical-align:top;padding:0 0 6px 0;margin:0;}
+TABLE.tableReferralLetterInfo TH
+{font-weight:normal;text-align:left;width:130px;}
+TABLE.tableReferralLetterInfo TD
+{font-weight:bold;color:#666;}
+.editColumn1 {width:130px;float:left;margin-bottom:10px;}
+.editColumn2 {width:130px;float:left;clear:left;margin-bottom:10px;}
+.editColumn3 {width:130px;float:left;clear:left;margin-bottom:10px;}
+.editText {width:500px;}
+.editPlate {width:500px;margin-bottom:10px;}
+.editInput {width:500px;}
+.editTextarea {width:500px;height:100px;}
+DIV.editButtons {text-align:right;width:506px;padding:0 0 2px 0;}
+FORM.letterForm LABEL {display:block;}
+FORM.letterForm INPUT,
+FORM.letterForm TEXTAREA {width:500px;margin-bottom:4px;}
+FORM.letterForm TEXTAREA {height:100px;}
+FORM.referralList {padding:4px 0 4px 0;}
+FORM.referralList H4 label {color:#333;margin:0 0 10px 0;padding:0;}
+.hiddenSelect {width:380px;margin-left:3px;}

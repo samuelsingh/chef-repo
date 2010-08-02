@@ -1,0 +1,39 @@
+				DIV.wideWidth {width:720px;}
+				FORM.profile DIV.spacer {height:24px;}
+				FORM.profile TABLE {border-collapse:collapse;}
+				FORM.profile TABLE.info {width:300px;}
+				FORM.profile TABLE.info TD.l {width:50%;font-weight:bold;}
+				FORM.profile TABLE.info TD.r {width:50%;}
+				FORM.profile TABLE TD {padding:0 4px 2px 0}
+				FORM.profile TABLE TD P {padding-top:8px;}
+				FORM.profile #tableRegistrationDetails
+				{}
+				FORM.profile #tableRegistrationDetails TD {padding:2px 0 6px 0;}
+				FORM.profile DIV.hr {border-color:#ccc}
+				FORM.profile TR.buttons INPUT {width:auto;margin:0;}
+				FORM.profile TR.buttons TD	{text-align:right;padding-top:12px}
+				FORM.profile #divUserAccessInfo {padding-top:12px;}
+				FORM.profile #divUserAccessInfo TABLE {width:100%;}
+				FORM.profile #divUserAccessInfo TABLE TD {vertical-align:top;}
+				FORM.profile #divUserAccessInfo TABLE TH {text-align:left;padding:0 0 12px 0;}
+				FORM.profile #divUserAccessInfo TABLE UL {display:inline;}
+				FORM.profile #divUserAccessInfo TABLE LI {float:left }
+				FORM.registration DIV.spacer {height:24px;}
+				FORM.registration TABLE {border-collapse:collapse}
+				FORM.registration TABLE TD {padding:0 4px 8px 0}
+				FORM.registration TABLE TD P {padding-top:8px;}
+				FORM.registration DIV.hr {border-color:#cecece}
+				FORM.registration INPUT  {width:220px;}
+				FORM.registration SELECT {width:226px;float:left;margin-left:0;}
+				FORM.registration LABEL {padding-top:3px;display:block}
+				FORM.registration TR.buttons DIV   {width:226px;text-align:right;padding:2px 0 2px 0;}
+				FORM.registration TR.buttons INPUT {width:auto;}
+				FORM.registration TR.buttons TD	{}
+				FORM.registration FIELDSET {border:0 none;padding:12px;margin-bottom:15px;}
+				FORM.registration FIELDSET TD {vertical-align:top;}
+				FORM.registration FIELDSET TD.l {width:152px;}
+				FORM.registration FIELDSET TD.m {width:240px;}
+				FORM.registration FIELDSET TD.r SPAN {color:#666;font-style:italic;display:block;padding-top:3px;font-size:90%}
+				FORM.profile SPAN.alert,
+				FORM.registration FIELDSET TD.r SPAN.alert {color:#f00;font-style:normal;}
+								

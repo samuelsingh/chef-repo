@@ -1,0 +1,11 @@
+#divNewAndUpdated TABLE {width:100%;border-collapse:collapse;margin:4px 0 20px 0}
+	#divNewAndUpdated TABLE TD {width:25%;vertical-align:top;padding:12px 12px 12px 0;border-top:1px solid #999;}
+	#divNewAndUpdated TABLE TD H3 {margin:0;padding:0 0 0 0;text-decoration:none;}
+	#divNewAndUpdated P {width:500px;}
+	#divNewAndUpdated TABLE CAPTION {text-align:left;background-color:#f1f1f1;font-size:13px;font-weight:bold;padding:5px 0 5px 6px;}
+	#divNewAndUpdated	H3.Stage {margin-bottom:14px;}
+	#divNewAndUpdated	H2.repeat {font-weight:normal;font-size:2.0em ;}
+	#divNewAndUpdated	DL {margin:0 0 6px 0;padding:0;}
+	#divNewAndUpdated	DT {font-weight:normal;margin-top:4px;font-style:normal;}
+	#divNewAndUpdated	DD {margin-left:10px;}
+	BODY.page_X_6 DIV.standardWidth {width:auto !important;max-width:1000px;min-width:500px;}

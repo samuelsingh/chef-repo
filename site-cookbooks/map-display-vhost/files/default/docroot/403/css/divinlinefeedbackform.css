@@ -1,0 +1,22 @@
+#divInlineFeedbackForm {border-bottom:1px solid #ebebeb;background-color:#E7ECF4;}
+#divInlineFeedbackForm FORM {border-bottom:1px solid #ccc;padding:6px 0 6px 0 ;}
+#divInlineFeedbackForm FORM P {margin:0;padding:3px 0 3px 0;clear:both;}
+#divInlineFeedbackForm FORM P LABEL {}
+#divInlineFeedbackForm FORM P.leftCol{} 
+#divInlineFeedbackForm FORM P.leftCol LABEL {display:block;float:left;width:120px;} 
+#divInlineFeedbackForm FORM P.leftCol INPUT,
+#divInlineFeedbackForm FORM P.leftCol SPAN {display:block;float:left;} 
+#divInlineFeedbackForm FORM P.textarea {padding-left:124px;padding-right:6px;margin:0 0 0 0;}
+#divInlineFeedbackForm FORM TEXTAREA {width:570px;height:160px;margin:0;overflow:auto;}
+#divInlineFeedbackForm FORM P.buttonBar {text-align:right;padding-bottom:6px;}
+#divInlineFeedbackForm FORM P.buttonBar SPAN.info {float:left;display:block;margin-left:125px;margin-top:2px;}
+#divInlineFeedbackForm FORM LABEL.inline {margin-left:40px;}
+#divInlineFeedbackForm FORM #inputSubject {}
+#divInlineFeedbackForm FORM DIV.fieldset {min-height:214px;}
+#divInlineFeedbackForm FORM #divInlineForm_inputform,
+#divInlineFeedbackForm FORM #divInlineForm_confirmation,
+#divInlineFeedbackForm FORM #divInlineForm_error {width:700px;}
+#divInlineFeedbackForm,
+#divInlineFeedbackForm FORM #divInlineForm_confirmation,
+#divInlineFeedbackForm FORM #divInlineForm_error {display :none;}
+#divInlineFeedbackForm FORM EM {font-style:normal;color:#f00;} 

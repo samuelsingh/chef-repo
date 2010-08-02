@@ -1,0 +1,21 @@
+DIV.moreInfoBubble {z-index     :10;}
+DIV.infoBubble
+{visibility:hidden;position:absolute;z-index:10;width:166px;}
+DIV.infoBubble UL {margin:0;padding:0;}
+DIV.infoBubble LI {margin:0 0 0 18px;padding:0 0 0 0px;}
+DIV.infoBubble DIV.content 
+{padding:14px 4px 0 5px;background-image:url(../i/infobubble/info_middle.gif);}
+.bubbleIconLeft {position    :relative;top     :0px;left     :-23px;width     :23px;height     :35px;overflow    :hidden;cursor:pointer;cursor:hand;}
+.bubbleIconLeftFlipped {position    :relative;top     :55px;left     :-23px;width     :23px;height     :35px;overflow    :hidden;cursor:pointer;cursor:hand;}
+.bubbleIconRight {position    :relative;top     :0px;left     :167px;width     :23px;height     :35px;overflow    :hidden;cursor:pointer;cursor:hand;}
+.bubbleIconRightFlipped {position    :relative;top     :55px;left     :167px;width     :23px;height     :35px;overflow    :hidden;cursor:pointer;cursor:hand;}
+.bubbleListBox {position    :relative;width     :168px;overflow    :hidden;}
+.bubbleLinkBox {position    :relative;left     :10px;top     :-47px;width     :148px;overflow    :hidden;}
+.bubbleList {font-family    :Arial, Verdana, Helvetica, sans-serif;font-size    :11px;color     :#000000;list-style-position   :outside;list-style-type    :disc;padding     :0px;text-indent    :0px;margin-left    :15px;margin-top    :0px;}
+.bubbleContent {}
+.bubbleContent UL {padding-left:0px;margin-left:0px;}
+.bubbleContent LI {margin-left:10px;}
+.bubbleContent LI LI {margin-left:16px;}
+.bubbleContent LI LI LI {margin-left:16px;}
+.bubbleLink, a.bubbleLink, a:link.bubbleLink, a:visited.bubbleLink {font-family    :Arial, Verdana, Helvetica, sans-serif;font-size    :11px;color     :#0066cc;text-decoration    :none;}
+a:active.bubbleLink, a:hover.bubbleLink {font-family    :Arial, Verdana, Helvetica, sans-serif;font-size    :11px;color     :#003399;text-decoration   :underline;}

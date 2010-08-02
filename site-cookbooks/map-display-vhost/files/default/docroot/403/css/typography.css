@@ -1,0 +1,91 @@
+BODY {font-family:Arial, verdana,  helvetica, sans-serif;font-size:76%;color:#000;}
+TABLE {}
+INPUT,SELECT,OPTION,TEXTAREA,*.fixedFont {font-family:arial, verdana,  helvetica, sans-serif  !important;font-size:12px !important;}
+H1,H2,H3,H4 {font-weight:normal;color:#333;margin:0 0 10px 0;padding:0;}
+H3,H4 {margin-bottom:5px;font-weight:bold;}
+H2 SPAN.headerSmall {font-size:80%;}
+H1,
+.pageTitle {font-size:1.9em;color:#333333;padding-bottom:10px;}
+P 	{color:#333;}
+DFN {font-weight:bold;}
+A {font-family:Arial;text-decoration:none;color:#06c;}
+A:hover {font-family:Arial;text-decoration:none;color:#039;}
+A.underline {text-decoration:underline;}
+A.underline:hover {text-decoration:underline;}
+A.disabled,
+A SPAN.disabled,
+A.disabled:hover,
+A SPAN.disabled:hover {color:#666;}
+H2 {font-family:Arial;font-size:1.2em;font-weight:bold;color:#333;padding-bottom:5px;}
+H3 {font-size:1.1em;}
+H4,
+.subpageTitle {font-family:Arial;font-size:1.1em;font-weight:bold;color:#333;padding-bottom:5px;}
+.detailText {font-family:Arial;font-size:0.9em;color:#333333;}
+TH,
+*.standardTextTitle {font-family:Arial;font-size:1.1em;font-weight:bold;color:#333333;}
+TD,
+P,
+LABEL,
+*.standardText {font-family:Arial;font-size:1em;color:#000;}
+*.standardText STRONG,
+*.standardText B {color:#333;}
+*.pagination {color:#666;}
+SPAN.pagination A {text-decoration:underline !important;}
+LABEL {font-weight:bold;padding-right:6px;}
+.standardTextWhite {color:#ffffff;}
+.standardTextHighlight {font-weight:bold;color:#666666;}
+#pHomeVarientLink A, 
+a.standardTextLink:link, 
+a.standardTextLink:visited, 
+a.highlightTextLink:link, 
+a.highlightTextLink:visited  {font-family:Arial;text-decoration:none;color:#0066cc;}
+a.standardTextLink:hover,a.highlightTextLink:hover {font-family:Arial;text-decoration:none;color:#003399;}
+a.detailTextLink:link, a.detailTextLink:visited  {font-family:Arial;text-decoration:underline;color:#0066cc;}
+a.detailTextLink:hover{font-family:Arial;text-decoration:underline;color:#003399;}
+a.highlightTextLink:link, a.highlightTextLink:visited  {font-weight:bold;}
+a.highlightTextLink:hover {font-weight:bold;}
+.textActiveTab {font-family:Arial;font-size:1.1em;font-weight:bold;color:#333333;}
+a.textInactiveTab:link, a.textInactiveTab:visited {font-family:Arial;font-size:1.1em;color:#0066cc;text-decoration:none;}
+a.textInactiveTab:hover {font-family:Arial;font-size:1.1em;color:#003399;text-decoration:none;}
+.tableHeader {font-family:Arial;font-size:1.1em;font-weight:bold;color:#333333;}
+TH a:link, TH a:visited, 
+a.tableHeaderLink:link, a.tableHeaderLink:visited {font-family:Arial;font-weight:bold;text-decoration:underline;color:#0066cc;}
+TH a:hover,
+a.tableHeaderLink:hover {font-family:Arial;font-weight:bold;text-decoration:underline;color:#003399;}
+a.tableHighlightLink:link, a.tableHighlightHeaderLink:visited {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:underline;color:#0066cc;}
+a.tableHighlightLink:hover {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:underline;color:#003399;}
+.headerText {font-family:Arial;font-size:1em;font-weight:normal;color:#ffffff;}
+.headerTextHighlight {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:none;color:#ffffff;}
+a.headerTextLink:link, a.headerTextLink:visited {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:none;color:#ffffff;}
+a.headerTextLink:hover {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:none;color:#cccccc;}
+#divToolBox *.textFormat {line-height:120%;}
+#divToolBox #divQiBody #spanQiBody, 
+#divToolBox #divQiBody #spanQiBody P,
+#divToolBox #divQiBody #spanQiBody LI 
+{color:#000;}
+#divToolBox #divQiBody #spanQiBody P,
+#divToolBox #divQiBody #spanQiBody UL, 
+#divToolBox #divQiBody #spanQiBody OL
+{margin-bottom:0.8em;}
+#divToolBox #divQiBody #spanQiBody UL UL, 
+#divToolBox #divQiBody #spanQiBody OL OL
+{margin-bottom:0;}
+#divToolBox #divQiBody #spanQiBody UL, 
+#divToolBox #divQiBody #spanQiBody OL
+{margin-left:16px;}
+#divToolBox #divQiBody #spanQiBody UL UL, 
+#divToolBox #divQiBody #spanQiBody OL OL
+{margin-left:16px;}
+#divToolBox #divQiBody #spanQiBody LI {padding-top:2px;padding-bottom:2px;}
+#divToolBox #divQiBody #spanQiBody LI LI {}
+#divToolBox #divQiBody #spanQiBody LI LI LI {border:0 none;}
+*.error,*.alert	{color:#f00;}
+*.bold 			{font-weight:bold;}
+*.i				{font-style:italic;}
+*.s				{font-size:90%;}
+*.disabledLink 	{color:#888;text-decoration:underline;cursor:default;}
+*.disabledLinkDark	{color:#444;text-decoration:underline;cursor:default;}
+*.loose 		{line-height:150%;}
+*.disabled		{color:#888;}
+*.disabledDark	{color:#444;}
+*.defaultColour {color:#000;}

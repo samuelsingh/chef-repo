@@ -1,0 +1,25 @@
+ .bt {position			:absolute;top				:0;left				:0;padding-top		:4px;padding-left		:6px;font-family		:Arial, Verdana, Helvetica, sans-serif;}
+ .bt A {text-decoration:none;color:#000;}
+ .bt A.opacity_40 {color:#ABABAB;cursor:default;}
+ .bt A STRONG {font-weight:normal;}
+ .bt A STRONG.true {color:#00f;}
+DIV.pointer {cursor:pointer;}
+.bnD   {position:absolute;z-index:4;}
+.bnH   {position:absolute;z-index:4;}
+.bn1  {position:absolute;z-index:4;}
+.bn2 {position:absolute;z-index:4;}
+.bi1  {position:absolute;top:0px;left:0px;width:11px;height:11px;}
+.bi2  {position:absolute;top:0px;left:11px;height:11px;}
+.bi3  {position:absolute;top:0px;width:11px;height:11px;}
+.bi4  {position:absolute;top:11px;width:11px;}
+.bi5  {position:absolute;width:11px;height:20px;}
+.bi6  {position:absolute;left:11px;height:20px;}
+.bi7  {position:absolute;left:0px;width:11px;height:20px;}
+.bi8  {position:absolute;top:11px;left:0px;width:11px;}
+.bi9  {position:absolute;top:11px;left:11px;background-color:#ffffff}
+.bbg  {position:absolute;height:15px;border:0px solid #f00;}
+.bb   {margin-left:0;float:right;border-width:0;}
+.bb2  {margin-left:0;float:right;border-width:0;}
+.nl {position:absolute;z-index:1;overflow:hidden;}
+.la {position:absolute;z-index:2;overflow:hidden;}
+.nodeButton {}

@@ -1,0 +1,12 @@
+
+
+
+
+#divFooter 
+{border-top:1px solid #dcdcdc;height:50px;padding:0 15px 0 17px;text-align :right;}
+#divFooter P 
+{padding:14px 0 10px 0;margin:0;font-size:0.9em;float:left;}
+#divFooter P SPAN {color:#ccc;}
+#divFooter IMG {margin:12px 0 0 0;}
+#divFooter.popup IMG {margin-right:14px;}
+

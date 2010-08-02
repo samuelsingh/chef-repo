@@ -1,0 +1,22 @@
+@import url(divinlinefeedbackform.css);#dynContent 
+{background-color:#E7ECF4;border-top:1px solid #cdcdcd;}
+#divAlertBar 
+{padding-top:12px;}
+#divAlertBar P 
+{padding:0 120px 4px 0;margin:0;}
+#divAlertBar #imgAccreditationMarker 
+{position:absolute;right:44px;top:8px;}
+#divKeyContainer 			{width:144px;} 	
+#divKeyContent 				{width:142px;}
+#divKeyContainer IMG.cp 	{cursor:pointer;margin-bottom:1px;}
+#divKeyContent	
+{border-left:1px solid #ccc;border-right:1px solid #ccc;background-color:#fff;border-bottom:1px solid white;}
+#divKeyContent DL 			{margin:0;padding:0;}
+#divKeyContent DL DD 		{margin:0;padding:0 0 3px 8px;color:#666;}
+#divKeyContent DL DD IMG 	{vertical-align:middle}
+#divNavigation
+{position:absolute;top		:0;left	:0;z-index	:100;padding	:0 8px 0 10px;display	:none;}
+#divMetaData 
+{background-color:#F3F1E7;border-top:1px solid #cdcdcd;padding:7px 0 3px 0;}
+#divMetaData P STRONG {color:#666;}
+#divMetaData P {font-size:0.9em;margin:-3px 0 3px 0;padding-top:0;padding-bottom:0;}

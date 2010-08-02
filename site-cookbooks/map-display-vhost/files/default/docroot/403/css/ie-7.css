@@ -1,0 +1,2 @@
+HTML #divToolBox #divAdminInfoForm #spanAddUrlButton INPUT[type=button] {display:inline}
+HTML #divToolBox #divAdminInfoForm #spanAddUrlButton:after {content:"" ;}

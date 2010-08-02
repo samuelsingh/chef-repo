@@ -1,0 +1,21 @@
+ BODY {font-size:76%;}
+ TABLE {font-size:100%;}
+DIV#divHomeSearchBar input#inputFreeText {height:1.6em ;}
+DIV#divHomeSearchBar TABLE.layout {width:95%;}
+BODY #divBrowserBG .fieldset img.borderTL {margin-right:4px;}
+BODY #divBrowserBG .fieldset img.borderTR {margin-right:-7px;}
+BODY .DBBottom .borderBL {margin-left:-4px;}
+BODY .DBBottom img.borderBR {margin-right:-9px;}
+BODY .fieldset .DBR {margin-right:-4px;}
+BODY #home .fieldset img.borderTL {margin-left:-3px;}
+BODY #home .fieldset img.borderTR {margin-right:-4px;}
+BODY #home .fieldset img.borderBL {margin-left:-4px;}
+BODY #home .fieldset img.borderBR {margin-right:-5px;}
+#cpResults TABLE TD {cursor:hand;}
+.cpTitle {text-align:left;}
+DIV P.buttonContainer SPAN SPAN SPAN SPAN SPAN #anchorBrowseButton {width:14em;}
+DIV P.buttonContainer SPAN SPAN SPAN SPAN SPAN #anchorRecentButton {width:11em;}
+SPAN.borderUp INPUT {cursor:hand;}
+.ie5fix {border-top:1px solid #E7ECF4;}
+#feedbackContent {border-top:1px solid #E7ECF4;}
+TABLE.acc {font-size:1.0em;}

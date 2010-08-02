@@ -1,0 +1,29 @@
+#divToolBox
+{height:567px;}
+#divToolBox #divTabs 
+{height:567px;}
+#divToolBox #divSearchBar
+{width:368px;}
+#divToolBox DIV.unit 
+{height:565px;}
+#divToolBox DIV.unit 		{width:368px;}
+#divToolBox TEXTAREA 		{width:338px;}
+#divToolBox #divNotes TEXTAREA.readonly {width:344px;}	
+* HTML #divToolBox #divNotes TEXTAREA.readonly {width:328px;}
+#divToolBox #divLocalInfo #divLiBody, 			
+#divToolBox #divQuickInfo #divQiBody 			
+{height:200px;}
+#divToolBox #divQuickInfo #divCePop		
+{width:288px;}
+#divToolBox #divSearchPanelForm,
+#divToolBox #divSearchPanelCE, 
+#divToolBox #divSearchPanel 
+{width:430px;}
+#divToolBox #divSearchPanelCE IFRAME, 
+#divToolBox #divSearchPanel IFRAME 
+{width:430px;}
+#divToolBox #divSearchPanel #iframeSearchResults {height:525px;}
+#divToolBox #divSearchPanelCE #iframeSearchResultsCE {height:545px;}
+#divToolBox #divSearchPanelForm *.innerBlock {width:380px;}
+#divToolBox #divAdminInfoRevert {width:799px;}
+#divToolBox #divAdminInfoRevert DIV.revertwidth {width:370px;}

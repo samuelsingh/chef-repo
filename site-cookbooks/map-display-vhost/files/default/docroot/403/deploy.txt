@@ -1,0 +1,17 @@
+To deploy a Map of Medicine branded custom 404 page on tomcat follow these steps
+
+1) ensure you have a ROOT folder correctly setup on the sever
+2) copy this folder (webapps/mom/html/404) to your ROOT folder (webapps/ROOT/404)
+3) add or amend the <error-page/> node found in the tomcat web.xml (conf/web.xml) to:
+
+<error-page>
+   <error-code>404</error-code>
+   <location>/404/index.html</location>
+</error-page>
+
+this comes after the <welcome-file-list /> node typically at the bottom of the file.
+
+4) restart tomcat.
+
+For other servers check the server documentation on setting up custom 404 page
+

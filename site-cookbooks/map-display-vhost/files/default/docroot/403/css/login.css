@@ -1,0 +1,16 @@
+*.loginField {width:200px;padding:0px 0px 0px 3px;}
+P.loginErrorText {margin-bottom:10px;padding-left:2px;font-size:11px;color:Red
+}
+UL {margin:0;padding:0;}
+UL LI {margin-left:18px;}
+#divContent {padding-bottom:50px !important;}
+UL,
+DIV.divContent P {width:90%;}
+H1,
+FORM TABLE {margin-left:-2px}
+#divTooltip_capslock {position:absolute;top:130px;left:400px;width:190px;height:98px;background:transparent url("../i/header/tooltip_top.gif") no-repeat;padding:0;margin:0;}		
+#divTooltip_capslock H3,
+#divTooltip_capslock P	
+{padding:0 0 6px 14px;margin:0 !important;font-size:11px;}		
+#divTooltip_capslock H3 {padding-top:8px;color:#c00;}										
+#divTooltip_capslock P {background:transparent url("../i/index/alert.gif") no-repeat;background-position:9px 4px;padding-left:45px;width:133px;}			
