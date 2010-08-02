@@ -38,6 +38,11 @@
 
     Alias /mom <%= @deploy_dir %>/webapps-running/mom
     
+    # This alias points to the Map Display attachments.
+    # These have been moved out of the webapp docbase for ease of deployment.
+    
+    Alias /attachments <%= @deploy_dir %>/attachments
+    
     # This set of directives tells Apache NOT to use the ajp proxy to tomcat
     # to get files under these paths. So these are static files which will be
     # served directly by Apache, which improves performance.
@@ -103,7 +108,7 @@
         # This rule points to the attachments, which have been moved outside of the webapp context base.
         # This makes life easier when upgrading the application.
 
-        RewriteRule ^/mom/attachments/(.+) <%= @deploy_dir %>/attachments/$1 [R,L]
+        RewriteRule ^/mom/attachments/(.+) /attachments/$1 [R,L]
         
         # Added to 'fix' issue in OPS-24530
         
