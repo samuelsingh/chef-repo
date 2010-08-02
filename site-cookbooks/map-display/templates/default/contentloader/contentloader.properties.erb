@@ -17,7 +17,7 @@ hibernate.show_sql=false
 log.capturer.pattern=%d{HH:mm:ss.SSS} %p - %m%n
 
 copy.attachments=true
-<% if defined(@node[:map_display][:deploy_dir]) -%>
+<% if @node[:map_display][:deploy_dir] -%>
 attachments.dir=<%= @node[:map_display][:deploy_dir] %>
 <% else -%>
 attachments.dir=/var/tmp
