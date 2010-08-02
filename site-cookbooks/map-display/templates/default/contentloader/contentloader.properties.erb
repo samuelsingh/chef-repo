@@ -17,7 +17,11 @@ hibernate.show_sql=false
 log.capturer.pattern=%d{HH:mm:ss.SSS} %p - %m%n
 
 copy.attachments=true
-attachments.dir=/auto/md/tomcat/webapps/mom
+<% if @node[:map_display][:deploy_dir].defined? -%>
+attachments.dir=<%= @node[:map_display][:deploy_dir] %>
+<% else -%>
+attachments.dir=/var/tmp
+<% end -%>
 metadata.date.formats=yyyy,dd/MM/yyyy,yyyy/MM/dd,dd-MM-yyyy,yyyy-MM-dd
 
 metadata.referral.defaultURL=html/referral_forms/generic.html
