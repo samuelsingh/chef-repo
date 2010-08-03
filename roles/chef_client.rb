@@ -1,6 +1,6 @@
 name "chef-client"
 description "Configure chef clients to connect to the server."
-recipes "chef::client"
+run_list "recipe[chef::client]"
 override_attributes(
   "chef" => {
     "url_type" => "https",
