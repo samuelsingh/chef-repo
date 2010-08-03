@@ -18,5 +18,5 @@
 #
 
 set_unless[:rsyslog][:log_dir] = "/var/shared/logs"
-set_unless[:rsyslog][:server] = "10.48.97.192"
+set_unless[:rsyslog][:server] = "log-01.map-cloud-01.eu"
 set_unless[:rsyslog][:protocol] = "tcp"
