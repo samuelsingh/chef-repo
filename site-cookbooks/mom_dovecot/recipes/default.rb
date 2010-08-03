@@ -47,7 +47,7 @@ user "desktop-support" do
   home "/var/shared/home/desktop-support"
   shell "/bin/bash"
   supports :manage_home => true
-  password "$1$QkQeM6uJ$Db8HrWatgVbqrtrJCS8lx/"
+  password "$6$a6BU8mv3$.Y.K/Dzsi.wdLOBxdSriTI6twJ/iKX.DbFZW9ABXRlYx1xbv6buuER.NUath2n2fs59iYfl3wpjuRk8el.dUP0"
   not_if "[ ! -z \"`who | grep desktop-support`\" ]"
 end
 
@@ -56,7 +56,7 @@ user "sdk-support" do
   home "/var/shared/home/sdk-support"
   shell "/bin/bash"
   supports :manage_home => true
-  password "$1$1H.F61Yu$E0eDQ/.KKPenuX6vdaqij1"
+  password "$6$TxxebpuN$y6m2li1F1xpr4iygtFa8CVYfMdWBuha13ZREW44RyD7rLYfDgsiTbQRV2c3syAB.kcuagjDK8qKlys.cYcGX51"
   not_if "[ ! -z \"`who | grep sdk-support`\" ]"
 end
 
@@ -65,6 +65,6 @@ user "tracking" do
   home "/var/shared/home/tracking"
   shell "/bin/bash"
   supports :manage_home => true
-  password "$1$6D/osFsS$BLDJiyTHodie0xuo9m7401"
+  password "$6$Jwfu4j9I$eFZqoZMlAfu1Uqb/d781LvfsQ1fpvg.aD1E9Amrg1Yaj3PBbrp4zpH4UWxI644.kUfwtroDG1SpiLiO9yXhqi0"
   not_if "[ ! -z \"`who | grep tracking`\" ]"
 end
