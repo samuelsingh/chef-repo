@@ -28,6 +28,11 @@ package "ntp" do
   action :install
 end
 
+execute "tzdata" do
+  command "dpkg-reconfigure --frontend noninteractive tzdata"
+  action :nothing
+end
+
 service node[:ntp][:service] do
   action :start
 end
@@ -38,4 +43,12 @@ template "/etc/ntp.conf" do
   group "root"
   mode 0644
   notifies :restart, resources(:service => node[:ntp][:service])
+end
+
+template "/etc/timezone" do
+  source "timezone.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :run, resources(:execute => "tzdata")
 end
