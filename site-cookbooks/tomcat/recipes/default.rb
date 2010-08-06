@@ -46,6 +46,7 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   # Calculates the values for port configurations
   shutdown_port = ajp_port-1000
   http_port = shutdown_port+79
+  jmx_port = http_port+6
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}"  do
     owner "sysadmin"
@@ -118,7 +119,8 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
     owner "root"
     group "root"
     variables(
-      :ajp_port => ajp_port
+      :ajp_port => ajp_port,
+      :jmx_port => jmx_port
     )
   end
 
