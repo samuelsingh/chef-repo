@@ -28,7 +28,7 @@ CATALINA_OPTS="-Djavax.net.ssl.trustStore=/var/mtm/ssl/truststore.jks -Djavax.ne
 
 export JAVA_HOME JAVA_OPTS CATALINA_HOME CATALINA_BASE CATALINA_OPTS
 
-LSOF=/usr/sbin/lsof
+[ -f /etc/lsb-release ] && LSOF=/usr/bin/lsof || LSOF=/usr/sbin/lsof
 TOMCAT_SCRIPT="$CATALINA_HOME/bin/catalina.sh"
 CATALINA_LOG="$CATALINA_BASE/logs/catalina.out"
 
@@ -72,6 +72,20 @@ rotatecat()
 	[ -f "$CATALINA_LOG" ] && mv "$CATALINA_LOG" "$CATALINA_LOG.1"
 }
 
+stoptomcat()
+{
+	PIDS=
+	if [ -f "$CATALINA_LOG" ] ; then
+		PIDS=`$LSOF -t $CATALINA_LOG`
+	fi
+	if [ -n "$PIDS" ] ; then
+		echo "Stopping tomcat pids $PIDS"
+		kill $PIDS
+	else
+		echo "No pid found"
+	fi
+}
+
 killtomcat()
 {
 	PIDS=
@@ -103,7 +117,7 @@ start()
 		cd "$CATALINA_BASE/temp/"
 	fi
 	if [ -f "$CATALINA_LOG" ] ; then
-		rotatecat
+		rotatecat && sleep 1
 	fi
 	if [ -f "$CATALINA_BASE/conf/jaas.config" ] ; then
 		CATALINA_OPTS="$CATALINA_OPTS -Djava.security.auth.login.config=$CATALINA_BASE/conf/jaas.config"
@@ -126,7 +140,8 @@ stop()
 	JAVA_OPTS="-Xmx256M -Xms256M"
 	export JAVA_OPTS
 
-	${TOMCAT_SCRIPT} stop
+	# ${TOMCAT_SCRIPT} stop
+        stoptomcat
 	for n in 10 9 8 7 6 5 4 3 2 1 ; do
 		status
 		RET="$?"
