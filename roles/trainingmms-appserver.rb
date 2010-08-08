@@ -10,7 +10,7 @@ default_attributes(
 )
 override_attributes(
   "mms" => {
-    "fqdn" =>  "training-mms.map-cloud-01.eu",
+    "fqdn" =>  "training-mms.mapofmedicine.com",
     "deploy_dir" =>  "/var/shared/deployment/training-mms",
     "deployment_name" => "Training MMS",
     "contentpath" => "/var/mms/content-out",
