@@ -21,6 +21,18 @@ tt_path = "/usr/local/time-transactions"
 archive_dir = "/var/shared/archive/stats/transactions"
 md_fqdn = node[:map_display][:md_fqdn]
 
+package "libxml-simple-perl" do
+  action :install
+end
+
+package "libcrypt-ssleay-perl" do
+  action :install
+end
+
+package "liberror-perl" do
+  action :install
+end
+
 directory "#{tt_path}/webinject"  do
   owner "sysadmin"
   group "sysadmin"
