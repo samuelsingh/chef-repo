@@ -12,7 +12,7 @@ USER=tomcat
 GROUP=tomcat
 
 JAVA_HOME=/usr/local/java
-JAVA_OPTS="-server -Xmx2550m -Xms2550m -XX:MaxNewSize=512m -XX:NewSize=512m -XX:SurvivorRatio=3 -XX:TargetSurvivorRatio=80 -XX:MinHeapFreeRatio=10 -XX:PermSize=40m -XX:MaxPermSize=128m -Djava.awt.headless=true -Djava.library.path=/usr/lib -Dbucket.indexing.threads.fixed=1"
+JAVA_OPTS="-server -Xmx2550m -Xms2550m -XX:MaxNewSize=512m -XX:NewSize=512m -XX:SurvivorRatio=3 -XX:TargetSurvivorRatio=80 -XX:MinHeapFreeRatio=10 -XX:PermSize=40m -XX:MaxPermSize=256m -Djava.awt.headless=true -Djava.library.path=/usr/lib -Dbucket.indexing.threads.fixed=1"
 JAVA_OPTS="$JAVA_OPTS -Dzenjmx.rmi.agent.port=8086 -javaagent:/usr/local/tomcat/lib/jagent.jar"
 #JAVA_OPTS="-server -Xmx1500m -Xms1500m -XX:MaxPermSize=256m -Djava.awt.headless=true -Djava.library.path=/usr/lib -Dbucket.indexing.threads.fixed=1"
 #JAVA_OPTS="-server -Xmx1000m -Xms1000m -XX:MaxPermSize=256m -Djava.awt.headless=true -Djava.library.path=/usr/local/apr/lib -Dbucket.indexing.threads.fixed=1 -Dorg.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true -XX:+HeapDumpOnOutOfMemoryError"
