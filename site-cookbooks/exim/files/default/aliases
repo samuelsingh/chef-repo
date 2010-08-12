@@ -634,7 +634,7 @@ logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						steven.quan, andrew.fulcher
+csc-stats:						steven.quan, andrew.fulcher, jason.griffith
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com
