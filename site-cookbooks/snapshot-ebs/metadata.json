@@ -1,0 +1,29 @@
+{
+    "conflicting": {
+    },
+    "license": "Apache 2.0",
+    "providing": {
+    },
+    "replacing": {
+    },
+    "description": "Installs/Configures snapshot-ebs",
+    "platforms": {
+    },
+    "groupings": {
+    },
+    "attributes": {
+    },
+    "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES: \n\n= USAGE:\n\n",
+    "recommendations": {
+    },
+    "dependencies": {
+    },
+    "version": "0.1.0",
+    "maintainer": "Map of Medicine",
+    "name": "snapshot-ebs",
+    "suggestions": {
+    },
+    "recipes": {
+    },
+    "maintainer_email": "support@mapofmedicine.com"
+  }
