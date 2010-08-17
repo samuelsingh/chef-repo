@@ -31,17 +31,17 @@ directory "/root/.ec2" do
 end 
 
 
-template "#{node[:snapshot_ebs][:install_path]}/lightmms_backup" do
+template "/etc/cron.daily/lightmms_backup" do
  source "lightmms_backup.erb"
  mode 0755
 end 
 
-template "#{node[:snapshot_ebs][:install_path]}/mddb01_backup" do
+template "/etc/cron.daily/mddb01_backup" do
   source "mddb01_backup.erb"
   mode 0755
 end
 
-template "#{node[:snapshot_ebs][:install_path]}/filer01_backup" do
+template "/etc/cron.daily/filer01_backup" do
   source "filer01_backup.erb"
   mode 0755
 end
