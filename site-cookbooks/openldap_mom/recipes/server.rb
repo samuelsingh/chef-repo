@@ -39,6 +39,13 @@ remote_file "/var/tmp/slapd.seed" do
   group "root"
 end
 
+remote_file "/usr/local/bin/add-ldap-user.rb" do
+  source "add-ldap-user.rb"
+  mode 0700
+  owner "root"
+  group "root"
+end
+
 package "slapd" do
   case node[:platform]
   when "debian","ubuntu"
