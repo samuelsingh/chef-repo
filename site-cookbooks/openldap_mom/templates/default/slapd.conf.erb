@@ -33,7 +33,7 @@ argsfile        <%= @node[:openldap][:run_dir] %>/slapd.args
 
 # Read slapd.conf(5) for possible values
 loglevel       256
-logfile /var/log/slapd.log 
+logfile /var/lib/ldap/slapd.log
 
 <% unless @node[:platform] == "centos" -%>
 # Where the dynamically loaded modules are stored
