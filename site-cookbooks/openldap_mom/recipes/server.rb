@@ -46,6 +46,13 @@ remote_file "/usr/local/bin/add-ldap-user.rb" do
   group "root"
 end
 
+remote_file "/usr/local/bin/ldap-lost-password.rb" do
+  source "ldap-lost-password.rb"
+  mode 0700
+  owner "root"
+  group "root"
+end
+
 package "slapd" do
   case node[:platform]
   when "debian","ubuntu"
