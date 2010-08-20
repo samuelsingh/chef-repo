@@ -66,6 +66,7 @@ alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
 	<IfModule mod_rewrite.c>
 		RewriteEngine on 
 		RewriteRule ^/$ /evidence [R,L]
+                RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
   		RewriteRule ^/evidence/selenium(.*) /evidence/map/index.html [R,L]
 
 
