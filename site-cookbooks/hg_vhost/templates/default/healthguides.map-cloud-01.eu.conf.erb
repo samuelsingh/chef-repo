@@ -76,8 +76,7 @@ alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
 		RewriteRule ^/$ /choices [R,L]
 		RewriteRule ^/map(.*)/?$ / [R,L]
                 RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
-		RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
-                RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
+                RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
                 RewriteRule ^/choices/feedback/ /choices/map/index.html [R,L]
    </IfModule> 
     # Use the specified error page (under DocumentRoot) for the specified error codes.
