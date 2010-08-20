@@ -31,7 +31,7 @@ alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
  <% @webapps.each do |webapp,params| -%>
     <Directory "<%= params.fetch("document_root") %>">
    <% end -%>
-        DirectoryIndex index.jsp
+        DirectoryIndex index.jsp index.html
         Options FollowSymLinks
         AllowOverride None
         Order allow,deny
