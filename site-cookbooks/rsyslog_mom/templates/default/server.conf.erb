@@ -30,13 +30,16 @@ $template PerHostNewsNotice,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/
 $template PerHostDebug,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/debug:%HOSTNAME%:%$NOW%"
 $template PerHostMessages,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/messages:%HOSTNAME%:%$NOW%"
 
+# Template to remove logger info
+$template NoLoggerInfo,"%msg:2:$%\n"
+
 # Configuration for Apache
 $template PerHostApacheAccess,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/access:%SYSLOGTAG%%$NOW%"
 $template PerHostApacheError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/error:%SYSLOGTAG%%$NOW%"
 
-local6.info -?PerHostApacheAccess
+local6.info -?PerHostApacheAccess;NoLoggerInfo
 & ~
-local7.err -?PerHostApacheError
+local7.err -?PerHostApacheError;NoLoggerInfo
 & ~
 
 # Configuration for the mom (Map Display) webapp
