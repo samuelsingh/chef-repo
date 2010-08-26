@@ -164,6 +164,9 @@
    
     CustomLog /dev/null common
     ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>-keepalive.log.%Y%m%d 86400"
+    
+    # Remote logging directives
+    ErrorLog "|/usr/bin/logger -p local7.err -t lb-<%= @hostname %>"
 
 </VirtualHost>
 <% end -%>
