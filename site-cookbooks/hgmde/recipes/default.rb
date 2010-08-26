@@ -7,14 +7,26 @@
 #include_recipe "java"
 #include_recipe "tomcat"
 
-remote_file "/etc/init.d/tomcat9001" do
-  source "tomcat9001"
+template "/etc/init.d/tomcat9001" do
+  source "tomcat.TEMPLATE.erb"
   mode 0755
+  owner "root"
+  group "root"
+  variables(
+    :ajp_port => "9001",
+    :jmx_port => "8086"
+  )
 end
 
-remote_file "/etc/init.d/tomcat9002" do
-  source "tomcat9002"
+template "/etc/init.d/tomcat9002" do
+  source "tomcat.TEMPLATE.erb"
   mode 0755
+  owner "root"
+  group "root"
+  variables(
+    :ajp_port => "9002",
+    :jmx_port => "8087"
+  )
 end
 
 template "#{node[:hgmde][:hg_install_path]}/conf/server.xml" do
