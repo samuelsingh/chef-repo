@@ -31,8 +31,8 @@ $template PerHostDebug,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/debug
 $template PerHostMessages,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/messages:%HOSTNAME%:%$NOW%"
 
 # Configuration for Apache
-$template PerHostApacheAccess,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/access:%SYSLOGTAG%%$NOW%;%msg:2:$%\n"
-$template PerHostApacheError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/error:%SYSLOGTAG%%$NOW%;%msg:2:$%\n"
+$template PerHostApacheAccess,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/access:%SYSLOGTAG%%$NOW%"
+$template PerHostApacheError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/error:%SYSLOGTAG%%$NOW%"
 
 local6.info -?PerHostApacheAccess
 & ~
