@@ -7,15 +7,24 @@
 
 
 <VirtualHost "*:80">
-	ServerName <%= @hostname %>  
-        ReWriteEngine On
-        ReWriteRule (.*) http://ldap01/gosa$1 [P]
-        ProxyPassReverse / http://ldap01/gosa$1
+
+    ServerName <%= @hostname %>  
+    ReWriteEngine On
+    ReWriteRule (.*) http://ldap01/gosa$1 [P]
+    ProxyPassReverse / http://ldap01/gosa$1
 
 
+    # This statement figures out whether X-Forwarded-For is set.
+    SetEnvIf X-FORWARDED-FOR "^.*\..*\..*\..*" behind-elb
 
-        
-    CustomLog /var/log/apache2/access-people.map-cloud-01.eu.log mtm
-    ErrorLog /var/log/apache2/errors-people.map-cloud-01.eu.log
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm env=!behind-elb
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm-elb env=behind-elb
+    ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
+    
+    # Remote logging directives
+    CustomLog "|/usr/bin/logger -p local6.info -t <%= @hostname %>" mtm env=!behind-elb
+    CustomLog "|/usr/bin/logger -p local6.info -t <%= @hostname %>" mtm-elb env=behind-elb 
+    ErrorLog "|/usr/bin/logger -p local7.err -t <%= @hostname %>"
+    
 
 </VirtualHost>
