@@ -110,6 +110,8 @@
     --> 
     <Engine name="Catalina" defaultHost="localhost">
 
+      <Valve className="org.apache.catalina.connector.RemoteIpValve" />
+
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
           /docs/config/cluster.html (reference documentation) -->
