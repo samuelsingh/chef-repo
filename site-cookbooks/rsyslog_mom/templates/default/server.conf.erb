@@ -30,6 +30,15 @@ $template PerHostNewsNotice,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/
 $template PerHostDebug,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/debug:%HOSTNAME%:%$NOW%"
 $template PerHostMessages,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/messages:%HOSTNAME%:%$NOW%"
 
+# Configuration for Apache
+$template PerHostApacheAccess,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/access:%SYSLOGTAG%:%$NOW%"
+$template PerHostApacheError,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/apache2/error:%SYSLOGTAG%:%$NOW%"
+
+local6.info -?PerHostApacheAccess
+& ~
+local7.err -?PerHostApacheError
+& ~
+
 # Configuration for the mom (Map Display) webapp
 $template PerHostMomAudit,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.audit.log.%$NOW%"
 $template PerHostMomSecurity,"<%= @log_dir %>/%HOSTNAME%/%$YEAR%/%$MONTH%/%$DAY%/mom/%HOSTNAME%.security.log.%$NOW%"
