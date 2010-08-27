@@ -21,7 +21,7 @@ include_recipe "apache2"
 
 log_base = "/var/shared/logs"
 hostname = "awstats.map-cloud-01.eu"
-@vhosts = Array.new
+vhosts = Array.new
 
 package "awstats" do
   case node[:platform]
@@ -56,7 +56,7 @@ node[:awstats].each do |vhost,params|
     )
   end
   
-  @vhosts << vhost
+  vhosts << vhost
 
 end
 
@@ -95,7 +95,7 @@ template "/var/www/awstats/top.html" do
   owner "sysadmin"
   group "sysadmin"
   variables(
-    :vhosts => @vhosts
+    :vhosts => vhosts
   )
   only_if "test -d /var/www/awstats"
 end
