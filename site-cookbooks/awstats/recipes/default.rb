@@ -42,4 +42,14 @@ node[:awstats].each do |vhost,params|
     only_if "test -d /etc/awstats"
   end
 
+  template "/etc/cron.d/awstats.#{vhost}" do
+    source "awstats-cron-template.erb"
+    mode 0644
+    owner "sysadmin"
+    group "sysadmin"
+    variables(
+      :vhost => vhost
+    )
+  end
+
 end
