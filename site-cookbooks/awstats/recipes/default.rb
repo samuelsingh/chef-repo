@@ -17,7 +17,10 @@
 # limitations under the License.
 #
 
+include_recipe "apache"
+
 log_base = "/var/shared/logs"
+hostname = "awstats.map-cloud-01.eu"
 
 package "awstats" do
   case node[:platform]
@@ -53,3 +56,20 @@ node[:awstats].each do |vhost,params|
   end
 
 end
+
+template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+  source "awstats-server-vhost.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+  variables(
+    :hostname => hostname
+  )
+  notifies :reload, resources(:service => "apache2")
+  only_if "test -d #{node[:apache][:dir]}/sites-available"
+end
+
+link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
+  to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
+end
+  
