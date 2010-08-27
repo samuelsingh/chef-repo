@@ -76,14 +76,16 @@ link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
   to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
 end
 
+
+
 remote_directory "/var/www/awstats" do
   source "www"
   files_backup 0
   files_owner "root"
   files_group "root"
   files_mode "0644"
-  owner "nobody"
-  group "nobody"
+  owner "root"
+  group "root"
   mode "0755"
 end
 
