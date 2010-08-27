@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "apache"
+include_recipe "apache2"
 
 log_base = "/var/shared/logs"
 hostname = "awstats.map-cloud-01.eu"
