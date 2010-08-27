@@ -21,6 +21,7 @@ include_recipe "apache2"
 
 log_base = "/var/shared/logs"
 hostname = "awstats.map-cloud-01.eu"
+@vhosts = Array.new
 
 package "awstats" do
   case node[:platform]
@@ -54,6 +55,8 @@ node[:awstats].each do |vhost,params|
       :vhost => vhost
     )
   end
+  
+  @vhosts << vhost
 
 end
 
@@ -72,4 +75,25 @@ end
 link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
   to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
 end
-  
+
+remote_directory "/var/www/awstats" do
+  source "www"
+  files_backup 0
+  files_owner "root"
+  files_group "root"
+  files_mode "0644"
+  owner "nobody"
+  group "nobody"
+  mode "0755"
+end
+
+template "/var/www/awstats/top.html" do
+  source "top.html.erb"
+  mode 0644
+  owner "sysadmin"
+  group "sysadmin"
+  variables(
+    :vhosts => @vhosts
+  )
+  only_if "test -d /var/www/awstats"
+end

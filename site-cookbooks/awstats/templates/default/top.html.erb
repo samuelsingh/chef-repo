@@ -1,0 +1,22 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>healthguides&nbsp;&nbsp;&nbsp; app&nbsp;&nbsp;&nbsp; demo&nbsp;&nbsp;&nbsp; 
+i</title>
+<base target="main">
+</head>
+
+<body>
+
+<p><font face="Verdana" size="2">
+<img border="0" src="map_of_medicine.gif" width="193" height="25">&nbsp;&nbsp;&nbsp;
+<% @vhosts.each do |vhost| -%>
+<a target="main" href="/cgi-bin/awstats.pl?config=<%= vhost %>"><%= vhost %></a>&nbsp;&nbsp;&nbsp;
+<% end -%>
+</font></p>
+
+</body>
+
+</html>
