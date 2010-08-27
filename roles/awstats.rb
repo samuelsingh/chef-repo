@@ -8,6 +8,9 @@ override_attributes(
   "awstats" => {
     "healthguides.map-cloud-01.eu" => {
       "host_regex" => "hgpe-app-0[1-2]"
+    },
+    "eng.map-cloud-01.eu" => {
+      "host_regex" => "hgpe-app-0[1-2]"
     }
   }
 )
