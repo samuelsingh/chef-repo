@@ -33,7 +33,14 @@
     # The DocumentRoot isn't used for much, anything not inside a webapp.
     # Mainly this is used for the holding page.
 
-    DocumentRoot /var/www/vhosts/<%= @hostname %>
+    DocumentRoot /usr/share/doc/awstats/html
+    
+    # Main access block, this allows anonymous access to everything by default
+    <Location "/">
+        Options FollowSymLinks
+        Order allow,deny
+        Allow from all
+    </Location>
 
     # This provides worldwide access to everything below the directory
     <Directory /var/lib/awstats>
