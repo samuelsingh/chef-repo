@@ -49,8 +49,8 @@ node[:awstats].each do |vhost,params|
   template "/etc/cron.d/awstats.#{vhost}" do
     source "awstats-cron-template.erb"
     mode 0644
-    owner "sysadmin"
-    group "sysadmin"
+    owner "root"
+    group "root"
     variables(
       :vhost => vhost
     )
