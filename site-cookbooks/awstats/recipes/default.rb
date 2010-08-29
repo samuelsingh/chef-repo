@@ -33,8 +33,6 @@ end
 
 node[:awstats].each do |vhost,params|
   
-  nodotvhost = vhost.gsub!('.','-')
-  
   template "/etc/awstats/awstats.#{vhost}.conf" do
     source "awstats.conf.template.erb"
     mode 0644
@@ -48,7 +46,8 @@ node[:awstats].each do |vhost,params|
     only_if "test -d /etc/awstats"
   end
 
-  template "/etc/cron.d/awstats-#{nodotvhost}" do
+  # Cron doesn't like filenames containing .
+  template "/etc/cron.d/awstats-#{vhost.gsub('.','-')}" do
     source "awstats-cron-template.erb"
     mode 0644
     owner "root"
