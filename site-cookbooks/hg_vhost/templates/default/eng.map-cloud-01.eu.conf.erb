@@ -61,16 +61,42 @@ alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
         Header append Vary User-Agent env=!dont-vary
 
     </Location>
+    
+    <% unless @awstats = false -%>
+    # AWStats configuration
+    
+    ProxyPass /stats     http://awstats.<%= @node[:domain] %>
+    
+    # Workaround for secure access via ELB
+    <% @restricted_ips.each do |ip| -%>
+    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
+    <% end -%>
+    
+    <Location "/stats">
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
+    <% end -%>
 
     
-	<IfModule mod_rewrite.c>
-		RewriteEngine on 
-		RewriteRule ^/$ /evidence [R,L]
-                RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
-  		RewriteRule ^/evidence/selenium(.*) /evidence/map/index.html [R,L]
+    <IfModule mod_rewrite.c>
+    
+        RewriteEngine on 
+        RewriteRule ^/$ /evidence [R,L]
+        RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
+        RewriteRule ^/evidence/selenium(.*) /evidence/map/index.html [R,L]
+            
+        <% unless @awstats = false -%>
+        # Redirect for AWStats
+        RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=<%= @hostname %> [R,L]
+        <% end -%>
 
-
-	</IfModule>
+    </IfModule>
 
     # This statement figures out whether X-Forwarded-For is set.
     SetEnvIf X-FORWARDED-FOR "^.*\..*\..*\..*" behind-elb
