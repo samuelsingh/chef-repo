@@ -61,7 +61,7 @@ alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
         <% end -%>
     </Location>
     
-    <% unless @awstats = false -%>
+    <% unless @awstats == false -%>
     # AWStats configuration
     
     ProxyPass /stats     http://awstats.<%= @node[:domain] %>
@@ -123,9 +123,10 @@ alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
         # Redirect access to the base URL to the <%= @primary_webapp %> index page
         RewriteRule ^/$ /<%= @primary_webapp %> [R,L]
         
-        <% unless @awstats = false -%>
+        <% unless @awstats == false -%>
         # Redirect for AWStats
         RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=<%= @hostname %> [R,L]
+        RewriteRule ^/awstats-icon/(.+) /stats/awstats-icon/$1 [R,L]
         <% end -%>
 
     </IfModule>
