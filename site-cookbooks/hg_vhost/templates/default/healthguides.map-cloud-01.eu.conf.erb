@@ -47,9 +47,10 @@
 
     # Main access block, this allows anonymous access to everything by default
     <Location "/robots.txt">
-    SetHandler None
+        SetHandler None
     </Location>
-alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
+    
+    alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
 
     # Restricted access for the Tomcat manager webapp, locked by IP address.
     <Location "/tomcat-manager">
@@ -92,13 +93,13 @@ alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
         Allow from all
     </Directory>
     
-	<IfModule mod_rewrite.c>
-		RewriteEngine on 
-		RewriteRule ^/$ /choices [R,L]
-		RewriteRule ^/map(.*)/?$ / [R,L]
-                RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
-                RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
-                RewriteRule ^/choices/feedback/ /choices/map/index.html [R,L]
+    <IfModule mod_rewrite.c>
+        RewriteEngine on 
+        RewriteRule ^/$ /choices [R,L]
+        RewriteRule ^/map(.*)/?$ / [R,L]
+        RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
+        RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
+        RewriteRule ^/choices/feedback/ /choices/map/index.html [R,L]
    </IfModule> 
     # Use the specified error page (under DocumentRoot) for the specified error codes.
     # They are prettier than the standard Apache pages.
