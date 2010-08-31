@@ -20,6 +20,15 @@
 include_recipe "apache2"
 
 node[:generic_tomcat_vhost].each do |hostname,params|
+  
+  # Figures out whether to link to AWStats
+  awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
+  
+  if awstats_srv.empty?
+    awstats = false
+  else
+    awstats = true
+  end
 
   if defined?(node[:apache][:dir])
     
@@ -34,7 +43,8 @@ node[:generic_tomcat_vhost].each do |hostname,params|
         :webapps => params.fetch("webapps"),
         :primary_webapp => params.fetch("primary_webapp"),
         :restricted_ips => node[:apache][:restricted_ips],
-        :holding_page => params.fetch("holding_page")
+        :holding_page => params.fetch("holding_page"),
+        :awstats => awstats
       )
       notifies :reload, resources(:service => "apache2"), :delayed
       only_if "test -d #{node[:apache][:dir]}/sites-available"

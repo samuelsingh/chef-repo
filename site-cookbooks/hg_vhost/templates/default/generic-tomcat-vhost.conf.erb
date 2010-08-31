@@ -44,7 +44,7 @@
     ProxyPass /<%= params.fetch("proxy_pass")[1] %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= params.fetch("proxy_pass")[1] %>
     ProxyPass /<%= params.fetch("proxy_pass")[0] %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= params.fetch("proxy_pass")[1] %>
     <% end -%>
-
+    
     # Main access block, this allows anonymous access to everything by default
     <Location "/robots.txt">
     SetHandler None
@@ -60,6 +60,27 @@ alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
     #   Allow from <%= ip %>
         <% end -%>
     </Location>
+    
+    <% unless @awstats = false -%>
+    # AWStats configuration
+    
+    ProxyPass /stats     http://awstats.<%= @node[:domain] %>
+    
+    # Workaround for secure access via ELB
+    <% @restricted_ips.each do |ip| -%>
+    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
+    <% end -%>
+    
+    <Location "/stats">
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
+    <% end -%>
 
 <% @webapps.each do |webapp,params| -%>
 <Directory "<%= params.fetch("document_root") %>">
@@ -99,6 +120,11 @@ alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
         
         # Redirect access to the base URL to the <%= @primary_webapp %> index page
         RewriteRule ^/$ /<%= @primary_webapp %> [R,L]
+        
+        <% unless @awstats = false -%>
+        # Redirect for AWStats
+        RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=<%= @hostname %> [R,L]
+        <% end -%>
 
     </IfModule>
 
