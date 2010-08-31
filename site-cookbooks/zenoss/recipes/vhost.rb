@@ -17,35 +17,9 @@
 # limitations under the License.
 #
 
-zen_srv = search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
+include_recipe "apache2"
 
-service "apache2" do
-  case node[:platform]
-  when "centos","redhat","fedora","suse"
-    service_name "httpd"
-    # If restarted/reloaded too quickly httpd has a habit of failing.
-    # This may happen with multiple recipes notifying apache to restart - like
-    # during the initial bootstrap.
-    restart_command "/sbin/service httpd restart && sleep 1"
-    reload_command "/sbin/service httpd reload && sleep 1"
-  when "debian","ubuntu"
-    service_name "apache2"
-    # If restarted/reloaded too quickly httpd has a habit of failing.
-    # This may happen with multiple recipes notifying apache to restart - like
-    # during the initial bootstrap.
-    restart_command "/etc/init.d/apache2 restart && sleep 1"
-    reload_command "/etc/init.d/apache2 reload && sleep 1"
-  end
-  supports value_for_platform(
-    "debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
-    "ubuntu" => { "default" => [ :restart, :reload, :status ] },
-    "centos" => { "default" => [ :restart, :reload, :status ] },
-    "redhat" => { "default" => [ :restart, :reload, :status ] },
-    "fedora" => { "default" => [ :restart, :reload, :status ] },
-    "default" => { "default" => [:restart, :reload ] }
-  )
-  action :enable
-end
+zen_srv = search(:node, "zenoss_server:true").map { |n| n["fqdn"] }.first
 
 if defined?(node[:apache][:dir])
   
@@ -62,7 +36,7 @@ if defined?(node[:apache][:dir])
       :srv_aliases => node[:zenoss][:vhost][:srv_aliases],
       :restricted_ips => node[:apache][:restricted_ips]
     )
-    notifies :reload, resources(:service => "apache2")
+    notifies :reload, resources(:service => "apache2"), :delayed
     only_if "test -d #{node[:apache][:dir]}/sites-available"
   end
   
