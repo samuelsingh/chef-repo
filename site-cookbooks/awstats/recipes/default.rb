@@ -69,7 +69,7 @@ template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
   variables(
     :hostname => hostname
   )
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, resources(:service => "apache2"), :delayed
   only_if "test -d #{node[:apache][:dir]}/sites-available"
 end
 

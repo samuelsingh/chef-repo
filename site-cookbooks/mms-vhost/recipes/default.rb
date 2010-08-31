@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "apache2"
+
 node[:mms_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
@@ -35,6 +37,7 @@ node[:mms_vhost].each do |hostname,params|
         :holding_page => params.fetch("holding_page"),
         :lb_alive_port => params.fetch("lb_alive_port")
       )
+      notifies :reload, resources(:service => "apache2"), :delayed
       only_if "test -d #{node[:apache][:dir]}/sites-available"
     end
     
@@ -65,8 +68,4 @@ node[:mms_vhost].each do |hostname,params|
     )
   end
 
-end
-
-service "apache2" do
-  action :reload
 end

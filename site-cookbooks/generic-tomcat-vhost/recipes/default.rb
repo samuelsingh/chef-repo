@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "apache2"
+
 node[:generic_tomcat_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
@@ -34,6 +36,7 @@ node[:generic_tomcat_vhost].each do |hostname,params|
         :restricted_ips => node[:apache][:restricted_ips],
         :holding_page => params.fetch("holding_page")
       )
+      notifies :reload, resources(:service => "apache2"), :delayed
       only_if "test -d #{node[:apache][:dir]}/sites-available"
     end
     
@@ -64,8 +67,4 @@ node[:generic_tomcat_vhost].each do |hostname,params|
     )
   end
 
-end
-
-service "apache2" do
-  action :restart
 end
