@@ -1,12 +1,15 @@
 <VirtualHost "*:80">
-    ServerName www.eng.map-cloud-01.eu
+    ServerName www.<%= @hostname %>
 	RewriteEngine on 
-	RewriteRule . http://eng.map-cloud-01.eu [R,L]
+	RewriteRule . http://<%= @hostname %> [R,L]
 </VirtualHost>
 
 <VirtualHost "*:80">
-    ServerName eng.map-cloud-01.eu
-    ServerAlias nhsevidence.map-cloud-01.eu
+
+    ServerName <%= @hostname %>
+    <% @srv_aliases.each do |srv_alias| -%>
+    ServerAlias <%= srv_alias %>
+    <% end -%>
 
     DocumentRoot /var/www/vhosts/<%= @hostname %>
 
