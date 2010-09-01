@@ -24,7 +24,7 @@ node[:hg_mde_vhost].each do |hostname,params|
   # Figures out whether to link to AWStats
   awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
   
-  if awstats_srv.empty?
+  if awstats_srv.undefined?
     awstats = false
   else
     awstats = true
