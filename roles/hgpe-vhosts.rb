@@ -20,7 +20,7 @@ override_attributes(
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
     },
     "eng.mapofmedicine.com" => {
-      "srv_aliases" => ["eng.map-cloud-01.eu"],
+      "srv_aliases" => ["eng.map-cloud-01.eu", "nhsevidence.mapofmedicine.com"],
       "webapps" => {
         "evidence" => {
           "port" => "9002",
