@@ -1,17 +1,17 @@
-name "clientmms-appserver"
-description "Configures Client MMS application server"
+name "stage-clientmms-appserver"
+description "Configures Client MMS application server for staging use"
 
 run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]"
 default_attributes(
   "mms" => {
-    "dbhost" => "clientmms-db-01.map-cloud-01.eu"
+    "dbhost" => "stage-clientmms-db-01.map-cloud-01.eu"
   }
 )
 override_attributes(
   "mms" => {
-    "fqdn" =>  "localise.map-cloud-01.eu",
-    "deploy_dir" =>  "/var/shared/deployment/prod/client-mms",
-    "deployment_name" => "Client MMS",
+    "fqdn" =>  "stage-clientmms.map-cloud-01.eu",
+    "deploy_dir" =>  "/var/shared/deployment/stage/client-mms",
+    "deployment_name" => "Stage Client MMS",
     "contentpath" => "/var/mms/content-out",
     "content_in" => "/var/mms/content-in",
     "deployment" => {
