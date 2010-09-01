@@ -8,7 +8,7 @@
     ServerName eng.map-cloud-01.eu
     ServerAlias nhsevidence.map-cloud-01.eu
 
-    DocumentRoot /var/www/vhosts/<%= hostname %>
+    DocumentRoot /var/www/vhosts/<%= @hostname %>
 
     ProxyPass /evidence/attachments !
     ProxyPass /evidence/images !
@@ -39,7 +39,7 @@
     Alias /evidence/thumbnails  <%= @webapp_base %>/evidence/thumbnails
 
 
-    <Directory "/var/www/vhosts/<%= hostname %>">
+    <Directory "/var/www/vhosts/<%= @hostname %>">
         DirectoryIndex index.jsp index.html
         Options FollowSymLinks
         AllowOverride None
