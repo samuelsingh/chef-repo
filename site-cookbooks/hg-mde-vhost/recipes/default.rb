@@ -21,61 +21,67 @@ include_recipe "apache2"
 
 node[:hg_mde_vhost].each do |hostname,params|
   
-  # Figures out whether to link to AWStats
-  awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
+  application = params.fetch("primary_webapp")
   
-  unless defined?(awstats_srv)
-    awstats = false
-  else
-    awstats = true
-  end
-
-  if defined?(node[:apache][:dir])
+  if application == "choices" || application == "evidence"
+  
+    # Figures out whether to link to AWStats
+    awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
     
-    template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-      source "#{hostname}.conf.erb"
+    unless defined?(awstats_srv)
+      awstats = false
+    else
+      awstats = true
+    end
+  
+    if defined?(node[:apache][:dir])
+      
+      template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+        source "#{application}-TEMPLATE.conf.erb"
+        mode 0644
+        owner "sysadmin"
+        group "sysadmin"
+        variables(
+          :hostname => hostname,
+          :srv_aliases => params.fetch("srv_aliases"),
+          :webapps => params.fetch("webapps"),
+          :primary_webapp => params.fetch("primary_webapp"),
+          :restricted_ips => node[:apache][:restricted_ips],
+          :holding_page => params.fetch("holding_page"),
+          :webapp_base => params.fetch("webapp_base"),
+          :awstats => awstats
+        )
+        notifies :reload, resources(:service => "apache2"), :delayed
+        only_if "test -d #{node[:apache][:dir]}/sites-available"
+      end
+      
+      link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
+        to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
+      end
+      
+    end
+    
+    remote_directory "/var/www/vhosts/#{hostname}" do
+      source "docroot"
+      files_owner "sysadmin"
+      files_group "sysadmin"
+      files_mode "0644"
+      owner "sysadmin"
+      group "sysadmin"
+      mode "0755"
+      recursive true
+    end
+    
+    template "/var/www/vhosts/#{hostname}/holding.html" do
+      source "holding.html.erb"
       mode 0644
       owner "sysadmin"
       group "sysadmin"
       variables(
-        :hostname => hostname,
-        :srv_aliases => params.fetch("srv_aliases"),
-        :webapps => params.fetch("webapps"),
-        :primary_webapp => params.fetch("primary_webapp"),
-        :restricted_ips => node[:apache][:restricted_ips],
-        :holding_page => params.fetch("holding_page"),
-        :webapp_base => params.fetch("webapp_base"),
-        :awstats => awstats
+          :holding_page_msg => params.fetch("holding_page_msg")
       )
-      notifies :reload, resources(:service => "apache2"), :delayed
-      only_if "test -d #{node[:apache][:dir]}/sites-available"
     end
-    
-    link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
-      to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
-    end
-    
-  end
   
-  remote_directory "/var/www/vhosts/#{hostname}" do
-    source "docroot"
-    files_owner "sysadmin"
-    files_group "sysadmin"
-    files_mode "0644"
-    owner "sysadmin"
-    group "sysadmin"
-    mode "0755"
-    recursive true
-  end
-  
-  template "/var/www/vhosts/#{hostname}/holding.html" do
-    source "holding.html.erb"
-    mode 0644
-    owner "sysadmin"
-    group "sysadmin"
-    variables(
-        :holding_page_msg => params.fetch("holding_page_msg")
-    )
   end
 
 end
