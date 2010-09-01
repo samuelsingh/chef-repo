@@ -101,13 +101,6 @@
         Allow from env=ELBAUTH
     </Location>
     <% end -%>
-    
-    
-    # Use the specified error page (under DocumentRoot) for the specified error codes.
-    # They are prettier than the standard Apache pages.
-
-    ErrorDocument 403 /403/index.html 
-    ErrorDocument 404 /404/index.html 
 
 
     <IfModule mod_rewrite.c>
