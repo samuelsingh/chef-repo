@@ -1,6 +1,8 @@
 name "hgpe-vhosts"
 description "Configures HG / MDE vhosts"
 
+run_list "recipe[hg-mde-vhost]"
+
 override_attributes(
   "hg_mde_vhost" => {
     "healthguides.mapofmedicine.com" => {
