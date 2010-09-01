@@ -114,7 +114,11 @@
            Note: XML Schema validation will not work with Xerces 2.2.
        -->
       <Host name="localhost"  appBase="webapps"
+            <% if defined?(@node[:tomcat][:unpackwars]) && @node[:tomcat][:unpackwars] == 'true' -%>
+            unpackWARs="true" autoDeploy="false"
+            <% else -%>
             unpackWARs="false" autoDeploy="false"
+            <% end -%>
             xmlValidation="false" xmlNamespaceAware="false">
 
         <!-- SingleSignOn valve, share authentication between web applications

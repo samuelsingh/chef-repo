@@ -1,0 +1,12 @@
+<Context path="/choices" 
+docBase="<%= @node[:hg_mde][:war_path] %>/<%= @node[:hg_mde][:version] %>.war"
+	    reloadable="false"
+	    debug="0">
+
+    <Logger className="org.apache.catalina.logger.FileLogger"
+        prefix="webapp-hgmde." suffix=".log" timestamp="true"/>
+
+	<Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
+
+
+</Context>
