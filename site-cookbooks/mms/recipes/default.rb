@@ -233,6 +233,9 @@ directory "#{mmpath}/crx"  do
   group "tomcat"
 end
 
+# Tests for whether an EBS vloume is present to hold JCR indexes
+# and, if found, mounts it to the correct location.
+
 mount "#{mmpath}/crx" do
   device "/dev/sdh1"
   fstype "ext3"
