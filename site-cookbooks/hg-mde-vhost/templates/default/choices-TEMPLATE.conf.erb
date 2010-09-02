@@ -64,6 +64,17 @@
         Allow from env=ELBAUTH
     </Location>
     
+    # Restricted access to feedback, locked by IP address.
+    <Location "/choices/feedback/feedback.txt">
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
+    
     <% unless @awstats == false -%>
     # AWStats configuration
     
