@@ -131,7 +131,7 @@
         
         <% unless @awstats == false -%>
         # Redirect for AWStats
-        RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=%{HTTP_HOST} [R,L]
+        RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=<%= @hostname %> [R,L]
         RewriteRule ^/awstats-icon/(.+) /stats/awstats-icon/$1 [R,L]
         <% end -%>
 
