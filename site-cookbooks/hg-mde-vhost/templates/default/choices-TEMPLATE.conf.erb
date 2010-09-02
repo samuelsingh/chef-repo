@@ -130,8 +130,6 @@
         RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
         RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
         # RewriteRule ^/choices/feedback/ /choices/map/index.html [R,L]
-	
-	RewriteRule ^/robots.txt$ /choices/robots.txt [L]
         
         <% unless @awstats == false -%>
         # Redirect for AWStats
