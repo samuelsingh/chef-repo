@@ -66,6 +66,7 @@
     
     # Restricted access to feedback, locked by IP address.
     <Location "/choices/feedback/feedback.txt">
+        Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
         Order deny,allow
         Deny from all
         Allow from 127.0.0.1
