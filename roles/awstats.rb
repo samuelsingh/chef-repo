@@ -6,10 +6,10 @@ run_list "recipe[awstats]"
 
 override_attributes(
   "awstats" => {
-    "healthguides.map-cloud-01.eu" => {
+    "healthguides.mapofmedicine.com" => {
       "host_regex" => "hgpe-app-0[1-9]"
     },
-    "eng.map-cloud-01.eu" => {
+    "eng.mapofmedicine.com" => {
       "host_regex" => "hgpe-app-0[1-9]"
     },
     "training-mms.mapofmedicine.com" => {
