@@ -1,0 +1,1 @@
+# Chef needs this file, or it won't create the conf/Catalina/localhost directory structure
