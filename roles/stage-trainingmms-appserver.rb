@@ -11,7 +11,7 @@ default_attributes(
 override_attributes(
   "mms" => {
     "fqdn" =>  "stage-trainmms.mapofmedicine.com",
-    "deploy_dir" =>  "/var/shared/deployment/stage-trainmms",
+    "deploy_dir" =>  "/var/shared/deployment/stage/training-mms",
     "deployment_name" => "Training MMS",
     "contentpath" => "/var/mms/content-out",
     "content_in" => "/var/mms/content-in",
