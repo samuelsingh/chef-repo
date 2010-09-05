@@ -4,12 +4,12 @@ description "Configures Stage Root MMS application server"
 run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]"
 default_attributes(
   "mms" => {
-    "dbhost" => "stagemms-db-01.map-cloud-01.eu"
+    "dbhost" => "stage-db-01.map-cloud-01.eu"
   }
 )
 override_attributes(
   "mms" => {
-    "fqdn" =>  "stage-db-01.map-cloud-01.eu",
+    "fqdn" =>  "stage-rootmms.mapofmedicine.com",
     "deploy_dir" =>  "/var/shared/deployment/stage/root-mms",
     "deployment_name" => "Stage Root MMS",
     "contentpath" => "/var/mms/content-out",
