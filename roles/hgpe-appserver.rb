@@ -5,10 +5,10 @@ run_list "recipe[java]", "recipe[tomcat]", "recipe[hg-mde]"
 
 override_attributes(
   "tomcat" => {
-    "unpackwars" => "true"
+    "unpackwars" => "false"
   },
   "hg_mde" => {
-    "hg_war_path" =>  "/var/shared/deployment/healthguides/wars",
-    "mde_war_path" =>  "/var/shared/deployment/mde/wars"
+    "hg_shared" =>  "/var/shared/deployment/healthguides",
+    "mde_shared" =>  "/var/shared/deployment/mde"
   }
 )
