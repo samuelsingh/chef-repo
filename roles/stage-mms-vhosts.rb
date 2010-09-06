@@ -5,7 +5,7 @@ run_list "recipe[mms-vhost]"
 
 override_attributes(
   "mms_vhost" => {
-    "stage-trainmms.mapofmedicine.com" => {
+    "stage-trainmms.map-cloud-01.eu" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/stage/training-mms",
       "appserver" => "stage-trainmms-app-01.map-cloud-01.eu",
@@ -14,7 +14,7 @@ override_attributes(
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 0
     },
-    "stage-rootmms.mapofmedicine.com" => {
+    "stage-rootmms.map-cloud-01.eu" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/stage/root-mms",
       "appserver" => "stage-rootmms-app-01.map-cloud-01.eu",

@@ -9,7 +9,7 @@ default_attributes(
 )
 override_attributes(
   "mms" => {
-    "fqdn" =>  "stage-rootmms.mapofmedicine.com",
+    "fqdn" =>  "stage-rootmms.map-cloud-01.eu",
     "deploy_dir" =>  "/var/shared/deployment/stage/root-mms",
     "deployment_name" => "Stage Root MMS",
     "contentpath" => "/var/mms/content-out",
