@@ -20,6 +20,8 @@
 set_unless[:mms][:fqdn] = "mms.md-cloud-01.eu"
 set_unless[:mms][:deploy_dir] = "/var/shared/deployment/mms"
 set_unless[:mms][:version] = "1.1.1.ALL.1.1"
+set_unless[:mms][:me_version] = "7.6.8" # TODO:These should be set to dummy values once we're
+set_unless[:mms][:dict_version] = "0.1" # sure that production has picked up its override attributes
 set_unless[:mms][:logpath] = "/var/mms/logs"
 set_unless[:mms][:contentpath] = "/var/mms/content"
 set_unless[:mms][:content_in] = "/var/mms/content-in"

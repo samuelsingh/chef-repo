@@ -5,14 +5,14 @@
 -->
 <mapEditor>
 	<ContentService>http://<%= @fqdn %>/mapmanager/services/ContentWebService</ContentService>
-	<LatestVersion>7.6.8</LatestVersion>
+	<LatestVersion><%= @me_version %></LatestVersion>
 	<URLForLatestVersion>http://<%= @fqdn %>/mapmanager/mapeditor/MapEditor.msi</URLForLatestVersion>
 	<!-- <UrlToRedirectForPrint>http://<%= @fqdn %>/mom/preview/pwayPrt.pdf</UrlToRedirectForPrint> -->
 	<UrlToRedirectForPrint>http://<%= @fqdn %>/mom/preview/page.pdf</UrlToRedirectForPrint>
 	<UrlToRedirectForPreview>http://<%= @fqdn %>/mom/preview/page.html</UrlToRedirectForPreview>
 	<KeepAliveFlag>true</KeepAliveFlag>
 	<KeepAliveFrequency>300000</KeepAliveFrequency>
-	<LatestDictionaryVersion>0.1</LatestDictionaryVersion>
+	<LatestDictionaryVersion><%= @dict_version %></LatestDictionaryVersion>
 	<URLForLatestDictionary>http://<%= @fqdn %>/mapmanager/mapeditor/MapEditorDictionary_0.1.dict</URLForLatestDictionary>
 
 </mapEditor>

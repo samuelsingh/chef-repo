@@ -28,6 +28,8 @@ fqdn            = node[:mms][:fqdn]
 deploy_dir      = node[:mms][:deploy_dir]
 deployment_name = node[:mms][:deployment_name]
 version         = node[:mms][:version]
+me_version      = node[:mms][:me_version]
+dict_version    = node[:mms][:dict_version]
 athens_link     = node[:mms][:athens_link]
 multiple_views  = node[:mms][:multiple_views]
 
@@ -40,6 +42,16 @@ mom_dbuser = node[:mms][:mom][:dbuser]
 mom_dbpass = node[:mms][:mom][:dbpass]
 mom_dbhost = node[:mms][:mom][:dbhost]
 mom_dbname = node[:mms][:mom][:dbname]
+
+# Calculates an integer based on the version number.
+# This is used to version properties.
+#
+# So, for example,
+# 2.6.5.ALL.6.888888
+# returns:
+# 265
+#
+int_version = version[/\d+\.\d+\.\d+\./].gsub('.','').to_i
 
 ## Creates MMS common configuration directories
 
@@ -300,7 +312,9 @@ template "#{mmpath}/config/MapEditorCentralConfig.xml" do
   group "sysadmin"
   variables(
     :mmpath => mmpath,
-    :fqdn => fqdn
+    :fqdn => fqdn,
+    :me_version => me_version,
+    :dict_version => dict_version
   )
 end
 
