@@ -39,7 +39,7 @@ override_attributes(
       :srv_aliases => [ "svn.mapofmedicine.com", "svn-01", "svn-test.mapofmedicine.com" ]
     },
     :ldap => {
-      :server => "ldap",
+      :server => "ldap01.map-cloud-01.eu",
       :port => "389",
       :url_path => "ou=users,dc=mapofmedicine,dc=com?uid",
       :binddn => "cn=ldapadmin,dc=mapofmedicine,dc=com",
@@ -62,7 +62,7 @@ override_attributes(
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	}
   	],
-  	:svn_root => "/foo/bar"
+  	:svn_root => "/var/svn"
   }
 
 )
