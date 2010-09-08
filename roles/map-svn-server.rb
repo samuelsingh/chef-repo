@@ -19,6 +19,7 @@ run_list "recipe[subversion]",
 	"recipe[apache2::mod_include]", 
 	"recipe[apache2::mod_log_forensic]", 
 	"recipe[apache2::mod_info]", 
+	"recipe[map-svn::svn_repos]",
 	"recipe[map-svn::vhost]"
 
 override_attributes(
@@ -48,17 +49,17 @@ override_attributes(
 		:svn_repos => [
 	  	{
 	  		:repo_name => "map-test",
-	  		:auth_name => "XTest Repository",
+	  		:auth_name => "Test Repository",
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	},
 	  	{
 	  		:repo_name => "map-dev",
-	  		:auth_name => "XMap Development Source",
+	  		:auth_name => "Map Development Source",
 	  		:ldap_group => "cn=map-dev-committers,ou=groups,dc=mapofmedicine,dc=com"
 	  	},
 	  	{
 	  		"repo_name" => "map-sys",
-	  		:auth_name => "XMap Infrastructure Configuration",
+	  		:auth_name => "Map Infrastructure Configuration",
 	  		:ldap_group => "cn=mom-ias,ou=groups,dc=mapofmedicine,dc=com"
 	  	}
   	],
