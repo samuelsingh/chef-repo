@@ -32,6 +32,16 @@ dbpass = node[:map_display][:dbpass]
 dbhost = node[:map_display][:dbhost]
 dbname = node[:map_display][:dbname]
 
+# Calculates an integer based on the version number.
+# This is used to version properties.
+#
+# So, for example,
+# 2.6.5.ALL.6.888888
+# returns:
+# 265
+#
+int_version = md_version[/\d+\.\d+\.\d+\./].gsub('.','').to_i
+
 # Dynamic directories, used by Tomcat
 #
 directory "#{mtmpath}"  do
@@ -169,7 +179,8 @@ template "#{mtmpath}/config/mom.properties" do
   group "sysadmin"
   variables(
     :mtmpath => mtmpath,
-    :md_fqdn => md_fqdn
+    :md_fqdn => md_fqdn,
+    :int_version => int_version
   )
 end
 

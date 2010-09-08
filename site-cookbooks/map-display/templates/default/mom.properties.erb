@@ -361,3 +361,9 @@ autoApproval.templateDir=/WEB-INF/freemarker
 pathwayList.enabled=false
 pathwayList.requiredRole=Viewer
 
+<% if @int_version > 264 -%>
+# Added in 2.6.5
+persistent.session.timeout=28800
+persistent.session.enabled=true
+<% end -%>
+
