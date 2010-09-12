@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-mounts = node[:glusterfs][:server][:mounts]
+mounts = node[:glusterfs][:mounts]
 glustersrvs = search(:node, "glusterfs_server:true").map { |n| n["fqdn"] }
 
 package "glusterfs-server" do
