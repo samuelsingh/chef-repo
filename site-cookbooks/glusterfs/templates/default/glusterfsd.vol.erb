@@ -24,7 +24,8 @@ end-volume
 volume server-tcp
     type protocol/server
     option transport-type tcp
-    option transport.socket.nodelay on 
+    option transport.socket.nodelay on
+    option transport.socket.listen-port 6996
 
 <% @mount_points.each do |mount_point| -%>
     option auth.addr.export_<%= mount_point %>.allow *
