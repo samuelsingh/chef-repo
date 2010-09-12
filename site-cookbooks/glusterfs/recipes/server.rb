@@ -71,13 +71,19 @@ mounts.each do |mount|
   
 end
 
-template "/etc/glusterfs/glusterfs.vol" do
+exports = Array.new
+mounts.each do |mount|
+  exports << "export_#{mount}"
+end
+
+template "/etc/glusterfs/glusterfsd.vol" do
   source "glusterfsd.vol.erb"
   owner "root"
   group "root"
   mode 0644
   variables(
-    :mount_points => mounts
+    :mount_points => mounts,
+    :exports => exports
   )
   notifies :restart, resources(:service => "glusterfs-server")
 end

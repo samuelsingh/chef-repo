@@ -26,9 +26,7 @@ volume server-tcp
     option transport-type tcp
     option transport.socket.nodelay on 
 
-<% @exports = Array.new -%>
 <% @mount_points.each do |mount_point| -%>
-<% @exports << "export_#{mount_point}" -%>
     option auth.addr.export_<%= mount_point %>.allow *
     option volume-filename.<%= mount_point %> /etc/glusterfs/<%= mount_point %>.vol
 <% end -%>
