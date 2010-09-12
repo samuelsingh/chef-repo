@@ -16,23 +16,6 @@
 # limitations under the License.
 #
 
-# Transitional values based on the zone name attribute.,  We shouldn't use this anymore.
-#
-
-case node[:zones][:name]
-  
-when "dummy"
-  set[:exim][:smarthost] = 'mail.dummy.com'
-  
-when "foxdev"
-  set[:exim][:smarthost] = 'mail.dummy.com'
-  
-when "euaws"
-  set[:exim][:smarthost] = 'smarthost-01.map-cloud-01.eu'
-  
-end
-
-
 case node[:domain]
 
 when "map-cloud-01.eu"
