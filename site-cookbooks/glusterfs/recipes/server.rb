@@ -28,10 +28,10 @@ package "glusterfs-server" do
   action :install
 end
 
-service "glusterfsd" do
+service "glusterfs-server" do
   case node[:platform]
   when "debian","ubuntu"
-    service_name "glusterfsd"
+    service_name "glusterfs-server"
   end
   supports value_for_platform(
     "default" => { "default" => [:restart, :reload ] }
@@ -66,7 +66,7 @@ mounts.each do |mount|
       :mount_point => mount,
       :glustersrvs => glustersrvs
     )
-    notifies :restart, resources(:service => "glusterfsd")
+    notifies :restart, resources(:service => "glusterfs-server")
   end
   
 end
@@ -79,7 +79,7 @@ template "/etc/glusterfs/glusterfsd.vol" do
   variables(
     :mount_points => mounts
   )
-  notifies :restart, resources(:service => "glusterfsd")
+  notifies :restart, resources(:service => "glusterfs-server")
 end
 
 
