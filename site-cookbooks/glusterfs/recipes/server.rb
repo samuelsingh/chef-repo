@@ -71,7 +71,7 @@ mounts.each do |mount|
   
 end
 
-template "/etc/glusterfs/glusterfsd.vol" do
+template "/etc/glusterfs/glusterfs.vol" do
   source "glusterfsd.vol.erb"
   owner "root"
   group "root"
