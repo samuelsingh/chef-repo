@@ -39,6 +39,13 @@ service "glusterfs-server" do
   action :enable
 end
 
+execute "clear_conf" do
+  command "rm -rf /etc/glusterfs/*"
+  action :run
+  only_if "test -f /etc/glusterfs/glusterfs.vol"
+end
+
+
 directory "/gfs" do
   owner "root"
   group "root"

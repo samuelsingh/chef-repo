@@ -12,7 +12,7 @@ volume <%= shortid %>_<%= @mount_point %>
     option remote-host <%= glustersrv %>
     option remote-subvolume export_<%= @mount_point %>
 end-volume
-<% end -%>
+<% end %>
 
 <% @subvols = Array.new -%>
 <% @glustersrvs.each do |glustersrv| -%>
@@ -22,7 +22,7 @@ end-volume
 
 volume mirror_<%= @mount_point %>
     type cluster/replicate
-    subvolumes <%= @subvols.join(" ") -%>
+    subvolumes <%= @subvols.join(" ") %>
 end-volume
 
 volume iothreads_<%= @mount_point %>
