@@ -21,3 +21,6 @@ case node[:domain]
 when "map-cloud-01.eu"
   set[:exim][:smarthost] = 'smarthost-01.map-cloud-01.eu'
 end
+
+# Sets a sensible default if something's wrong
+set_unless[:exim][:smarthost] = 'default.map-cloud-01.eu'

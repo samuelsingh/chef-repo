@@ -21,7 +21,7 @@ root    			ALL=(ALL) ALL
 %<%= group %> ALL=(ALL) ALL
 <% end -%>
 
-<% if @node[:zones][:name] == 'euaws' -%>
+<% if defined(@node[:ec2]) -%>
 # ubuntu user is default user in ec2-images.  
 # It needs passwordless sudo functionality.
 ubuntu  ALL=(ALL) NOPASSWD:ALL
