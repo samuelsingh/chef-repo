@@ -31,6 +31,6 @@ volume server-tcp
     option volume-filename.<%= mount_point %> /etc/glusterfs/<%= mount_point %>.vol
 <% end -%>
 
-    subvolumes <% @exports.join(" ") -%>
+    subvolumes <%= @exports.join(" ") -%>
 end-volume
 

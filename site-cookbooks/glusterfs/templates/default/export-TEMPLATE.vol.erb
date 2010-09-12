@@ -22,7 +22,7 @@ end-volume
 
 volume mirror_<%= @mount_point %>
     type cluster/replicate
-    subvolumes <% @subvols.join(" ") -%>
+    subvolumes <%= @subvols.join(" ") -%>
 end-volume
 
 volume iothreads_<%= @mount_point %>
