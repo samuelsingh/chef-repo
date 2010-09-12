@@ -28,7 +28,7 @@ volume server-tcp
 
 <% @mount_points.each do |mount_point| -%>
     option auth.addr.export_<%= mount_point %>.allow *
-    option volume-filename.<%= mount_point %> /etc/glusterfs/<%= mount_point %>.vol
+    option volume-filename.export_<%= mount_point %> /etc/glusterfs/export_<%= mount_point %>.vol
 <% end -%>
 
     subvolumes <%= @exports.join(" ") %>

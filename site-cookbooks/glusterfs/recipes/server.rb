@@ -64,7 +64,7 @@ mounts.each do |mount|
     not_if "test -d /gfs/#{mount}"
   end
   
-  template "/etc/glusterfs/#{mount}.vol" do
+  template "/etc/glusterfs/export_#{mount}.vol" do
     source "export-TEMPLATE.vol.erb"
     owner "root"
     group "root"
