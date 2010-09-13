@@ -37,7 +37,7 @@ override_attributes(
   :map_svn => {
     :vhost => {
       :hostname => "svn.map-cloud-01.eu",
-      :srv_aliases => [ "svn-01.mapofmedicine.com", "svn-test.mapofmedicine.com" ]
+      :srv_aliases => [ "svn-01.mapofmedicine.com", "svn.mapofmedicine.com" ]
     },
     :ldap => {
       :server => "ldap01.map-cloud-01.eu",
