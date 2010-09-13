@@ -11,14 +11,16 @@ override_attributes(
       "deploy_dir" => "/var/shared/deployment/stage/euro-md",
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-      "appserver" => "stage-euromd-app-01.map-cloud-01.eu"
+      "appserver" => "stage-euromd-app-01.map-cloud-01.eu",
+      "lb_alive_port" => 0
     },
     "stage-mdnoprov.map-cloud-01.eu" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/stage/euro-md",
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-      "appserver" => "stage-euromd-app-02.map-cloud-01.eu"
+      "appserver" => "stage-euromd-app-02.map-cloud-01.eu",
+      "lb_alive_port" => 0
     }
   }
 )
