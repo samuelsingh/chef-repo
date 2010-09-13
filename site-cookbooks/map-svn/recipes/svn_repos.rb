@@ -28,7 +28,7 @@ directory "/var/svn/BACKUPS"  do
 end
 
 remote_file "/usr/local/sbin/svn_backup.sh" do
-  source svn_dump.sh
+  source "svn_dump.sh"
   mode 0755
 end
 
