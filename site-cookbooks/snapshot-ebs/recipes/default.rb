@@ -51,6 +51,11 @@ template "/etc/cron.daily/filer01_backup" do
   mode 0755
 end
 
+remote_file "#{node[:snapshot_ebs][:install_path]}/svn_ebs.sh" do
+  source "svn_ebs.sh"
+  mode 0755
+end
+
 remote_file "#{node[:snapshot_ebs][:install_path]}/filer_ebs.sh" do
   source "filer_ebs.sh"
   mode 0755
