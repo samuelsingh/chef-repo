@@ -28,13 +28,13 @@ directory "/var/svn/BACKUPS"  do
 end
 
 remote_file "/usr/local/sbin/svn_backup.sh" do
-  source "svn_dump.sh"
+  source "svn_backup.sh"
   mode 0755
 end
 
 cron "svn_backup" do
   hour "20"
   minute "30"
-  command "/usr/local/sbin/svn_dump.sh"
+  command "/usr/local/sbin/svn_backup.sh"
 end
 
