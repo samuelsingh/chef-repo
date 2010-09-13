@@ -31,6 +31,11 @@ directory "/root/.ec2" do
 end 
 
 
+template "/etc/cron.daily/svn_backup" do
+ source "svn_backup.erb"
+ mode 0755
+end 
+
 template "/etc/cron.daily/lightmms_backup" do
  source "lightmms_backup.erb"
  mode 0755
