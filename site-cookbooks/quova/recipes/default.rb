@@ -37,7 +37,7 @@ end
 
 # Deploy Quova data files
 execute "deploy_qvdata" do
-  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current && exit 1"
+  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current"
   action :nothing
 end
 
