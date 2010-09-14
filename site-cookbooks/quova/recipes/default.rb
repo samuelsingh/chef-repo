@@ -35,10 +35,17 @@ remote_directory "/usr/local/quova" do
   mode "0755"
 end
 
+# Deploy Quova data files
+execute "deploy_qvdata" do
+  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current && exit 1"
+  action :nothing
+end
+
 # Grab Quova data files, if they're not already in place
 remote_file "/var/tmp/qvdata.zip" do
   source "qvdata/qvdata.zip"
   mode "0644"
+  notifies :run, resources(:execute => "deploy_qvdata")
   not_if "test -f /usr/local/quova/data/current/VERSION"
 end
 
@@ -47,10 +54,3 @@ file "/var/tmp/qvdata.zip" do
   action :delete
   only_if "test -f /usr/local/quova/data/current/VERSION"
 end
-
-# Deploy Quova data files
-execute "Deploy qvdata" do
-  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current"
-  action :run
-end
-
