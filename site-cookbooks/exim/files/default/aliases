@@ -221,6 +221,9 @@ gajan:						gajan.srikanthan
 gajans:						gajan.srikanthan
 g.srikanthan:					gajan.srikanthan
 gajansrikanthan:				gajan.srikanthan
+gerard:                                         gerard.onochie
+gerardo:                                        gerard.onochie
+g.onochie:                                      gerard.onochie
 gerard.onochie:					gerard.onochie@natbill.hostpilot.com
 gregory.dorn:					gdorn@zynx.com
 gdorn:							gregory.dorn
@@ -598,7 +601,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						support-team@natbill.hostpilot.com
+support-team:						kief, andrew, gerardo
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
@@ -730,7 +733,7 @@ opportunities:					jobs
 careers:						jobs
 tech-jobs:						kief.morris
 
-sales:							alexey.brovko
+sales:							sales@natbill.hostpilot.com
 telehealth:						sales
 marketing:						aneta.lasyk
 events:							aneta.lasyk
