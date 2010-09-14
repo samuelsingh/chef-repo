@@ -85,3 +85,4 @@ remote_file "/root/.ec2/pk-OTTZ2OZ3UKDVMK7335FOBQ6W2VAVBOI5.pem" do
   source "pk-OTTZ2OZ3UKDVMK7335FOBQ6W2VAVBOI5.pem"
   mode 0700
 end
+

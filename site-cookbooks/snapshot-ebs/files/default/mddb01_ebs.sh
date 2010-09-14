@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #set variables 
 export EC2_PRIVATE_KEY=/root/.ec2/pk-OTTZ2OZ3UKDVMK7335FOBQ6W2VAVBOI5.pem
 export EC2_CERT=/root/.ec2/cert-OTTZ2OZ3UKDVMK7335FOBQ6W2VAVBOI5.pem
