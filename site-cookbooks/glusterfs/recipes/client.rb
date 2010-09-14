@@ -71,6 +71,7 @@ unless glustersrvs.empty?
         fstype "glusterfs"
         options "direct-io-mode=disable,noatime"
         action [:mount, :enable]
+        not_if "test -f /gfs/shared/.gfs"
       end
       
     else
@@ -80,6 +81,7 @@ unless glustersrvs.empty?
         fstype "glusterfs"
         options "backupvolfile-server=#{glustersrvs[1]},direct-io-mode=disable,noatime"
         action [:mount, :enable]
+        not_if "test -f /gfs/shared/.gfs"
       end
       
     end
