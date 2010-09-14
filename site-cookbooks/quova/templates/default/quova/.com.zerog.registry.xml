@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry install_date="2010-07-26 14:08:34" version="1.1" last_modified="2010-07-26 14:08:51">
+	<products>
+		<product name="GeoDirectory" id="3e0caa45-1ec8-11b2-895c-a97ed8984bc9" version="6.0.0.0" copyright="2003 - 2007" info_url="http://www.quova.com" support_url="http://www.quova.com" location="/var/shared/www/healthguides-live/hgpe-app-01/quova" last_modified="2010-07-26 14:08:34">
+			<vendor name="Quova, Inc." id="3e0caa44-1ec8-11b2-895c-a97ed8984bc9" home_page="http://www.quova.com" email="support@quova.com"/>
+			<feature name="GeoDirectory Server" last_modified="2010-07-26 14:08:34">
+			<![CDATA[This will install the GeoDirectory Server. Each GeoDirectory Server is required to have a unique license whether in production and non-production environments.  Should you require additional licenses please contact your Quova support representative or email support@quova.com.
+]]>
+				<component ref_id="3e0caa63-1ec8-11b2-8960-a97ed8984bc9" version="1.0.0.0" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-logging.jar"/>
+				<component ref_id="3e23f850-1ec8-11b2-8985-a97ed8984bc9" version="1.0.0.0" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/stopserver.bat"/>
+			</feature>
+		</product>
+	</products>
+	<components>
+		<component id="3e23f850-1ec8-11b2-8985-a97ed8984bc9" version="1.0.0.0" name="AG- Server" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/stopserver.bat" vendor="Quova, Inc.">
+			<resource keyfile="false" name="jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="quovaserver.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/quovaserver.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LICENSE.cryptix" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/LICENSE.cryptix" type="file" uninstall="true"/>
+			<resource keyfile="false" name="cryptix32.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/cryptix32.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="commons-codec-1.3.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-codec-1.3.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="commons-httpclient-3.0-rc3.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-httpclient-3.0-rc3.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LICENSE.JavaWrapper.txt" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/LICENSE.JavaWrapper.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="endorsed" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/endorsed" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="xercesImpl.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/endorsed/xercesImpl.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="xml-apis.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/endorsed/xml-apis.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="quovafoundation.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/quovafoundation.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="tar.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/tar.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="quova.myconfig" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/quova.myconfig" type="file" uninstall="true"/>
+			<resource keyfile="false" name="log4j.properties" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/log4j.properties" type="file" uninstall="true"/>
+			<resource keyfile="false" name="GeoDirectoryServer.properties" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/GeoDirectoryServer.properties" type="file" uninstall="true"/>
+			<resource keyfile="false" name="customcode" location="com.zerog.ia.customcode.utils.ModifyString " type="customcode" uninstall="true"/>
+			<resource keyfile="false" name="license_informauk_DDS3692_exp2008-Dec-18_BRZ.TXT" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/license_informauk_DDS3692_exp2008-Dec-18_BRZ.TXT" type="file" uninstall="true"/>
+			<resource keyfile="false" name="bin" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="qvlxfer" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/qvlxfer" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="qvlxfer.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/qvlxfer.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ledgerXfer" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/ledgerXfer" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="ledgerXfer.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/ledgerXfer.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lptupdate" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lptupdate" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="lptupdate.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lptupdate.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="dataUpdate" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/dataUpdate" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="dataUpdate.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/dataUpdate.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="dds" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/dds" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="dds.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/dds.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="startserver" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/startserver" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="startserver.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/startserver.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="stopserver" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/stopserver" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="stopserver.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/stopserver.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ldump" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/ldump" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="ldump.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/ldump.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="DecodeLicense" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/DecodeLicense" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="DecodeLicense.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/DecodeLicense.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="verifyAuthorization" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/verifyAuthorization" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="verifyAuthorization.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/verifyAuthorization.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="inspectLicense" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/inspectLicense" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="inspectLicense.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/inspectLicense.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="resetQuovaMyConfig" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/resetQuovaMyConfig" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="resetQuovaMyConfig.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/resetQuovaMyConfig.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="serverVersion" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/serverVersion" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="serverVersion.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/serverVersion.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="lax.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/lax.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="serverStats" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/serverStats" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="serverStats.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/serverStats.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="customcode" location="com.zerog.ia.customcode.actions.ExecuteUninstallCommand &quot;/var/shared/www/healthguides-live/hgpe-app-01/quova/bin/stopserver&quot;" type="customcode" uninstall="true"/>
+			<resource keyfile="false" name="extensions" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/extensions" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="Extensions-Readme.txt" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/extensions/Extensions-Readme.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="efs" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/extensions/efs" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="cvsdummy.txt" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/extensions/efs/cvsdummy.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="incoming" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/extensions/efs/incoming" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="ServerSummary.txt" location="/tmp/ServerSummary.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="log" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/log" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="data" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/data" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="acct" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/acct" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+		</component>
+		<component id="3e0caa63-1ec8-11b2-8960-a97ed8984bc9" version="1.0.0.0" name="Common" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-logging.jar" vendor="Quova, Inc.">
+			<resource keyfile="false" name="GeoDirectory_InstallLog.log" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/GeoDirectory_InstallLog.log" type="file" uninstall="true"/>
+			<resource keyfile="false" name="quova" location="/var/shared/www/healthguides-live/hgpe-app-01/quova" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar" type="directory" uninstall="true">
+			<![CDATA[true]]>
+			</resource>
+			<resource keyfile="false" name="quovacommon.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/quovacommon.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LICENSE.log4j" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/LICENSE.log4j" type="file" uninstall="true"/>
+			<resource keyfile="false" name="log4j.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/log4j.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="LICENSE.jakarta-commons" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/LICENSE.jakarta-commons" type="file" uninstall="true"/>
+			<resource keyfile="false" name="commons-pool-1.2.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-pool-1.2.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="commons-collections-3.1.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-collections-3.1.jar" type="file" uninstall="true"/>
+			<resource keyfile="true" name="commons-logging.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/jar/commons-logging.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="license.txt" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/license.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Readme.txt" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/Readme.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="InstallSummary.txt" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/InstallSummary.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="uninstaller.jar" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/uninstaller.jar" type="file" uninstall="true"/>
+			<resource keyfile="false" name="Uninstall_GeoDirectory" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/Uninstall_GeoDirectory" type="executable" uninstall="true"/>
+			<resource keyfile="false" name="Uninstall_GeoDirectory.lax" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/Uninstall_GeoDirectory.lax" type="file" uninstall="true"/>
+			<resource keyfile="false" name="ClientServerSummary.txt" location="/tmp/ClientServerSummary.txt" type="file" uninstall="true"/>
+			<resource keyfile="false" name="log" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/log" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="log" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/log" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="data" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/data" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="data" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/data" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="acct" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/acct" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name="acct" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/acct" type="directory" uninstall="true">
+			<![CDATA[false]]>
+			</resource>
+			<resource keyfile="false" name=".com.zerog.registry.xml" location="/var/shared/www/healthguides-live/hgpe-app-01/quova/.com.zerog.registry.xml" type="file" uninstall="true"/>
+		</component>
+	</components>
+</registry>

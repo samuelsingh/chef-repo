@@ -1,0 +1,43 @@
+#Use this file to control which fields get loaded and which
+#do not. Notice you must be licensed for the field in order
+#to load it. Attempting to load a field that you are not
+#licensed for will cause the server to fail on startup.
+#The primary reason to turn a field off is to save memory.
+#If you can load all your fields without memory issues, you
+#should probably leave them all on.
+#See the GeoDirectory documentation or contact support@quova.com
+#for more help.
+#Use 1 to turn the field on,  0 to turn it off.
+
+Begin MyResolution
+Country = 1
+State = 1
+DMA = 1
+Continent = 1
+City = 1
+MSA = 1
+PMSA = 1
+Region = 1
+TimeZone = 1
+Latitude = 1
+Longitude = 1
+Zip = 1
+Connection = 1
+LineSpeed = 1
+SecondLevelDomain = 0
+TopLevelDomain = 0
+IPRoutingType = 1
+AOL = 1
+ASN = 0
+Carrier = 0
+AreaCode = 1
+Message = 0
+Country_CF = 1
+State_CF = 1
+DMA_CF = 0
+Continent_CF = 0
+City_CF = 1
+MSA_CF = 0
+PMSA_CF = 0
+Region_CF = 0
+End MyResolution
