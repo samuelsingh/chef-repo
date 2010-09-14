@@ -19,8 +19,12 @@
 
 # A small recipe to install Quova 6.2
 
+package "unzip" do
+  action :install
+end
+
+# Deploy Quova application
 remote_directory "/usr/local/quova" do
-  
   source "quova"
   files_backup 0
   files_owner "root"
@@ -29,5 +33,24 @@ remote_directory "/usr/local/quova" do
   owner "root"
   group "root"
   mode "0755"
-  
 end
+
+# Grab Quova data files, if they're not already in place
+remote_file "/var/tmp/qvdata.zip" do
+  source "qvdata/qvdata.zip"
+  mode "0644"
+  not_if "test -f /usr/local/quova/data/current/VERSION"
+end
+
+# Delete tmp data file if it's been deployed
+file "/var/tmp/qvdata.zip" do
+  action :delete
+  only_if "test -f /usr/local/quova/data/current/VERSION"
+end
+
+# Deploy Quova data files
+execute "Deploy qvdata" do
+  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current"
+  action :run
+end
+
