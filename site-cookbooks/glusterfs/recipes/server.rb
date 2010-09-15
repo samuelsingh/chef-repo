@@ -18,7 +18,7 @@
 #
 
 mounts = node[:glusterfs][:mounts]
-glustersrvs = search(:node, "glusterfs_server:true").map { |n| n["fqdn"] }
+glustersrvs = search(:node, "glusterfs_server:true").map { |n| n["fqdn"] }.sort
 
 package "glusterfs-server" do
   case node[:platform]
