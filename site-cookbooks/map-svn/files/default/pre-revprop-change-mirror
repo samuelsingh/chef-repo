@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Used for the mirror, ensure that only dev can change revision properties
+
+USER="$3"
+
+if [ "$USER" = "dev" ]; then exit 0; fi
+
+echo "Only the dev user may change revision properties" >&2
+exit 1
+

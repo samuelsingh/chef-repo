@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+
+REPOS="$1"
+REV="$2"
+TO="map-dev-commit@mapofmedicine.com"
+
+# Send email notifications
+/usr/local/sbin/fabric-pipeline-svn-notify.sh "$REPOS" "$REV" "$TO"
+
+# Trigger hudson build
+/usr/local/sbin/fabric-pipeline-trigger-build.pl $*
+

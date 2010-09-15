@@ -1,0 +1,211 @@
+#!/usr/bin/perl -w
+#
+# This script is part of the Fabric Software Delivery Pipeline. It is meant to
+# be run by the subversion server's post-commit hook script. Its purpose is to
+# trigger a Hudson job every time a developer commits a change to the codebase.
+#
+# The script assumes that a Hudson build project exists named:
+#  pipeline-commit-$BUILD_NAME, where $BUILD_NAME is either trunk, or the name
+# of a branch in the branches folder.
+#
+# If this script is called for a branch that doesn't have a Hudson project, then
+# it will fail. Ideally it would log an error, send an email, etc. But it doesn't.
+
+use strict;
+use LWP::UserAgent;
+
+my $DEBUG = 0;
+my $VERBOSE = 0;
+
+# This option tells the script to use the $OMNI_PROJECT for all builds, passing it
+# parameters so the build know which branch to build. This is less than useful in 
+# production, but has some cool ideas, so I've left it in for expiremental use.
+my $USE_OMNI_BRANCH = 0;
+my $OMNI_PROJECT = "pipeline-commit-omni";
+
+# This is the name of the Hudson project/job to trigger
+my $HUDSON_PROJECT_BASE = "pipeline-commit";
+
+# The token set in the Hudson project/job configuration
+my $TOKEN = "UP0oofohAir8nahj";
+
+# Hudson login details. Grrr! :-(
+my $HUDSON_USER = "dev";
+my $HUDSON_PASS = "Hoh2ujuo";
+my $HUDSON_HOST = "deploy.dev.mapofmedicine.com";
+
+# Where to find the Hudson server to use
+my $BASE_HUDSON_URL = "http://$HUDSON_HOST/hudson";
+
+# Binary locations and options
+my $SVNLOOK = "/usr/local/bin/svnlook";
+#my $WGET = "/usr/bin/wget";
+#my $WGET_OPTS = "-q -O /dev/null";
+
+my $USAGE = "$0 <svn-repo-path> <svn-revision-number>";
+# Command line arguments, these are set by the svn server when called as a post-commit hook
+# Repo path is the path on the server to the svn repo
+my ($REPO_PATH, $SVN_REVISION) = @ARGV;
+die "Usage: $USAGE\n" unless (defined $REPO_PATH && $REPO_PATH ne '');
+die "Usage: $USAGE\n" unless (defined $SVN_REVISION && $SVN_REVISION ne '');
+
+# Get a suitable author, sanitize it for your safety
+my $COMMITTER = `$SVNLOOK author $REPO_PATH --revision $SVN_REVISION`;
+$COMMITTER =~ s/[\n\r]//g ;
+$COMMITTER =~ s/\s+/\+/g;
+$COMMITTER =~ s/[^a-zA-Z0-9\+]/_/g;
+
+# Get the directories that have changed, work them to find the branches and/or trunk affected
+my $DIRS = `$SVNLOOK dirs-changed $REPO_PATH --revision $SVN_REVISION`;
+my @DIRS = split (/\n/, $DIRS);
+
+my %branches = ();
+my %dull_branches = (); # Branches we don't care about
+
+foreach (@DIRS) {
+	if (m|^trunk/Medic2Medic|) {
+		$branches{'trunk'} = 1;
+	} elsif (m|^trunk/Jira|) {
+		$branches{'Jira'} = 1;
+	} elsif (m|^(branches/[^/]+)/Medic2Medic|) {
+		$branches{$1} = 1;
+	} elsif (m|^branches/([^/]+/[^/]+)|) {
+		$dull_branches{"$1"} = 1;
+	} elsif (m|^(trunk/[^/]+)|) {
+		$dull_branches{"$1"} = 1;
+	} elsif (m|^(tags/[^/]+)|) {
+		$dull_branches{"$1"} = 1;
+	} else {
+		warn "Commit to path outside of /trunk /branches and /tags, ignoring it [$_]\n" if $VERBOSE;
+	}
+}
+
+
+if ($VERBOSE) {
+	print "COMMITTER=$COMMITTER\n";
+	print "DIRS=$DIRS\n";
+	print "Branches = [" . join ('], [', keys %branches) . "]\n";
+	print "Branches and tags we don't care about: [" . join ('], [', keys %dull_branches) . "]\n";
+}
+
+#sub getTimeStamp()
+#{
+	#my ($sec, $min, $hour, $day, $month, $year) = (localtime())[0,1,2,3,4,5];
+	#$month++;
+	#$year += 1900 if ($year < 1000);
+#
+	#return sprintf ("%04d%02d%02d_%02d%02d%02d", $year, $month, $day, $hour, $min, $sec);
+#}
+
+sub makeBuildName($)
+{
+	my ($branch) = @_;
+
+	my $branchname = '';
+	if ($branch =~ m|^branches/([^/]+)|) {
+		$branchname = $1;
+	} elsif ($branch eq 'trunk') {
+		$branchname = 'trunk';
+	} elsif ($branch eq 'Jira') {
+		$branchname = 'Jira';
+	} else {
+		warn "Can't figure out branch name for $branch\n";
+		return undef;
+	}
+
+	return $branchname;
+}
+
+sub BuildBranchProjectURL($)
+{
+	my ($build_name) = @_;
+
+	# 'polling' tells Hudson to poll
+	# the relevant svn path for changes, rather than blindly build. This avoids builds if
+	# this script is triggered by changes outside the interesting path. In practice this
+	# shouldn't happen since we're checking the changed directories, but you never know.
+
+	my $build_project = "${HUDSON_PROJECT_BASE}-${build_name}";
+	return "$BASE_HUDSON_URL/job/$build_project/polling";
+}
+
+sub BuildOmniProjectURL($$$)
+{
+	my ($branch, $buildname, $cause) = @_;
+
+	my $hudson_url = "$BASE_HUDSON_URL/job/$OMNI_PROJECT/buildWithParameters?token=${TOKEN}&BRANCH=$branch&BUILD_NAME=$buildname&COMMITTER=$COMMITTER&cause=$cause";
+}
+
+sub TellHudson($$$)
+{
+	my ($url, $user, $pass) = @_;
+
+	my $ua = LWP::UserAgent->new;
+	$ua->agent("Fabric Hudson Build Trigger Script/1.0");
+	my $req = HTTP::Request->new(GET => $url);
+	$req->authorization_basic("$user", "$pass");
+	my $res = $ua->request($req);
+
+	# Check the outcome of the response
+	if (!$res->is_success) {
+		warn "Request failed: " . $res->status_line . "\n";
+		if ($VERBOSE > 1) {
+			print "\nHTTP Response:\n\n";
+			foreach (keys %{$res->headers}) {
+    			print "$_: " . $res->header($_) . "\n";
+			}
+			print "\n" . $res->content . "\n\n";
+		}
+		return undef;
+	} elsif ($VERBOSE) {
+		print "Hudson build request was successful:\n";
+		if ($VERBOSE > 1) {
+			print "\nHTTP Response:\n\n";
+			foreach (keys %{$res->headers}) {
+    			print "$_: " . $res->header($_) . "\n";
+			}
+			print "\n" . $res->content . "\n\n";
+		}
+	}
+	return 1;
+}
+
+sub TriggerBuild($)
+{
+	my ($branch) = @_;
+
+	my $buildname = makeBuildName($branch) || "_UNKNOWN_";
+
+	print "Let's build branch '$branch' and call it $buildname\n" if $VERBOSE;
+
+	# Make a cause message for Hudson. Tokenize the spaces after, 
+	# to make the original string easier to read.
+	my $cause = "Commit on $branch for revision $SVN_REVISION by $COMMITTER";
+	$cause =~ s/\s/\+/g;
+
+	# This is the URL to hit on Hudson to trigger the job. 
+	my $build_poll_url = $USE_OMNI_BRANCH ?
+		BuildOmniProjectURL($branch, $buildname, $cause) :
+		BuildBranchProjectURL($buildname);	
+
+	print "build_poll_url=$build_poll_url\n" if $VERBOSE;
+
+	if ($DEBUG || $VERBOSE) {
+		print "EXEC: GET --http-user=$HUDSON_USER --http-password=****** \"$build_poll_url\"\n";
+	}
+
+	#`$WGET $WGET_OPTS --http-user=$HUDSON_USER --http-password=$HUDSON_PASS "$build_poll_url"` unless $DEBUG;
+
+	if (!$DEBUG) {
+		TellHudson($build_poll_url, $HUDSON_USER, $HUDSON_PASS) || warn "Failed to trigger build for $buildname, does the job exist in Hudson?\n";
+	}
+	#get -user=$HUDSON_USER --http-password=$HUDSON_PASS "$build_poll_url"` unless $DEBUG;
+}
+
+
+foreach (keys %branches) {
+	print "Trigger Build on Branch '$_'\n" if $VERBOSE;
+	TriggerBuild ($_);
+}
+
+

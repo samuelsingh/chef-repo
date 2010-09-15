@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# This is a fairly basic wrapper to be called from the svn post-commit hook,
+# in order to send email notifications for each commit.
+#
+
+REPOS="$1"
+REV="$2"
+TO="$3"
+
+/usr/bin/svnnotify \
+        --repos-path "$REPOS" \
+        --revision "$REV" \
+        --to "$TO" \
+        --with-diff \
+        --subject-prefix '[map-sys %d] ' \
+        --revision-url 'http://viewvc.mapofmedicine.com/map-sys?view=revision&revision=%s' \
+        --jira-url 'http://tracking.mapofmedicine.com/jira/browse/%s' \
+        --ticket-map '\b([A-Z0-9]+-\d+)\b=http://tracking.mapofmedicine.com/jira/browse/%s' \
+        --user-domain mapofmedicine.com
+

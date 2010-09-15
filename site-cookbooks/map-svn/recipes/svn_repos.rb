@@ -27,6 +27,32 @@ directory "/var/svn/BACKUPS"  do
   group "root"
 end
 
+remote_file "/var/svn/map-dev/hooks/post-commit"
+  source "post-commit-dev"
+  mode 0755
+  owner "www-data"
+  group "www-data"
+  only_if "test -d /var/svn/map-dev/hooks"
+end
+
+remote_file "/var/svn/map-sys/hooks/post-commit"
+  source "post-commit-sys"
+  mode 0755
+  owner "www-data"
+  group "www-data"
+  only_if "test -d /var/svn/map-sys/hooks"
+end
+
+remote_file "/usr/local/sbin/fabric-pipeline-svn-notify" do
+  source "fabric-pipeline-svn-notify"
+  mode 0755
+end
+
+remote_file "/usr/local/sbin/fabric-pipeline-trigger-build" do
+  source "fabric-pipeline-trigger-build"
+  mode 0755
+end
+
 remote_file "/usr/local/sbin/svn_backup.sh" do
   source "svn_backup.sh"
   mode 0755
