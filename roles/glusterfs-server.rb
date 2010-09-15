@@ -14,13 +14,13 @@ override_attributes(
     "server_ebs_volumes" => {
       "vol-2231f14b" => {
         "host" => "filer-01.map-cloud-01.eu",
-        "device" => "/dev/sdh1",
+        "device" => "/dev/sdh",
         "mount" => "/gfs/shared",
         "fstype" => "ext3"
       },
       "vol-bc4383d5" => {
         "host" => "filer-02.map-cloud-01.eu",
-        "device" => "/dev/sdh1",
+        "device" => "/dev/sdh",
         "mount" => "/gfs/shared",
         "fstype" => "ext3"
       }
