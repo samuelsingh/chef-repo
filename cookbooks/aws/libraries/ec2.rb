@@ -24,7 +24,8 @@ module Opscode
       end
 
       def ec2
-        @@ec2 ||= RightAws::Ec2.new(new_resource.aws_access_key, new_resource.aws_secret_access_key, { :logger => Chef::Log })
+        #@@ec2 ||= RightAws::Ec2.new(new_resource.aws_access_key, new_resource.aws_secret_access_key, { :logger => Chef::Log })
+        @@ec2 ||= RightAws::Ec2.new(new_resource.aws_access_key, new_resource.aws_secret_access_key, { :server => aws_api_url, :logger => Chef::Log })
       end
 
       def instance_id
@@ -36,6 +37,14 @@ module Opscode
       end
 
       private
+
+      def aws_api_url
+        case instance_availability_zone
+          when /eu-west/ then 'eu-west-1.ec2.amazonaws.com'
+          when /us-east/ then 'us-east-1.ec2.amazonaws.com'
+          else 'ec2.amazonaws.com'
+        end
+      end
 
       def query_instance_id
         instance_id = open('http://169.254.169.254/latest/meta-data/instance-id'){|f| f.gets}
