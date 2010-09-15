@@ -4,6 +4,10 @@ description "Configures glusterfs storage node"
 run_list "recipe[aws]","recipe[glusterfs::ebs]","recipe[glusterfs::ephemeral]","recipe[glusterfs::server]"
 
 override_attributes(
+  "aws" => {
+    "aws_access_key" => "AKIAIB5QZCFE3LUGZHVA",
+    "aws_secret_access_key" => "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"
+  },
   "glusterfs" => {
     "server" => "true",
     "mounts" => ["shared", "tmp"],
