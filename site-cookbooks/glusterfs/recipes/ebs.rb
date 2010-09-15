@@ -18,7 +18,7 @@
 #
 
 #"glusterfs" => {
-#  "server_volumes" => {
+#  "server_ebs_volumes" => {
 #    "volume_name" => {
 #      "host" => "host_fqdn",
 #      "device" => "device_name",
