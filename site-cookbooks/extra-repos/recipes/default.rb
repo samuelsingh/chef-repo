@@ -21,7 +21,7 @@ case node[:platform]
 when "ubuntu"
 
   execute "apt-update" do
-    command "sleep 5 && apt-get update && sleep 1" 
+    command "apt-get update" 
     action :nothing
   end
   
@@ -30,7 +30,7 @@ when "ubuntu"
     mode 0644
     owner "root"
     group "root"
-    notifies :run, resources(:execute => "apt-update")
+    notifies :run, resources(:execute => "apt-update"), :immediately
   end
   
   template "/etc/apt/sources.list.d/multiverse.list" do
@@ -38,7 +38,7 @@ when "ubuntu"
     mode 0644
     owner "root"
     group "root"
-    notifies :run, resources(:execute => "apt-update")
+    notifies :run, resources(:execute => "apt-update"), :immediately
   end
   
 end
