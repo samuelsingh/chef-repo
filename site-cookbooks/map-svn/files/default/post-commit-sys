@@ -5,5 +5,5 @@ REV="$2"
 TO="map-sys-commit@mapofmedicine.com"
 
 # Send email notifications
-/usr/local/sbin/fabric-pipeline-svn-notify.sh "$REPOS" "$REV" "$TO"
+/usr/local/sbin/fabric-pipeline-svn-notify "$REPOS" "$REV" "$TO"
 
