@@ -38,7 +38,9 @@ my $HUDSON_HOST = "deploy.dev.mapofmedicine.com";
 my $BASE_HUDSON_URL = "http://$HUDSON_HOST/hudson";
 
 # Binary locations and options
-my $SVNLOOK = "/usr/local/bin/svnlook";
+my $SVNLOOK = "/usr/bin/svnlook";
+die "Can't find svnlook in $SVNLOOK\n" unless (-x $SVNLOOK);
+
 #my $WGET = "/usr/bin/wget";
 #my $WGET_OPTS = "-q -O /dev/null";
 
@@ -51,6 +53,7 @@ die "Usage: $USAGE\n" unless (defined $SVN_REVISION && $SVN_REVISION ne '');
 
 # Get a suitable author, sanitize it for your safety
 my $COMMITTER = `$SVNLOOK author $REPO_PATH --revision $SVN_REVISION`;
+die "Could not work out the committer using $SVNLOOK\n" unless $COMMITER ne '';
 $COMMITTER =~ s/[\n\r]//g ;
 $COMMITTER =~ s/\s+/\+/g;
 $COMMITTER =~ s/[^a-zA-Z0-9\+]/_/g;
