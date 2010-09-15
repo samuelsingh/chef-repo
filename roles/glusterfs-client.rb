@@ -6,7 +6,7 @@ run_list "recipe[glusterfs::client]"
 override_attributes(
   "glusterfs" => {
     "client" => {
-      "mounts" => ["shared"]
+      "mounts" => ["shared","tmp"]
     }
   }
 )
