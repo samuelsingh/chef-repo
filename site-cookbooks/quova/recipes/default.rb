@@ -44,7 +44,7 @@ end
 # Grab Quova data files, if they're not already in place
 remote_file "/var/tmp/qvdata.zip" do
   source "qvdata/qvdata.zip"
-  files_backup 0
+  backup 0
   mode "0644"
   notifies :run, resources(:execute => "deploy_qvdata")
   not_if "test -f /usr/local/quova/data/current/VERSION"
