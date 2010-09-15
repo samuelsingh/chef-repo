@@ -53,7 +53,7 @@ volumes.each do |name, conf|
     end
   
     mount "#{conf.fetch("mount")}" do
-      device "#{conf.fetch("device")1}"
+      device "#{conf.fetch("device")}1"
       fstype "#{conf.fetch("fstype")}"
     end
   
