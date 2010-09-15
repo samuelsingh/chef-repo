@@ -40,17 +40,17 @@ end
 remote_directory "/usr/local/quova" do
   source "quova"
   files_backup 0
-  files_owner "quova"
-  files_group "quova"
+  files_owner "root"
+  files_group "root"
   files_mode "0644"
-  owner "quova"
-  group "quova"
+  owner "root"
+  group "root"
   mode "0755"
 end
 
 # Deploy Quova data files
 execute "deploy_qvdata" do
-  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current && chown -R quova:quova /usr/local/quova/data"
+  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current && chown -R quova:quova /usr/local/quova"
   action :nothing
 end
 
