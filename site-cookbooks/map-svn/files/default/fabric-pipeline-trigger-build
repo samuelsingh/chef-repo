@@ -53,7 +53,7 @@ die "Usage: $USAGE\n" unless (defined $SVN_REVISION && $SVN_REVISION ne '');
 
 # Get a suitable author, sanitize it for your safety
 my $COMMITTER = `$SVNLOOK author $REPO_PATH --revision $SVN_REVISION`;
-die "Could not work out the committer using $SVNLOOK\n" unless $COMMITER ne '';
+die "Could not work out the committer using $SVNLOOK\n" unless $COMMITTER ne '';
 $COMMITTER =~ s/[\n\r]//g ;
 $COMMITTER =~ s/\s+/\+/g;
 $COMMITTER =~ s/[^a-zA-Z0-9\+]/_/g;
