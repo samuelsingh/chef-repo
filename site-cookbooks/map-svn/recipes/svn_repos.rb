@@ -27,7 +27,7 @@ directory "/var/svn/BACKUPS"  do
   group "root"
 end
 
-remote_file "/var/svn/map-dev/hooks/post-commit"
+remote_file "/var/svn/map-dev/hooks/post-commit" do
   source "post-commit-dev"
   mode 0755
   owner "www-data"
@@ -35,7 +35,7 @@ remote_file "/var/svn/map-dev/hooks/post-commit"
   only_if "test -d /var/svn/map-dev/hooks"
 end
 
-remote_file "/var/svn/map-sys/hooks/post-commit"
+remote_file "/var/svn/map-sys/hooks/post-commit" do
   source "post-commit-sys"
   mode 0755
   owner "www-data"
