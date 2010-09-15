@@ -19,6 +19,19 @@
 
 # A small recipe to install Quova 6.2
 
+group "quova"  do
+  gid 10020
+end
+
+user "quova"  do
+  comment "quova"
+  uid "10020"
+  gid "quova"
+  home "/home/quova"
+  shell "/bin/bash"
+  not_if "[ ! -z \"`who | grep quova`\" ]"
+end
+
 package "unzip" do
   action :install
 end
@@ -27,17 +40,17 @@ end
 remote_directory "/usr/local/quova" do
   source "quova"
   files_backup 0
-  files_owner "root"
-  files_group "root"
+  files_owner "quova"
+  files_group "quova"
   files_mode "0644"
-  owner "root"
-  group "root"
+  owner "quova"
+  group "quova"
   mode "0755"
 end
 
 # Deploy Quova data files
 execute "deploy_qvdata" do
-  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current"
+  command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current && chown -R quova:quova /usr/local/quova/data"
   action :nothing
 end
 
@@ -48,6 +61,13 @@ remote_file "/var/tmp/qvdata.zip" do
   mode "0644"
   notifies :run, resources(:execute => "deploy_qvdata")
   not_if "test -f /usr/local/quova/data/current/VERSION"
+end
+
+# Adds a (very rudimentary) init script
+remote_file "/etc/init.d/quova-server" do
+  source "quova-server"
+  backup 0
+  mode "0755"
 end
 
 # Delete tmp data file if it's been deployed
