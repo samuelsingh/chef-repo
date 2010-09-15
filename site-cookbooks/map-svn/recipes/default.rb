@@ -16,3 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+package "snvnotify" do
+  case node[:platform]
+#  when "centos","redhat","fedora","suse"
+#    package_name "httpd"
+  when "debian","ubuntu"
+    package_name "libsvn-notify-perl"
+  end
+  action :install
+end
+
