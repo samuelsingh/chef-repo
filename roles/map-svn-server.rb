@@ -19,6 +19,7 @@ run_list "recipe[subversion]",
 	"recipe[apache2::mod_include]", 
 	"recipe[apache2::mod_log_forensic]", 
 	"recipe[apache2::mod_info]", 
+	"recipe[map-svn]",
 	"recipe[map-svn::svn_repos]",
 	"recipe[map-svn::vhost]"
 
