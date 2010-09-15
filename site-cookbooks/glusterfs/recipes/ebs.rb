@@ -39,7 +39,7 @@ volumes.each do |name, conf|
       aws_access_key node[:aws][:aws_access_key]
       aws_secret_access_key node[:aws][:aws_secret_access_key]
       volume_id name
-      availability_zone node[:ec2][:availability_zone]
+      availability_zone node[:ec2][:placement_availability_zone]
       device conf.fetch("device")
       action :attach
       not_if "test -b #{conf.fetch("device")}"
