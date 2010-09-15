@@ -57,8 +57,8 @@ end
 mounts.each do |mount|
   
   directory "/gfs/#{mount}" do
-    owner "root"
-    group "root"
+    owner "sysadmin"
+    group "sysadmin"
     mode "0755"
     action :create
     not_if "test -d /gfs/#{mount}"
