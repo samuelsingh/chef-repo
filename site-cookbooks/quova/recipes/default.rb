@@ -63,7 +63,7 @@ end
 
 # Grab Quova data files, if they're not already in place
 remote_file "/var/tmp/quova.zip" do
-  source "qvdata/quova.zip"
+  source "quova.zip"
   backup 0
   mode "0644"
   notifies :run, resources(:execute => "deploy_quova")
