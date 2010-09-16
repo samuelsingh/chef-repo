@@ -36,22 +36,38 @@ package "unzip" do
   action :install
 end
 
+# Deploy Quova application (removed because of issues with remote_directory)
+# This should be the better way to do this, however.
+#remote_directory "/usr/local/quova" do
+#  source "quova"
+#  files_backup 0
+#  files_owner "quova"
+#  files_group "quova"
+#  files_mode "0644"
+#  owner "quova"
+#  group "quova"
+#  mode "0755"
+#end
+
 # Deploy Quova application
-remote_directory "/usr/local/quova" do
-  source "quova"
-  files_backup 0
-  files_owner "root"
-  files_group "root"
-  files_mode "0644"
-  owner "root"
-  group "root"
-  mode "0755"
+execute "deploy_qvdata" do
+  command "unzip /var/tmp/quova.zip -d /usr/local/quova && chown -R quova:quova /usr/local/quova"
+  action :nothing
 end
 
 # Deploy Quova data files
 execute "deploy_qvdata" do
   command "unzip /var/tmp/qvdata.zip -d /usr/local/quova/data/current && chown -R quova:quova /usr/local/quova"
   action :nothing
+end
+
+# Grab Quova data files, if they're not already in place
+remote_file "/var/tmp/quova.zip" do
+  source "qvdata/quova.zip"
+  backup 0
+  mode "0644"
+  notifies :run, resources(:execute => "deploy_quova")
+  not_if "test -f /usr/local/quova/GeoDirectoryServer.properties"
 end
 
 # Grab Quova data files, if they're not already in place
@@ -74,4 +90,10 @@ end
 file "/var/tmp/qvdata.zip" do
   action :delete
   only_if "test -f /usr/local/quova/data/current/VERSION"
+end
+
+# Delete tmp data file if it's been deployed
+file "/var/tmp/quova.zip" do
+  action :delete
+  only_if "test -f /usr/local/quova/GeoDirectoryServer.properties"
 end
