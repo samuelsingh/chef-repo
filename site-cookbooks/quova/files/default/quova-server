@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# tomcat@tomcat-ajp-port@  Startup script for an Apache Tomcat Application Server instance
+# Very rudimentary init.d script to start and stop Quova
 #
 # chkconfig: 2345 77 23
 #
@@ -12,9 +12,7 @@
 ##   will be lost.
 ######################################################################
 #
-# Tomcat start and stop script
 
-# Leave blank to run as root (you'll go to hell, though)
 USER=quova
 GROUP=quova
 
@@ -34,6 +32,7 @@ bail()
 
 start()
 {
+    echo "Starting server"
     sh $QUOVA_START
 }
 
@@ -48,7 +47,7 @@ status()
 }
 
 
-[ -d "$CATALINA_HOME" ] || bail "Can't find QUOVA_HOME '$QUOVA_HOME'"
+[ -d "$QUOVA_HOME" ] || bail "Can't find QUOVA_HOME '$QUOVA_HOME'"
 [ -n "$1" ] || bail
 
 if [ -n "$USER" ] ; then
@@ -72,6 +71,9 @@ while [ -n "$1" ] ; do
 			;;
 		stop)
 			stop
+			;;
+		status)
+			status
 			;;
                 *)
 		bail
