@@ -46,6 +46,7 @@ execute "clear_conf" do
 end
 
 
+
 directory "/gfs" do
   owner "root"
   group "root"
@@ -54,11 +55,13 @@ directory "/gfs" do
   not_if "test -d /gfs"
 end
 
+
+
 mounts.each do |mount|
   
   directory "/gfs/#{mount}" do
-    owner "sysadmin"
-    group "sysadmin"
+    owner "root"
+    group "root"
     mode "0755"
     action :create
     not_if "test -d /gfs/#{mount}"
