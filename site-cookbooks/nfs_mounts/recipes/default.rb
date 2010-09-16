@@ -18,7 +18,7 @@
 #
 
 # Transition to glusterfs
-if node[:glusterfs][:client].nil?
+if node[:glusterfs].nil?
   
 # Nasty hack, needs improving
 unless node[:hostname] == "filer"
