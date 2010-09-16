@@ -64,7 +64,7 @@ end
 # Grab Quova data files, if they're not already in place
 remote_file "/var/tmp/quova.zip" do
   source "quova.zip"
-  backup 0
+  backup false
   mode "0644"
   notifies :run, resources(:execute => "deploy_quova")
   not_if "test -f /usr/local/quova/GeoDirectoryServer.properties"
@@ -73,7 +73,7 @@ end
 # Grab Quova data files, if they're not already in place
 remote_file "/var/tmp/qvdata.zip" do
   source "qvdata/qvdata.zip"
-  backup 0
+  backup false
   mode "0644"
   notifies :run, resources(:execute => "deploy_qvdata")
   not_if "test -f /usr/local/quova/data/current/VERSION"
