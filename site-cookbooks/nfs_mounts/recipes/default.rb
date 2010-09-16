@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+# Transition to glusterfs
+unless recipe?("glusterfs::client")
+  
 # Nasty hack, needs improving
 unless node[:hostname] == "filer"
 
@@ -51,4 +54,6 @@ unless node[:hostname] == "filer"
   
   end
   
+end
+
 end

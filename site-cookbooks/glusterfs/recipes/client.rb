@@ -42,46 +42,42 @@ execute "modprobe fuse" do
   not_if "lsmod | grep fuse > /dev/null"
 end
 
-# Creates base mount directory
-#
-directory "/gfs" do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
-  not_if "test -d /gfs"
-end
-
 unless glustersrvs.empty?
 
-  mounts.each do |mount|
+  mounts.each do |entry|
     
-    directory "/gfs/#{mount}" do
+    # Mount entry should be something like
+    # "share,/mount/point
+    
+    share = entry.split(",")[0]
+    mount = entry.split(",")[1]
+    
+    directory "#{mount}" do
       owner "root"
       group "root"
       mode "0755"
       action :create
-      not_if "test -d /gfs/#{mount}"
+      not_if "test -d #{mount}"
     end
     
     if glustersrvs[1].nil?
       
-      mount "/gfs/#{mount}" do
-        device "#{glustersrvs[0]}:export_#{mount}"
+      mount "#{mount}" do
+        device "#{glustersrvs[0]}:export_#{share}"
         fstype "glusterfs"
         options "direct-io-mode=disable,noatime"
         action [:mount, :enable]
-        not_if "test -f /gfs/#{mount}/.gfs"
+        not_if "test -f #{mount}/.gfs"
       end
       
     else
       
-      mount "/gfs/#{mount}" do
-        device "#{glustersrvs[0]}:export_#{mount}"
+      mount "#{mount}" do
+        device "#{glustersrvs[0]}:export_#{share}"
         fstype "glusterfs"
         options "backupvolfile-server=#{glustersrvs[1]},direct-io-mode=disable,noatime"
         action [:mount, :enable]
-        not_if "test -f /gfs/#{mount}/.gfs"
+        not_if "test -f #{mount}/.gfs"
       end
       
     end
