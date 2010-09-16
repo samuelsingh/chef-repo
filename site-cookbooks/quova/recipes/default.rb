@@ -50,7 +50,7 @@ end
 #end
 
 # Deploy Quova application
-execute "deploy_qvdata" do
+execute "deploy_quova" do
   command "unzip /var/tmp/quova.zip -d /usr/local/quova && chown -R quova:quova /usr/local/quova"
   action :nothing
 end
