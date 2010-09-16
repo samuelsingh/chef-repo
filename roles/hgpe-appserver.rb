@@ -5,7 +5,7 @@ run_list "recipe[java]", "recipe[tomcat]", "recipe[hg-mde]"
 
 override_attributes(
   "tomcat" => {
-    "unpackwars" => "false"
+    "unpackwars" => "true"
   },
   "hg_mde" => {
     "hg_war_path" =>  "/var/shared/deployment/healthguides/wars",
