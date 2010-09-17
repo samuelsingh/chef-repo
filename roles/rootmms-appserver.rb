@@ -20,8 +20,8 @@ override_attributes(
       "external_end" => "10000000"
     },
     "quartz" => {
-      "user" => "support@mapofmedicine.com",
-      "password" => "Ogohgha8"
+      "user" => "scott@nhs.com",
+      "password" => "LetMe1n"
     },
     "mapmanager" => {
       "dbname" => "mcs"
