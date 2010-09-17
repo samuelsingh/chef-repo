@@ -76,6 +76,18 @@
         Allow from env=ELBAUTH
     </Location>
     
+    # Restricted access to feedback, locked by IP address.
+    <Location "/choices/selenium">
+        Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
+    
     <% unless @awstats == false -%>
     # AWStats configuration
     
@@ -127,9 +139,6 @@
         RewriteRule ^/professional(.*) /choices$1 [R,L]
         # Not sure what this one is needed for...
         RewriteRule ^/map(.*)/?$ / [R,L]
-        RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
-        RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
-        # RewriteRule ^/choices/feedback/ /choices/map/index.html [R,L]
         
         <% unless @awstats == false -%>
         # Redirect for AWStats
