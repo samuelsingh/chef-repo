@@ -8,8 +8,8 @@ override_attributes(
   "mms_vhost" => {
     "mms.map-cloud-01.eu" => {
       "srv_aliases" => [],
-      "deploy_dir" => "/var/shared/deployment/root-mms",
-      "appserver" => "rootmms-test-01.map-cloud-01.eu",
+      "deploy_dir" => "/var/shared/deployment/prod/root-mms",
+      "appserver" => "rootmms-app-01.map-cloud-01.eu",
       "restricted_ips" => [],
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
@@ -17,7 +17,7 @@ override_attributes(
     },
     "localise.map-cloud-01.eu" => {
       "srv_aliases" => [],
-      "deploy_dir" => "/var/shared/deployment/client-mms",
+      "deploy_dir" => "/var/shared/deployment/prod/client-mms",
       "appserver" => "clientmms-app-01.map-cloud-01.eu",
       "restricted_ips" => [],
       "holding_page" => "false",
