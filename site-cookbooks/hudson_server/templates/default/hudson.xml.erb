@@ -1,0 +1,9 @@
+<Context path="/hudson" 
+docBase="<%= @node[:hudson][:warn_path] %>/<%= @node[:hudson][:version] %>.war"
+	    reloadable="false"
+	    debug="0">
+
+    <Logger className="org.apache.catalina.logger.FileLogger"
+        prefix="webapp-hudson." suffix=".log" timestamp="true"/>
+
+</Context>
