@@ -4,7 +4,7 @@ description "Configures Client MMS application server"
 run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]"
 default_attributes(
   "mms" => {
-    "dbhost" => "clientmms-db-01.map-cloud-01.eu"
+    "dbhost" => "stage-db-02.map-cloud-01.eu"
   }
 )
 override_attributes(
@@ -29,6 +29,6 @@ override_attributes(
     "athens_link" => "true",
     "multiple_views" => "true",
     "dbuser" => "mtmuser",
-    "dbpass" => "MtMUs3r"
+    "dbpass" => "medic1"
   }
 )
