@@ -14,4 +14,5 @@ override_attributes(
 	:node  => {
 		"launcher" => "jnlp"
 	}
+  }
 )
