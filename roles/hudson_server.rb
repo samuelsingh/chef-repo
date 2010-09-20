@@ -9,9 +9,9 @@ override_attributes(
 
   :hudson => {
 	:server => {
-		:home = "/var/hudson"
+		"home" => "/var/hudson"
 	},
 	:node  => {
-		:launcher = "jnlp"
+		"launcher" = "jnlp"
 	}
 )
