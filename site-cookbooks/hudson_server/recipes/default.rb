@@ -35,8 +35,8 @@ template "#{node[:hudson_server][:install_path]}/conf/Catalina/localhost/hudson.
   mode 0755
 end
 
-remote_file "#{node[:tomcat][:basedir]}/server9001/etc/java_opts.conf" do
-  source "java_opts.conf"
+template "#{node[:tomcat][:basedir]}/server9001/etc/java_opts.conf" do
+  source "java_opts.conf.erb"
   owner "root"
   group "root"
   mode 0644
