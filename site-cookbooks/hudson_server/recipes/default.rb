@@ -59,4 +59,10 @@ mount "#{hudson_home}" do
   only_if "test -b /dev/sdh1"
 end
 
+directory "#{hudson_home}"  do
+  mode "0755"
+  recursive true
+  owner "#{run_user}"
+  group "#{run_user}"
+end
 
