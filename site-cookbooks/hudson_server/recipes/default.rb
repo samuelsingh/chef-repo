@@ -62,6 +62,7 @@ end
 directory "#{hudson_home}"  do
   mode "0755"
   recursive true
+  action :create
   owner "#{run_user}"
   group "#{run_user}"
 end
