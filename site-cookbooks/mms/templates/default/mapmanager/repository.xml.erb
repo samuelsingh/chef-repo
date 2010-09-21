@@ -74,7 +74,7 @@
   </Versioning>
   <% if @datastore == false -%>
   <!--
-  <% END -%>
+  <% end -%>
   <DataStore class="org.apache.jackrabbit.core.data.db.DbDataStore">
     <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
     <param name="user" value="<%= @dbuser %>" />
@@ -87,5 +87,5 @@
   </DataStore>
   <% if @datastore == false -%>
   -->
-  <% END -%>
+  <% end -%>
 </Repository>
