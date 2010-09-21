@@ -274,7 +274,8 @@ template "#{mmpath}/crx/repository.xml" do
     :dbuser => node[:mms][:repository][:dbuser],
     :dbpass => node[:mms][:repository][:dbpass],
     :dbhost => node[:mms][:repository][:dbhost],
-    :dbname => node[:mms][:repository][:dbname]
+    :dbname => node[:mms][:repository][:dbname],
+    :datastore => node[:mms][:datastore]
   )
 end
 

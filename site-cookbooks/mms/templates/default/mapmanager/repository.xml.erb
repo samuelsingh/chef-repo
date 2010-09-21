@@ -72,6 +72,9 @@
       <param name="ignoreReferences" value="true" />
     </PersistenceManager>
   </Versioning>
+  <% if @datastore == false -%>
+  <!--
+  <% END -%>
   <DataStore class="org.apache.jackrabbit.core.data.db.DbDataStore">
     <param name="url" value="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>;lobBuffer=131072" />
     <param name="user" value="<%= @dbuser %>" />
@@ -82,4 +85,7 @@
     <param name="maxConnections" value="3" />
     <param name="copyWhenReading" value="true" />
   </DataStore>
+  <% if @datastore == false -%>
+  -->
+  <% END -%>
 </Repository>

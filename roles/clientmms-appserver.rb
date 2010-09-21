@@ -28,6 +28,7 @@ override_attributes(
     },
     "athens_link" => "true",
     "multiple_views" => "true",
+    "datastore" => false
     "dbuser" => "mtmuser",
     "dbpass" => "medic1"
   }
