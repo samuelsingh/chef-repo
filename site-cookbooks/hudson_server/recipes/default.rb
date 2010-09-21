@@ -59,10 +59,11 @@ mount "#{hudson_home}" do
   only_if "test -b /dev/sdh1"
 end
 
-directory "#{hudson_home}"  do
+directory "#{hudson_home}/.hudson"  do
   mode "0755"
   recursive true
   action :create
+  not_if "test -d #{hudson_home}/.hudson"
   owner "#{run_user}"
   group "#{run_user}"
 end
