@@ -15,7 +15,7 @@ REP=`basename $REPOS`
         --revision "$REV" \
         --to "$TO" \
         --with-diff \
-        --subject-prefix '[$REP %d] ' \
+        --subject-prefix '['$REP' %d] ' \
         --jira-url 'http://tracking.mapofmedicine.com/jira/browse/%s' \
         --ticket-map '\b([A-Z0-9]+-\d+)\b=http://tracking.mapofmedicine.com/jira/browse/%s' \
         --user-domain mapofmedicine.com
