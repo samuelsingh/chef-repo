@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+hudson_home = "#{node[:hudson_server][:home]}"
+run_user    = "#{node[:hudson_server][:run_user]}"
+
 directory "#{node[:tomcat][:basedir]}/server9001/webapps" do
 	owner "tomcat"
 	group "tomcat"
@@ -30,9 +33,19 @@ template "#{node[:hudson_server][:install_path]}/conf/Catalina/localhost/hudson.
   mode 0755
 end
 
-template "#{node[:hudson_server][:install_path]}/conf/Catalina/localhost/manager-hudson.xml.erb" do
-  source "manager-hudson.xml.erb"
-  mode 0755
+directory "#{hudson_home}"  do
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{hudson_home}"
+  owner "#{run_user}"
+  group "#{run_user}"
 end
-      
+
+mount "#{hudson_home}" do
+  device "/dev/sdh1"
+  fstype "ext3"
+  action [:mount, :enable]
+  only_if "test -b /dev/sdh1"
+end
 

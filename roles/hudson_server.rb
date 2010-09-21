@@ -5,3 +5,5 @@ description "Map of Medicine Hudson deployment server"
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
 run_list "recipe[java]", "recipe[tomcat]", "recipe[hudson_server]"
 
+override_attributes "hudson_server" => {"version" =>  "hudson-1.377" }
+
