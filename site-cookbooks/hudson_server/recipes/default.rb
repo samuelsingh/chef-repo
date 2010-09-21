@@ -30,8 +30,18 @@ end
 
 template "#{node[:hudson_server][:install_path]}/conf/Catalina/localhost/hudson.xml" do
   source "hudson.xml.erb"
+  owner "root"
+  group "root"
   mode 0755
 end
+
+remote_file "#{node[:tomcat][:basedir]}/server9001/etc/java_opts.conf" do
+  source "java_opts.conf"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 
 directory "#{hudson_home}"  do
   mode "0755"
@@ -48,4 +58,5 @@ mount "#{hudson_home}" do
   action [:mount, :enable]
   only_if "test -b /dev/sdh1"
 end
+
 
