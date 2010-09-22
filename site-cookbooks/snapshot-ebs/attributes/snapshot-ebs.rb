@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: snapshot_ebs
 # Attributes:: snapshot_ebs
-set[:snapshot_ebs][:install_path] => "/usr/local/bin"
+set[:snapshot_ebs][:install_path] = "/usr/local/bin"
 
 set[:snapshot_ebs][:volumes] = [
 	{ :name => "mddb01",     :volume_id => "vol-fe976d97", :retention => "35" },
