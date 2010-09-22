@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-set_unless[:generic_tomcat_vhost] = {
+set_unless[:hg_mde_vhosts] = {
   "unset.mapofmedicine.com" => {
     "srv_aliases" => [],
     "webapps" => {

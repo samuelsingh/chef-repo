@@ -30,9 +30,7 @@
 
     # The DocumentRoot isn't used for much, anything not inside a webapp.
     # Mainly this is used for the holding page.
-    <% @webapps.each do |webapp,params| -%>
-    DocumentRoot <%= params.fetch("document_root") %>
-    <% end -%> 
+    DocumentRoot /var/www/vhosts/<%= hostname %>
 
     # These are the main ajp proxy directives, they tell Apache to pass requests
     # to Tomcat.
@@ -41,16 +39,19 @@
     # the future, we'll do somethis more clever with mod_proxy_balancer
 
     <% @webapps.each do |webapp,params| -%>
-    ProxyPass /<%= params.fetch("proxy_pass")[1] %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= params.fetch("proxy_pass")[1] %>
-    ProxyPass /<%= params.fetch("proxy_pass")[0] %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= params.fetch("proxy_pass")[1] %>
+    ProxyPass /<%= webapp %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= webapp %>
     <% end -%>
 
-    # Main access block, this allows anonymous access to everything by default
+
     <Location "/robots.txt">
         SetHandler None
     </Location>
     
-    alias /robots.txt /var/tomcat/server9001/webapps/choices/robots.txt
+    
+    # Workaround for secure access via ELB
+    <% @restricted_ips.each do |ip| -%>
+    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
+    <% end -%>
 
     # Restricted access for the Tomcat manager webapp, locked by IP address.
     <Location "/tomcat-manager">
@@ -58,19 +59,15 @@
         Deny from all
         Allow from 127.0.0.1
         <% @restricted_ips.each do |ip| -%>
-    #   Allow from <%= ip %>
+        Allow from <%= ip %>
         <% end -%>
+        Allow from env=ELBAUTH
     </Location>
     
     <% unless @awstats == false -%>
     # AWStats configuration
     
     ProxyPass /stats     http://awstats.<%= @node[:domain] %>
-    
-    # Workaround for secure access via ELB
-    <% @restricted_ips.each do |ip| -%>
-    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
-    <% end -%>
     
     <Location "/stats">
         Order deny,allow
@@ -96,6 +93,7 @@
     <IfModule mod_rewrite.c>
         RewriteEngine on 
         RewriteRule ^/$ /choices [R,L]
+        RewriteRule ^/professional(.*) /choices$1 [R,L]
         RewriteRule ^/map(.*)/?$ / [R,L]
         RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
         RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
@@ -123,6 +121,14 @@
         
         # Redirect access to the base URL to the <%= @primary_webapp %> index page
         RewriteRule ^/$ /<%= @primary_webapp %> [R,L]
+        
+        # Repaces the nasty double proxy
+        RewriteRule ^/professional(.*) /choices$1 [R,L]
+        # Not sure what this one is needed for...
+        RewriteRule ^/map(.*)/?$ / [R,L]
+        RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
+        RewriteRule ^/choices/selenium(.*) /choices/map/index.html [R,L]
+        RewriteRule ^/choices/feedback/ /choices/map/index.html [R,L]
         
         <% unless @awstats == false -%>
         # Redirect for AWStats

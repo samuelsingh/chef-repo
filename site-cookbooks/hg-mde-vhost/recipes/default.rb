@@ -72,6 +72,19 @@ node[:hg_mde_vhost].each do |hostname,params|
       recursive true
     end
     
+    if params["primary_webapp"] == "choices"
+      favicon = "favicon.ico.choices"
+    else
+      favicon = "favicon.ico.map"
+    end
+    
+    remote_file "/var/www/vhosts/#{hostname}/favicon.ico" do
+      source "favicons/#{favicon}"
+      owner "sysadmin"
+      group "sysadmin"
+      mode "0644"
+    end
+    
     template "/var/www/vhosts/#{hostname}/holding.html" do
       source "holding.html.erb"
       mode 0644

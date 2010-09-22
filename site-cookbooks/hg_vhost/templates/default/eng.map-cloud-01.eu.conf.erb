@@ -6,32 +6,48 @@
 
 <VirtualHost "*:80">
     ServerName eng.map-cloud-01.eu
-	ServerAlias nhsevidence.map-cloud-01.eu
-      <% @webapps.each do |webapp,params| -%>
-    DocumentRoot <%= params.fetch("document_root") %>
-     <% end -%>
-	ProxyPass /evidence/attachments !
-	ProxyPass /evidence/images !
-	ProxyPass /evidence/pdf !
-	ProxyPass /evidence/policy !
-	ProxyPass /evidence/references !
-	ProxyPass /evidence/scripts !
-	ProxyPass /evidence/styles !
-	ProxyPass /evidence/thumbnails !
+    ServerAlias nhsevidence.map-cloud-01.eu
 
-	ProxyPass /evidence   ajp://127.0.0.1:9002/evidence
+    DocumentRoot /var/www/vhosts/<%= hostname %>
+
+    ProxyPass /evidence/attachments !
+    ProxyPass /evidence/images !
+    ProxyPass /evidence/pdf !
+    ProxyPass /evidence/policy !
+    ProxyPass /evidence/references !
+    ProxyPass /evidence/scripts !
+    ProxyPass /evidence/styles !
+    ProxyPass /evidence/thumbnails !
+
+    <% @webapps.each do |webapp,params| -%>
+    ProxyPass /<%= webapp %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= webapp %>
+    <% end -%>
 
 <Location "/robots.txt">
  SetHandler None
 </Location>
-alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
+
+    Alias /robots.txt <%= @webapp_base %>/evidence/robots.txt
+    
+    Alias /evidence/attachments <%= @webapp_base %>/evidence/attachments
+    Alias /evidence/images      <%= @webapp_base %>/evidence/images
+    Alias /evidence/pdf         <%= @webapp_base %>/evidence/pdf
+    Alias /evidence/policy      <%= @webapp_base %>/evidence/policy
+    Alias /evidence/references  <%= @webapp_base %>/evidence/references
+    Alias /evidence/scripts     <%= @webapp_base %>/evidence/scripts
+    Alias /evidence/styles      <%= @webapp_base %>/evidence/styles
+    Alias /evidence/thumbnails  <%= @webapp_base %>/evidence/thumbnails
 
 
-
- <% @webapps.each do |webapp,params| -%>
-    <Directory "<%= params.fetch("document_root") %>">
-   <% end -%>
+    <Directory "/var/www/vhosts/<%= hostname %>">
         DirectoryIndex index.jsp index.html
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+    
+    <Directory "<%= @webapp_base %>/evidence">
         Options FollowSymLinks
         AllowOverride None
         Order allow,deny
@@ -82,8 +98,15 @@ alias /robots.txt /var/tomcat/server9002/webapps/evidence/robots.txt
         Allow from env=ELBAUTH
     </Location>
     <% end -%>
-
     
+    
+    # Use the specified error page (under DocumentRoot) for the specified error codes.
+    # They are prettier than the standard Apache pages.
+
+    ErrorDocument 403 /403/index.html 
+    ErrorDocument 404 /404/index.html 
+
+
     <IfModule mod_rewrite.c>
     
         RewriteEngine on 

@@ -19,7 +19,7 @@
 
 include_recipe "apache2"
 
-node[:generic_tomcat_vhost].each do |hostname,params|
+node[:hg_mde_vhosts].each do |hostname,params|
   
   # Figures out whether to link to AWStats
   awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
@@ -44,6 +44,7 @@ node[:generic_tomcat_vhost].each do |hostname,params|
         :primary_webapp => params.fetch("primary_webapp"),
         :restricted_ips => node[:apache][:restricted_ips],
         :holding_page => params.fetch("holding_page"),
+        :webapp_base => params.fetch("webapp_base"),
         :awstats => awstats
       )
       notifies :reload, resources(:service => "apache2"), :delayed
