@@ -1,0 +1,3 @@
+#!/bin/sh
+# Cron snippet to call the snapshot script for a given volume
+<%= @node[:snapshot_ebs][:install_path] %>snapshot_ebs.sh <%= @volume_id %> <%= @retention %>

@@ -30,44 +30,24 @@ directory "/root/.ec2" do
   not_if "test -d /root/.ec2"
 end 
 
+node[:snapshot_ebs][:volumes].each do |ebs_volume|
+  volume_id = ebs_volume[:volume_id]
+  volume_name = ebs_volume[:name]
+  retention = ebs_voume[:retention]
+  
+  template "/etc/cron.daily/ebs_snapshot_#{volume_name}" do
+    source "snapshot_ebs_cron.erb"
+    mode 0755
+    variables (
+	:volume_id => volume_id,
+	:retention => retention
+    )
+  end 
 
-template "/etc/cron.daily/svn_backup" do
- source "svn_backup.erb"
- mode 0755
-end 
-
-template "/etc/cron.daily/lightmms_backup" do
- source "lightmms_backup.erb"
- mode 0755
-end 
-
-template "/etc/cron.daily/mddb01_backup" do
-  source "mddb01_backup.erb"
-  mode 0755
 end
 
-template "/etc/cron.daily/filer01_backup" do
-  source "filer01_backup.erb"
-  mode 0755
-end
-
-remote_file "#{node[:snapshot_ebs][:install_path]}/svn_ebs.sh" do
-  source "svn_ebs.sh"
-  mode 0755
-end
-
-remote_file "#{node[:snapshot_ebs][:install_path]}/filer_ebs.sh" do
-  source "filer_ebs.sh"
-  mode 0755
-end
-
-remote_file "#{node[:snapshot_ebs][:install_path]}/lightmms_ebs.sh" do
-  source "lightmms_ebs.sh"
-  mode 0755
-end
-
-remote_file "#{node[:snapshot_ebs][:install_path]}/mddb01_ebs.sh" do
-  source "mddb01_ebs.sh"
+remote_file "#{node[:snapshot_ebs][:install_path]}/snapshot_ebs.sh" do
+  source "snapshot_ebs.sh"
   mode 0755
 end
 
