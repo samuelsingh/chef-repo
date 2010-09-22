@@ -33,7 +33,7 @@ end
 node[:snapshot_ebs][:volumes].each do |ebs_volume|
   volume_id = ebs_volume[:volume_id]
   volume_name = ebs_volume[:name]
-  retention = ebs_voume[:retention]
+  retention = ebs_volume[:retention]
   
   template "/etc/cron.daily/ebs_snapshot_#{volume_name}" do
     source "snapshot_ebs_cron.erb"
