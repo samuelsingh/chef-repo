@@ -101,14 +101,23 @@
         Allow from env=ELBAUTH
     </Location>
     <% end -%>
-
+    
+    # Restricted access to feedback, locked by IP address.
+    <Location "/choices/selenium">
+        Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
 
     <IfModule mod_rewrite.c>
     
         RewriteEngine on 
         RewriteRule ^/$ /evidence [R,L]
-        RewriteCond %{REMOTE_HOST} !^80\.239\.136\.225
-        RewriteRule ^/evidence/selenium(.*) /evidence/map/index.html [R,L]
             
         <% unless @awstats == false -%>
         # Redirect for AWStats
