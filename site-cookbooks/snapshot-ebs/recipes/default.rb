@@ -38,7 +38,7 @@ node[:snapshot_ebs][:volumes].each do |ebs_volume|
   template "/etc/cron.daily/ebs_snapshot_#{volume_name}" do
     source "snapshot_ebs_cron.erb"
     mode 0755
-    variables (
+    variables(
 	:volume_id => volume_id,
 	:retention => retention
     )
