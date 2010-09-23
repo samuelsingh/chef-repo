@@ -32,7 +32,7 @@ my $TOKEN = "UP0oofohAir8nahj";
 # Hudson login details. Grrr! :-(
 my $HUDSON_USER = "dev";
 my $HUDSON_PASS = "Hoh2ujuo";
-my $HUDSON_HOST = "deploy-01.mapofmedicine.com:8080";
+my $HUDSON_HOST = "hudson-01.map-cloud-01.eu:8080";
 
 # Where to find the Hudson server to use
 my $BASE_HUDSON_URL = "http://$HUDSON_HOST/hudson";
