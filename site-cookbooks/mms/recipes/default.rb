@@ -484,7 +484,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/mom/attachments"  do
         to "#{previewpath}/attachments"
-        only_if "test -d #{node[:tomcat][:basedir]}/server9002/webapps/mom/attachments"
+        only_if "test -d #{previewpath}/attachments"
       end
       
       template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/mom.xml" do
