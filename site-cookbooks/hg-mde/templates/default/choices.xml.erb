@@ -3,10 +3,10 @@ docBase="<%= @node[:hg_mde][:hg_war_path] %>/<%= @node[:hg_mde][:hg_version] %>.
 	    reloadable="false"
 	    debug="0">
 
-    <Logger className="org.apache.catalina.logger.FileLogger"
-        prefix="webapp-hgmde." suffix=".log" timestamp="true"/>
-
-	<Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
-
+    <Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
+    
+    <Parameter name="feedbackEmailTo" override="false" value="healthguides-feedback@mapofmedicine.com"/>
+    <Parameter name="feedbackEmailFrom" override="false" value="support@mapofmedicine.com"/>
+    <Parameter name="feedbackEmailSMTP" override="false" value="127.0.0.1"/>
 
 </Context>
