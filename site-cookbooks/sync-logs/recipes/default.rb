@@ -18,44 +18,48 @@
 #
 
 ssh_home = "/var/shared/home/sysadmin/.ssh"
+sync_user = "sysadmin"
 
 package "libshadow-ruby1.8" do
   action :install
 end
 
-group "syncuser" do
-  gid 10028
-end
+# Probably a better way to do this if the functionality
+# is needed once the Orchard disappears
 
-user "syncuser"  do
-  comment "Managed by Chef"
-  uid "10028"
-  gid "syncuser"
-  home "/home/syncuser"
-  shell "/bin/bash"
-  supports :manage_home => true
-  password "$1$MwZZayys$wutrFm0TLDrsLR1Z4/jQl/"
-  not_if "[ ! -z \"`who | grep syncuser`\" ]"
-end
+#group "syncuser" do
+#  gid 10028
+#end
+
+#user "syncuser"  do
+#  comment "Managed by Chef"
+#  uid "10028"
+#  gid "syncuser"
+#  home "/home/syncuser"
+#  shell "/bin/bash"
+#  supports :manage_home => true
+#  password "$1$MwZZayys$wutrFm0TLDrsLR1Z4/jQl/"
+#  not_if "[ ! -z \"`who | grep syncuser`\" ]"
+#end
 
 directory "#{ssh_home}" do
-  owner "sysadmin"
-  group "sysadmin"
+  owner "#{sync_user}"
+  group "#{sync_user}"
   mode "0700"
   action :create
 end
 
 remote_file "#{ssh_home}/id_rsa.pub" do
   source "ssh/id_rsa.pub"
-  owner "sysadmin"
-  group "sysadmin"
+  owner "#{sync_user}"
+  group "#{sync_user}"
   mode "0644"
 end
 
 remote_file "#{ssh_home}/id_rsa" do
   source "ssh/id_rsa"
-  owner "sysadmin"
-  group "sysadmin"
+  owner "#{sync_user}"
+  group "#{sync_user}"
   mode "0600"
 end
 
@@ -64,4 +68,11 @@ remote_file "/usr/local/sbin/sync-logs" do
   owner "root"
   group "root"
   mode "0755"
+end
+
+cron "synclogs" do
+  hour "1"
+  minute "0"
+  user "#{sync_user}"
+  command "/usr/local/sbin/sync-logs"
 end
