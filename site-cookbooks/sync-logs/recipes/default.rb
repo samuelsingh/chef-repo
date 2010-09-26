@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+ssh_home = "/home/syncuser/.ssh"
+
 package "libshadow-ruby1.8" do
   action :install
 end
@@ -34,4 +36,25 @@ user "syncuser"  do
   supports :manage_home => true
   password "$1$MwZZayys$wutrFm0TLDrsLR1Z4/jQl/"
   not_if "[ ! -z \"`who | grep syncuser`\" ]"
+end
+
+directory "#{ssh_home}" do
+  owner "syncuser"
+  group "syncuser"
+  mode "0700"
+  action :create
+end
+
+remote_file "#{ssh_home}/id_rsa.pub" do
+  source "ssh/id_rsa.pub"
+  owner "syncuser"
+  group "syncuser"
+  mode "0644"
+end
+
+remote_file "#{ssh_home}/id_rsa" do
+  source "ssh/id_rsa"
+  owner "syncuser"
+  group "syncuser"
+  mode "0600"
 end
