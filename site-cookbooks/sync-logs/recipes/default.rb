@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+package "libshadow-ruby1.8" do
+  action :install
+end
+
 group "syncuser" do
   gid 10028
 end
