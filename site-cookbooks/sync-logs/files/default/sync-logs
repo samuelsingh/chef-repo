@@ -1,0 +1,7 @@
+#!/bin/sh
+
+HL_DIR=/var/shared/archive/host-logs
+HLK_DIR=/var/shared/archive/host-logs-kvp
+
+rsync -rltgoDvz --rsh=ssh sysadmin@cherry.mapofmedicine.com:$HL_DIR/* $HL_DIR
+rsync -rltgoDvz --rsh=ssh sysadmin@cherry.mapofmedicine.com:$HLK_DIR/* $HLK_DIR

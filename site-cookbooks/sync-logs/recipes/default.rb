@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-ssh_home = "/home/syncuser/.ssh"
+ssh_home = "/home/sysadmin/.ssh"
 
 package "libshadow-ruby1.8" do
   action :install
@@ -57,4 +57,11 @@ remote_file "#{ssh_home}/id_rsa" do
   owner "syncuser"
   group "syncuser"
   mode "0600"
+end
+
+remote_file "/usr/local/sbin/sync-logs" do
+  source "sync-logs"
+  owner "root"
+  group "root"
+  mode "0755"
 end
