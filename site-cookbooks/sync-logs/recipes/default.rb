@@ -70,9 +70,9 @@ remote_file "/usr/local/sbin/sync-logs" do
   mode "0755"
 end
 
-cron "synclogs" do
-  hour "1"
-  minute "0"
-  user "#{sync_user}"
-  command "/usr/local/sbin/sync-logs"
+template "/etc/cron.d/sync-logs" do
+  source "cron-template.erb"
+  mode 0644
+  owner "root"
+  group "root"
 end
