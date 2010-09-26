@@ -38,3 +38,10 @@ volume iocache_<%= @mount_point %>
   option cache-timeout 60                # default is 1 second
   subvolumes iothreads_<%= @mount_point %>
 end-volume
+
+volume quickread_<%= @mount_point %>
+  type performance/quick-read
+  option cache-timeout 1         # default 1 second
+  option max-file-size 256KB        # default 64Kb
+  subvolumes iocache_<%= @mount_point %>
+end-volume
