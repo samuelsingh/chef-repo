@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-ssh_home = "/home/sysadmin/.ssh"
+ssh_home = "/var/shared/home/sysadmin/.ssh"
 
 package "libshadow-ruby1.8" do
   action :install
@@ -39,23 +39,23 @@ user "syncuser"  do
 end
 
 directory "#{ssh_home}" do
-  owner "syncuser"
-  group "syncuser"
+  owner "sysadmin"
+  group "sysadmin"
   mode "0700"
   action :create
 end
 
 remote_file "#{ssh_home}/id_rsa.pub" do
   source "ssh/id_rsa.pub"
-  owner "syncuser"
-  group "syncuser"
+  owner "sysadmin"
+  group "sysadmin"
   mode "0644"
 end
 
 remote_file "#{ssh_home}/id_rsa" do
   source "ssh/id_rsa"
-  owner "syncuser"
-  group "syncuser"
+  owner "sysadmin"
+  group "sysadmin"
   mode "0600"
 end
 
