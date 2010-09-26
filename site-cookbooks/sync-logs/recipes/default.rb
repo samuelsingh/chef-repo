@@ -28,6 +28,7 @@ end
 user "syncuser"  do
   comment "Managed by Chef"
   uid "10028"
+  gid "syncuser"
   home "/home/syncuser"
   shell "/bin/bash"
   supports :manage_home => true
