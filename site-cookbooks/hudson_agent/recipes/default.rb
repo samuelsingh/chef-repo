@@ -19,11 +19,11 @@
 
 agent_home = "#{node[:hudson_agent][:home_dir]}"
 server_url = "#{node[:hudson_agent][:server_url]}"
-user = "#{[:hudson_agent][:user]}"
-group = "#{[:hudson_agent][:group]}"
+user       = "#{node[:hudson_agent][:user]}"
+group      = "#{node[:hudson_agent][:group]}"
 
-max_heap   = "#{[hudson_agent][:jvm][:max_heap]}"
-start_heap = "#{[hudson_agent][:jvm][:start_heap]}"
+max_heap   = "#{node[:hudson_agent][:jvm][:max_heap]}"
+start_heap = "#{node[:hudson_agent][:jvm][:start_heap]}"
 
 
 group "#{group}" do
