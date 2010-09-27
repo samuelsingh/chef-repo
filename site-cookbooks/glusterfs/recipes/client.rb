@@ -18,7 +18,7 @@
 #
 
 mounts = node[:glusterfs][:client][:mounts]
-glustersrvs = search(:node, "glusterfs_server:true").map { |n| n["fqdn"] }
+glustersrvs = search(:node, "glusterfs_server:true").map { |n| n["fqdn"] }.sort
 
 # Reverses the glustersrvs list depending on ip address, to add some randomness
 # to the mount order
