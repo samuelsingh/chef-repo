@@ -28,14 +28,14 @@ end-volume
 
 volume iothreads_<%= @mount_point %>
   type performance/io-threads
-  option thread-count 64  # default is 1
+  option thread-count 16  # default is 1
   subvolumes mirror_<%= @mount_point %>
 end-volume
 
 volume iocache_<%= @mount_point %>
   type performance/io-cache
   option cache-size 512MB               # default is 32MB
-  option cache-timeout 60                # default is 1 second
+  option cache-timeout 1                # default is 1 second
   subvolumes iothreads_<%= @mount_point %>
 end-volume
 

@@ -16,7 +16,7 @@ end-volume
 
 volume export_<%= mount_point %>
   type performance/io-threads
-  option thread-count 64  # default is 1
+  option thread-count 16  # default is 1
   subvolumes lock_<%= mount_point %>
 end-volume
 <% end -%>
