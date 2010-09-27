@@ -34,7 +34,7 @@ user "#{user}" do
   comment "Hudson Agent"
   uid "10099"
   gid "10099"
-  home "#{agent_home}
+  home "#{agent_home}"
   shell "/bin/bash"
   not_if "[ ! -z \"`who | grep hudson-agent`\" ]"
 end
