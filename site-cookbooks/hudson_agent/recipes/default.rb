@@ -19,7 +19,7 @@
 
 agent_home = "#{node[:hudson_agent][:home_dir]}"
 server_url = "#{node[:hudson_agent][:server_url]}"
-user  = "#{[:hudson_agent][:user]}"
+user = "#{[:hudson_agent][:user]}"
 group = "#{[:hudson_agent][:group]}"
 
 max_heap   = "#{[hudson_agent][:jvm][:max_heap]}"
