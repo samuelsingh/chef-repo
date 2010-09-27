@@ -9,7 +9,6 @@ volume <%= shortid %>_<%= @mount_point %>
     type protocol/client
     option transport-type tcp
     option transport.socket.nodelay on
-    option transport.remote-port 6996
     option remote-host <%= glustersrv %>
     option remote-subvolume export_<%= @mount_point %>
 end-volume
