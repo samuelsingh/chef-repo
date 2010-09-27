@@ -17,13 +17,13 @@
 # limitations under the License.
 #
 
-agent_home = "#{node[:hudson_agent][:home_dir]}"
-server_url = "#{node[:hudson_agent][:server_url]}"
-user       = "#{node[:hudson_agent][:user]}"
-group      = "#{node[:hudson_agent][:group]}"
+hudson_home = "#{node[:hudson_agent][:home_dir]}"
+server_url  = "#{node[:hudson_agent][:server_url]}"
+user        = "#{node[:hudson_agent][:user]}"
+group       = "#{node[:hudson_agent][:group]}"
 
-max_heap   = "#{node[:hudson_agent][:jvm][:max_heap]}"
-start_heap = "#{node[:hudson_agent][:jvm][:start_heap]}"
+max_heap    = "#{node[:hudson_agent][:jvm][:max_heap]}"
+start_heap  = "#{node[:hudson_agent][:jvm][:start_heap]}"
 
 
 group "#{group}" do
@@ -54,7 +54,7 @@ template "/etc/init.d/hudson-agent" do
   mode "0755"
   variables(
     :server_url => server_url,
-    :agent_home => agent_home,
+    :hudson_home => hudson_home,
     :user => user,
     :group => group,
     :max_heap => max_heap,
