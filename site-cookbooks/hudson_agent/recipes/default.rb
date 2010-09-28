@@ -34,17 +34,17 @@ user "#{user}" do
   comment "Hudson Agent"
   uid "10099"
   gid "10099"
-  home "#{agent_home}"
+  home "#{hudson_home}"
   shell "/bin/bash"
   not_if "[ ! -z \"`who | grep hudson-agent`\" ]"
 end
 
-directory "#{agent_home}" do
+directory "#{hudson_home}" do
   owner "#{user}"
   group "#{group}"
   mode "0755"
   action :create
-  not_if "test -d {agent_home}"
+  not_if "test -d {hudson_home}"
 end
 
 template "/etc/init.d/hudson-agent" do
