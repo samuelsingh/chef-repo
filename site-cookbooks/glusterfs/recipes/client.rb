@@ -42,6 +42,12 @@ execute "modprobe fuse" do
   not_if "lsmod | grep fuse > /dev/null"
 end
 
+execute "clear_conf" do
+  command "rm -rf /etc/glusterfs/*"
+  action :run
+  only_if "test -f /etc/glusterfs/glusterfs.vol"
+end
+
 unless glustersrvs.empty?
 
   mounts.each do |entry|
@@ -58,6 +64,17 @@ unless glustersrvs.empty?
       mode "0755"
       action :create
       not_if "test -d #{mount}"
+    end
+    
+    template "/etc/glusterfs/export_#{share}.vol" do
+      source "export-TEMPLATE.vol.erb"
+      owner "root"
+      group "root"
+      mode 0644
+      variables(
+        :mount_point => share,
+        :glustersrvs => glustersrvs
+      )
     end
     
     if glustersrvs[1].nil?
