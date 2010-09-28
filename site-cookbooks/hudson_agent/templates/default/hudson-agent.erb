@@ -27,6 +27,7 @@ SLAVE_JAR_URL="$HUDSON_SERVER_URL/jnlpJars/slave.jar"
 HUDSON_LIB="$HUDSON_HOME/lib"
 JNLP_URL="$HUDSON_SERVER_URL/computer/$SLAVE_NAME/slave-agent.jnlp"
 
+
 bail()
 {
 	echo $*
@@ -71,7 +72,6 @@ rotatelog()
 get_slave_jar()
 {
 	SLAVE_JAR="$HUDSON_LIB/slave.jar"
-        [ -d "$HUDSON_LIB" ] || mkdir -p "$HUDSON_LIB"
 
 	# Get the current slave.jar from the Hudson master
 	echo "Getting current slave jar from server"
@@ -205,6 +205,8 @@ if [ -n "$USER" ] ; then
 	fi
 fi
 
+[ -d "$HUDSON_LIB" ] || mkdir -p "$HUDSON_LIB"
+[ -d "$HUDSON_HOME/logs" ] || mkdir -p "$HUDSON_HOME/logs"
 
 while [ -n "$1" ] ; do
 	case "$1" in
