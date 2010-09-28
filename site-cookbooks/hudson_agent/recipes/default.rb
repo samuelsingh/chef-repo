@@ -25,6 +25,10 @@ group       = "#{node[:hudson_agent][:group]}"
 max_heap    = "#{node[:hudson_agent][:jvm][:max_heap]}"
 start_heap  = "#{node[:hudson_agent][:jvm][:start_heap]}"
 
+package "java" do 
+  action :install 
+end
+
 
 group "#{group}" do
   gid 10099
