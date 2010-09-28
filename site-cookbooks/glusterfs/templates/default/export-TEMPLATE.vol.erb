@@ -3,7 +3,7 @@
 
 # Configuration for <%= @mount_point %>
 
-<% @glustersrvs.each do |glustersrv| -%>
+<% @glustersrvs.each do |glustersrv| %>
 <% shortid = glustersrv[/\A[^\.]+\./].gsub(".","") -%>
 volume <%= shortid %>_<%= @mount_point %>
     type protocol/client

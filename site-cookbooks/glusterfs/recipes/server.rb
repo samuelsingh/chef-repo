@@ -76,7 +76,6 @@ mounts.each do |mount|
       :mount_point => mount,
       :glustersrvs => glustersrvs
     )
-    notifies :restart, resources(:service => "glusterfs-server")
   end
   
 end
