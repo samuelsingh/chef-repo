@@ -15,7 +15,7 @@ JAVA_BIN="$JAVA_HOME/bin/java"
 JAVA_OPTS="-Xmx<%= @max_heap %> -Xms<%= @start_heap %> -Djava.awt.headless=true"
 
 HUDSON_SERVER_URL="<%= @server_url %>"
-HUDSON_HOME=<%= @home_dir %>
+HUDSON_HOME=<%= @hudson_home %>
 
 export JAVA_HOME JAVA_OPTS HUDSON_HOME
 
