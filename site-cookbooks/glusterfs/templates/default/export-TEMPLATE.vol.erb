@@ -13,7 +13,7 @@ volume <%= shortid %>_<%= @mount_point %>
     option remote-subvolume export_<%= @mount_point %>
 end-volume
 
-<% end %>
+<% end -%>
 
 <% @subvols = Array.new -%>
 <% @glustersrvs.each do |glustersrv| -%>
