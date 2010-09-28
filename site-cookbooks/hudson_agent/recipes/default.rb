@@ -25,7 +25,7 @@ group       = "#{node[:hudson_agent][:group]}"
 max_heap    = "#{node[:hudson_agent][:jvm][:max_heap]}"
 start_heap  = "#{node[:hudson_agent][:jvm][:start_heap]}"
 
-package "java" do 
+package "unzip" do 
   action :install 
 end
 

@@ -79,7 +79,7 @@ get_slave_jar()
 
 	# Make sure the file is a zip - otherwise the server may have
 	# returned an error.
-	zip -T "$SLAVE_JAR.new"
+	unzip -tqq "$SLAVE_JAR.new"
 	RET="$?"
 
 	if [ "$RET" = "0" ] ; then
