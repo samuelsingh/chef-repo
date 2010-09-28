@@ -71,6 +71,7 @@ rotatelog()
 get_slave_jar()
 {
 	SLAVE_JAR="$HUDSON_LIB/slave.jar"
+        [ -d "$HUDSON_LIB" ] || mkdir -p "$HUDSON_LIB"
 
 	# Get the current slave.jar from the Hudson master
 	echo "Getting current slave jar from server"
