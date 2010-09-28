@@ -636,8 +636,8 @@ implementation:						implementation@natbill.hostpilot.com,ketan.patel
 itsupport:						itsupport@natbill.hostpilot.com
 
 # Mailing list for receving svn commit emails
-map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, maria, patrick
-map-sys-commit:					kief.morris, andrew, jasong
+map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
+map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie
 
 
 
@@ -654,7 +654,7 @@ logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						steven.quan, andrew.fulcher, jason.griffith
+csc-stats:						gerard.onochie, andrew.fulcher, jason.griffith
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com
@@ -702,7 +702,7 @@ stockholm-support:				support
 wales-support:					support
 fujitsu-support:				support
 csc-support:					support
-bt-support:						support,ketan.patel,andrew.fulcher,steven.quan
+bt-support:					support,ketan.patel,andrew.fulcher,gerard.onochie
 london-support:					support
 mod-support:                    support
 demo-support:					support
