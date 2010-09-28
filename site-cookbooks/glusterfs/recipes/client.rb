@@ -77,27 +77,35 @@ unless glustersrvs.empty?
       )
     end
     
-    if glustersrvs[1].nil?
-      
-      mount "#{mount}" do
-        device "#{glustersrvs[0]}:export_#{share}"
-        fstype "glusterfs"
-        options "direct-io-mode=disable,noatime"
-        action [:mount, :enable]
-        not_if "test -f #{mount}/.gfs"
-      end
-      
-    else
-      
-      mount "#{mount}" do
-        device "#{glustersrvs[0]}:export_#{share}"
-        fstype "glusterfs"
-        options "backupvolfile-server=#{glustersrvs[1]},direct-io-mode=disable,noatime"
-        action [:mount, :enable]
-        not_if "test -f #{mount}/.gfs"
-      end
-      
+    mount "#{mount}" do
+      device "/etc/glusterfs/export_#{share}.vol"
+      fstype "glusterfs"
+      options "direct-io-mode=disable,noatime"
+      action [:mount, :enable]
+      not_if "mountpoint -q #{mount}"
     end
+    
+    # if glustersrvs[1].nil?
+    #  
+    #  mount "#{mount}" do
+    #    device "#{glustersrvs[0]}:export_#{share}"
+    #    fstype "glusterfs"
+    #    options "direct-io-mode=disable,noatime"
+    #    action [:mount, :enable]
+    #    not_if "test -f #{mount}/.gfs"
+    #  end
+    #  
+    # else
+      
+    #  mount "#{mount}" do
+    #    device "#{glustersrvs[0]}:export_#{share}"
+    #    fstype "glusterfs"
+    #    options "backupvolfile-server=#{glustersrvs[1]},direct-io-mode=disable,noatime"
+    #    action [:mount, :enable]
+    #    not_if "test -f #{mount}/.gfs"
+    #  end
+    #  
+    # end
   
   end
 
