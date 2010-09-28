@@ -12,6 +12,7 @@ volume <%= shortid %>_<%= @mount_point %>
     option remote-host <%= glustersrv %>
     option remote-subvolume export_<%= @mount_point %>
 end-volume
+
 <% end %>
 
 <% @subvols = Array.new -%>
