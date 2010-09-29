@@ -60,8 +60,6 @@ end
 mounts.each do |mount|
   
   directory "/gfs/#{mount}" do
-    owner "root"
-    group "root"
     mode "0755"
     action :create
     not_if "test -d /gfs/#{mount}"
