@@ -67,7 +67,7 @@ template "/etc/init.d/hudson-agent" do
 end
 
 service "hudson-agent" do
-  supports :status => true, :restart => true, :reload => true
+  supports :status => true, :start => true, :restart => true, :reload => true
   action [ :enable, :start ]
 end
 

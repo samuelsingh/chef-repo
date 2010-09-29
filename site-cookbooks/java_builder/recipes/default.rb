@@ -16,3 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+
+execute "rsync_legacy_ant"  do
+	command "rsync -rlpv --exclude '.svn/' #{node[:java_builder][:global_install_files]}/#{node[:java_builder][:legacy_ant_version] /usr/local/"
+  action :run
+  only_if "test -d #{node[:java_builder][:global_install_files]}/#{node[:java_builder][:legacy_ant_version]"
+end
+
