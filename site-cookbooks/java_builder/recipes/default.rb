@@ -25,6 +25,6 @@ execute "rsync_legacy_ant"  do
 end
 
 package "maven2" do
-  action: install
+  action :install
 end
 
