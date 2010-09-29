@@ -19,9 +19,9 @@
 
 
 execute "rsync_legacy_ant"  do
-  command "rsync -rlpv --exclude '.svn/' #{node[:java_builder][:install_files]}/usr/local/#{node[:java_builder][:legacy_ant_version] /usr/local/"
+  command "rsync -rlpv --exclude '.svn/' #{node[:java_builder][:install_files]}/usr/local/#{node[:java_builder][:legacy_ant_version]} /usr/local/"
   action :run
-  only_if "test -d #{node[:java_builder][:install_files]}/usr/local/#{node[:java_builder][:legacy_ant_version]"
+  only_if "test -d #{node[:java_builder][:install_files]}/usr/local/#{node[:java_builder][:legacy_ant_version]}"
 end
 
 package "maven2" do
