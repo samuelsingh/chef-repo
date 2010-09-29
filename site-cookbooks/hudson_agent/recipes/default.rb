@@ -68,7 +68,8 @@ end
 
 service "hudson-agent" do
   supports :status => true, :start => true, :restart => true, :reload => true
-  action [ :enable, :start, :running ]
+  running true
+  action [ :enable, :start ]
 end
 
 
