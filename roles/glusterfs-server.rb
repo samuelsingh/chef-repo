@@ -10,7 +10,7 @@ override_attributes(
   },
   "glusterfs" => {
     "server" => "true",
-    "mounts" => ["shared", "eph_share"],
+    "mounts" => ["shared", "eph_share", "tmp"],
     "server_ebs_volumes" => {
       "vol-2231f14b" => {
         "host" => "filer-01.map-cloud-01.eu",
