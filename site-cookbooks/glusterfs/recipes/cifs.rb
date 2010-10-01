@@ -44,6 +44,11 @@ user "custadmin" do
   shell "/bin/false"
 end
 
+group "sysadmin" do
+  members ["custadmin"]
+  append true
+end
+
 remote_file "/etc/samba/smbpasswd" do
   source "smbpasswd"
   owner "root"
