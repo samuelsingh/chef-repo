@@ -4,22 +4,32 @@
 
 [global]
    workgroup = WORKGROUP
+   security = user
+   passdb backend = smbpasswd:/etc/samba/smbpasswd   
+   unix password sync = no
+
    server string = %h server (Samba, Ubuntu)
    dns proxy = no
    syslog only = yes
    syslog = 1
    panic action = /usr/share/samba/panic-action %d
-   security = user
+
+   encrypt passwords = true
+   map to guest = bad user
+   guest account = nobody
    map to guest = bad user
    socket options = TCP_NODELAY
    usershare allow guests = no
 
-<% @mount_points.each do |mount_point| -%>
+<% @mount_points.each do |mount_point| %>
 [export_<%= mount_point %>]
-  comment = Access to 
+  comment = Access to <%= mount_point %>
   writable = yes
   public = no
+  guest ok = no
+  browsable = no
   path = /gfs/<%= mount_point %>
   posix locking = no
-<% end -%>
+  
+<% end %>
 

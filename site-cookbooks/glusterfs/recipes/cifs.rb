@@ -38,6 +38,20 @@ service "smbd" do
   action :enable
 end
 
+user "custadmin" do
+  comment "Allows custadmin access to shares"
+  system true
+  shell "/bin/false"
+end
+
+remote_file "/etc/samba/smbpasswd" do
+  source smbpasswd
+  owner "root"
+  group "root"
+  mode "0600"
+  notifies :restart, resources(:service => "smbd")
+end
+
 template "/etc/samba/smb.conf" do
   source "smb.conf.erb"
   owner "root"
@@ -48,5 +62,6 @@ template "/etc/samba/smb.conf" do
   )
   notifies :restart, resources(:service => "smbd")
 end
+
 
 
