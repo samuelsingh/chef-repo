@@ -26,7 +26,7 @@ override_attributes(
       }
     },
     "server_eph_volumes" => {
-      "tmp" => {
+      "eph_share" => {
         "device" => "/dev/sdc",
         "fstype" => "ext3"
       }

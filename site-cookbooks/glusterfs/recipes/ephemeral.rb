@@ -40,6 +40,7 @@ volumes.each do |name, conf|
   mount "/gfs/#{name}" do
     device "#{conf.fetch("device")}"
     fstype "#{conf.fetch("fstype")}"
+    options "noatime"
   end
   
 end
