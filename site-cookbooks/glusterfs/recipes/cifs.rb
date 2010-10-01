@@ -40,7 +40,7 @@ end
 
 user "custadmin" do
   comment "Allows custadmin access to shares"
-  system true
+  system "true"
   shell "/bin/false"
 end
 
