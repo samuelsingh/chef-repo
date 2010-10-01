@@ -1,7 +1,7 @@
 name "glusterfs-server"
 description "Configures glusterfs storage node"
 
-run_list "recipe[aws]","recipe[glusterfs::ebs]","recipe[glusterfs::ephemeral]","recipe[glusterfs::server]"
+run_list "recipe[aws]","recipe[glusterfs::ebs]","recipe[glusterfs::ephemeral]","recipe[glusterfs::server]","recipe[glusterfs::cifs]"
 
 override_attributes(
   "aws" => {
