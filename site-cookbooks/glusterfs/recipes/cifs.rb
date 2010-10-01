@@ -45,7 +45,7 @@ user "custadmin" do
 end
 
 remote_file "/etc/samba/smbpasswd" do
-  source smbpasswd
+  source "smbpasswd"
   owner "root"
   group "root"
   mode "0600"
