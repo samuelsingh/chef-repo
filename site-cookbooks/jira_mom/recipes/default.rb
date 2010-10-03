@@ -33,6 +33,11 @@ remote_file "/etc/init.d/tomcat9002" do
   mode 0755
 end
 
+remote_file "#{node[:jira][:install_path]}/shared/lib/log4j.properties" do
+  source "log4j.properties"
+  mode 0755
+end
+
 template "#{node[:jira][:install_path]}/conf/server.xml" do
   source "server.xml.erb"
   mode 0755
