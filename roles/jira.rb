@@ -6,7 +6,7 @@ run_list "recipe[jira_mom]"
 override_attributes(
   "jira" => {
     "run_user" => "tomcat",
-    "database_host" => "localhost",
+    "database_host" => "jiradb",
     "version" => "atlassian-jira-4.1.2",
     "database" => "mysql",
     "database_user" => "jira_user",
