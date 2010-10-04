@@ -250,8 +250,8 @@ j.wilde:						jane.wilde
 janewilde:						jane.wilde
 jason.griffiths:                 jason.griffiths@natbill.hostpilot.com
 jasong:                         jason.griffiths
-j.griffith:                        jason.griffith
-jasongriffith:                      jason.griffith
+j.griffiths:                        jason.griffiths
+jasongriffiths:                      jason.griffiths
 jennifer.dennington:            Jennifer.Dennington@natbill.hostpilot.com
 jenniferdennington:             jennifer.dennington
 jennifer:                       jennifer.dennington
@@ -654,7 +654,7 @@ logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						gerard.onochie, andrew.fulcher, jason.griffith
+csc-stats:						gerard.onochie, andrew.fulcher, jason.griffiths
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com
