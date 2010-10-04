@@ -40,7 +40,7 @@ dbname = node[:map_display][:dbname]
 # returns:
 # 265
 #
-int_version = md_version[/\d+\.\d+\.\d+\./].gsub('.','').to_i
+int_version = md_version[/\d+\.\d+\.\d+/].gsub('.','').to_i
 
 # Dynamic directories, used by Tomcat
 #
