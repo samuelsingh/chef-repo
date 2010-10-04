@@ -3,6 +3,6 @@ description "MD version for QA deployment"
 
 override_attributes(
   "map_display" => {
-    "version" => "trunk-2010-10-01_13-10-07-36704"
+    "version" => "2.7.0-2010-10-01_13-10-07-36704"
   }
 )
