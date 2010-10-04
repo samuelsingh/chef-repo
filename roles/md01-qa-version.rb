@@ -1,4 +1,4 @@
-name "md-qa-version"
+name "md01-qa-version"
 description "MD version for QA deployment"
 
 override_attributes(
