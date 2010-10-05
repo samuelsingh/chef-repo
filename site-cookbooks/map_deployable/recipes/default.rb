@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-remote_file "/usr/local/sbin/install_build" do
-  source "install_build"
+remote_file "/usr/local/sbin/install-build" do
+  source "install-build"
   mode 0755
 end
 
