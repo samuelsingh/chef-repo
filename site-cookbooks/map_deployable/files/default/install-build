@@ -1,0 +1,178 @@
+#!/usr/bin/perl -w
+#
+# This script deploys a Map Fabric application when run on an application server.
+#
+# Pre-requisites: 
+#   1) A build has been created by the Pipeline-Commit script and is available
+#      on shared storage
+#
+#
+
+use File::Copy;
+use strict;
+
+my $FABRIC_BUILD_DIRECTORY = "/var/shared/fabric-pipeline";
+my $COMMIT_PACKAGE_FOLDER = "$FABRIC_BUILD_DIRECTORY/packages-01Commit";
+my $DEPLOYMENT_ENVIRONMENT_FOLDER = "$FABRIC_BUILD_DIRECTORY/deploy";
+
+
+my $USAGE=<<ENDOFUSAGE;
+
+Usage: deploy-build --webapp <webapp> --stage <Commit> --environment <envid> --package <package_name>
+
+   --webapp  Should be the basename (e.g. mom rather than mom.war)
+             May be supplied more than once, to deploy multiple webapps
+             Normally one of: mom, adminapp, mapmanager, previewloader
+
+   --stage   The stage to get the release package from. That is, you are
+             deploying a build that has passed the given stage.
+             At the moment this can only be Commit, but stages such as
+             WebTest, QA, Regression, or Stage could be added
+
+   --environment  The deployment environment. This should be the name of a
+             subfolder of $DEPLOYMENT_ENVIRONMENT_FOLDER. The webapps will
+             be copied to this directory.
+
+   --package The package name to deploy. This will be a folder under the stage
+             folder. Example: trunk-2010-10-05_14-09-32-36735
+
+
+ENDOFUSAGE
+
+my $VERBOSE = 0;
+my $DEBUG = 0;
+
+my @webapps = ();
+my $STAGE = '';
+my $ENVIRONMENT = '';
+my $PACKAGE = '';
+
+
+my @errors = ();
+
+while (my $_ = shift @ARGV) {
+
+	if (/^-h$/ || /^--help$/) {
+		print $USAGE;
+		exit 0;
+	} elsif(/^-v$/ || /^--verbose$/) {
+		$VERBOSE = 1;
+	} elsif(/^-d$/ || /^--debug$/) {
+		$DEBUG = 1;
+	} elsif(/^--webapp$/ || /^-w$/) {
+		push(@webapps, shift(@ARGV));
+	} elsif(/^--stage$/ || /^-s$/)  {
+		$STAGE = shift @ARGV;
+	} elsif(/^--env/ || /^-e$/)  {
+		$ENVIRONMENT = shift @ARGV;
+	} elsif(/^--package/ || /^-p$/)  {
+		$PACKAGE = shift @ARGV;
+	} else {
+		push(@errors, "Unknown argument: $_");
+	} 
+
+}
+
+push(@errors, "No --webapps specified") unless @webapps;
+push(@errors, "No --stage specified") unless $STAGE;
+push(@errors, "No --environment specified") unless $ENVIRONMENT;
+push(@errors, "No --package specified") unless $PACKAGE;
+
+die "FATAL: " . join("\n", @errors) . "\n$USAGE" . "\n" if (@errors);
+
+#
+# What stage to deploy from
+#
+
+my $STAGE_FOLDER = '';
+if ($STAGE eq 'Commit') {
+	$STAGE_FOLDER = $COMMIT_PACKAGE_FOLDER;
+} else {
+	die "FATAL: Unknown stage $STAGE\n";
+}
+
+die "FATAL: Can't find directory $STAGE_FOLDER\n" unless -d $STAGE_FOLDER;
+warn "Will deploy from path '$STAGE_FOLDER'\n" if $VERBOSE || $DEBUG;
+
+#
+# The package to deploy
+#
+
+my $PACKAGE_PATH = "$STAGE_FOLDER/$PACKAGE";
+die "FATAL: Can't find stage package path '$PACKAGE_PATH'\n" unless -d $PACKAGE_PATH;
+warn "Will deploy webapps from package '$PACKAGE_PATH'\n" if $VERBOSE || $DEBUG;
+
+#
+# The webapps to deploy
+#
+
+my $WEBAPPS_SOURCE = "$PACKAGE_PATH/wars";
+die "FATAL: No webapps found in package folder '$WEBAPPS_SOURCE'\n" unless -d $WEBAPPS_SOURCE;
+
+warn "Will attempt to deploy the following webapps: " . join(', ', @webapps) . ".\n" if $VERBOSE || $DEBUG;
+
+my @webapp_wars = ();
+foreach my $war (@webapps) {
+	if (-f "$WEBAPPS_SOURCE/$war.war")  {
+		push(@webapp_wars, "$WEBAPPS_SOURCE/$war.war");
+	} else {
+		push(@errors, "$WEBAPPS_SOURCE/$war.war");
+	}
+}
+
+die "FATAL: Can't find the following war files:\n" . join("\n", @errors) . "\n" if (@errors);
+warn "Will deploy the following war files:\n" . join("\n", @webapp_wars) . "\n" if $VERBOSE || $DEBUG;
+
+#
+# The environment to deploy to
+#
+
+die "FATAL: Missing folder: $DEPLOYMENT_ENVIRONMENT_FOLDER\n" unless -d $DEPLOYMENT_ENVIRONMENT_FOLDER;
+my $deploy_env_dest = "$DEPLOYMENT_ENVIRONMENT_FOLDER/$ENVIRONMENT";
+
+unless (-d $deploy_env_dest) {
+	warn "WARNING: Creating folder '$deploy_env_dest'\n";
+	mkdir $deploy_env_dest || die "FATAL: Failed to create $deploy_env_dest: $?\n";
+}
+
+######################################################################
+# Install the package
+######################################################################
+
+#
+# Make the folder and copy the wars to it
+#
+
+my $deploy_war_folder = "$deploy_env_dest/$PACKAGE";
+die "FATAL: $deploy_war_folder already exists\n" if -d $deploy_war_folder;
+unless ($DEBUG) {
+	mkdir $deploy_war_folder || die "FATAL: Failed to create $deploy_war_folder: $?\n";
+}
+
+foreach my $war (@webapps) {
+	warn "Copying $war.war\n" if $VERBOSE || $DEBUG;
+	unless ($DEBUG) {
+		copy "$WEBAPPS_SOURCE/$war.war", "$deploy_war_folder/$war.war" || die "FATAL: Could not copy $WEBAPPS_SOURCE/$war.war to $deploy_war_folder/$war.war: $?\n";
+	}
+}
+
+#
+# Make the CURRENT symbolic link point to our new folder
+#
+
+my $current_folder = "$deploy_env_dest/CURRENT";
+if (-l $current_folder) {
+	warn "Removing symlink $current_folder\n" if $VERBOSE || $DEBUG;
+	unless ($DEBUG) {
+		unlink $current_folder || die "FATAL: Can't delete symlink $current_folder: $?\n";
+	}
+} elsif (-e $current_folder) {
+	die "FATAL: $current_folder exists, but is not a symbolic link. Fix it!!\n";
+}
+
+warn "Symlinking $current_folder to $deploy_war_folder\n" if $VERBOSE || $DEBUG;
+unless ($DEBUG) {
+	symlink $deploy_war_folder, $current_folder || die "FATAL: Can't create link $current_folder to $deploy_war_folder: $?\n";
+}
+
+
