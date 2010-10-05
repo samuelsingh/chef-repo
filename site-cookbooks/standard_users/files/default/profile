@@ -21,4 +21,5 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-[ -f "/etc/profile.d/prod-server.sh" ] && source /etc/profile.d/prod-server.sh
+# Adds hook to give a custom console prefix depending on the machine role
+[ -f "/etc/profile.d/custom-ps1-prefix.sh" ] && source /etc/profile.d/custom-ps1-prefix.sh
