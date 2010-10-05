@@ -30,3 +30,10 @@ user "sysadmin"  do
   password "$6$EftNV8G/$Z9PfDF/ss6.FGFyJLE8oeFGXfD9g20Bf72m6D5ShhImW3NIAzXx91y3D9uCU.cvtH0N/2a/VRjIxJp7bpN2nH."
   not_if "[ ! -z \"`who | grep sysadmin`\" ]"
 end
+
+remote_file "/var/shared/home/sysadmin/.profile" do
+  source "profile"
+  owner "sysadmin"
+  group "sysadmin"
+  mode "0644"
+end
