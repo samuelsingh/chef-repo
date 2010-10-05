@@ -6,7 +6,7 @@ run_list "recipe[mms-vhost]"
 
 override_attributes(
   "mms_vhost" => {
-    "mms.map-cloud-01.eu" => {
+    "mms.mapofmedicine.com" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/prod/root-mms",
       "appserver" => "rootmms-app-01.map-cloud-01.eu",
