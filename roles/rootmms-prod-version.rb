@@ -1,6 +1,8 @@
 name "rootmms-prod-version"
 description "Root MMS production version snippet"
 
+run_list "recipe[prod-server]"
+
 override_attributes(
   "mms" => {
     "version" => "2.6.5.ALL.12.36722",
