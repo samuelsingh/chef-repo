@@ -1,11 +1,17 @@
 #!/usr/bin/perl -w
 #
-# This script deploys a Map Fabric application when run on an application server.
+# This script sets up an application build so that it will be deployed onto a specified
+# deployment environment. Please see the Fabric section of the wiki for details.
 #
-# Pre-requisites: 
-#   1) A build has been created by the Pipeline-Commit script and is available
-#      on shared storage
+# This script is meant to be run after a PACKAGE has been created, which is done 
+# automatically via Hudson after a change is committed to relevant application source.
 #
+# When run, this script copies webapp files to a central location, in a folder for a
+# specified deployment environment. The application servers for that deployment
+# environment will then pull those webapps and deploy them.
+#
+# Assumption: The database for the relevant deployment environment will be set up and/or
+# upgraded to match the webapps outside the scope of this script.
 #
 
 use File::Copy;
@@ -174,5 +180,11 @@ warn "Symlinking $current_folder to $deploy_war_folder\n" if $VERBOSE || $DEBUG;
 unless ($DEBUG) {
 	symlink $deploy_war_folder, $current_folder || die "FATAL: Can't create link $current_folder to $deploy_war_folder: $?\n";
 }
+
+my $current_version_file = "$deploy_env_dest/current-version.txt";
+warn "Writing package name $PACKAGE to $current_version_file\n" if $VERBOSE || $DEBUG;
+open (VERFILE, ">$current_version_file") || die "Can't open $current_version_file: $!\n";
+print VERFILE "$PACKAGE";
+close (VERFILE);
 
 
