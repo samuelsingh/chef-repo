@@ -64,15 +64,18 @@ ruby_block "package_versions" do
 	#log "STOP TOMCAT" { level :warn }
 
 	if deployed_package != current_package
+		print "X"
 		#log "App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
 		#log "REPLACE #{deployed_package} WITH #{current_package}" { level :warn }
 	end
 
 	if deployed_package != db_schema_version
+		print "X"
 		#log "App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
 	end
 
 	if current_package != db_schema_version
+		print "X"
 		#log "Database needs to be upgraded or rolled back to match package #{current_package}"
 	end
 
