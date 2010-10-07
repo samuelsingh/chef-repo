@@ -53,11 +53,7 @@ ruby_block "package_versions" do
     else
 	    db_schema_version = nil
     end
-  end
-end
 
-ruby_block "deploy_decision" do
-  block do
     if deployed_package == current_package && deployed_package == db_schema_version
 	  # Everything is fine
 	  Chef::Log.debug("Should implement something to ensure tomcat is running")
