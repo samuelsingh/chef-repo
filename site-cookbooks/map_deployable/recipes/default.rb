@@ -54,29 +54,29 @@ ruby_block "package_versions" do
 	    db_schema_version = nil
     end
 
+    Chef::Log.debug("Analyzing what deployment is needed for environment #{environment_id}:\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}")
+
     if deployed_package == current_package && deployed_package == db_schema_version
 	  # Everything is fine
-	  Chef::Log.debug("Should implement something to ensure tomcat is running")
-	  #log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
+	  Chef::Log.warn("START TOMCAT IF NOT RUNNING")
+	  Chef::Log.debug("Package #{deployed_package} is deployed and current on.")
     else
 	  
-	  #log "Deployment actions are needed on #{hostname}\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}"
-	  #log "STOP TOMCAT" { level :warn }
+	  Chef::Log.info("Deployment actions are needed for environment #{environment_id}:\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}")
+	  Chef::Log.warn("STOP TOMCAT")
 
 	  if deployed_package != current_package
-		  print "X"
-		  #log "App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
-		  #log "REPLACE #{deployed_package} WITH #{current_package}" { level :warn }
+		  Chef::Log.info("Package #{deployed_package} is deployed, package #{current_package} needs to be deployed for environment #{environment_id}")
+		  Chef::Log.warn("REPLACE #{deployed_package} WITH #{current_package}")
 	  end
   
 	  if deployed_package != db_schema_version
-		  print "X"
-		  #log "App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
+		  Chef::Log.info("Package #{deployed_package} deployed, the current database schema is #{db_schema_version} for environment #{environment_id}")
 	  end
 
 	  if current_package != db_schema_version
-		  print "X"
-		  #log "Database needs to be upgraded or rolled back to match package #{current_package}"
+		  Chef::Log.info("Database needs to be upgraded or rolled back to match package #{current_package}")
+		  Chef::Log.warn("UPGRADE DATABASE SCHEMA TO #{current_package} then update #{database_schema_file}")
 	  end
 
     end
