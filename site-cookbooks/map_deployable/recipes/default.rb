@@ -56,24 +56,24 @@ ruby_block "package_versions" do
 
   if deployed_package == current_package && deployed_package == db_schema_version
 	# Everything is fine
-	log "Should implement something to ensure tomcat is running" { level :debug }
-	log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
+	Chef::Log.debug("Should implement something to ensure tomcat is running")
+	#log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
   else
 	
-	log "Deployment actions are needed on #{hostname}\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}"
-	log "STOP TOMCAT" { level :warn }
+	#log "Deployment actions are needed on #{hostname}\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}"
+	#log "STOP TOMCAT" { level :warn }
 
 	if deployed_package != current_package
-		log "App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
-		log "REPLACE #{deployed_package} WITH #{current_package}" { level :warn }
+		#log "App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
+		#log "REPLACE #{deployed_package} WITH #{current_package}" { level :warn }
 	end
 
 	if deployed_package != db_schema_version
-		log "App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
+		#log "App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
 	end
 
 	if current_package != db_schema_version
-		log "Database needs to be upgraded or rolled back to match package #{current_package}"
+		#log "Database needs to be upgraded or rolled back to match package #{current_package}"
 	end
 
   end
