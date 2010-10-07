@@ -56,8 +56,8 @@ ruby_block "package_versions" do
 
   if deployed_package == current_package && deployed_package == db_schema_version
 	# Everything is fine
-	log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
 	log "Should implement something to ensure tomcat is running"
+	log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
   else
 	
 	log "Deployment actions are needed on #{hostname}\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}"
