@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-cookbook_file "/usr/local/sbin/install-build" do
+remote_file "/usr/local/sbin/install-build" do
   source "install-build"
   mode 0755
 end
