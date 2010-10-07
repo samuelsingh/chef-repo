@@ -44,7 +44,7 @@ ruby_block "package_versions" do
     if FileTest.exists?(current_package_file)
 	    current_package = File.open(current_package_file, "r").gets.first.chomp
     else
-	    Chef::Log.warn("File #{current_package_file} does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly and that there is a current build package installed for it.")
+	    Chef::Log.warn("File '#{current_package_file}' does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly and that there is a current build package installed for it.")
 	    current_package = nil
     end
 
@@ -55,29 +55,29 @@ ruby_block "package_versions" do
 	    db_schema_version = nil
     end
 
-    Chef::Log.debug("Analyzing what deployment is needed for environment #{environment_id}:\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}")
+    Chef::Log.debug("Analyzing what deployment is needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
 
     if deployed_package == current_package && deployed_package == db_schema_version
 	  # Everything is fine
 	  Chef::Log.warn("START TOMCAT IF NOT RUNNING")
-	  Chef::Log.debug("Package #{deployed_package} is deployed and current on.")
+	  Chef::Log.debug("Package '#{deployed_package}' is deployed and current for environment '#{environment_id}'")
     else
 	  
-	  Chef::Log.info("Deployment actions are needed for environment #{environment_id}:\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}")
+	  Chef::Log.info("Deployment actions are needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
 	  Chef::Log.warn("STOP TOMCAT")
 
 	  if deployed_package != current_package
-		  Chef::Log.info("Package #{deployed_package} is deployed, package #{current_package} needs to be deployed for environment #{environment_id}")
-		  Chef::Log.warn("REPLACE #{deployed_package} WITH #{current_package}")
+		  Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
+		  Chef::Log.warn("REPLACE '#{deployed_package}' WITH '#{current_package}'")
 	  end
   
 	  if deployed_package != db_schema_version
-		  Chef::Log.info("Package #{deployed_package} deployed, the current database schema is #{db_schema_version} for environment #{environment_id}")
+		  Chef::Log.info("Package '#{deployed_package}' deployed, the current database schema is '#{db_schema_version}' for environment '#{environment_id}'")
 	  end
 
 	  if current_package != db_schema_version
-		  Chef::Log.info("Database needs to be upgraded or rolled back to match package #{current_package}")
-		  Chef::Log.warn("UPGRADE DATABASE SCHEMA TO #{current_package} then update #{database_schema_file}")
+		  Chef::Log.info("Database needs to be upgraded or rolled back to match package '#{current_package}'")
+		  Chef::Log.warn("UPGRADE DATABASE SCHEMA TO #{current_package} then update '#{database_schema_file}'")
 	  end
 
     end
