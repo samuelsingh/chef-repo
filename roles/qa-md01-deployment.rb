@@ -10,6 +10,6 @@ override_attributes(
     "dbname" => "qa_md01"
   },
   "fabric_deployment" => {
-    "environment" => "qa-md-01"
+    "environment" => "qa-md01"
   }
 )
