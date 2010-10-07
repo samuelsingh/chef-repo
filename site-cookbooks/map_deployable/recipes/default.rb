@@ -32,55 +32,58 @@ deployed_here_file = "#{env_packages}/deployed-#{hostname}.txt"
 database_schema_file = "#{env_packages}/db-schema-version.txt"
 
 ruby_block "package_versions" do
+  block do
+    # Which package is currently deployed?
+    if FileTest.exists?(deployed_here_file)
+	    deployed_package = File.open(deployed_here_file, "r").gets.first.chomp
+    else
+	    deployed_package = nil
+    end
 
-  # Which package is currently deployed?
-  if FileTest.exists?(deployed_here_file)
-	  deployed_package = File.open(deployed_here_file, "r").gets.first.chomp
-  else
-	  deployed_package = nil
+    # Which package should be deployed?
+    if FileTest.exists?(current_package_file)
+	    current_package = File.open(current_package_file, "r").gets.first.chomp
+    else
+	    current_package = nil
+    end
+
+    # Which package is the database schema set to?
+    if FileTest.exists?(database_schema_file)
+	    db_schema_version = File.open(database_schema_file, "r").gets.first.chomp
+    else
+	    db_schema_version = nil
+    end
   end
+end
 
-  # Which package should be deployed?
-  if FileTest.exists?(current_package_file)
-	  current_package = File.open(current_package_file, "r").gets.first.chomp
-  else
-	  current_package = nil
+ruby_block "deploy_decision" do
+  block do
+    if deployed_package == current_package && deployed_package == db_schema_version
+	  # Everything is fine
+	  Chef::Log.debug("Should implement something to ensure tomcat is running")
+	  #log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
+    else
+	  
+	  #log "Deployment actions are needed on #{hostname}\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}"
+	  #log "STOP TOMCAT" { level :warn }
+
+	  if deployed_package != current_package
+		  print "X"
+		  #log "App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
+		  #log "REPLACE #{deployed_package} WITH #{current_package}" { level :warn }
+	  end
+  
+	  if deployed_package != db_schema_version
+		  print "X"
+		  #log "App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
+	  end
+
+	  if current_package != db_schema_version
+		  print "X"
+		  #log "Database needs to be upgraded or rolled back to match package #{current_package}"
+	  end
+
+    end
   end
-
-  # Which package is the database schema set to?
-  if FileTest.exists?(database_schema_file)
-	  db_schema_version = File.open(database_schema_file, "r").gets.first.chomp
-  else
-	  db_schema_version = nil
-  end
-
-  if deployed_package == current_package && deployed_package == db_schema_version
-	# Everything is fine
-	Chef::Log.debug("Should implement something to ensure tomcat is running")
-	#log "Package #{deployed_package} is deployed and current on #{hostname}." { level :debug }
-  else
-	
-	#log "Deployment actions are needed on #{hostname}\ndeployed_package = #{deployed_package}\ncurrent_package = #{current_package}\ndb_schema_version = #{db_schema_version}"
-	#log "STOP TOMCAT" { level :warn }
-
-	if deployed_package != current_package
-		print "X"
-		#log "App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
-		#log "REPLACE #{deployed_package} WITH #{current_package}" { level :warn }
-	end
-
-	if deployed_package != db_schema_version
-		print "X"
-		#log "App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
-	end
-
-	if current_package != db_schema_version
-		print "X"
-		#log "Database needs to be upgraded or rolled back to match package #{current_package}"
-	end
-
-  end
-
-
 end
 
