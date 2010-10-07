@@ -44,6 +44,7 @@ ruby_block "package_versions" do
     if FileTest.exists?(current_package_file)
 	    current_package = File.open(current_package_file, "r").gets.first.chomp
     else
+	    Chef::Log.warn("File #{current_package_file} does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly.")
 	    current_package = nil
     end
 
