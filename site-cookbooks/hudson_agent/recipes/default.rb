@@ -51,6 +51,18 @@ directory "#{hudson_home}" do
   not_if "test -d {hudson_home}"
 end
 
+directory "/mnt/hudson-workspace" do
+  owner "#{user}"
+  group "#{group}"
+  mode "0755"
+  action :create
+  not_if "test -d /mnt/hudson-workspace"
+end
+
+link "#{hudson_home}/workspace" do
+  to "/mnt/hudson-workspace"
+end
+
 template "/etc/init.d/hudson-agent" do
   source "hudson-agent.erb"
   owner "root"

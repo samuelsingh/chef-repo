@@ -24,7 +24,7 @@ end
 
 environment_id = "#{node[:fabric_deployment][:environment]}"
 package_base = "#{node[:fabric_deployment][:env_package_dir]}"
-env_packages = "#{environment_id}/#{package_base}"
+env_packages = "#{package_base}/#{environment_id}"
 hostname = "#{node[:hostname]}"
 
 current_package_file = "#{env_packages}/current-version.txt"
@@ -44,7 +44,7 @@ ruby_block "package_versions" do
     if FileTest.exists?(current_package_file)
 	    current_package = File.open(current_package_file, "r").gets.first.chomp
     else
-	    Chef::Log.warn("File #{current_package_file} does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly.")
+	    Chef::Log.warn("File #{current_package_file} does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly and that there is a current build package installed for it.")
 	    current_package = nil
     end
 
