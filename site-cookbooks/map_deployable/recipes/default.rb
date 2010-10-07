@@ -56,24 +56,24 @@ ruby_block "package_versions" do
 
   if deployed_package == current_package && deployed_package == db_schema_version
 	# Everything is fine
-	Chef.log.debug("Package #{deployed_package} is deployed and current on #{hostname}.")
-	Chef.log.warn("Should implement something to ensure tomcat is running")
+	Chef::log.debug("Package #{deployed_package} is deployed and current on #{hostname}.")
+	Chef::log.warn("Should implement something to ensure tomcat is running")
   else
 
 	if deployed_package != current_package
-		Chef.log.info("App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
-		Chef.log.warn("STOP TOMCAT")
-		Chef.log.warn("REPLACE #{deployed_package} WITH #{current_package}"
+		Chef::log.info("App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
+		Chef::log.warn("STOP TOMCAT")
+		Chef::log.warn("REPLACE #{deployed_package} WITH #{current_package}"
 	end
 
 	if deployed_package != db_schema_version
-		Chef.log.warn("App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
-		Chef.log.warn("STOP TOMCAT")
+		Chef::log.warn("App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
+		Chef::log.warn("STOP TOMCAT")
 	end
 
 	if current_package != db_schema_version
-		Chef.log.warn("Database needs to be upgraded or rolled back to match package #{current_package}"
-		Chef.log.warn("STOP TOMCAT")
+		Chef::log.warn("Database needs to be upgraded or rolled back to match package #{current_package}"
+		Chef::log.warn("STOP TOMCAT")
 	end
 
   end
