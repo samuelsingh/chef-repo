@@ -61,13 +61,13 @@ ruby_block "package_versions" do
   else
 
 	if deployed_package != current_package
-		Chef::log.info("App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}"
+		Chef::log.info("App server #{hostname} has package #{deployed_package} deployed, needs to install #{current_package}")
 		Chef::log.warn("STOP TOMCAT")
-		Chef::log.warn("REPLACE #{deployed_package} WITH #{current_package}"
+		Chef::log.warn("REPLACE #{deployed_package} WITH #{current_package}")
 	end
 
 	if deployed_package != db_schema_version
-		Chef::log.warn("App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}"
+		Chef::log.warn("App server #{hostname} has package #{deployed_package} deployed, database schema is for package #{db_schema_version}")
 		Chef::log.warn("STOP TOMCAT")
 	end
 
