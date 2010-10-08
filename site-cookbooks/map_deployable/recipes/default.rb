@@ -23,12 +23,10 @@ remote_file "/usr/local/sbin/install-build" do
 end
 
 environment_id = node[:fabric_deployment][:environment]
-package_base = node[:fabric_deployment][:env_package_dir]
-env_packages = "#{package_base}/#{environment_id}"
-hostname = node[:hostname]
+env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 
 current_package_file = "#{env_packages}/current-version.txt"
-deployed_here_file = "#{env_packages}/deployed-#{hostname}.txt"
+deployed_here_file = "#{env_packages}/deployed-#{node[:hostname]}.txt"
 database_schema_file = "#{env_packages}/db-schema-version.txt"
 
 ruby_block "package_versions" do
@@ -39,6 +37,7 @@ ruby_block "package_versions" do
     else
 	    deployed_package = nil
     end
+    node[:fabric_deployment][:packages][:deployed] = deployed_package
 
     # Which package should be deployed?
     if FileTest.exists?(current_package_file)
@@ -47,6 +46,7 @@ ruby_block "package_versions" do
 	    Chef::Log.warn("File '#{current_package_file}' does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly and that there is a current build package installed for it.")
 	    current_package = nil
     end
+    node[:fabric_deployment][:packages][:current] = current_package
 
     # Which package is the database schema set to?
     if FileTest.exists?(database_schema_file)
@@ -54,6 +54,7 @@ ruby_block "package_versions" do
     else
 	    db_schema_version = nil
     end
+    node[:fabric_deployment][:packages][:dbschema] = db_schema_version
 
     Chef::Log.debug("Analyzing what deployment is needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
 
