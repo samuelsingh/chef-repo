@@ -27,36 +27,46 @@ deployed_package = node[:fabric_deployment][:packages][:deployed]
 current_package = node[:fabric_deployment][:packages][:current]
 db_schema_version = node[:fabric_deployment][:packages][:dbschema]
 
+ruby_block "packaged_deployed" do
+  only_if ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" )
+  block do
+	service "tomcat#{ajp_port}" do
+		action [ :start ]
+	end
+  end
+end
 
-ruby_block "package_versions" do
+ruby_block "package_mismatch" do
+  not_if ( deployed_package == current_package && deployed_package == db_schema_version ) || ( current_package == "" )
   block do
 
-    Chef::Log.debug("Analyzing what deployment is needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
+	Chef::Log.info("Deployment actions are needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
 
-    if deployed_package == current_package && deployed_package == db_schema_version
-	  # Everything is fine
-	  Chef::Log.warn("START TOMCAT IF NOT RUNNING")
-	  Chef::Log.debug("Package '#{deployed_package}' is deployed and current for environment '#{environment_id}'")
-    else
-	  
-	  Chef::Log.info("Deployment actions are needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
-	  Chef::Log.warn("STOP TOMCAT")
+	Chef::Log.warn("STOP TOMCAT")
+	node[:tomcat][:ajp_ports].each do |ajp_port|
+		service "tomcat#{ajp_port}" do
+			action [ :stop ]
+		end
+	end
+  end
+end
 
-	  if deployed_package != current_package
-		  Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
-		  Chef::Log.warn("REPLACE '#{deployed_package}' WITH '#{current_package}'")
-	  end
-  
-	  if deployed_package != db_schema_version
-		  Chef::Log.info("Package '#{deployed_package}' deployed, the current database schema is '#{db_schema_version}' for environment '#{environment_id}'")
-	  end
+ruby_block "deploy_package" do
+  only_if deployed_package != current_package && current_package != ""
+  block do
+	if deployed_package != current_package
+		Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
+		Chef::Log.warn("REPLACE '#{deployed_package}' WITH '#{current_package}'")
+	end
+  end
+end
 
-	  if current_package != db_schema_version
-		  Chef::Log.info("Database needs to be upgraded or rolled back to match package '#{current_package}'")
-		  Chef::Log.warn("UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'")
-	  end
-
-    end
+ruby_block "db_upgrade_time" do
+  only_if current_package != db_schema_version
+  block do
+	if current_package != db_schema_version
+	Chef::Log.info("Database needs to be upgraded or rolled back to match package '#{current_package}'")
+	Chef::Log.warn("UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'")
   end
 end
 
