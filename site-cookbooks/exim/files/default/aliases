@@ -624,7 +624,6 @@ cep:								content-team
 cep-team:							content-team
 special-projects:					special-projects@natbill.hostpilot.com
 mom-all:							mom-all@natbill.hostpilot.com
-innovation-team:					innovation-team@natbill.hostpilot.com
 factory:							factory@natbill.hostpilot.com
 dev-innovation-support:				dev-innovation-support@natbill.hostpilot.com
 its:								dev-innovation-support
@@ -718,6 +717,7 @@ uat-support:					systems
 uat-queue:						bitbucket
 training-updates:				bitbucket
 support-queue:					bitbucket
+innovation-team:				bitbucket
 editorial-queue:					bitbucket
 ias-project-queue:					bitbucket
 ops-to-factory: 				bitbucket
