@@ -37,7 +37,7 @@ ruby_block "package_versions" do
     else
 	    deployed_package = ""
     end
-    node[:fabric_deployment][:packages][:deployed] = deployed_package
+    node.set[:fabric_deployment][:packages][:deployed] = deployed_package
 
     # Which package should be deployed?
     if FileTest.exists?(current_package_file)
@@ -46,7 +46,7 @@ ruby_block "package_versions" do
 	    Chef::Log.warn("File '#{current_package_file}' does not exist, nothing will be deployed, but this can't be right. Check that environment #{environment_id} is set up correctly and that there is a current build package installed for it.")
 	    current_package = ""
     end
-    node[:fabric_deployment][:packages][:current] = current_package
+    node.set[:fabric_deployment][:packages][:current] = current_package
 
     # Which package is the database schema set to?
     if FileTest.exists?(database_schema_file)
@@ -54,7 +54,7 @@ ruby_block "package_versions" do
     else
 	    db_schema_version = ""
     end
-    node[:fabric_deployment][:packages][:dbschema] = db_schema_version
+    node.set[:fabric_deployment][:packages][:dbschema] = db_schema_version
 
     Chef::Log.debug("Analyzing what deployment is needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
 
