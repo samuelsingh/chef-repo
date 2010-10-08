@@ -22,10 +22,10 @@ remote_file "/usr/local/sbin/install-build" do
   mode 0755
 end
 
-environment_id = "#{node[:fabric_deployment][:environment]}"
-package_base = "#{node[:fabric_deployment][:env_package_dir]}"
+environment_id = node[:fabric_deployment][:environment]
+package_base = node[:fabric_deployment][:env_package_dir]
 env_packages = "#{package_base}/#{environment_id}"
-hostname = "#{node[:hostname]}"
+hostname = node[:hostname]
 
 current_package_file = "#{env_packages}/current-version.txt"
 deployed_here_file = "#{env_packages}/deployed-#{hostname}.txt"
