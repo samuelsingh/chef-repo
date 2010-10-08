@@ -48,25 +48,28 @@ ruby_block "package_mismatch" do
 			action [ :stop ]
 		end
 	end
+
   end
 end
 
 ruby_block "deploy_package" do
   only_if deployed_package != current_package && current_package != ""
   block do
-	if deployed_package != current_package
-		Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
-		Chef::Log.warn("REPLACE '#{deployed_package}' WITH '#{current_package}'")
-	end
+
+	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
+	Chef::Log.warn("REPLACE '#{deployed_package}' WITH '#{current_package}'")
+
   end
 end
 
 ruby_block "db_upgrade_time" do
   only_if current_package != db_schema_version
   block do
-	if current_package != db_schema_version
+
 	Chef::Log.info("Database needs to be upgraded or rolled back to match package '#{current_package}'")
 	Chef::Log.warn("UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'")
   end
+
 end
+
 
