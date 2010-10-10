@@ -106,7 +106,8 @@
         
         <% if @holding_page == 'true' -%>
         # The holding page is ENABLED
-        RewriteRule ^/mom /holding.html [R]
+        RewriteRule ^/mapmanager /holding.html [R]
+        RewriteRule ^/adminapp /holding.html [R]
         <% else -%>
         # The holding page is DISABLED
         RewriteRule ^/holding.html / [R]
@@ -118,10 +119,6 @@
         RewriteRule ^/$ /mapmanager [R,L]
         RewriteRule ^/admin$ /adminapp [R,L]
         
-        # Added to 'fix' issue in OPS-24821
-        
-        RewriteRule ^/\d+/index\.html$ / [R,L]
-
     </IfModule>
 
     # This statement figures out whether X-Forwarded-For is set.
