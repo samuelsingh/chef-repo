@@ -53,7 +53,13 @@ ruby_block "upgrade_package" do
 	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
 
 	ajp_ports.each do |port|
-		print "STOP TOMCAT: /etc/init.d/tomcat#{port} stop"
+		Chef::Log.debug("Stopping Tomcat on {port} for webapp upgrade")
+		result %x{/etc/init.d/tomcat#{port} stop}
+		if $? != 0 do
+			# May have gotten an error code because tomcat was not running in the first place
+			Chef::Log.warn("Failed to stop tomcat using /etc/init.d/tomcat#{port} stop")
+			Chef::Log.warn(result)
+		end
 	end
 	Chef::Log.warn("NOW REPLACE '#{deployed_package}' WITH '#{current_package}'")
 
