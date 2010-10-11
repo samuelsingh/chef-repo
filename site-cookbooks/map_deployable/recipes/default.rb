@@ -73,8 +73,8 @@ ruby_block "upgrade_package" do
 	Chef::Log.debug("Replacing '#{deployed_package}' with '#{current_package}'")
 	env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 	src_package = "#{env_packages}/#{current_package}"
-	if ! File.symlink? src_package
-		Chef::Application.fatal! "Missing source directory '#{src_package}'"
+	if ! File.directory? src_package
+		Chef::Application.fatal! "Source directory '#{src_package}' is mising, or not a directory"
 	end
 	
 	dst_package = "#{env_packages}/DEPLOYED"
