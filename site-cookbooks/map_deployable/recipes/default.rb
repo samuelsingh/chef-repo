@@ -27,6 +27,8 @@ deployed_package = node[:fabric_deployment][:packages][:deployed]
 current_package = node[:fabric_deployment][:packages][:current]
 db_schema_version = node[:fabric_deployment][:packages][:dbschema]
 
+ajp_ports = node[:tomcat][:ajp_ports]
+
 ruby_block "packaged_deployed" do
   only_if ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" )
   block do
@@ -34,27 +36,26 @@ ruby_block "packaged_deployed" do
   end
 end
 
-ruby_block "package_mismatch" do
-  not_if ( deployed_package == current_package && deployed_package == db_schema_version ) || ( current_package == "" )
-  block do
-
-	Chef::Log.info("Deployment actions are needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
-
-	Chef::Log.warn("NOW STOP TOMCAT")
-	node[:tomcat][:ajp_ports].each do |ajp_port|
-		service "tomcat#{ajp_port}" do
-			action [ :stop ]
-		end
-	end
-
-  end
-end
+#ruby_block "package_mismatch" do
+#  not_if ( deployed_package == current_package && deployed_package == db_schema_version ) || ( current_package == "" )
+#  block do
+#
+#	Chef::Log.info("Deployment actions are needed for environment '#{environment_id}':\ndeployed_package = '#{deployed_package}'\ncurrent_package = '#{current_package}'\ndb_schema_version = '#{db_schema_version}'")
+#
+#	Chef::Log.warn("NOW STOP TOMCAT")
+#  end
+#end
 
 ruby_block "deploy_package" do
   only_if deployed_package != current_package && current_package != ""
   block do
 
 	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
+
+        #%x{/etc/init.d/tomcatA stop}
+	ajp_ports.each do |port|
+		print "STOP TOMCAT: /etc/init.d/tomcat#{port} stop"
+	end
 	Chef::Log.warn("NOW REPLACE '#{deployed_package}' WITH '#{current_package}'")
 
   end
