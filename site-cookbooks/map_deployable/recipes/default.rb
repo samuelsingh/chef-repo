@@ -52,6 +52,10 @@ ruby_block "upgrade_package" do
 
 	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
 
+
+	#
+	# Stop Tomcat instances to allow upgrade
+	#
 	ajp_ports.each do |port|
 		Chef::Log.debug("Stopping Tomcat on #{port} for webapp upgrade")
 		result = %x{"/etc/init.d/tomcat#{port}" stop}
@@ -61,7 +65,29 @@ ruby_block "upgrade_package" do
 			Chef::Log.warn(result)
 		end
 	end
-	Chef::Log.warn("NOW REPLACE '#{deployed_package}' WITH '#{current_package}'")
+
+	#
+	# Upgrade the webapp
+	#
+
+	Chef::Log.debug("Replacing '#{deployed_package}' with '#{current_package}'")
+	env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
+	src_package = "#{env_packages}/#{current_package}"
+	if ! File.symlink? src_package
+		Chef::Application.fatal("Missing source directory '#{src_package}'")
+	end
+	
+	dst_package = "#{env_packages}/DEPLOYED"
+	if File.symlink? src_package
+		File.delete src_package
+	end
+	if ! File.symlink(src_package, dst_package)
+		Chef::Application.fatal("Failed to create a symlink from #{src_package} to #{dst_package}")
+	end
+	open("#{env_packages}/current-version.txt",'w') { |f| f << "current_package" }
+	open("#{env_packages}/deployed-#{node[:hostname]}.txt",'w') { |f| f << "deployed_package" }
+	
+	Chef::Log.warn("NOW UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'. Re-run chef to complete the upgrade.")
 
   end
 end
