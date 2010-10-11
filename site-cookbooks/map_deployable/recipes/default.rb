@@ -85,7 +85,7 @@ ruby_block "upgrade_package" do
 		Chef::Application.fatal! "Failed to create a symlink from #{src_package} to #{dst_package}"
 	end
 	open("#{env_packages}/current-version.txt",'w') { |f| f << current_package }
-	open("#{env_packages}/deployed-#{node[:hostname]}.txt",'w') { |f| f << deployed_package }
+	open("#{env_packages}/deployed-#{node[:hostname]}.txt",'w') { |f| f << current_package }
 	
 	Chef::Log.warn("NOW UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'. Re-run chef to complete the upgrade.")
 
