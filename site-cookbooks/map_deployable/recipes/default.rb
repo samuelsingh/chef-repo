@@ -30,7 +30,8 @@ db_schema_version = node[:fabric_deployment][:packages][:dbschema]
 ajp_ports = node[:tomcat][:ajp_ports]
 
 ruby_block "package_is_current" do
-  only_if ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" )
+  only_if 1 == 1
+  #only_if ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" )
   block do
 	Chef::Log.warn("NOW START TOMCAT")
   end
