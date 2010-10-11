@@ -29,7 +29,7 @@ db_schema_version = node[:fabric_deployment][:packages][:dbschema]
 
 ajp_ports = node[:tomcat][:ajp_ports]
 
-ruby_block "packaged_deployed" do
+ruby_block "package_is_current" do
   only_if ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" )
   block do
 	Chef::Log.warn("NOW START TOMCAT")
@@ -46,13 +46,12 @@ end
 #  end
 #end
 
-ruby_block "deploy_package" do
-  only_if deployed_package != current_package && current_package != ""
+ruby_block "upgrade_package" do
+  only_if ( deployed_package != current_package && current_package != "" )
   block do
 
 	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
 
-        #%x{/etc/init.d/tomcatA stop}
 	ajp_ports.each do |port|
 		print "STOP TOMCAT: /etc/init.d/tomcat#{port} stop"
 	end
