@@ -32,7 +32,17 @@ ajp_ports = node[:tomcat][:ajp_ports]
 ruby_block "package_is_current" do
   only_if do ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" ) end
   block do
-	Chef::Log.warn("NOW START TOMCAT")
+	Chef::Log.debug("Correct packages are deployed, making sure Tomcat is running")
+	ajp_ports.each do |port|
+		Chef::Log.debug("Starting Tomcat on #{port}")
+		result = %x{"/etc/init.d/tomcat#{port}" start}
+		if $? != 0
+			# May have gotten an error code because tomcat was already running
+			Chef::Log.warn("Failed to start tomcat using /etc/init.d/tomcat#{port} start")
+			Chef::Log.warn(result)
+		end
+	end
+
   end
 end
 
@@ -86,6 +96,9 @@ ruby_block "upgrade_package" do
 	end
 	open("#{env_packages}/current-version.txt",'w') { |f| f << current_package }
 	open("#{env_packages}/deployed-#{node[:hostname]}.txt",'w') { |f| f << current_package }
+
+	set[:fabric_deployment][:packages][:deployed] = current_package
+	set[:fabric_deployment][:packages][:current] = current_package
 	
 	Chef::Log.warn("NOW UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'. Re-run chef to complete the upgrade.")
 
