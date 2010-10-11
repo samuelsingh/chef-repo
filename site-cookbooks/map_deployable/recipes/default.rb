@@ -78,8 +78,8 @@ ruby_block "upgrade_package" do
 	end
 	
 	dst_package = "#{env_packages}/DEPLOYED"
-	if File.symlink? src_package
-		File.delete src_package
+	if File.symlink? dst_package
+		File.delete dst_package
 	end
 	if ! File.symlink(src_package, dst_package)
 		Chef::Application.fatal! "Failed to create a symlink from #{src_package} to #{dst_package}"
