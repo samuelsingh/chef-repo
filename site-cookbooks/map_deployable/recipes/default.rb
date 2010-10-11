@@ -115,4 +115,22 @@ ruby_block "db_upgrade_time" do
 
 end
 
+file "#{env_packages}/deployed-#{node[:hostname]}.txt" do
+	owner "hudson"
+	group "hudson"
+	mode "0644"
+end
+
+file "#{env_packages}/current-version.txt" do
+	owner "hudson"
+	group "hudson"
+	mode "0644"
+end
+
+file "#{env_packages}/db-schema-version.txt" do
+	owner "hudson"
+	group "hudson"
+	mode "0644"
+end
+
 
