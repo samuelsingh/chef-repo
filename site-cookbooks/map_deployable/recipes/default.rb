@@ -47,7 +47,8 @@ end
 #end
 
 ruby_block "upgrade_package" do
-  only_if ( deployed_package != current_package && current_package != "" )
+  only_if 1 == 1
+  #only_if ( deployed_package != current_package && current_package != "" )
   block do
 
 	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
