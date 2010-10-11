@@ -29,6 +29,9 @@ db_schema_version = node[:fabric_deployment][:packages][:dbschema]
 
 ajp_ports = node[:tomcat][:ajp_ports]
 
+env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
+
+
 ruby_block "package_is_current" do
   only_if do ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" ) end
   block do
