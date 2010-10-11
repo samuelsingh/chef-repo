@@ -74,7 +74,7 @@ ruby_block "upgrade_package" do
 	env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 	src_package = "#{env_packages}/#{current_package}"
 	if ! File.symlink? src_package
-		Chef::Application.fatal("Missing source directory '#{src_package}'")
+		Chef::Application.fatal! "Missing source directory '#{src_package}'"
 	end
 	
 	dst_package = "#{env_packages}/DEPLOYED"
@@ -82,7 +82,7 @@ ruby_block "upgrade_package" do
 		File.delete src_package
 	end
 	if ! File.symlink(src_package, dst_package)
-		Chef::Application.fatal("Failed to create a symlink from #{src_package} to #{dst_package}")
+		Chef::Application.fatal! "Failed to create a symlink from #{src_package} to #{dst_package}"
 	end
 	open("#{env_packages}/current-version.txt",'w') { |f| f << "current_package" }
 	open("#{env_packages}/deployed-#{node[:hostname]}.txt",'w') { |f| f << "deployed_package" }
