@@ -54,8 +54,8 @@ ruby_block "upgrade_package" do
 
 	ajp_ports.each do |port|
 		Chef::Log.debug("Stopping Tomcat on #{port} for webapp upgrade")
-		result = `"/etc/init.d/tomcat#{port}" stop`
-		if $? != 0 do
+		result = %x{"/etc/init.d/tomcat#{port}" stop}
+		if $? != 0
 			# May have gotten an error code because tomcat was not running in the first place
 			Chef::Log.warn("Failed to stop tomcat using /etc/init.d/tomcat#{port} stop")
 			Chef::Log.warn(result)
