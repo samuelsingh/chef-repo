@@ -30,8 +30,7 @@ db_schema_version = node[:fabric_deployment][:packages][:dbschema]
 ajp_ports = node[:tomcat][:ajp_ports]
 
 ruby_block "package_is_current" do
-  only_if 1 == 1
-  #only_if ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" )
+  only_if do ( deployed_package == current_package && deployed_package == db_schema_version ) && ( deployed_package != "" ) end
   block do
 	Chef::Log.warn("NOW START TOMCAT")
   end
@@ -48,8 +47,7 @@ end
 #end
 
 ruby_block "upgrade_package" do
-  only_if 1 == 1
-  #only_if ( deployed_package != current_package && current_package != "" )
+  only_if do deployed_package != current_package && current_package != "" end
   block do
 
 	Chef::Log.info("Package '#{deployed_package}' is deployed, package '#{current_package}' needs to be deployed for environment '#{environment_id}'")
@@ -63,7 +61,7 @@ ruby_block "upgrade_package" do
 end
 
 ruby_block "db_upgrade_time" do
-  only_if current_package != db_schema_version
+  only_if do current_package != db_schema_version end
   block do
 
 	Chef::Log.info("Database needs to be upgraded or rolled back to match package '#{current_package}'")
