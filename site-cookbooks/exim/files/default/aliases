@@ -653,7 +653,7 @@ map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie
 sysadmin:						support-team
 knowledge:						root
 systems:						sysadmin
-nagios:							andrew.fulcher
+nagios:							andrew.fulcher,gerard.onochie
 logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
@@ -843,19 +843,19 @@ kristinf04:					Kristin.Franclemont@natbill.hostpilot.com
 kristinf05:					Kristin.Franclemont@natbill.hostpilot.com
 
 # QA requested http://tracking.mapofmedicine.com/jira/browse/OPS-16811
-maria01:					Maria.Martin@natbill.hostpilot.com			
-maria02:					Maria.Martin@natbill.hostpilot.com
-maria03:					Maria.Martin@natbill.hostpilot.com
-maria04:					Maria.Martin@natbill.hostpilot.com
-maria05:					Maria.Martin@natbill.hostpilot.com
+maria01:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com			
+maria02:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria03:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria04:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria05:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
 
 
 # QA requested http://tracking.mapofmedicine.com/jira/browse/OPS-24507
-maria06:					Maria.Martin@natbill.hostpilot.com			
-maria07:					Maria.Martin@natbill.hostpilot.com
-maria08:					Maria.Martin@natbill.hostpilot.com
-maria09:					Maria.Martin@natbill.hostpilot.com
-maria10:					Maria.Martin@natbill.hostpilot.com
+maria06:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com			
+maria07:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria08:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria09:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria10:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
 
 
 
