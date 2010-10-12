@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: map_deployable
+# Cookbook Name:: fabric_deploy
 # Recipe:: default
 #
 # Copyright 2010, Map of Medicine
