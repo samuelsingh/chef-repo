@@ -26,10 +26,10 @@ environment_id = node[:fabric_deployment][:environment]
 deployed_package = node[:fabric_deployment][:packages][:deployed]
 current_package = node[:fabric_deployment][:packages][:current]
 db_schema_version = node[:fabric_deployment][:packages][:dbschema]
+env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 
 ajp_ports = node[:tomcat][:ajp_ports]
 
-env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 
 
 ruby_block "package_is_current" do
@@ -90,7 +90,7 @@ ruby_block "upgrade_package" do
 		Chef::Application.fatal! "Source directory '#{src_package}' is missing, or not a directory"
 	end
 	
-	dst_package = "#{env_packages}/DEPLOYED"
+	dst_package = "#{env_packages}/DEPLOYED-#{node[:hostname]}"
 	if File.symlink? dst_package
 		File.delete dst_package
 	end
@@ -117,19 +117,7 @@ ruby_block "db_upgrade_time" do
 
 end
 
-file "#{env_packages}/deployed-#{node[:hostname]}.txt" do
-	owner "hudson"
-	group "hudson"
-	mode "0644"
-end
-
 file "#{env_packages}/current-version.txt" do
-	owner "hudson"
-	group "hudson"
-	mode "0644"
-end
-
-file "#{env_packages}/db-schema-version.txt" do
 	owner "hudson"
 	group "hudson"
 	mode "0644"
