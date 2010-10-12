@@ -25,6 +25,7 @@
 mtmpath = node[:map_display][:mtmpath]
 md_fqdn = node[:map_display][:md_fqdn]
 deploy_dir = node[:map_display][:deploy_dir]
+webapp_dir = node[:map_display][:webapp_dir]
 md_version = node[:map_display][:version]
 
 dbuser = node[:map_display][:dbuser]
@@ -185,8 +186,8 @@ template "#{mtmpath}/config/mom.properties" do
 end
 
 link "#{deploy_dir}/webapps-running"  do
-  to "#{deploy_dir}/md-#{md_version}/webapps"
-  only_if "test -d #{deploy_dir}/md-#{md_version}/webapps"
+  to "#{webapp_dir}"
+  only_if "test -d #{webapp_dir}"
 end
 
 if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
@@ -204,8 +205,13 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       link "#{node[:tomcat][:basedir]}/server9001/webapps/mom"  do
-        to "#{deploy_dir}/md-#{md_version}/webapps/mom"
-        only_if "test -d #{deploy_dir}/md-#{md_version}/webapps"
+        to "#{webapp_dir}/mom"
+        only_if "test -d #{webapp_dir}/mom"
+      end
+      
+      link "#{node[:tomcat][:basedir]}/server9001/webapps/mom.war"  do
+        to "#{webapp_dir}/mom.war"
+        only_if "test -f #{webapp_dir}/mom.war"
       end
       
       template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mom.xml" do
@@ -235,8 +241,13 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp"  do
-        to "#{deploy_dir}/md-#{md_version}/webapps/adminapp"
-        only_if "test -d #{deploy_dir}/md-#{md_version}/webapps"
+        to "#{webapp_dir}/adminapp"
+        only_if "test -d #{webapp_dir}/adminapp"
+      end
+      
+      link "#{node[:tomcat][:basedir]}/server9002/webapps/adminapp.war"  do
+        to "#{webapp_dir}/adminapp.war"
+        only_if "test -f #{webapp_dir}/adminapp.war"
       end
       
       template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml" do
