@@ -32,7 +32,7 @@ remote_file "/var/tmp/jruby-bin-#{jruby_v}.tar.gz" do
   source "jruby-bin-#{jruby_v}.tar.gz"
   backup false
   mode "0644"
-  notifies :run, resources(:execute => "deploy_jruby")
+  notifies :run, resources(:execute => "deploy_jruby"), :immediate
   not_if "test -f /usr/local/jruby-#{jruby_v}/LICENSE.RUBY"
 end
 
