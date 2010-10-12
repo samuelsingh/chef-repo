@@ -164,6 +164,16 @@ if (-d $deploy_war_folder) {
 			copy "$WEBAPPS_SOURCE/$war.war", "$deploy_war_folder/$war.war" || die "FATAL: Could not copy $WEBAPPS_SOURCE/$war.war to $deploy_war_folder/$war.war: $?\n";
 		}
 	}
+
+	#
+	# Explode the static files for the mom.war for Apache
+	#
+
+	my $static_mom = "$deploy_war_folder/webapps-running";
+	mkdir $static_mom || die "FATAL: Failed to create '$static_mom': $?\n";
+	`unzip "$deploy_war_folder/mom.war" 'i/*' 'css/*' 'html/*' 'help/*' 'js/*' -d "$static_mom/mom"`
+
+
 }
 
 #
