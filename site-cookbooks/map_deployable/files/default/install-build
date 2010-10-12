@@ -150,15 +150,19 @@ unless (-d $deploy_env_dest) {
 #
 
 my $deploy_war_folder = "$deploy_env_dest/$PACKAGE";
-die "FATAL: $deploy_war_folder already exists\n" if -d $deploy_war_folder;
-unless ($DEBUG) {
-	mkdir $deploy_war_folder || die "FATAL: Failed to create $deploy_war_folder: $?\n";
-}
+if (-d $deploy_war_folder) {
+	print "This build package is already deployed: $deploy_war_folder exists\n";
+} else {
 
-foreach my $war (@webapps) {
-	warn "Copying $war.war\n" if $VERBOSE || $DEBUG;
 	unless ($DEBUG) {
-		copy "$WEBAPPS_SOURCE/$war.war", "$deploy_war_folder/$war.war" || die "FATAL: Could not copy $WEBAPPS_SOURCE/$war.war to $deploy_war_folder/$war.war: $?\n";
+		mkdir $deploy_war_folder || die "FATAL: Failed to create $deploy_war_folder: $?\n";
+	}
+
+	foreach my $war (@webapps) {
+		warn "Copying $war.war\n" if $VERBOSE || $DEBUG;
+		unless ($DEBUG) {
+			copy "$WEBAPPS_SOURCE/$war.war", "$deploy_war_folder/$war.war" || die "FATAL: Could not copy $WEBAPPS_SOURCE/$war.war to $deploy_war_folder/$war.war: $?\n";
+		}
 	}
 }
 
@@ -180,11 +184,5 @@ warn "Symlinking $current_folder to $deploy_war_folder\n" if $VERBOSE || $DEBUG;
 unless ($DEBUG) {
 	symlink $deploy_war_folder, $current_folder || die "FATAL: Can't create link $current_folder to $deploy_war_folder: $?\n";
 }
-
-my $current_version_file = "$deploy_env_dest/current-version.txt";
-warn "Writing package name $PACKAGE to $current_version_file\n" if $VERBOSE || $DEBUG;
-open (VERFILE, ">$current_version_file") || die "Can't open $current_version_file: $!\n";
-print VERFILE "$PACKAGE";
-close (VERFILE);
 
 

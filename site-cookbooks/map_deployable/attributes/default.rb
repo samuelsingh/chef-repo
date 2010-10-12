@@ -14,12 +14,13 @@ set_unless[:fabric_deployment][:packages][:deployed] = ""
 #
 # Which package should be deployed?
 #
-# This file should be updated by another process (e.g. Hudson job) which sets the 
-# package version to be deployed.
+# Another process (e.g. Hudson job) should have created a symlink to a folder for the 
+# package to be deployed. The target of the symlink should be a folder whose name is
+# the id of the package to deploy.
 #
-current_package_file = "#{env_packages}/current-version.txt"
-if FileTest.size?(current_package_file)
-	set[:fabric_deployment][:packages][:current] = File.open(current_package_file, "r").gets.first.chomp
+
+if File.symlink? "#{env_packages}/CURRENT"
+	set[:fabric_deployment][:packages][:current] = File.basename(File.readlink("#{env_packages}/CURRENT"))
 else
 	set_unless[:fabric_deployment][:packages][:current] = ""
 end

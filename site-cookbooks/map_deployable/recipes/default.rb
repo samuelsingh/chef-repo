@@ -107,7 +107,7 @@ ruby_block "upgrade_package" do
   end
 end
 
-ruby_block "db_upgrade_time" do
+ruby_block "upgrade_database" do
   only_if do current_package != db_schema_version end
   block do
 
@@ -115,12 +115,6 @@ ruby_block "db_upgrade_time" do
 	Chef::Log.warn("NOW UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'")
   end
 
-end
-
-file "#{env_packages}/current-version.txt" do
-	owner "hudson"
-	group "hudson"
-	mode "0644"
 end
 
 
