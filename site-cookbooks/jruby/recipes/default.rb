@@ -44,7 +44,7 @@ end
 
 link "/usr/local/jruby-latest"  do
   to "/usr/local/jruby-#{jruby_v}"
-  only_if "/usr/local/jruby-#{jruby_v}"
+  only_if "test -f /usr/local/jruby-#{jruby_v}/LICENSE.RUBY"
 end
 
 template "/etc/profile.d/jruby.sh" do
