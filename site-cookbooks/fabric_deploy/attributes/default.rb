@@ -6,6 +6,8 @@ set[:fabric_deployment][:env_package_dir] = "/var/shared/fabric-pipeline/deploy"
 environment_id = node[:fabric_deployment][:environment]
 env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 
+override[:map_display][:webapp_dir] = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}/DEPLOYED-#{node[:hostname]}"
+
 #
 # Which package actually is deployed?
 #
