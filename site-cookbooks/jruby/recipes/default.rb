@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "java"
+
 jruby_v = "1.5.3"
 
 # Deploy Jruby binaries
