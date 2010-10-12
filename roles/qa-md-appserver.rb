@@ -5,6 +5,6 @@ description "Configures an application server for an MD QA deployment"
 # have its own specific role for qa-mdXX-deployment, to define things unique to
 # the deployment such as database
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[map-display]", "recipe[map-display::contentloader]", "recipe[hudson_agent]", "recipe[fabric_deploy]", "recipe[glusterfs-client]"
+run_list "recipe[java]", "recipe[tomcat]", "recipe[map-display]", "recipe[map-display::contentloader]", "recipe[hudson_agent]", "recipe[fabric_deploy]"
 
 
