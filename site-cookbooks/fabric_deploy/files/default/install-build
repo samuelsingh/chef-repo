@@ -199,5 +199,5 @@ unless ($DEBUG) {
 # Try to run chef-client
 #
 
-`sudo /usr/bin/chef-client`
+print `sudo /usr/bin/chef-client 2>&1`
 
