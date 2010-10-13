@@ -26,3 +26,9 @@ root    			ALL=(ALL) ALL
 # It needs passwordless sudo functionality.
 ubuntu  ALL=(ALL) NOPASSWD:ALL
 <% end -%>
+
+<% if defined?(@node[:fabric_deployment]) -%>
+# Hudson user can run chef-client
+hudson ALL = NOPASSWD: /usr/bin/chef-client
+<% end -%>
+

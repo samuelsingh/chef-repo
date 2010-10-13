@@ -195,4 +195,9 @@ unless ($DEBUG) {
 	symlink $deploy_war_folder, $current_folder || die "FATAL: Can't create link $current_folder to $deploy_war_folder: $?\n";
 }
 
+#
+# Try to run chef-client
+#
+
+`sudo /usr/bin/chef-client`
 
