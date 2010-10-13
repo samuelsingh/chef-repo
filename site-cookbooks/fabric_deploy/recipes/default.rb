@@ -110,11 +110,12 @@ end
 ruby_block "upgrade_database" do
   only_if do current_package != db_schema_version end
   block do
-
 	Chef::Log.info("Database needs to be upgraded or rolled back to match package '#{current_package}'")
 	Chef::Log.warn("NOW UPGRADE DATABASE SCHEMA TO #{current_package} then update the db schema file in '#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}'")
   end
-
 end
 
+link "#{env_packages}/DEPLOYED" do
+  to "#{env_packages}/DEPLOYED-#{node[:hostname]}"
+end
 
