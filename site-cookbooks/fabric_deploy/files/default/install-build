@@ -24,7 +24,7 @@ my $DEPLOYMENT_ENVIRONMENT_FOLDER = "$FABRIC_BUILD_DIRECTORY/deploy";
 
 my $USAGE=<<ENDOFUSAGE;
 
-Usage: deploy-build --webapp <webapp> --stage <Commit> --environment <envid> --package <package_name>
+Usage: deploy-build --webapp <webapp> --stage <Commit> --environment <envid> [--package <package_name>]
 
    --webapp  Should be the basename (e.g. mom rather than mom.war)
              May be supplied more than once, to deploy multiple webapps
@@ -41,6 +41,11 @@ Usage: deploy-build --webapp <webapp> --stage <Commit> --environment <envid> --p
 
    --package The package name to deploy. This will be a folder under the stage
              folder. Example: trunk-2010-10-05_14-09-32-36735
+             If this argument is left out, the script will find the latest package
+             (for any branch, which may not be what you want). If the argument
+             value ends with '-', then this is taken to be the branch, and the
+             latest build for that branch will be deployed. e.g. 'trunk-' will
+             deploy the latest build from trunk.
 
 
 ENDOFUSAGE
@@ -82,7 +87,6 @@ while (my $_ = shift @ARGV) {
 push(@errors, "No --webapps specified") unless @webapps;
 push(@errors, "No --stage specified") unless $STAGE;
 push(@errors, "No --environment specified") unless $ENVIRONMENT;
-push(@errors, "No --package specified") unless $PACKAGE;
 
 die "FATAL: " . join("\n", @errors) . "\n$USAGE" . "\n" if (@errors);
 
@@ -103,6 +107,26 @@ warn "Will deploy from path '$STAGE_FOLDER'\n" if $VERBOSE || $DEBUG;
 #
 # The package to deploy
 #
+
+if (!$PACKAGE || $PACKAGE =~ /^[\w\-]+\-$/) {
+	opendir(DIR, $STAGE_FOLDER) || die "FATAL: Can't open directory '$STAGE_FOLDER': $!\n";
+	my @packages = grep (!/^\./, readdir(DIR));
+	closedir(DIR);
+	if ($PACKAGE =~ /^([\w\-]+\-)$/) {
+		my $branch = $1;
+		warn "Will deploy the latest package for branch: $branch\n" if $VERBOSE || $DEBUG;
+		@packages = grep(/^$branch-[\d_\-]+$/, @packages);
+	}
+	@packages = sort {
+		my $a1 = $a;
+		my $b1 = $b;
+		$a1 =~ s/[-_\D]//g;
+		$b1 =~ s/[-_\D]//g;
+		$b1 <=> $a1;
+	} @packages;
+	$PACKAGE = $packages[0];
+	warn "Will deploy most recent package, which is: $PACKAGE\n";
+}
 
 my $PACKAGE_PATH = "$STAGE_FOLDER/$PACKAGE";
 die "FATAL: Can't find stage package path '$PACKAGE_PATH'\n" unless -d $PACKAGE_PATH;
