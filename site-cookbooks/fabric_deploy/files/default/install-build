@@ -199,7 +199,7 @@ unless ($DEBUG) {
 # Try to run chef-client
 #
 
-open (CHEF, "/usr/bin/chef-client 2>&1 |") || die "FATAL: Can't run chef-client: $?\n";
+open (CHEF, "sudo /usr/bin/chef-client 2>&1 |") || die "FATAL: Can't run chef-client: $?\n";
 print while(<CHEF>);
 close (CHEF);
 
