@@ -112,7 +112,7 @@ if (!$PACKAGE || $PACKAGE =~ /^[\w\-]+\-$/) {
 	opendir(DIR, $STAGE_FOLDER) || die "FATAL: Can't open directory '$STAGE_FOLDER': $!\n";
 	my @packages = grep (!/^\./, readdir(DIR));
 	closedir(DIR);
-	if ($PACKAGE =~ /^([\w\-]+\-)$/) {
+	if ($PACKAGE =~ /^([\w\-]+)\-$/) {
 		my $branch = $1;
 		warn "Will deploy the latest package for branch: $branch\n" if $VERBOSE || $DEBUG;
 		@packages = grep(/^$branch-[\d_\-]+$/, @packages);
@@ -124,7 +124,7 @@ if (!$PACKAGE || $PACKAGE =~ /^[\w\-]+\-$/) {
 		$b1 =~ s/[-_\D]//g;
 		$b1 <=> $a1;
 	} @packages;
-	$PACKAGE = $packages[0];
+	$PACKAGE = $packages[0] || die "FATAL: No matching packages found\n";
 	warn "Will deploy most recent package, which is: $PACKAGE\n";
 }
 
