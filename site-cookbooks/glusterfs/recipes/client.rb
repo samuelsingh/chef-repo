@@ -66,15 +66,32 @@ unless glustersrvs.empty?
       not_if "test -d #{mount}"
     end
     
-    template "/etc/glusterfs/export_#{share}.vol" do
-      source "export-TEMPLATE.vol.erb"
-      owner "root"
-      group "root"
-      mode 0644
-      variables(
-        :mount_point => share,
-        :glustersrvs => glustersrvs
-      )
+    if node[:glusterfs][:client][:experimental] == "true"
+      
+      template "/etc/glusterfs/export_#{share}.vol" do
+        source "export-EXPERIMENTAL_TEMPLATE.vol.erb"
+        owner "root"
+        group "root"
+        mode 0644
+        variables(
+          :mount_point => share,
+          :glustersrvs => glustersrvs
+        )
+      end
+      
+    else
+      
+      template "/etc/glusterfs/export_#{share}.vol" do
+        source "export-TEMPLATE.vol.erb"
+        owner "root"
+        group "root"
+        mode 0644
+        variables(
+          :mount_point => share,
+          :glustersrvs => glustersrvs
+        )
+      end
+      
     end
     
     mount "#{mount}" do
@@ -84,28 +101,6 @@ unless glustersrvs.empty?
       action [:mount, :enable]
       not_if "mountpoint -q #{mount}"
     end
-    
-    # if glustersrvs[1].nil?
-    #  
-    #  mount "#{mount}" do
-    #    device "#{glustersrvs[0]}:export_#{share}"
-    #    fstype "glusterfs"
-    #    options "direct-io-mode=disable,noatime"
-    #    action [:mount, :enable]
-    #    not_if "test -f #{mount}/.gfs"
-    #  end
-    #  
-    # else
-      
-    #  mount "#{mount}" do
-    #    device "#{glustersrvs[0]}:export_#{share}"
-    #    fstype "glusterfs"
-    #    options "backupvolfile-server=#{glustersrvs[1]},direct-io-mode=disable,noatime"
-    #    action [:mount, :enable]
-    #    not_if "test -f #{mount}/.gfs"
-    #  end
-    #  
-    # end
   
   end
 
