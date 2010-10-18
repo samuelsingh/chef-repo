@@ -60,5 +60,5 @@ volume quickread_<%= @mount_point %>
   type performance/quick-read
   option cache-timeout 2         # default 1 second
   option max-file-size 128KB     # default 64Kb
-  subvolumes readahead_<%= @mount_point %>
+  subvolumes writebehind_<%= @mount_point %>
 end-volume
