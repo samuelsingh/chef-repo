@@ -7,7 +7,7 @@ run_list "recipe[map-display-vhost]"
 override_attributes(
   "map_display_vhost" => {
     "stage-mdprov.map-cloud-01.eu" => {
-      "srv_aliases" => [],
+      "srv_aliases" => ['euromd.regression.mapofmedicine.com','euromd.beta.mapofmedicine.com'],
       "deploy_dir" => "/var/shared/deployment/stage/euro-md",
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
