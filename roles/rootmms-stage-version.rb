@@ -1,7 +1,7 @@
 name "rootmms-stage-version"
 description "Root MMS staging version snippet"
 
-run_list "recipe[prod-server]"
+run_list "recipe[stage-server]"
 
 override_attributes(
   "mms" => {
