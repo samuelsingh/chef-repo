@@ -30,5 +30,10 @@ override_attributes(
     "multiple_views" => "false",
     "dbuser" => "mtmuser",
     "dbpass" => "MtMUs3r"
+  },
+  "glusterfs" => {
+    "client" => {
+      "experimental" => "true"
+    }
   }
 )
