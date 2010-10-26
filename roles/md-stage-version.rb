@@ -5,6 +5,6 @@ run_list "recipe[stage-server]"
 
 override_attributes(
   "map_display" => {
-    "version" => "2.7.ALL.10.36917"
+    "version" => "2.7.0.ALL.10.36917"
   }
 )
