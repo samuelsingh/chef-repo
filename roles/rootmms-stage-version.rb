@@ -5,7 +5,7 @@ run_list "recipe[stage-server]"
 
 override_attributes(
   "mms" => {
-    "version" => "2.6.5.ALL.12.36722",
+    "version" => "2.7.0.ALL.10.36917",
     "me_version" => "7.6.9",
     "dict_version" => "0.2"
   }
