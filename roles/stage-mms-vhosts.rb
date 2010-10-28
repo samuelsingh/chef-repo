@@ -1,7 +1,7 @@
 name "stage-mms-vhosts"
 description "Configures apache vhosts for MMS staging"
 
-run_list "recipe[mms-vhost]"
+run_list "recipe[mms-vhost]", "recipe[stage-server]"
 
 override_attributes(
   "mms_vhost" => {
