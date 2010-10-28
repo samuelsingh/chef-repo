@@ -7,8 +7,8 @@ run_list "recipe[map-display-vhost]"
 override_attributes(
   "map_display_vhost" => {
     "euro-md.map-cloud-01.eu" => {
-      "srv_aliases" => [],
-      "deploy_dir" => "/var/shared/deployment/euro-md",
+      "srv_aliases" => ["euromd.contentuat.mapofmedicine.com"],
+      "deploy_dir" => "/var/shared/deployment/prod/euro-md",
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 8050
