@@ -1,4 +1,4 @@
-name "euromd-live-version"
+name "euromd-prod-version"
 description "MD staging version snippet"
 
 # This should change to recipe[prod-server] when Euro MD
