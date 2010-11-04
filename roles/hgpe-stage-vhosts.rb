@@ -1,4 +1,4 @@
-name "hgpe-vhosts"
+name "hgpe-stage-vhosts"
 description "Configures HG / MDE vhosts"
 
 run_list "recipe[hg-mde-vhost]"
