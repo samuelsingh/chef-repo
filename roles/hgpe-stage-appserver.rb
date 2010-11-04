@@ -8,7 +8,7 @@ override_attributes(
     "unpackwars" => "true"
   },
   "hg_mde" => {
-    "hg_war_path" =>  "/var/shared/deployment/healthguides/wars",
-    "mde_war_path" =>  "/var/shared/deployment/mde/wars"
+    "hg_war_path" =>  "/var/shared/deployment/stage/healthguides/wars",
+    "mde_war_path" =>  "/var/shared/deployment/stage/mde/wars"
   }
 )
