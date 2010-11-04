@@ -1,4 +1,4 @@
-name "hgpe-appserver"
+name "hgpe-stage-appserver"
 description "Configures HG / MDE application server"
 
 run_list "recipe[java]", "recipe[tomcat]", "recipe[hg-mde]"
