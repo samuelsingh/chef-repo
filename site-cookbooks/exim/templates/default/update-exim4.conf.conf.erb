@@ -23,7 +23,7 @@ dc_smarthost='<%= @node[:exim][:smarthost] %>'
 dc_hide_mailname='true'
 <% end -%>
 dc_minimaldns='false'
-dc_relay_nets=''
+dc_relay_nets='<%= @node[:exim][:relaynets] %>'
 CFILEMODE='644'
 dc_use_split_config='false'
 dc_mailname_in_oh='true'
