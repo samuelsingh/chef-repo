@@ -27,6 +27,7 @@ md_fqdn = node[:map_display][:md_fqdn]
 deploy_dir = node[:map_display][:deploy_dir]
 webapp_dir = node[:map_display][:webapp_dir]
 md_version = node[:map_display][:version]
+mailhost = node[:map_display][:mailhost]
 
 dbuser = node[:map_display][:dbuser]
 dbpass = node[:map_display][:dbpass]
