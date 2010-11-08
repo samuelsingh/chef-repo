@@ -27,3 +27,4 @@ set_unless[:exim][:smarthost] = 'default.map-cloud-01.eu'
 
 # Give option of making relay networks configurable
 set_unless[:exim][:relaynets] = ''
+set_unless[:exim][:relaydomains] = ''
