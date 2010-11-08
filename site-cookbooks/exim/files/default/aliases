@@ -685,7 +685,8 @@ northernengland:				support
 localisation:					support
 scotland:						sales
 itensil:						neil.ferguson
-content:						wendy.kimber
+# Emails here are sent to bitbucket, as requested by Wendy.
+content:						bitbucket
 temp:							temp@natbill.hostpilot.com
 
 godot:					andrew.fulcher
