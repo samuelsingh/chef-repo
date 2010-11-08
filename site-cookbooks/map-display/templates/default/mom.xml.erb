@@ -7,7 +7,7 @@
         driverClassName="net.sourceforge.jtds.jdbc.Driver"
         url="jdbc:jtds:sqlserver://<%= @dbhost %>:1433/<%= @dbname %>" />
         
-    <Resource name="mail/mom" auth="Container" type="javax.mail.Session" mail.smtp.host="localhost" mail.smtp.port="25"
+    <Resource name="mail/mom" auth="Container" type="javax.mail.Session" mail.smtp.host="<%= @mailhost %>" mail.smtp.port="25"
         mail.smtp.auth="false" mail.smtp.starttls.enable="false" mail.transport.protocol="smtp" mail.from="support@mapofmedicine.com"/>
         
 </Context>
