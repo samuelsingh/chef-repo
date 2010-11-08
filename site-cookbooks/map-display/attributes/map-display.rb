@@ -28,6 +28,5 @@ set_unless[:map_display][:dbpass] = "medic1"
 set_unless[:map_display][:dbhost] = "db"
 set_unless[:map_display][:dbname] = "mtmdb"
 
-set_unless[:map_display][:mailhost] = "localhost"
 
 set_unless[:map_display][:contentloaderpath] = "/usr/local/contentloader"
