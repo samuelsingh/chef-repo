@@ -12,7 +12,7 @@ override_attributes(
       "80.239.136.226",   # Fox Court office (old)
       "93.152.106.129",   # Fox Court backup IP
       "80.239.136.225",   # Address randomly used by FoxDev servers
-      "81.6.222.205",     # Kief's home
+      "86.166.206.203",   # Gerard's home
       "82.34.165.170"     # Andrew's home
     ]
   }
