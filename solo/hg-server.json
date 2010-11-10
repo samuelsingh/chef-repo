@@ -1,0 +1,12 @@
+{
+"domain": "mapofmedicine.com",
+"hostname": "ip-10-227-51-48",
+"fqdn": "ip-10-227-51-48.mapofmedicine.com",
+"hg_mde": {
+  "hg_version": "choices.R12.2-Issue_3_2010-100730.183004.769.d1v1r46-September_2010_101018.130659.518.d3v17r4255-hudson-HG-build-appfuse-34-36875",
+  "mde_version": "evidence.R4.1-Issue_3_2010-100730.183004.769.d1v1r46-September_2010_101018.130659.518.d3v17r4255-hudson-HG-build-appfuse-34-36875",
+  "hg_war_path": "/var/wars",
+  "mde_war_path": "/var/wars"  
+},
+"run_list": [ "recipe[standard_users]", "recipe[extra-repos]", "role[web-server]", "role[hgpe-solo-appserver]" ]
+}
