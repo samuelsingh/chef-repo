@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+shared_homes = '/var/shared/home'
+shared_user_home = "#{shared_homes}/sysadmin"
+File.directory?(shared_homes) ? home_dir = shared_user_home : home_dir = '/home/sysadmin'
+
 package "libshadow-ruby1.8" do
   action :install
 end
@@ -24,16 +28,17 @@ end
 user "sysadmin"  do
   comment "Standard Sysadmin User"
   uid "10009"
-  home "/var/shared/home/sysadmin"
+  home home_dir
   shell "/bin/bash"
   supports :manage_home => true
   password "$6$EftNV8G/$Z9PfDF/ss6.FGFyJLE8oeFGXfD9g20Bf72m6D5ShhImW3NIAzXx91y3D9uCU.cvtH0N/2a/VRjIxJp7bpN2nH."
   not_if "[ ! -z \"`who | grep sysadmin`\" ]"
 end
 
-remote_file "/var/shared/home/sysadmin/.profile" do
+remote_file "#{home_dir}/.profile" do
   source "profile"
   owner "sysadmin"
   group "sysadmin"
   mode "0644"
 end
+
