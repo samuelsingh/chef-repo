@@ -24,14 +24,20 @@ node[:hg_mde_vhost].each do |hostname,params|
   application = params.fetch("primary_webapp")
   
   if application == "choices" || application == "evidence"
-  
-    # Figures out whether to link to AWStats
-    awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
     
-    if awstats_srv.nil?
-      awstats = false
+    # Don't use indexes if run by chef-solo
+    if $0[/chef-solo/].nil?
+      # Figures out whether to link to AWStats
+      awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
+
+      if awstats_srv.nil?
+        awstats = false
+      else
+        awstats = true
+      end
+
     else
-      awstats = true
+      awstats = false
     end
   
     if defined?(node[:apache][:dir])
