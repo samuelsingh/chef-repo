@@ -41,7 +41,7 @@ remote_file "/var/tmp/#{node[:tomcat][:version]}.tar.gz" do
   source "#{node[:tomcat][:version]}.tar.gz"
   backup false
   mode "0644"
-  notifies :run, resources(:execute => "deploy_tomcat"), :immediate
+  notifies :run, resources(:execute => "deploy_tomcat"), :immediately
   not_if "test -f /usr/local/#{node[:tomcat][:version]}/RUNNING.txt"
 end
 
