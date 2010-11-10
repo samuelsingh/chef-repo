@@ -5,7 +5,7 @@ run_list "recipe[hg-mde-vhost]"
 
 override_attributes(
   "hg_mde_vhost" => {
-    "stage.healthguides.mapofmedicine.com" => {
+    "healthguides.uat.mapofmedicine.com" => {
       "srv_aliases" => ["stage-healthguides.map-cloud-01.eu"],
       "webapps" => {
         "choices" => {
@@ -19,7 +19,7 @@ override_attributes(
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
     },
-    "stage.eng.mapofmedicine.com" => {
+    "eng.uat.mapofmedicine.com" => {
       "srv_aliases" => ["stage-eng.map-cloud-01.eu", "stage-nhsevidence.mapofmedicine.com"],
       "webapps" => {
         "evidence" => {
