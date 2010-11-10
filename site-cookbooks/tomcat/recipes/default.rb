@@ -17,17 +17,6 @@
 # limitations under the License.
 #
 
-execute "rsync_standard_appserver_usr"  do
-  command "rsync -rlpv --exclude '.svn/' #{node[:mom_scripts][:global_inf_base]}/standard/#{node[:tomcat][:role]}/usr/ /usr"
-  action :run
-  only_if "test -d #{node[:mom_scripts][:global_inf_base]}/standard/#{node[:tomcat][:role]}/usr"
-end
-
-# ln -s /usr/local/<tomcat version> /usr/local/tomcat
-link "/usr/local/tomcat" do
-  to "/usr/local/#{node[:tomcat][:version]}"
-end
-
 group "tomcat"  do
   gid 10008
 end
@@ -39,6 +28,32 @@ user "tomcat"  do
   home "/home/tomcat"
   shell "/bin/bash"
   not_if "[ ! -z \"`who | grep tomcat`\" ]"
+end
+
+# Deploy Tomcat application
+execute "deploy_tomcat" do
+  command "cd /usr/local && tar xzf /var/tmp/#{node[:tomcat][:version]}.tar.gz"
+  action :nothing
+end
+
+# Grab Tomcat package
+remote_file "/var/tmp/#{node[:tomcat][:version]}.tar.gz" do
+  source "#{node[:tomcat][:version]}.tar.gz"
+  backup false
+  mode "0644"
+  notifies :run, resources(:execute => "deploy_tomcat"), :immediate
+  not_if "test -f /usr/local/#{node[:tomcat][:version]}/RUNNING.txt"
+end
+
+# Delete tmp Tomcat package if it's been deployed
+file "/var/tmp/#{node[:tomcat][:version]}.tar.gz" do
+  action :delete
+  only_if "test -f /usr/local/#{node[:tomcat][:version]}/RUNNING.txt"
+end
+
+# ln -s /usr/local/<tomcat version> /usr/local/tomcat
+link "/usr/local/tomcat" do
+  to "/usr/local/#{node[:tomcat][:version]}"
 end
 
 node[:tomcat][:ajp_ports].each do |ajp_port|
