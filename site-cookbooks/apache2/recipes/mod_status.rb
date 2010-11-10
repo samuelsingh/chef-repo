@@ -18,7 +18,11 @@
 #
 
 restricted_ips = node[:apache][:restricted_ips]
-restricted_ips << search(:node, "zenoss_server:true").map { |n| n["ipaddress"] }.first
+
+# Don't use indexes if run by chef-solo
+if $0[/chef-solo/].nil?
+  restricted_ips << search(:node, "zenoss_server:true").map { |n| n["ipaddress"] }.first
+end
 
 apache_module "status"
 
