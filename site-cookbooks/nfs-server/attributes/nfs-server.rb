@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+set_unless[:zones][:name] = "dummy"
+
 case node[:zones][:name]
   
 when "dummy"
