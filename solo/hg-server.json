@@ -8,5 +8,6 @@
   "hg_war_path": "/var/wars",
   "mde_war_path": "/var/wars"  
 },
+"tomcat": { "ajp_ports": [ 9001, 9002 ] },
 "run_list": [ "recipe[standard_users]", "recipe[extra-repos]", "role[web-server]", "role[hgpe-solo-appserver]", "role[hgpe-solo-vhosts]" ]
 }
