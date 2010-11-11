@@ -58,7 +58,12 @@
     </Directory>
 
     <Location />
-
+    
+        # Main access block, this allows anonymous access to everything by default
+        Options FollowSymLinks
+        Order allow,deny
+        Allow from all
+        
         # This block adds expires headers to static files, allowing web browsers to
         # cache them.
         ExpiresActive On

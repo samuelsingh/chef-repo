@@ -42,6 +42,12 @@
     ProxyPass /<%= webapp %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= webapp %>
     <% end -%>
 
+    # Main access block, this allows anonymous access to everything by default
+    <Location "/">
+        Options FollowSymLinks
+        Order allow,deny
+        Allow from all
+    </Location>
 
     <Location "/robots.txt">
         SetHandler None
