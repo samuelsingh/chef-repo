@@ -1,7 +1,7 @@
 name "hgpe-stage-version"
 description "Specifies the HG and MDE versions currently used in production"
 
-run_list "recipe[prod-server]"
+run_list "recipe[stage-server]"
 
 override_attributes(
  "hg_mde" => {
