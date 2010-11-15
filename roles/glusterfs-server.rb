@@ -10,6 +10,9 @@ override_attributes(
   },
   "glusterfs" => {
     "server" => "true",
+    "client" => {
+      "experimental" => true,
+    }
     "mounts" => ["shared", "eph_share", "tmp"],
     "server_ebs_volumes" => {
       "vol-2231f14b" => {
