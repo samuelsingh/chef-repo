@@ -15,7 +15,7 @@ override_attributes(
       "lb_alive_port" => 0
     },
     "stage-rootmms.map-cloud-01.eu" => {
-      "srv_aliases" => ['rootmms.regression.mapofmedicine.com','rootmms.beta.mapofmedicine.com'],
+      "srv_aliases" => ['rootmms.regression.mapofmedicine.com','rootmms.beta.mapofmedicine.com','rootmms.uat.mapofmedicine.com'],
       "deploy_dir" => "/var/shared/deployment/stage/root-mms",
       "appserver" => "stage-rootmms-app-01.map-cloud-01.eu",
       "restricted_ips" => [],
