@@ -31,5 +31,10 @@ override_attributes(
     "datastore" => false,
     "dbuser" => "mtmuser",
     "dbpass" => "medic1"
+  },
+  "glusterfs" => {
+    "client" => {
+      "experimental" => "true"
+    }
   }
 )
