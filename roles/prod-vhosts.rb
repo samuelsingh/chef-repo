@@ -16,7 +16,7 @@ override_attributes(
       "lb_alive_port" => 0
     },
     "localise.map-cloud-01.eu" => {
-      "srv_aliases" => [],
+      "srv_aliases" => ['clientmms.uat.mapofmedicine.com'],
       "deploy_dir" => "/var/shared/deployment/prod/client-mms",
       "appserver" => "clientmms-app-01.map-cloud-01.eu",
       "restricted_ips" => [],
