@@ -627,7 +627,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						kief, andrew, gerardo
+support-team:						kief, andrew, gerard.onochie
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
@@ -644,8 +644,8 @@ marketing-team:						marketing-team@natbill.hostpilot.com
 programme-mgt:						programme-mgt@natbill.hostpilot.com
 implementation:						implementation@natbill.hostpilot.com,ketan.patel
 itsupport:						itsupport@natbill.hostpilot.com
-ITSSharedCalendar                                       ITSSharedCalendar@natbill.hostpilot.com
-lsp-contracts-team                                      lsp-contracts-team@natbill.hostpilot.com
+ITSSharedCalendar:                                      ITSSharedCalendar@natbill.hostpilot.com
+lsp-contracts-team:                                     lsp-contracts-team@natbill.hostpilot.com
 
 
 # Mailing list for receving svn commit emails
