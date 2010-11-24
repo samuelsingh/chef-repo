@@ -45,3 +45,10 @@ template "#{path9002}/conf/Catalina/localhost/nexus.xml" do
     :war_path => war_path
   )
 end
+
+directory "#{path9002}/webapps" do
+  mode 0755
+  owner run_usr
+  group run_grp
+  action :create
+end
