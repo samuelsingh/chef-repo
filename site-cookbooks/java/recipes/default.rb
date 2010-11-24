@@ -43,6 +43,15 @@ package java_pkg do
   end
 end
 
+if platform?("ubuntu", "debian")
+  delete_pkg = ["openjdk-6-jre","openjdk-6-jre-headless","openjdk-6-jre-lib","icedtea-6-jre-cacao"]
+  delete_pkg.each do |pkg|
+    package pkg do
+      action :remove
+    end
+  end
+end
+
 package "ant" do
   action :install
 end

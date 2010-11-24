@@ -59,4 +59,7 @@ mount "#{hudson_home}" do
   only_if "test -b /dev/sdh1"
 end
 
+package "maven2" do
+  action :install
+end
 

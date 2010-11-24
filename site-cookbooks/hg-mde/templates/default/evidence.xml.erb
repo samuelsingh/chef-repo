@@ -1,12 +1,2 @@
-<Context path="/evidence" 
-docBase="<%= @node[:hg_mde][:mde_war_path] %>/<%= @node[:hg_mde][:mde_version] %>.war"
-	    reloadable="true"
-	    debug="0">
-
-    <Logger className="org.apache.catalina.logger.FileLogger"
-        prefix="webapp-mde." suffix=".log" timestamp="true"/>
-
-	<Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
-
-
+<Context path="/evidence" reloadable="false" debug="0">
 </Context>

@@ -15,8 +15,8 @@
 # Tomcat start and stop script
 
 # Leave blank to run as root (you'll go to hell, though)
-USER=tomcat
-GROUP=tomcat
+USER=<%= @t_user %>
+GROUP=<%= @t_group %>
 
 JAVA_HOME=/usr/local/java
 JAVA_OPTS="-server -Xmx2550m -Xms2550m -XX:MaxNewSize=512m -XX:NewSize=512m -XX:SurvivorRatio=3 -XX:TargetSurvivorRatio=80 -XX:MinHeapFreeRatio=10 -XX:PermSize=40m -XX:MaxPermSize=256m -Djava.awt.headless=true"

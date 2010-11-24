@@ -17,17 +17,20 @@
 # limitations under the License.
 #
 
-group "tomcat"  do
+t_user = node[:tomcat][:user]
+t_group = node[:tomcat][:group]
+
+group "#{t_group}"  do
   gid 10008
 end
 
-user "tomcat"  do
+user "#{t_user}"  do
   comment "Tomcat"
   uid "10008"
-  gid "tomcat"
-  home "/home/tomcat"
+  gid t_group
+  home "/home/#{t_user}"
   shell "/bin/bash"
-  not_if "[ ! -z \"`who | grep tomcat`\" ]"
+  not_if "[ ! -z \"`who | grep #{t_user}`\" ]"
 end
 
 # Deploy Tomcat application
@@ -73,40 +76,40 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   end
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/work"  do
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     mode "0755"
     action :create
     not_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}/work"
   end
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/temp"  do
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     mode "0755"
     action :create
     not_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}/temp"
   end
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/logs"  do
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     mode "0755"
     action :create
     not_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}/logs"
   end
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/etc"  do
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     mode "0755"
     action :create
     not_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}/etc"
   end
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/shared/lib"  do
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     mode "0755"
     recursive true
     action :create
@@ -115,19 +118,19 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   
   remote_directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf" do
     source "conf"
-    files_owner "tomcat"
-    files_group "tomcat"
+    owner t_user
+    group t_group
     files_mode "0644"
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     mode "0755"
   end
   
   template "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf/server.xml" do
     source "server.xml.erb"
     mode 0644
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     variables(
       :ajp_port => ajp_port,
       :shutdown_port => shutdown_port,
@@ -138,8 +141,8 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   template "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf/Catalina/localhost/manager.xml" do
     source "manager.xml.erb"
     mode 0644
-    owner "tomcat"
-    group "tomcat"
+    owner t_user
+    group t_group
     variables(
       :ajp_port => ajp_port
     )
@@ -152,7 +155,9 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
     group "root"
     variables(
       :ajp_port => ajp_port,
-      :jmx_port => jmx_port
+      :jmx_port => jmx_port,
+      :t_user => t_user,
+      :t_group => t_group
     )
   end
 

@@ -5,5 +5,3 @@ set[:hudson_server][:war_path]          = "/var/hudson/deploy-wars"
 set[:hudson_server][:home]              = "/var/hudson"
 set[:hudson_server][:run_user]          = "tomcat"
 
-set[:tomcat][:ajp_ports]                = [9001]
-
