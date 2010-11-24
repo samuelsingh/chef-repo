@@ -13,6 +13,13 @@ run_grp = node[:tomcat][:group]
 
 path9002 = "/var/tomcat/server9002"
 
+directory "#{nexus_home}" do
+  mode 0755
+  owner run_usr
+  group run_grp
+  recursive true
+end
+
 directory "#{nexus_home}/wars" do
   mode 0755
   owner run_usr
