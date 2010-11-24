@@ -5,9 +5,6 @@
 #
 #
 
-hg_shared = node[:hg_mde][:hg_shared]
-mde_shared = node[:hg_mde][:mde_shared]
-
 path9001 = "/var/tomcat/server9001"
 path9002 = "/var/tomcat/server9002"
 
@@ -41,12 +38,16 @@ template "#{path9002}/conf/Catalina/localhost/evidence.xml" do
   only_if "test -d #{path9002}/conf"
 end
 
-link "#{path9001}/webapps/choices" do
-  to "#{hg_shared}/healthguides-#{hg_version}/webapps/choices"
-  only_if "test -d #{hg_shared}/healthguides-#{hg_version}/webapps"
+directory "#{path9001}/webapps" do
+  mode 0755
+  owner "tomcat"
+  group "tomcat"
+  action :create
 end
 
-link "#{path9002}/webapps/evidence" do
-  to "#{mde_shared}/mde-#{mde_version}/webapps/evidence"
-  only_if "test -d #{mde_shared}/mde-#{mde_version}/webapps"
+directory "#{path9002}/webapps" do
+  mode 0755
+  owner "tomcat"
+  group "tomcat"
+  action :create
 end
