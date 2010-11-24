@@ -12,6 +12,6 @@ override_attributes(
   },
   "nexus" => {
     "war" =>  "nexus-webapp-1.8.0.1.war",
-    "home" =>  "/var/shared/deployment/nexus/wars"
+    "home" =>  "/var/shared/deployment/nexus"
   }
 )
