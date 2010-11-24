@@ -71,7 +71,7 @@ template "#{node[:apache][:dir]}/sites-available/#{node[:chef_proxy][:fqdn]}.con
     :webui_port => chef_srv["chef"]["webui_port"],
     :log_dir => node[:apache][:log_dir]
   )
-  notifies :reload, resources(:service => "apache2"), :delayed
+  notifies :reload, resources(:service => "apache2")
   only_if "test -d #{node[:apache][:dir]}/sites-available"
 end
 
