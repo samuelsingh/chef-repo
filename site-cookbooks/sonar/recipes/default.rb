@@ -5,8 +5,6 @@
 # Copyright 2010, Map of Medicine
 #
 
-include_recipe "mysql::server"
-
 sonar_home = node[:sonar][:home]
 war_file = node[:sonar][:war]
 war_path = "#{sonar_home}/wars/#{war_file}"
