@@ -19,7 +19,7 @@ override_attributes(
     "home" =>  "/var/hudson/sonar"
   },
   "mysql" => {
-    "server_root_password" =>  "nexus-webapp-1.8.0.1.war",
-    "datadir" =>  "/var/hudson/sonar/mysql"
+    "server_root_password" =>  "Jorwegwi"
+    #"datadir" =>  "/var/hudson/sonar/mysql"
   }
 )
