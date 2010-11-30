@@ -15,7 +15,7 @@ docBase="<%= @war_path %>"
         username="<%= @dbuser %>"
         password="<%= @dbpass %>"
         driverClassName="com.mysql.jdbc.Driver"
-	url="jdbc:mysql://<%= @dbhost %>:3306/<%= @dbname %>?useUnicode=true&characterEncoding=utf8"
+	url="jdbc:mysql://<%= @dbhost %>:3306/<%= @dbname %>?useUnicode=true;characterEncoding=utf8"
     />
     
     <Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
