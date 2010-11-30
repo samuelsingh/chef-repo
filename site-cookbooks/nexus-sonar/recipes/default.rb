@@ -10,7 +10,7 @@ nexus_home = node[:nexus][:home]
 
 s_war_file = node[:sonar][:war]
 n_war_file = node[:nexus][:war]
-s_war_path = "#{sonar_home}/wars/#{n_war_file}"
+s_war_path = "#{sonar_home}/wars/#{s_war_file}"
 n_war_path = "#{nexus_home}/wars/#{n_war_file}"
 
 s_dbuser = node[:sonar][:dbuser]
