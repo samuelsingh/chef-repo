@@ -18,8 +18,8 @@ override_attributes(
     "war" =>  "sonar-2.4.1.war",
     "home" =>  "/var/hudson/sonar",
     "dbuser" => "sonar",
-    "dbpass" => "son4r",
-    "dbhost" => "127.0.0.1",
+    "dbpass" => "s0n4r",
+    "dbhost" => "hudson-01.map-cloud-01.eu",
     "dbname" => "sonar"
   },
   "mysql" => {
