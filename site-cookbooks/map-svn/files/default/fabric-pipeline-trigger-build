@@ -72,6 +72,8 @@ foreach (@DIRS) {
 		$branches{'Jira'} = 1;
 	} elsif (m|^(branches/[^/]+)/Medic2Medic|) {
 		$branches{$1} = 1;
+        } elsif (m|^(branches/[^/]+)/Medic2Medic/MD_Smoke_Test_Suite|) {
+                $dull_branches{"$1"} = 1;
 	} elsif (m|^branches/([^/]+/[^/]+)|) {
 		$dull_branches{"$1"} = 1;
 	} elsif (m|^(trunk/[^/]+)|) {
