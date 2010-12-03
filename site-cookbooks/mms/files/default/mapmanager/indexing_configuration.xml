@@ -34,6 +34,7 @@
 	<index-rule nodeType="mtm:pathway">	    
 	    <property>mtm:expirationTimestamp</property>
 	    <property>mtm:externalId</property>
+            <property>mtm:provenanceCertificate</property>
 	</index-rule>
 	
 	<index-rule nodeType="mtm:pageItemState">
