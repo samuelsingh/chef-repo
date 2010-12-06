@@ -15,7 +15,7 @@ override_attributes(
     },
     "mounts" => ["shared", "eph_share", "tmp"],
     "server_ebs_volumes" => {
-      "vol-2231f14b" => {
+      "vol-da37eeb3" => {
         "host" => "filer-01.map-cloud-01.eu",
         "device" => "/dev/sdh",
         "mount" => "/gfs/shared",
