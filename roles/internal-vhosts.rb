@@ -39,6 +39,13 @@ override_attributes(
       "srv_aliases" => [ "zen-master.mapofmedicine.com" ]
     }
   },
+  "rails" => {
+    "vhost" => {
+      "hostname" => "support-reporting.mapofmedicine.com",
+      "appserver" => "wikijira-app-01",
+      "srv_aliases" => []
+    }
+  },
   "chef_proxy" => {
     "fqdn" => "chef-live.map-cloud-01.eu",
     "api_fqdn" => "chef-live-api.map-cloud-01.eu"
