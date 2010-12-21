@@ -2,7 +2,7 @@ name "internal-vhosts"
 description "Configures apache vhosts for internal production use"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
-run_list "recipe[generic-tomcat-vhost]", "recipe[zenoss::vhost]", "recipe[chef::server_proxy]"
+run_list "recipe[generic-tomcat-vhost]", "recipe[zenoss::vhost]", "recipe[chef::server_proxy]", "recipe[generic-rails-vhost::vhost]"
 
 override_attributes(
   "generic_tomcat_vhost" => {
