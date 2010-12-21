@@ -36,7 +36,7 @@
     DocumentRoot /var/www/vhosts/<%= @hostname %>
     
     # Pushes all traffic to rails
-    ProxyPass / http://<%= @appserver:3000 %>/
+    ProxyPass / http://<%= @appserver %>:3000/
 
     # Zenoss access is restricted.
     # Locked by IP address.
