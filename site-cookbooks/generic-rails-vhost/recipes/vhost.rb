@@ -24,7 +24,7 @@ if defined?(node[:apache][:dir])
   hostname = node[:rails][:vhost][:hostname]
   
   template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-    source "generic-rails-vhost.conf.erb"
+    source "rails-vhost.conf.erb"
     mode 0644
     owner "sysadmin"
     group "sysadmin"
