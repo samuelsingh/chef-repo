@@ -34,6 +34,9 @@
     # Mainly this is used for the holding page.
 
     DocumentRoot /var/www/vhosts/<%= @hostname %>
+    
+    # Pushes all traffic to rails
+    ProxyPass / http://<%= @appserver:3000 %>/
 
     # Zenoss access is restricted.
     # Locked by IP address.
@@ -57,10 +60,9 @@
     <IfModule mod_rewrite.c>
     
         RewriteEngine On
-        ProxyVia on
         
-        RewriteRule ^(.*) \
-        http://<%= @appserver %>:3000/VirtualHostBase/http/<%= @hostname %>:80/VirtualHostRoot/$1 [L,P]
+        # Redirects access from the base URL to the reporting index page
+        RewriteRule ^/$ /this_week/index [R,L]
 
     </IfModule>
 
