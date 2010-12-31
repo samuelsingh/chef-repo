@@ -122,8 +122,8 @@ execute "tgt_apply_changes" do
   action :nothing
 end
 
-template "/etc/tgt/target.conf" do
-  source "target.conf.erb"
+template "/etc/tgt/targets.conf" do
+  source "targets.conf.erb"
   mode "0644"
   variables(
     :rev_hostname => node[:fqdn].split('.').reverse.join('.')
