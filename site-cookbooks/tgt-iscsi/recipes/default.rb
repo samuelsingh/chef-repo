@@ -55,7 +55,7 @@ volumes.each do |entry|
   ebs_id = entry.split(",")[0]
   blkdev = entry.split(",")[1]
   
-  aws_ebs_volume "#{name}" do
+  aws_ebs_volume "#{ebs_id}" do
     provider "aws_ebs_volume"
     aws_access_key node[:aws][:aws_access_key]
     aws_secret_access_key node[:aws][:aws_secret_access_key]
