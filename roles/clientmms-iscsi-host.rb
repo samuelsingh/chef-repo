@@ -9,7 +9,7 @@ override_attributes(
     "aws_secret_access_key" => "bRym4lrXR0Qy67wvS6IAWDvUrZdxXIdFzMYzL28B"
   },
   "tgt_iscsi" => {
-    "mounts" => [
+    "volumes" => [
       "vol-e6f02b8f,/dev/sdd",
       "vol-f8f02b91,/dev/sde",
       "vol-faf02b93,/dev/sdf",
