@@ -43,7 +43,7 @@ package "mdadm" do
 end
 
 # Installs tgt dependencies
-["librdmacm1","libconfig-general-perl","sg3-utils"].each do |pkg|
+["libconfig-general-perl","sg3-utils","librdmacm1"].each do |pkg|
   package pkg do
     action :install
   end
