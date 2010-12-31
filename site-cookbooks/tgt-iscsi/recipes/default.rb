@@ -103,7 +103,8 @@ remote_file "/tmp/#{tgt_pkg}" do
   not_if "test -f /tmp/#{tgt_pkg}"
 end
 
-package "/tmp/#{tgt_pkg}" do
+dpkg_package "tgt" do
+  source "/tmp/#{tgt_pkg}"
   action :install
 end
 
