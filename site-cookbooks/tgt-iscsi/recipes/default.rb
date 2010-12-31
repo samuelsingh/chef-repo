@@ -83,19 +83,25 @@ template "/var/lock/assemble_raid"  do
 end
 
 # Grabs the tgt package and installs it.
-# Uses the Maverick package in Lucid. See for details:
+# Uses the Natty package in Ubuntu. See for details:
 # https://bugs.launchpad.net/ubuntu/+source/tgt/+bug/574554
 # This should be improved if the updated package ever makes it to lucid-backports.
 #
 
-remote_file "/tmp/tgt_1.0.4-2ubuntu1_amd64.deb" do
-  source "tgt_1.0.4-2ubuntu1_amd64.deb"
-  backup false
-  mode "0644"
-  not_if "test -f /tmp/tgt_1.0.4-2ubuntu1_amd64.deb"
+if node[:kernel][:machine] == "x86_64"
+  tgt_pkg = "tgt_1.0.4-2ubuntu1_amd64.deb"
+else
+  tgt_pkg = "tgt_1.0.4-2ubuntu1_i386.deb"
 end
 
-package "/tmp/tgt_1.0.4-2ubuntu1_amd64.deb" do
+remote_file "/tmp/#{tgt_pkg}" do
+  source "#{tgt_pkg}"
+  backup false
+  mode "0644"
+  not_if "test -f /tmp/#{tgt_pkg}"
+end
+
+package "/tmp/#{tgt_pkg}" do
   action :install, :immediately
 end
 
