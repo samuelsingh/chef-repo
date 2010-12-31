@@ -102,7 +102,7 @@ remote_file "/tmp/#{tgt_pkg}" do
 end
 
 package "/tmp/#{tgt_pkg}" do
-  action :install, :immediately
+  action :install
 end
 
 # Finally, configure up tgtd
