@@ -2,8 +2,37 @@
 # Cookbook Name:: tgt-iscsi
 # Recipe:: default
 #
-# Copyright 2010, Map of Medicine
+# Copyright 2010, Andrew Fulcher
 #
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+#
+# This is a simple recipe used to create an iscsi backing store for a SQL Server 2005 instance
+# Required because Windows software RAID I/O performance is very poor.
+#
+# Recommended configuration for databases is to use RAID 10, with a 256k stripe, and 6 equally-sized
+# EBS volumes.  Manually create and add the EBS devices to an EC2 instance, then create the array
+# using something like:
+#
+# mdadm -v --create /dev/md0 --chunk=256 --level=raid10 --raid-devices=6 /dev/sdd /dev/sde /dev/sdf /dev/sdg /dev/sdh /dev/sdi
+#
+# Note that the recipe just assembles the array from the devices it's told about, so any other config
+# will work fine.
+#
+# Then to use the recipe, set node[:tgt_iscsi][:volumes] to be an array of strings of the form
+# "ebs_vol_name,/dev/sd*", so something like: ["vol-abcdef,/dev/sdd","vol-123456,/dev/sde"]
+#
+# If using chef-solo, you might want to just hardcode this in the volumes variable below.
 #
 
 volumes = node[:tgt_iscsi][:volumes]
@@ -56,7 +85,8 @@ end
 # Grabs the tgt package and installs it.
 # Uses the Maverick package in Lucid. See for details:
 # https://bugs.launchpad.net/ubuntu/+source/tgt/+bug/574554
-# This should be updated if the later package ever makes it to lucid-backports.
+# This should be improved if the updated package ever makes it to lucid-backports.
+#
 
 remote_file "/tmp/tgt_1.0.4-2ubuntu1_amd64.deb" do
   source "tgt_1.0.4-2ubuntu1_amd64.deb"
