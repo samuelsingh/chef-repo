@@ -65,6 +65,8 @@ volumes.each do |entry|
     action :attach
     not_if "test -b #{blkdev}"
   end
+
+  blkdevs << blkdev
   
 end
 
