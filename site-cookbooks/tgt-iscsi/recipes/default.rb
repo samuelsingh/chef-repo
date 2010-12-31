@@ -42,6 +42,13 @@ package "mdadm" do
   action :install
 end
 
+# Installs tgt dependencies
+["librdmacm1","libconfig-general-perl","sg3-utils"].each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
 # List of block devices, used by the assemble command
 blkdevs = Array.new
 
