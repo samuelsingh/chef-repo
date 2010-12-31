@@ -107,7 +107,7 @@ end
 
 # Finally, configure up tgtd
 
-execute "assemble_raid" do
+execute "tgt_apply_changes" do
   command "tgt-admin --update ALL"
   action :nothing
 end
