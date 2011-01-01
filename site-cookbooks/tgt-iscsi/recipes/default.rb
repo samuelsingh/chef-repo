@@ -115,10 +115,10 @@ dpkg_package "tgt" do
   action :install
 end
 
-execute "load_iscsi_modules" do
-  command "modprobe ib_iser"
-  not_if "lsmod | grep ib_iser > /dev/null"
-end
+# execute "load_iscsi_modules" do
+#   command "modprobe ib_iser"
+#   not_if "lsmod | grep ib_iser > /dev/null"
+# end
 
 # Finally, configure up tgtd
 
@@ -136,4 +136,7 @@ template "/etc/tgt/targets.conf" do
   notifies :run, resources(:execute => "tgt_apply_changes")
 end
 
-# TODO: make sure service is running
+service "tgt" do
+  supports :status => true, :restart => true
+  action [ :enable, :start ]
+end
