@@ -77,20 +77,6 @@ volumes.each do |entry|
   
 end
 
-# Assemble software RAID array
-# Creates a lockfile, so that this is only done on first launch
-
-execute "assemble_raid" do
-  command "mdadm --assemble /dev/md0 #{blkdevs.join(' ')}"
-  action :nothing
-end
-
-template "/var/lock/assemble_raid"  do
-  mode "0644"
-  source "assemble_raid.erb"
-  notifies :run, resources(:execute => "assemble_raid"), :immediately
-end
-
 # Grabs the tgt package and installs it.
 # Uses the Natty package in Ubuntu. See for details:
 # https://bugs.launchpad.net/ubuntu/+source/tgt/+bug/574554
@@ -115,17 +101,17 @@ dpkg_package "tgt" do
   action :install
 end
 
-# execute "load_iscsi_modules" do
-#   command "modprobe ib_iser"
-#   not_if "lsmod | grep ib_iser > /dev/null"
-# end
-
-# Finally, configure up tgtd
+service "tgt" do
+  supports :status => true, :restart => true
+  action [ :enable, :start ]
+end
 
 execute "tgt_apply_changes" do
   command "tgt-admin --update ALL"
   action :nothing
 end
+
+# Configures up tgt
 
 template "/etc/tgt/targets.conf" do
   source "targets.conf.erb"
@@ -136,7 +122,14 @@ template "/etc/tgt/targets.conf" do
   notifies :run, resources(:execute => "tgt_apply_changes")
 end
 
-service "tgt" do
-  supports :status => true, :restart => true
-  action [ :enable, :start ]
+# Assemble software RAID array
+
+execute "assemble_raid" do
+  command "mdadm --assemble /dev/md0 #{blkdevs.join(' ')}"
+  not_if "test -b /dev/md0"
+  notifies :run, resources(:execute => "tgt_apply_changes")
 end
+
+
+
+
