@@ -5,5 +5,23 @@
 #
 
 <target iqn.2010-12.<%= @rev_hostname %>:storage.vol>
+
+	# Backing store
+	#
 	backing-store /dev/md0
+	
+	# Performance tuning parameters
+	#
+	# These have been optimised somewhat for EC2
+	# Larger TCP window settings combined with higher
+	# values here made no tangible difference.
+	#
+	MaxRecvDataSegmentLength 131071
+	MaxXmitDataSegmentLength 131071
+	HeaderDigest None
+	DataDigest None
+	ImmediateData Yes
+	FirstBurstLength 131071
+	MaxBurstLength 4194304
+	
 </target>
