@@ -5,7 +5,7 @@ run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]
 
 override_attributes(
   "mms" => {
-    "fqdn" =>  "localise.map-cloud-01.eu",
+    "fqdn" =>  "localise.mapofmedicine.com",
     "deploy_dir" =>  "/var/shared/deployment/prod/client-mms",
     "deployment_name" => "Client MMS",
     "contentpath" => "/var/mms/content-out",
