@@ -82,6 +82,19 @@ directory "#{contentpath}/sync-packages"  do
   not_if "test -d #{contentpath}/sync-packages"
 end
 
+# On cloud machines, creates a directory in ephemeral space to chuck stuff to that 
+# we don't really need.  This directory can then be emptied periodically.
+
+directory "/mnt/mms-bucket"  do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d /mnt/mms-bucket"
+end
+
+
 ## Creates configuration directories for the mom webapp, used by full map preview
 
 directory "#{mompath}"  do
