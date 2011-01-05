@@ -260,7 +260,6 @@ irene.chiwele:           Irene.Chiwele@natbill.hostpilot.com
 irene:                      irene.chiwele
 irenec:                     irene.chiwele
 i.chiwele:					irene.chiwele
-info:                                           info@natbill.hostpilot.com
 james.williams:					James.Williams@natbill.hostpilot.com
 jamesw:							james.williams
 james:							james.williams
@@ -657,6 +656,7 @@ ITSSharedCalendar:                                      ITSSharedCalendar@natbil
 lsp-contracts-team:                                     lsp-contracts-team@natbill.hostpilot.com
 product-mgmt:                                           product_mgmt@natbill.hostpilot.com
 ProductMgtDist:                                         ProductMgtDist@natbill.hostpilot.com  
+info:                                                   info@natbill.hostpilot.com
 
 # Mailing list for receving svn commit emails
 map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
