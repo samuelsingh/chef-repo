@@ -256,6 +256,7 @@ inderjit.Kundhi                                         inderjit.Kundhi@natbill.
 inderjit                                                inderjit.Kundhi
 inderjitk                                               inderjit.Kundhi
 i.kundhi                                                inderjit.Kundhi
+info:                                                   info@natbill.hostpilot.com
 irene.chiwele:           Irene.Chiwele@natbill.hostpilot.com 
 irene:                      irene.chiwele
 irenec:                     irene.chiwele
@@ -457,6 +458,7 @@ ptamber:						pritpal.tamber
 pritpalt:						pritpal.tamber
 pritpal:						pritpal.tamber
 productivity:                                           productivity@natbill.hostpilot.com
+product-mgmt:                                           product_mgmt@natbill.hostpilot.com
 rachel.scott:                                   rachel.scott@natbill.hostpilot.com
 rachel:                                         rachel.scott
 r.scott:                                        rachel.scott
@@ -654,9 +656,8 @@ implementation:						implementation@natbill.hostpilot.com,ketan.patel
 itsupport:						itsupport@natbill.hostpilot.com
 ITSSharedCalendar:                                      ITSSharedCalendar@natbill.hostpilot.com
 lsp-contracts-team:                                     lsp-contracts-team@natbill.hostpilot.com
-product-mgmt:                                           product_mgmt@natbill.hostpilot.com
 ProductMgtDist:                                         ProductMgtDist@natbill.hostpilot.com  
-info:                                                   info@natbill.hostpilot.com
+
 
 # Mailing list for receving svn commit emails
 map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
