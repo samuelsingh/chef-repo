@@ -38,7 +38,7 @@ override_attributes(
       "appserver" => "builder-04.map-cloud-01.eu",
       "lb_alive_port" => 0,
       "static_offload" => false,
-      "lpa_vhost" => "localcare.test.mapofmedicine.com"
+      "lpa_hostname" => "localcare.test.mapofmedicine.com"
     },
     "qa-md02.map-cloud-01.eu" => {
       "srv_aliases" => [],
