@@ -22,6 +22,9 @@ include_recipe "apache2"
 node[:map_display_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
+
+    params["lpa_vhost"].nil? ? lpa_vhost = 'unset' : lpa_vhost = params["lpa_vhost"].gsub('.','\.')
+    params["static_offload"].nil? ? static_offload = true : static_offload = params["static_offload"]
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
       source "map-display-vhost.conf.erb"
@@ -30,12 +33,14 @@ node[:map_display_vhost].each do |hostname,params|
       group "sysadmin"
       variables(
         :hostname => hostname,
-        :srv_aliases => params.fetch("srv_aliases"),
-        :deploy_dir => params.fetch("deploy_dir"),
-        :appserver => params.fetch("appserver"),
+        :srv_aliases => params["srv_aliases"],
+        :deploy_dir => params["deploy_dir"],
+        :appserver => params["appserver"],
         :restricted_ips => node[:apache][:restricted_ips],
-        :holding_page => params.fetch("holding_page"),
-        :lb_alive_port => params.fetch("lb_alive_port")
+        :holding_page => params["holding_page"],
+        :lb_alive_port => params["lb_alive_port"],
+        :lpa_vhost => lpa_vhost,
+        :static_offload => static_offload
       )
       notifies :reload, resources(:service => "apache2"), :delayed
       only_if "test -d #{node[:apache][:dir]}/sites-available"

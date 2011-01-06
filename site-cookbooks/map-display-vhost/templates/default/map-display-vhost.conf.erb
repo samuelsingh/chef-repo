@@ -43,10 +43,11 @@
     
     Alias /attachments <%= @deploy_dir %>/attachments
     
+	<% if @static_offload == true -%>
     # This set of directives tells Apache NOT to use the ajp proxy to tomcat
     # to get files under these paths. So these are static files which will be
     # served directly by Apache, which improves performance.
-
+	
     ProxyPass /mom/i !
     ProxyPass /mom/css !
     ProxyPass /mom/attachments !
@@ -54,6 +55,7 @@
     ProxyPass /mom/help !
     ProxyPass /mom/js !
 
+    <% end -%>
     # These are the main ajp proxy directives, they tell Apache to pass requests
     # to Tomcat.
     
@@ -98,6 +100,15 @@
         RewriteRule ^/holding.html / [R]
         <% end -%>
         
+		# Used by LPA
+		RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
+		RewriteRule ^/$ /mom/public/1/index.html [R,L]
+		
+		# Redirects invalid LPA links to the landing page
+		RewriteCond %{REQUEST_URI} ^/mom/public/(!\d+)/?$
+		RewriteCond %{REQUEST_URI} (/|\.htm|\.pdf|\.html|/)$
+		RewriteRule ^/mom/public/(!\d+)/?$ /mom/public/1/index.html [R,L]
+
         # Redirect any access to the base URL to the mom index page, plus a few other
         # URL cleanups
 
