@@ -23,7 +23,7 @@ node[:map_display_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
 
-    params["lpa_vhost"].nil? ? lpa_vhost = 'unset' : lpa_vhost = params["lpa_vhost"].gsub('.','\.')
+    params["lpa_hostname"].nil? ? lpa_hostname = 'unset' : lpa_hostname = params["lpa_hostname"].gsub('.','\.')
     params["static_offload"].nil? ? static_offload = true : static_offload = params["static_offload"]
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
@@ -39,7 +39,7 @@ node[:map_display_vhost].each do |hostname,params|
         :restricted_ips => node[:apache][:restricted_ips],
         :holding_page => params["holding_page"],
         :lb_alive_port => params["lb_alive_port"],
-        :lpa_vhost => lpa_vhost,
+        :lpa_hostname => lpa_hostname,
         :static_offload => static_offload
       )
       notifies :reload, resources(:service => "apache2"), :delayed
