@@ -30,6 +30,16 @@ override_attributes(
       "appserver" => "qa-md01-app-01.map-cloud-01.eu",
       "lb_alive_port" => 0
     },
+    "euromd.test.mapofmedicine.com" => {
+      "srv_aliases" => ['localcare.test.mapofmedicine.com'],
+      "deploy_dir" => "/var/tmp",
+      "holding_page" => "false",
+      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
+      "appserver" => "builder-04.map-cloud-01.eu",
+      "lb_alive_port" => 0,
+      "static_offload" => false,
+      "lpa_vhost" => "localcare.test.mapofmedicine.com"
+    },
     "qa-md02.map-cloud-01.eu" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/fabric-pipeline/deploy/qa-md02/DEPLOYED",
