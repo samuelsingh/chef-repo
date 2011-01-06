@@ -62,9 +62,9 @@
     # In this iteration, one web server is hardlinked to a backend appserver. In
     # the future, we'll do somethis more clever with mod_proxy_balancer
 
-    ProxyPass /mom/  ajp://<%= @appserver %>:9001/mom/
-    ProxyPass /adminapp  ajp://<%= @appserver %>:9002/adminapp
-    ProxyPass /tomcat-manager  ajp://<%= @appserver %>:9001/tomcat-manager
+    ProxyPass /mom/  ajp://<%= @appserver %>:<%= @mom_port %>/mom/
+    ProxyPass /adminapp  ajp://<%= @appserver %>:<%= @aa_port %>/adminapp
+    ProxyPass /tomcat-manager  ajp://<%= @appserver %>:<%= @mom_port %>/tomcat-manager
 
     # Main access block, this allows anonymous access to everything by default
     <Location "/">

@@ -25,6 +25,8 @@ node[:map_display_vhost].each do |hostname,params|
 
     params["lpa_hostname"].nil? ? lpa_hostname = 'unset' : lpa_hostname = params["lpa_hostname"].gsub('.','\.')
     params["static_offload"].nil? ? static_offload = true : static_offload = params["static_offload"]
+    params["mom_port"].nil? ? mom_port = "9001" : mom_port = params["mom_port"]
+    params["aa_port"].nil? ? aa_port = "9002" : aa_port = params["aa_port"]
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
       source "map-display-vhost.conf.erb"
@@ -40,7 +42,9 @@ node[:map_display_vhost].each do |hostname,params|
         :holding_page => params["holding_page"],
         :lb_alive_port => params["lb_alive_port"],
         :lpa_hostname => lpa_hostname,
-        :static_offload => static_offload
+        :static_offload => static_offload,
+        :mom_port => mom_port,
+        :aa_port => aa_port
       )
       notifies :reload, resources(:service => "apache2"), :delayed
       only_if "test -d #{node[:apache][:dir]}/sites-available"
