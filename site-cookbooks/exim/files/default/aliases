@@ -654,7 +654,7 @@ itsupport:						itsupport@natbill.hostpilot.com
 ITSSharedCalendar:                                      ITSSharedCalendar@natbill.hostpilot.com
 lsp-contracts-team:                                     lsp-contracts-team@natbill.hostpilot.com
 ProductMgtDist:                                         ProductMgtDist@natbill.hostpilot.com  
-
+ios:                                                    ios@natbill.hostpilot.com       # Requested by OPS-28968
 
 # Mailing list for receving svn commit emails
 map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
@@ -761,7 +761,6 @@ dev-feedback:					naeem,kief.morris
 desktopsupport:					desktop-support
 desktop-support:				MaplanSupport@hearst.com
 zendesk:						zendesk@natbill.hostpilot.com
-ios:							ios@natbill.hostpilot.com	# Requested by OPS-28968
 
 
 jobs:							kate.moran
