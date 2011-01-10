@@ -650,11 +650,12 @@ management-team:					management-team@natbill.hostpilot.com
 marketing-team:						marketing-team@natbill.hostpilot.com
 programme-mgt:						programme-mgt@natbill.hostpilot.com
 implementation:						implementation@natbill.hostpilot.com,ketan.patel
-itsupport:						itsupport@natbill.hostpilot.com
-ITSSharedCalendar:                                      ITSSharedCalendar@natbill.hostpilot.com
-lsp-contracts-team:                                     lsp-contracts-team@natbill.hostpilot.com
-ProductMgtDist:                                         ProductMgtDist@natbill.hostpilot.com  
-ios:                                                    ios@natbill.hostpilot.com       # Requested by OPS-28968
+itsupport:							itsupport@natbill.hostpilot.com
+ITSSharedCalendar:					ITSSharedCalendar@natbill.hostpilot.com
+lsp-contracts-team:					lsp-contracts-team@natbill.hostpilot.com
+ProductMgtDist:						ProductMgtDist@natbill.hostpilot.com  
+ios:								ios@natbill.hostpilot.com
+mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com
 
 # Mailing list for receving svn commit emails
 map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
