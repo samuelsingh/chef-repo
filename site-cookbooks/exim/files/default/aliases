@@ -656,7 +656,7 @@ lsp-contracts-team:					lsp-contracts-team@natbill.hostpilot.com
 ProductMgtDist:						ProductMgtDist@natbill.hostpilot.com  
 ios:								ios@natbill.hostpilot.com
 mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com
-JiraDistribution:                                       JiraDistribution@natbill.hostpilot.com
+JiraDistribution:                                       andrew.sowerby, gazi.syed, shak.adepoju
 
 # Mailing list for receving svn commit emails
 map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
