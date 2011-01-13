@@ -9,5 +9,4 @@ override_attributes(
   "map_display" => {
     "version" => "md-2.7.0.ALL.21.37297"
   }
-)
-~                     
+)                     
