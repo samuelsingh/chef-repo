@@ -655,7 +655,7 @@ ITSSharedCalendar:					ITSSharedCalendar@natbill.hostpilot.com
 lsp-contracts-team:					lsp-contracts-team@natbill.hostpilot.com
 ProductMgtDist:						ProductMgtDist@natbill.hostpilot.com  
 ios:								ios@natbill.hostpilot.com
-mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com
+mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 JiraDistribution:                                       andrew.sowerby, gazi.syed, shak.adepoju
 
 # Mailing list for receving svn commit emails
