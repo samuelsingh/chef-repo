@@ -78,3 +78,7 @@ template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
   notifies :reload, resources(:service => "apache2"), :delayed
   only_if "test -d #{node[:apache][:dir]}/sites-available"
 end
+
+link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
+  to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
+end
