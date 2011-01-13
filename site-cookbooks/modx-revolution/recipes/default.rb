@@ -42,6 +42,12 @@ execute "deploy_modx" do
   not_if "test -f #{modx_path}/index.php"
 end
 
+# Remove setup directory
+directory "#{modx_path}/setup" do
+  recursive true
+  action :delete
+end
+
 # Update php.ini file
 remote_file "/etc/php5/apache2/php.ini" do
   source "php.ini"
