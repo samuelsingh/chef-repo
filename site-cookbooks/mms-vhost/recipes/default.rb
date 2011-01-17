@@ -56,6 +56,7 @@ node[:mms_vhost].each do |hostname,params|
     group "sysadmin"
     mode "0755"
     recursive true
+    not_if "test -d /var/www/vhosts/#{hostname}"
   end
   
   template "/var/www/vhosts/#{hostname}/holding.html" do
