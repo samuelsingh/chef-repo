@@ -72,7 +72,7 @@ link "#{modx_path}/assets"  do
 end
 
 link "#{modx_path}/core/components"  do
-  to "#{deployment_home}/core/components"
+  to "#{deployment_home}/shared/components"
 end
 
 # Update php.ini file
