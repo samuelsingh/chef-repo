@@ -22,7 +22,7 @@ modx_dir = modx_pkg.gsub('.zip', '')
 modx_path = "/usr/local/" + modx_dir
 
 # Installs modx dependencies
-["php5-common","php5","libapache2-mod-php5","php5-mysql"].each do |pkg|
+["php5-common","php5","libapache2-mod-php5","php5-mysql","php5-curl","unzip"].each do |pkg|
   package pkg do
     action :install
   end
