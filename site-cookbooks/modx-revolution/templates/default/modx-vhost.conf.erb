@@ -48,12 +48,31 @@
         <% end -%>
     </Location>
     
-    <IfModule mod_rewrite.c>
+    <Directory "<%= @modx_path %>">
+        Options Indexes +FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+        
         RewriteEngine On
+        RewriteBase <%= @modx_path %>/
+        
+        # Fix Apache internal dummy connections from breaking [(site_url)] cache
+        RewriteCond %{HTTP_USER_AGENT} ^.*internal\ dummy\ connection.*$ [NC]
+        RewriteRule .* - [F,L]
+        
+        # Exclude /assets and /manager directories from rewrite rules
+        RewriteRule ^(manager|assets|global) - [L]
+        
+        # Rewrite legacy document links
+        RewriteRule ^(Documents|documents) /global/documents [L]
+        
+        # For Friendly URLs
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
-    </IfModule>
+        RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA,NC]
+    </Directory>
+
 
     # Activity for this virtual host goes into separate logs
     

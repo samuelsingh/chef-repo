@@ -14,6 +14,7 @@ dbname = node[:modx][:dbname]
 
 hostname = node[:modx][:hostname]
 srv_aliases = node[:modx][:srv_aliases]
+deployment_home = node[:modx][:deployment_home]
 apache_usr = node[:apache][:user]
 
 modx_pkg = "modx-2.0.6-pl2.zip"
@@ -26,7 +27,6 @@ modx_path = "/usr/local/" + modx_dir
     action :install
   end
 end
-
 
 # Grab Modx package
 remote_file "/tmp/#{modx_pkg}" do
@@ -46,6 +46,11 @@ end
 directory "#{modx_path}/setup" do
   recursive true
   action :delete
+end
+
+# Link shared resources
+link "#{modx_path}/global"  do
+  to "#{deployment_home}/global"
 end
 
 # Update php.ini file
