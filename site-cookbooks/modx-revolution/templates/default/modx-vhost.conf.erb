@@ -29,6 +29,11 @@
     # Mainly this is used for the holding page.
 
     DocumentRoot <%= @modx_path %>
+    
+    # Workaround for secure access via ELB
+    <% @restricted_ips.each do |ip| -%>
+    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
+    <% end -%>
 
     # Main access block, this allows anonymous access to everything by default
     <Location "/">
@@ -46,6 +51,7 @@
         <% @restricted_ips.each do |ip| -%>
         Allow from <%= ip %>
         <% end -%>
+        Allow from env=ELBAUTH
     </Location>
     
     <Directory "<%= @modx_path %>">
