@@ -48,9 +48,31 @@ directory "#{modx_path}/setup" do
   action :delete
 end
 
+# Relocated to shared store
+# TODO: make this configurable on/off, so that the recipe can be used by chef-solo
+directory "#{modx_path}/assets" do
+  recursive true
+  action :delete
+  not_if "test -L #{modx_path}/assets"
+end
+
+directory "#{modx_path}/core/components" do
+  recursive true
+  action :delete
+  not_if "test -L #{modx_path}/core/components"
+end
+
 # Link shared resources
 link "#{modx_path}/global"  do
   to "#{deployment_home}/global"
+end
+
+link "#{modx_path}/assets"  do
+  to "#{deployment_home}/shared/assets"
+end
+
+link "#{modx_path}/core/components"  do
+  to "#{deployment_home}/core/components"
 end
 
 # Update php.ini file
