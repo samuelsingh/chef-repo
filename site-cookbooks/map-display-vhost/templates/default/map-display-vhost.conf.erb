@@ -101,11 +101,11 @@
         <% end -%>
         
         # Used by LPA
-        RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
-        RewriteRule ^/$ /public/1/index.html [R]
+        #RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
+        #RewriteRule ^/$ /public/1/index.html [R]
         
-        RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
-        RewriteRule ^/public$ /public/1/index.html [R]
+        #RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
+        #RewriteRule ^/public$ /public/1/index.html [R]
         
         RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
         RewriteRule ^(.+)$ /mom/$1 [L]
