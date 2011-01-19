@@ -49,7 +49,7 @@ ftp_users.each do |user,values|
     comment "FTP user"
     uid values[:uid]
     home ftp_base + '/' + user
-    shell "/bin/false"
+    shell "/bin/sh"
     supports :manage_home => true
     password values[:pwd_hash]
     not_if "[ ! -z \"`who | grep #{user}`\" ]"
