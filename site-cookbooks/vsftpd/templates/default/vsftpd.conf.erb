@@ -60,6 +60,10 @@ userlist_deny=no
 userlist_enable=yes
 userlist_file=/etc/vsftpd.user_list
 #
+# Restrict passive ftp port range
+pasv_min_port=12000
+pasv_max_port=12010
+#
 # You may activate the "-R" option to the builtin ls. This is disabled by
 # default to avoid remote users being able to cause excessive I/O on large
 # sites. However, some broken FTP clients such as "ncftp" and "mirror" assume
