@@ -5,6 +5,7 @@ run_list "recipe[vsftpd]"
 override_attributes(
   "vsftpd" => {
     "ftp_base" => "/var/shared/ftp",
+    "ftp_host" => "ftp.mapofmedicine.com",
     "users" => {
       "csc" => {
         "uid" => "10500",
