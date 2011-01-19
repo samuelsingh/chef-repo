@@ -60,7 +60,10 @@ userlist_deny=no
 userlist_enable=yes
 userlist_file=/etc/vsftpd.user_list
 #
-# Restrict passive ftp port range
+# PASV connection settings
+pasv_enable=YES
+pasv_addr_resolve=YES
+pasv_address=mail.map-cloud-01.eu
 pasv_min_port=12000
 pasv_max_port=12010
 #

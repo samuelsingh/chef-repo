@@ -7,6 +7,7 @@
 
 ftp_users = node[:vsftpd][:users]
 ftp_base = node[:vsftpd][:ftp_base]
+static_ip = node[:vsftpd][:static_ip]
 
 ["libshadow-ruby1.8", "vsftpd"].each do |pkg|
   package pkg do
@@ -32,6 +33,9 @@ end
 template "/etc/vsftpd.conf" do
   source "vsftpd.conf.erb"
   mode 0644
+  variables(
+    :static_ip => static_ip
+  )
   notifies :restart, resources(:service => "vsftpd")
 end
 
