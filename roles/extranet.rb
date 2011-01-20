@@ -1,6 +1,6 @@
 name "extranet"
 description "Adds http/ftp access for extranet.mapofmedicine.com"
-run_list "recipe[vsftpd]"
+run_list "recipe[vsftpd]", "recipe[vsftpd::http]"
 
 override_attributes(
   "vsftpd" => {
