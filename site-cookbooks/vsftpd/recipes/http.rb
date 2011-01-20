@@ -17,7 +17,7 @@ ftp_host = node[:vsftpd][:ftp_host]
   end
 end
 
-template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+template "#{node[:apache][:dir]}/sites-available/#{ftp_host}.conf" do
   source "vsftpd-vhost.conf.erb"
   mode 0644
   variables(
