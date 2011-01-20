@@ -29,9 +29,14 @@
 	Options FollowSymLinks Indexes
         AuthType Basic
         AuthName "<%= user %> extranet area"
-        AuthPAM_Enabled On
+        AuthBasicProvider external
+        AuthExternal pwauth
         Require user <%= user %>
+        Allow from all
     </Directory>
+    
+    AddExternalAuth pwauth /usr/sbin/pwauth
+    SetExternalAuthMethod pwauth pipe
 
     <% end -%>
     <IfModule mod_rewrite.c>

@@ -11,12 +11,6 @@ ftp_users = node[:vsftpd][:users]
 ftp_base = node[:vsftpd][:ftp_base]
 ftp_host = node[:vsftpd][:ftp_host]
 
-["libapache2-mod-auth-pam"].each do |pkg|
-  package pkg do
-    action :install
-  end
-end
-
 template "#{node[:apache][:dir]}/sites-available/#{ftp_host}.conf" do
   source "vsftpd-vhost.conf.erb"
   mode 0644
