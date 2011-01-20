@@ -1,6 +1,6 @@
 name "extranet"
 description "Adds http/ftp access for extranet.mapofmedicine.com"
-run_list "role[web-server]", "recipe[apache2::mod_authnz_external]", "recipe[vsftpd]", "recipe[vsftpd::http]"
+run_list "role[web-server]", "recipe[apache2::mod_authnz_external]", "recipe[apache2::mod_auth_digest]", "recipe[vsftpd]", "recipe[vsftpd::http]"
 
 override_attributes(
   "vsftpd" => {
