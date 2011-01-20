@@ -27,3 +27,7 @@ template "#{node[:apache][:dir]}/sites-available/#{ftp_host}.conf" do
   )
   notifies :reload, resources(:service => "apache2")
 end
+
+link "#{node[:apache][:dir]}/sites-enabled/#{ftp_host}.conf"  do
+  to "#{node[:apache][:dir]}/sites-available/#{ftp_host}.conf"
+end
