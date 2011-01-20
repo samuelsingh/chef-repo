@@ -73,6 +73,9 @@
         # Rewrite legacy document links
         RewriteRule ^(Documents|documents) /global/documents [L]
         
+        # Supply a friendly url for newsrss
+        RewriteRule ^/newsrss /newsrss.xml [L]
+        
         # For Friendly URLs
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
