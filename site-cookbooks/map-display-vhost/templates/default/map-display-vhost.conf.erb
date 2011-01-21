@@ -101,15 +101,13 @@
         <% end -%>
         
         # Used by LPA
-        #RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
-        #RewriteRule ^/$ /public/1/index.html [R]
-        
-        #RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
-        #RewriteRule ^/public$ /public/1/index.html [R]
+        RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
+        RewriteRule ^/$ /mom/public/1/index.html [R]
         
         RewriteCond %{HTTP_HOST} ^<%= @lpa_hostname %>
-        RewriteRule ^(.+)$ /mom/$1 [L]
-
+        RewriteCond %{REQUEST_URI} /mom/(\d+)/
+        RewriteRule ^/mom/(.+)$ /mom/public/$1 [R,L]
+        
         # Redirect any access to the base URL to the mom index page, plus a few other
         # URL cleanups
 
