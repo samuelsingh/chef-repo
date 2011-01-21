@@ -67,6 +67,9 @@
         RewriteCond %{HTTP_USER_AGENT} ^.*internal\ dummy\ connection.*$ [NC]
         RewriteRule .* - [F,L]
         
+        RewriteCond %{REQUEST_URI} [A-Z]
+        RewriteRule ^(.*)$ ${tolower:$1}
+        
         # Exclude /assets and /manager directories from rewrite rules
         RewriteRule ^(manager|assets|global) - [L]
         
