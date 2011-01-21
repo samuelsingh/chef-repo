@@ -72,7 +72,7 @@
         
         # Rewrite legacy document links
         RewriteRule ^(Documents|documents) /global/documents [L]
-        RewriteRule ^/Global(.*) /global$1 [L]
+        RewriteRule ^Global(.*) /global$1 [R,L]
         
         # Supply a friendly url for newsrss
         RewriteRule ^newsrss$ /newsrss.xml [L]
