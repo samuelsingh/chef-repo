@@ -19,8 +19,8 @@ override_attributes(
     "war" =>  "nexus-webapp-1.8.0.1.war",
     "home" =>  "/var/nexus",
     "ebs" => {
-      "name" => "set-me",
-      "device" => "/dev/sdi",
+      "name" => "vol-383b9451",
+      "device" => "/dev/sdi1",
       "fstype" => "ext3"
     }
   },
