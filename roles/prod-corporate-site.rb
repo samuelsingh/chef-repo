@@ -7,7 +7,7 @@ override_attributes(
     "dbuser" => "modx",
     "dbpass" => "ai9Aebo2",
     "dbhost" => "confluencedb.cmn42a62dcbh.eu-west-1.rds.amazonaws.com",
-    "dbname" => "modx",
+    "dbname" => "prod_modx",
     "hostname" => "mapofmedicine.com",
     "deployment_home" => "/var/shared/deployment/prod/corporate-site",
     "srv_aliases" => []
