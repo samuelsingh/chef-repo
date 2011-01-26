@@ -5,7 +5,7 @@ run_list "recipe[stage-server]"
 
 override_attributes(
  "hg_mde" => {
-   "hg_version" =>  "choices.r13.1.hudson-51",
-    "mde_version" => "evidence.r5.1.hudson-51"
+   "hg_version" =>  "choices.r13.1.hudson-55",
+    "mde_version" => "evidence.r5.1.hudson-55"
   }
 )
