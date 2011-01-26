@@ -1,2 +1,2 @@
 # Custom startup parameters for Tomcat
-JAVA_OPTS="-server -Xmx256m -Djava.awt.headless=true -Dplexus.nexus-work=<%= @nexus_home %>"
+JAVA_OPTS="-server -XX:MaxPermSize=128m -Xmx256m -Djava.awt.headless=true -Dplexus.nexus-work=<%= @nexus_home %>"
