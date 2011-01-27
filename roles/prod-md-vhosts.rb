@@ -14,7 +14,7 @@ override_attributes(
       "lb_alive_port" => 8050
     },
     "integration-app-02.map-cloud-01.eu" => {
-      "srv_aliases" => ["integration2.mapofmedicine.com"],
+      "srv_aliases" => ["integration.mapofmedicine.com"],
       "deploy_dir" => "/var/shared/deployment/prod/integration-md",
       "holding_page" => "false",
       "appserver" => "integration-app-02.map-cloud-01.eu",
