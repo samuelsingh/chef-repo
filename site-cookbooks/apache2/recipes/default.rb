@@ -175,7 +175,7 @@ template "#{node[:apache][:dir]}/ports.conf" do
   source "ports.conf.erb"
   group "root"
   owner "root"
-  variables :apache_listen_ports => ports
+  variables :apache_listen_ports => ports.sort
   mode 0644
   notifies :restart, resources(:service => "apache2")
 end
