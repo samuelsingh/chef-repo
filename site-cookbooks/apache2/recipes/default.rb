@@ -168,6 +168,7 @@ end
 # Moving port handling to here, to stop Chef constantly reloading apache
 # if override attributes don't contain 443 and mod_ssl is specified.
 if node.recipe? "apache2::mod_ssl"
+  log "mod_ssl found"
   ports = node[:apache][:listen_ports].include?("443") ? node[:apache][:listen_ports] : [node[:apache][:listen_ports], "443"].flatten
 end
 
