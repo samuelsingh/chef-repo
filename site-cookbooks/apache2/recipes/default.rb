@@ -165,11 +165,17 @@ template "charset" do
   notifies :restart, resources(:service => "apache2")
 end
 
+# Moving port handling to here, to stop Chef constantly reloading apache
+# if override attributes don't contain 443 and mod_ssl is specified.
+if node.recipe? "apache2::mod_ssl"
+  ports = node[:apache][:listen_ports].include?("443") ? node[:apache][:listen_ports] : [node[:apache][:listen_ports], "443"].flatten
+end
+
 template "#{node[:apache][:dir]}/ports.conf" do
   source "ports.conf.erb"
   group "root"
   owner "root"
-  variables :apache_listen_ports => node[:apache][:listen_ports]
+  variables :apache_listen_ports => ports
   mode 0644
   notifies :restart, resources(:service => "apache2")
 end
