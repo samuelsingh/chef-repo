@@ -1,0 +1,17 @@
+#!/bin/sh
+
+UNZIP_BIN=/usr/bin/unzip
+CLEAN_BIN=/usr/local/bin/clean_package_names.sh
+
+CONTENT_OUT=/var/mtm/var/m2mr2export/publications
+HG_IN=/var/drshared/MapOfMedicine-Content/load-queue/choices/local
+
+# Let's remove spaces from the packages first.
+sh $CLEAN_BIN
+
+for a in $CONTENT_OUT/* ; do
+  unzip -p $a package.xml | grep "NHS England and Wales" | grep -v empty > /dev/null \
+  && echo "$a is an E&W package, so copying it to $HG_IN..." \
+  && cp $a $HG_IN/ \
+  && echo "Done."
+done
