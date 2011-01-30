@@ -17,9 +17,10 @@
 DEBUG=
 APP=`basename $0`
 PKG_SRC_DIR=<%= @contentpath %>/md-packages
-#PKG_SRC_DIR=/tmp/ksm
 PKG_DST_DIR=<%= @content_store %>/md-packages
 PKG_LOAD_DIR=<%= @loadq %>
+
+CLEAN_BIN=<%= @bin %>/clean_package_names.sh
 
 IDS="$*"
 
@@ -57,18 +58,6 @@ linkhg()
     
 }
 
-remspaces()
-{
-    OLDFILE=$1
-    NEWFILE=`echo "$OLDFILE" |  sed 's/[^A-Za-z0-9_.]/_/g'`
-
-    if [ "$NEWFILE" != "$OLDFILE" ] ; then
-        mv "$OLDFILE" "$NEWFILE"
-    fi
-
-    return $NEWFILE
-}
-
 # Check that all of the arguments are valid ids
 [ -z "$IDS" ] && fail "No arguments given"
 BAD=
@@ -80,7 +69,9 @@ for i in $IDS ; do
 done
 [ -z "$BAD" ] || fail "Not running until the deployment ids are sorted"
 
-	
+# Let's remove spaces from the packages first.
+sh $CLEAN_BIN
+
 # Iterate over all zip files in the directory the MMS leaves them in
 file=`ls $PKG_SRC_DIR/*.zip 2> /dev/null`
 if [ -n "$file" ] ; then
@@ -92,9 +83,6 @@ if [ -n "$file" ] ; then
 
 		/usr/bin/zip -qT "$f"
 		if [ "$?" = "0" ] ; then
-
-            # Remove spaces from the package name
-            f=remspaces "$f"
 
 			# It looks like a finished package, move it to shared storage
 
@@ -119,16 +107,4 @@ if [ -n "$file" ] ; then
 	done
 else
 	warn "No packages in $PKG_SRC_DIR to move"
-fi
-
-NEWFILE=`echo "$OLDFILE" |  sed 's/[^A-Za-z0-9_.]/_/g'`
-
-if [ "$NEWFILE" != "$OLDFILE" ] ; then
-
-  if [ $FILEPATH ] ; then
-    mv "$FILEPATH"/"$OLDFILE" "$FILEPATH"/"$NEWFILE"
-  else
-    mv "$OLDFILE" "$NEWFILE"
-  fi
-
 fi
