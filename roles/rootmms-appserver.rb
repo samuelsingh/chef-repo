@@ -1,7 +1,7 @@
 name "rootmms-appserver"
 description "Configures Root MMS application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]"
+run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]"
 default_attributes(
   "mms" => {
     "dbhost" => "lightmms-db-01.map-cloud-01.eu"
