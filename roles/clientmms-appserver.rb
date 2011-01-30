@@ -1,7 +1,7 @@
 name "clientmms-appserver"
 description "Configures Client MMS application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms:helper-scripts]"
+run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]"
 
 override_attributes(
   "mms" => {
