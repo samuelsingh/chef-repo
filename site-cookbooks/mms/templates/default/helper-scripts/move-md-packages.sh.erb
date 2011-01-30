@@ -16,11 +16,10 @@
 
 DEBUG=
 APP=`basename $0`
-PKG_SRC_DIR=/var/mtm/var/m2mr2export/publications
+PKG_SRC_DIR=<%= @contentpath %>
 #PKG_SRC_DIR=/tmp/ksm
-PKG_DST_DIR=/var/shared/data/MapOfMedicine-Content/Raw-Packages
-PKG_LOAD_DIR=/var/shared/data/MapOfMedicine-Content/load-queue
-STRIPPER=/usr/local/bin/strip-text-localisations.sh
+PKG_DST_DIR=<%= @content_store %>/md-packages
+PKG_LOAD_DIR=<%= @loadq %>
 
 IDS="$*"
 
