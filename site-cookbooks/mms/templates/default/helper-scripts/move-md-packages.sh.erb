@@ -16,7 +16,7 @@
 
 DEBUG=
 APP=`basename $0`
-PKG_SRC_DIR=<%= @contentpath %>
+PKG_SRC_DIR=<%= @contentpath %>/md-packages
 #PKG_SRC_DIR=/tmp/ksm
 PKG_DST_DIR=<%= @content_store %>/md-packages
 PKG_LOAD_DIR=<%= @loadq %>
@@ -94,7 +94,7 @@ if [ -n "$file" ] ; then
 		if [ "$?" = "0" ] ; then
 
             # Remove spaces from the package name
-            f=remspaces($f)
+            f=remspaces "$f"
 
 			# It looks like a finished package, move it to shared storage
 
