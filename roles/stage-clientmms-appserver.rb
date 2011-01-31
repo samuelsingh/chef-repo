@@ -1,19 +1,16 @@
 name "stage-clientmms-appserver"
-description "Configures Client MMS application server for staging use"
+description "Configures Stage Client MMS application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]"
-default_attributes(
-  "mms" => {
-    "dbhost" => "stage-clientmms-db-01.map-cloud-01.eu"
-  }
-)
+run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]"
+
 override_attributes(
   "mms" => {
-    "fqdn" =>  "stage-clientmms.map-cloud-01.eu",
+    "fqdn" =>  "localise.uat.mapofmedicine.com",
     "deploy_dir" =>  "/var/shared/deployment/stage/client-mms",
-    "deployment_name" => "Stage Client MMS",
+    "deployment_name" => "Client MMS",
     "contentpath" => "/var/mms/content-out",
     "content_in" => "/var/mms/content-in",
+    "dbhost" => "stage-db-02.map-cloud-01.eu",
     "deployment" => {
       "id" => "3",
       "external_start" => "20000001",
@@ -28,7 +25,13 @@ override_attributes(
     },
     "athens_link" => "true",
     "multiple_views" => "true",
+    "datastore" => false,
     "dbuser" => "mtmuser",
-    "dbpass" => "MtMUs3r"
+    "dbpass" => "medic1"
+  },
+  "glusterfs" => {
+    "client" => {
+      "experimental" => "true"
+    }
   }
 )
