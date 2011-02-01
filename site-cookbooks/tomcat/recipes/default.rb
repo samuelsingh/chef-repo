@@ -67,8 +67,8 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
   jmx_port = http_port+6
   
   directory "#{node[:tomcat][:basedir]}/server#{ajp_port}"  do
-    owner "sysadmin"
-    group "sysadmin"
+    owner t_user
+    group t_group
     mode "0755"
     recursive true
     action :create
