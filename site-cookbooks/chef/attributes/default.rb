@@ -35,8 +35,8 @@ else
   set_unless[:chef][:backup_path] = "#{chef[:path]}/backup"
 end
 
-set_unless[:chef][:server_version]  = node.chef_packages.chef[:version]
-set_unless[:chef][:client_version]  = node.chef_packages.chef[:version]
+set_unless[:chef][:server_version]  = defined?(node.chef_packages) ? node.chef_packages.chef[:version] : "0.8.10"
+set_unless[:chef][:client_version]  = defined?(node.chef_packages) ? node.chef_packages.chef[:version] : "0.8.10"
 set_unless[:chef][:client_interval] = "1800"
 set_unless[:chef][:client_splay]    = "20"
 set_unless[:chef][:log_dir]         = "/var/log/chef"
