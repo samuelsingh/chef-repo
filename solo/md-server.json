@@ -1,0 +1,15 @@
+{
+"domain": "mapofmedicine.com",
+"hostname": "md-server",
+"fqdn": "md-server.mapofmedicine.com",
+"chef_packages": "",
+"map_display": {
+  "md_fqdn": "127.0.0.1:8080",
+  "dbhost": "db",
+  "dbname": "mtmdb",
+  "dbuser": "mtmuser",
+  "dbpass": "medic1"
+},
+"tomcat": { "ajp_ports": [ 9001, 9002 ] },
+"run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[map-display-2]" ]
+}
