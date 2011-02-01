@@ -1,0 +1,248 @@
+<testcases repeat="1">
+
+
+<case    
+	id="1"   
+	description1="getting <%= @md_fqdn %>"    
+	method="get"
+    url="http://<%= @md_fqdn %>/mom/1/login_page.html?next=http%3A%2F%2F<%= @md_fqdn %>%2Fmom%2F1%2Findex.html"
+	verifypositive="Gynaecology"
+    parseresponse="JSESSIONID=|;"
+	errormessage="Unable to access <%= @md_fqdn %>"
+    sleep="5"
+
+
+/>
+
+<case
+    id="2"
+    description1="mom transaction type11 / Authentication on <%= @md_fqdn %>"
+    method="post"
+    url="http://<%= @md_fqdn %>/mom/1/index.html"
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+	postbody="POSTDATA next=http%3A%2F%2F<%= @md_fqdn %>%2Fmom%2F1%2Findex.html&userId=nttsupport%40mapofmedicine.com&password=ntt1support&Login=Log+in"
+    verifynegative="Gynaecology"
+    errormessage="Unable to authenticate to <%= @md_fqdn %>"
+    sleep="5"
+
+
+/>
+
+<case    
+	id="3"    
+	description1="Authenticated to <%= @md_fqdn %> Index.html"    
+	method="get"   
+	addheader="Cookie: JSESSIONID={PARSEDRESULT}" 
+	url="http://<%= @md_fqdn %>/mom/1/index.html"    
+	verifypositive="Learn more about the Map of Medicine"    
+	errormessage="Unable to Authenticate to <%= @md_fqdn %>"    
+    sleep="5"
+/>
+
+<case    
+    id="4"    
+    description1="BT transaction type1 / Terms and Conditions"    
+    method="get"   
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}" 
+    url="http://<%= @md_fqdn %>/mom/1/terms_and_conditions.html"    
+    verifypositive="non-transferable, non-exclusive licence"    
+    errormessage="Unable to get Term and Conditions"    
+    sleep="5"
+/>
+
+<case    
+    id="5"    
+    description1="BT transaction type1 / view online help"    
+    method="get"   
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}" 
+    url="http://<%= @md_fqdn %>/mom/help/index.htm"    
+    verifypositive="MadCap"    
+    errormessage="Unable to get online help"    
+    sleep="5"
+/>
+
+
+<case        
+	id="6"    
+    description1="mom transaction type2 / view profile"    
+    method="get"   
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}" 
+    url="http://<%= @md_fqdn %>/mom/1/userProfile.html?mode=readonly"    
+    verifypositive="You have access to the following local versions of the Map of Medicine"    
+    errormessage="Unable to access user profile"   
+    sleep="5"
+
+/>
+
+
+<case    
+    id="7"    
+    description1="BT transaction type2 / Search Random"    
+    method="get"   
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}" 
+    url="http://<%= @md_fqdn %>/mom/1/searchResults.html?page-nr=1&nlh-checked=off&search-type=mtm&search-state=activateMOM&freeText=acne&Search=Search"    
+    verifypositive="Polycystic ovary syndrome"    
+    errormessage="Unable to search random"   
+    sleep="5"
+
+/>
+
+
+<case    
+    id="8"    
+    description1="BT transaction type2 / Feedback Review"    
+    method="get"   
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}" 
+    url="http://<%= @md_fqdn %>/mom/58/feedbackReviewList.html"    
+    verifypositive="This page lists all feedback messages for which you are on the review list"    
+    errormessage="Unable to get Feedback"    
+    sleep="5"
+/>
+
+<case
+        id="9"
+        description1="BT transaction type3 / Add Local Admin"
+        method="post"
+        url="http://<%= @md_fqdn %>/mom/99/saveAdminInfo.action"
+        addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+        postbody="page-id=8793&pathway-id=3424&specialty-id=1040&department-id=8&nodeText=Abdominal+aortic+aneurysm+%28AAA%29+-+suspected&nodeID=1&nodeAction=7&adminInfoText=addinglocaladmininfo"
+        verifyresponsecode="302"
+        errormessage="Unable to post local admin to <%= @md_fqdn %>"
+        sleep="2"
+/>
+
+
+<case
+        id="10"
+        description1="Test Local Admin"
+        method="get"
+        url="http://<%= @md_fqdn %>/mom/99/page.html?department-id=8&specialty-id=1040&pathway-id=3424&page-id=8793&nodeId=1&nodeAction=7"
+        addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+        verifynextpositive="addinglocaladmininfo"
+        errormessage="Unable to post local admin to <%= @md_fqdn %>"
+        sleep="2"
+/>
+
+<case
+        id="11"
+        description1="mom transaction type8 / Local Admin Report"
+        method="get"
+        addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+        url="http://<%= @md_fqdn %>/mom/99/adminReport.html?departmentId=8&specialtyId=&pathway-id="
+        verifypositive="Surgery has 1 node with local information added"
+        errormessage="Unable to get Local Admin Report"
+    sleep="5"
+/>
+
+<case
+    id="12"
+    description1="BT transaction type3 / Clear Local Admin"
+    method="post"
+    url="http://<%= @md_fqdn %>/mom/99/saveAdminInfo.action"
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+    postbody="page-id=8793&pathway-id=3424&specialty-id=1040&department-id=8&nodeText=Abdominal+aortic+aneurysm+%28AAA%29+-+suspected&nodeID=1&nodeAction=7&adminInfoText="
+    verifyresponsecode="302"
+    errormessage="Unable to clear local info to <%= @md_fqdn %>"
+    sleep="2"
+/>
+
+<case
+        id="13"
+        description1="Test clear Local Admin"
+        method="get"
+        url="http://<%= @md_fqdn %>/mom/99/page.html?department-id=8&specialty-id=1040&pathway-id=3424&page-id=8793&nodeId=1&nodeAction=7"
+        addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+        verifynegative="addinglocaladmininfo"
+        errormessage="Unable to test clear local admin to <%= @md_fqdn %>"
+        sleep="2"
+/>
+
+<case
+        id="14"
+        description1="BT transaction type3 / Save note"
+        description2="include"
+        method="post"
+        url="http://<%= @md_fqdn %>/mom/99/editNote.action"
+        addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+        postbody="page-id=7251&pathway-id=3066&specialty-id=1009&department-id=4&nodeText=Indications+for+urgent+referral&nodeID=3&nodeId=3&nodeAction=5&noteText=hello"
+        verifyresponsecode="302"
+        errormessage="Unable to post note to <%= @md_fqdn %>"
+        sleep="2"
+/>
+
+<case
+        id="15"
+        description1="Test Save note"
+        method="get"
+        url="http://<%= @md_fqdn %>/mom/99/page.html?department-id=4&specialty-id=1009&pathway-id=3066&page-id=7251&history=clear"
+        addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+        verifypositive="hello"
+        errormessage="Note not added to <%= @md_fqdn %>"
+        sleep="2"
+/>
+
+<case
+    id="16"
+    description1="BT transaction type3 / Clear note"
+    description2="exclude"
+    method="post"
+    url="http://<%= @md_fqdn %>/mom/99/editNote.action"
+    postbody="page-id=7251&pathway-id=3066&specialty-id=1009&department-id=4&nodeText=Indications+for+urgent+referral&nodeID=3&nodeId=3&nodeAction=5&noteText="
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+    verifyresponsecode="302"
+    errormessage="Unable to clear note to <%= @md_fqdn %>"
+    sleep="2"
+/>
+
+<case
+    id="17"
+    description1="Test clear note"
+    description2="exclude"
+    method="get"
+    url="http://<%= @md_fqdn %>/mom/99/page.html?department-id=4&specialty-id=1009&pathway-id=3066&page-id=7251&history=clear"
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}"
+    verifynegative="hello"
+    errormessage="Note not cleared at <%= @md_fqdn %>"
+    sleep="2"
+/>
+
+
+<case        
+	id="18"        
+	description1="mom transaction type4 / View Page"        
+	method="get"       
+	addheader="Cookie: JSESSIONID={PARSEDRESULT}"     
+	url="http://<%= @md_fqdn %>/mom/1/page.html?department-id=8&specialty-id=1037&pathway-id=3404&page-id=8717&history=clear"        
+	verifypositive="Pathway removed for further updating"        
+	errormessage="Unable to view page"    
+    sleep="5"
+/>
+
+
+<case    
+    id="19"    
+    description1="mom transaction type5 / Update Profile"        
+	method="post"    
+    url="http://<%= @md_fqdn %>/mom/1/editUser.action"    
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}"        
+    postbody="POSTDATA mode=edit&next=&title=Mr&firstName=NTT&surname=Support&email=nttsupport%40mapofmedicine.com&telephone1=441&telephone2=&jobTitle=16&organisation=NTT&department=&specialty=&security-question=2&security-answer=ntt&Submit=Submit"       
+    verifypositive="441"    
+    errormessage="Unable to Update Details"    
+    sleep="5"
+/>
+
+
+<case    
+    id="20"    
+    description1="mom transaction type5 / Change Updated Profile"        
+    method="post"    
+    url="http://<%= @md_fqdn %>/mom/1/editUser.action"    
+    addheader="Cookie: JSESSIONID={PARSEDRESULT}"        
+    postbody="POSTDATA mode=edit&next=&title=Mr&firstName=NTT&surname=Support&email=nttsupport%40mapofmedicine.com&telephone1=442&telephone2=&jobTitle=16&organisation=NTT&department=&specialty=&security-question=2&security-answer=ntt&Submit=Submit"       
+    verifypositive="442"    
+    errormessage="Unable to Update Details"    
+    sleep="5"
+/>
+
+
+</testcases>

@@ -1,0 +1,94 @@
+#!/usr/bin/perl -w
+#
+# Quick script to parse the xml output file from webinject, 
+# and print out the results of each testcase found.
+
+use strict;
+
+my $ME = "momtransact";
+
+sub bail ($)
+{
+	my $msg = $_[0];
+	die "$ME [FAIL]: $msg\n";
+}
+
+my @results = ();
+my $case = '';
+my $start_time = '';
+
+while (<STDIN>) {
+
+	if (m|<testcase id="(\d+)">|i) {
+		my $t1 = $1;
+		bail "$. testcase $t1 found before previous was closed?" if ($case ne '');
+		$case = { 'id' => $1 };
+#print "id $id\n";
+	} elsif (m|<description1>([^<]+)</description1>|i) {
+		$case->{'desc'} = $1;
+#print "desc $desc\n";
+	} elsif (m|<success>([^<]+)</success>|i) {
+		$case->{'success'} = $1;
+#print "success = $success\n";
+	} elsif (m|<responsetime>([\d\.]+)</responsetime>|i) {
+		$case->{'rtime'} = $1;
+#print "rtime = $rtime\n";
+	} elsif (m|</testcase>|i) {
+	#	print "$id\t$rtime\t$success\t$desc\n";
+		push (@results, $case);
+		$case = '';
+	} elsif (m|<start-time>([^<]+)</start-time>|i) {
+		$start_time = $1;
+	}
+
+}
+
+my %MON2NUM = (
+	'Jan', '01',
+	'January', '01',
+	'Feb', '02',
+	'February', '02',
+	'Mar', '03',
+	'March', '03',
+	'Apr', '04',
+	'April', '04',
+	'May', '05',
+	'Jun', '06',
+	'June', '06',
+	'Jul', '07',
+	'July', '07',
+	'Aug', '08',
+	'August', '08',
+	'Sep', '09',
+	'September', '09',
+	'Oct', '10',
+	'October', '10',
+	'Nov', '11',
+	'November', '11',
+	'Dec', '12',
+	'December', '12'
+);
+
+if ($start_time =~ /^\S+ \s+ (\S+) \s+ (\d+) \s+ ([\d\:]+) \s+ (\d+)$/x) {
+	# Mon Jul 30 09:15:01 2007
+	my ($mon, $mday, $tm, $year) = ($1, $2, $3, $4);
+	my $month = $MON2NUM{$mon};
+	$start_time = "$year-$month-$mday $tm";
+} else {
+	bail "$. can't parse start time '$start_time'";
+}
+	
+foreach my $c (@results) {
+	
+	# The response time will be reported in milliseconds
+	$c->{'rtime'} *= 1000;
+	$c->{'rtime'} =~ s/\.\d+$//;
+	
+	print join ("\t",
+		$start_time,
+		$c->{'id'},
+		$c->{'rtime'},
+		$c->{'success'},
+		$c->{'desc'}) . "\n";
+
+}
