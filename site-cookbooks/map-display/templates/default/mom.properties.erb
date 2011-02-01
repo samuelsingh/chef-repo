@@ -146,9 +146,9 @@ securityRealm.keepAlive=keepalive.html
 
 securityRealm.processingDelay=0
 securityRealm.urlEncodingFormat=UTF-8
-securityRealm.uriAppVariantPattern=(^/[a-zA-Z0-9]+/)([1-9][0-9]*)(/.*)
-securityRealm.urlAppVariantPattern=(^.*://.*/)([a-zA-Z0-9]+/)([1-9][0-9]*)(/.*)
-securityRealm.servletURIAppVariantPattern=^/([1-9][0-9]*)/
+securityRealm.uriAppVariantPattern=(^/[a-zA-Z0-9]+/)(?:[a-zA-Z0-9]+/)*([1-9][0-9]*)(/.*)
+securityRealm.urlAppVariantPattern=(^.*://.*/)([a-zA-Z0-9]+/)(?:[a-zA-Z0-9]+/)*([1-9][0-9]*)(/.*)
+securityRealm.servletURIAppVariantPattern=^/(?:[a-zA-Z0-9]+/)*([1-9][0-9]*)/
 ### Business Function Mappings ###
 # The properties below control how NASP business function codes are mapped to the
 # Map of Medicine  roles.
@@ -361,9 +361,24 @@ autoApproval.templateDir=/WEB-INF/freemarker
 pathwayList.enabled=false
 pathwayList.requiredRole=Viewer
 
-<% if @int_version > 264 -%>
 # Added in 2.6.5
 persistent.session.timeout=28800
 persistent.session.enabled=true
-<% end -%>
 
+# Added by 2.7.1
+quova.customerId="informauk"
+quova.maxRetry=2
+quova.networkProtocol=TCP
+quova.udpListenerPort=8000
+quova.primaryServerIp=geoip.map-cloud-01.eu
+quova.primaryServerPort=7000
+quova.secondaryServerIp=
+quova.secondaryServerPort=
+quova.connectionPoolSize=5
+quova.maxWaitBlocking=0
+quova.userTimeout=5000
+
+mail.designated_Email_For.PathwayContent=Andrew.Sowerby@mapofmedicine.com
+mail.designated_Email_For.GeneralPurpose=Shak.Adepoju@mapofmedicine.com
+mail.lpaFeedback.subject=LPA-Feedback
+mail.lpaFeedback.from=noreply@mapofmedicine.com
