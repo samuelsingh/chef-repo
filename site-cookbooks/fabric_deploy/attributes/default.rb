@@ -6,6 +6,7 @@ set[:fabric_deployment][:env_package_dir] = "/var/shared/fabric-pipeline/deploy"
 environment_id = node[:fabric_deployment][:environment]
 env_packages = "#{node[:fabric_deployment][:env_package_dir]}/#{environment_id}"
 
+set_unless[:map_display][:webapp_dir] = "unset"
 override[:map_display][:webapp_dir] = "#{env_packages}/DEPLOYED-#{node[:hostname]}"
 
 #
