@@ -28,7 +28,7 @@ end-volume
 
 volume iothreads_<%= @mount_point %>
   type performance/io-threads
-  option thread-count 16  # default is 1
+  option thread-count 1  # default is 1
   subvolumes mirror_<%= @mount_point %>
 end-volume
 
@@ -50,7 +50,7 @@ end-volume
 
 volume writebehind_<%= @mount_point %>
   type performance/write-behind
-  option cache-size 32MB
+  option cache-size 128KB
   option flush-behind on         # default is 'off'
   option cache-timeout 10        # default 1 second
   subvolumes readahead_<%= @mount_point %>
