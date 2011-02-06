@@ -5,10 +5,12 @@ CLEAN_BIN=<%= @sbin %>/clean_package_names.sh
 
 CONTENT_OUT=<%= @contentpath %>/md-packages
 HG_IN_LOCAL=<%= @loadq %>/choices/local
+HG_IN_ROOT=<%= @loadq %>/choices/root
 
 # Let's remove spaces from the packages first.
 sh $CLEAN_BIN
 
+# E&W content package
 for a in $CONTENT_OUT/* ; do
   unzip -p $a package.xml | grep "NHS England and Wales" | grep -v empty > /dev/null \
   && echo "$a is an E&W package, so copying it to $HG_IN_LOCAL..." \
@@ -16,6 +18,12 @@ for a in $CONTENT_OUT/* ; do
   && echo "Done."
 done
 
-# TODO: create a similar line for root packages
+# Root (International) content package
+for a in $CONTENT_OUT/* ; do
+  unzip -p $a package.xml | grep '<variant guid="baseroot-base-root-base-rootbaseroot" name="International" short-name="International"/>'
+  && echo "$a is an International, so copying it to $HG_IN_ROOT..." \
+  && cp $a $HG_IN_LOCAL/ \
+  && echo "Done."
+done
 
 # TODO: reconcile this with move-md-packages.sh
