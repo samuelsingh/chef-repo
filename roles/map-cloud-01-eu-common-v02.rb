@@ -1,4 +1,4 @@
-name "map-cloud-01-eu-common-0.2"
+name "map-cloud-01-eu-common-v02"
 description "Configuration common to all machines in map-cloud-01.eu. V0.2"
 run_list "recipe[zones]", "recipe[glusterfs::client]", "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[extra-repos]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]", "role[rsyslog-mom-client]"
 
