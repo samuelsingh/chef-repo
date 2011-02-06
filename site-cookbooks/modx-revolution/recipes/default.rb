@@ -62,6 +62,12 @@ directory "#{modx_path}/core/components" do
   not_if "test -L #{modx_path}/core/components"
 end
 
+directory "#{modx_path}/core/cache" do
+  recursive true
+  action :delete
+  not_if "test -L #{modx_path}/core/cache"
+end
+
 # Link shared resources
 link "#{modx_path}/global"  do
   to "#{deployment_home}/global"
@@ -73,6 +79,10 @@ end
 
 link "#{modx_path}/core/components"  do
   to "#{deployment_home}/shared/components"
+end
+
+link "#{modx_path}/core/cache"  do
+  to "#{deployment_home}/shared/cache"
 end
 
 # Update php.ini file
