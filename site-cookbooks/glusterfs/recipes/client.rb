@@ -79,6 +79,19 @@ unless glustersrvs.empty?
         )
       end
       
+    elsif node[:glusterfs][:client][:stable] == "true"
+      
+      template "/etc/glusterfs/export_#{share}.vol" do
+        source "export-STABLE_TEMPLATE.vol.erb"
+        owner "root"
+        group "root"
+        mode 0644
+        variables(
+          :mount_point => share,
+          :glustersrvs => glustersrvs
+        )
+      end
+      
     else
       
       template "/etc/glusterfs/export_#{share}.vol" do
