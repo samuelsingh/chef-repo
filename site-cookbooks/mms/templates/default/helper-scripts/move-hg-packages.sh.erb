@@ -4,15 +4,15 @@ UNZIP_BIN=/usr/bin/unzip
 CLEAN_BIN=<%= @sbin %>/clean_package_names.sh
 
 CONTENT_OUT=<%= @contentpath %>/md-packages
-HG_IN_LOCAL=<%= @loadq %>/choices/local
-HG_IN_ROOT=<%= @loadq %>/choices/root
+HG_IN_LOCAL=<%= @loadq %>/healthguides/local
+HG_IN_ROOT=<%= @loadq %>/healthguides/root
 
 # Let's remove spaces from the packages first.
 sh $CLEAN_BIN
 
 for a in $CONTENT_OUT/*.zip ; do
 
-  /usr/bin/zip -qT "$f"
+  /usr/bin/zip -qT "$a"
   if [ "$?" = "0" ] ; then
   
     # E&W content package
