@@ -10,20 +10,25 @@ HG_IN_ROOT=<%= @loadq %>/choices/root
 # Let's remove spaces from the packages first.
 sh $CLEAN_BIN
 
-# E&W content package
-for a in $CONTENT_OUT/* ; do
-  unzip -p $a package.xml | grep "NHS England and Wales" | grep -v empty > /dev/null \
-  && echo "$a is an E&W package, so copying it to $HG_IN_LOCAL..." \
-  && cp $a $HG_IN_LOCAL/ \
-  && echo "Done."
-done
+for a in $CONTENT_OUT/*.zip ; do
 
-# Root (International) content package
-for a in $CONTENT_OUT/* ; do
-  unzip -p $a package.xml | grep '<variant guid="baseroot-base-root-base-rootbaseroot" name="International" short-name="International"/>'
-  && echo "$a is an International, so copying it to $HG_IN_ROOT..." \
-  && cp $a $HG_IN_LOCAL/ \
-  && echo "Done."
+  /usr/bin/zip -qT "$f"
+  if [ "$?" = "0" ] ; then
+  
+    # E&W content package
+    unzip -p $a package.xml | grep "NHS England and Wales" | grep -v empty > /dev/null \
+    && echo "$a is an E&W package, so copying it to $HG_IN_LOCAL..." \
+    && cp $a $HG_IN_LOCAL/ \
+    && echo "Done."
+  
+    # Root (International) content package
+    unzip -p $a package.xml | grep '<variant guid="baseroot-base-root-base-rootbaseroot" name="International" short-name="International"/>' > /dev/null \
+    && echo "$a is an International package, so copying it to $HG_IN_ROOT..." \
+    && cp $a $HG_IN_ROOT/ \
+    && echo "Done."
+    
+  fi
+  
 done
 
 # TODO: reconcile this with move-md-packages.sh
