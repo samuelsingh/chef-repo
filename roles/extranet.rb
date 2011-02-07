@@ -6,6 +6,7 @@ override_attributes(
   "vsftpd" => {
     "ftp_base" => "/var/shared/ftp",
     "ftp_host" => "ftp.mapofmedicine.com",
+    "ftp_aliases" => [ "extranet.mapofmedicine.com" ],
     "users" => {
       "csc" => {
         "uid" => "10500",
