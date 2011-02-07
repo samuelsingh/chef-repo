@@ -38,8 +38,9 @@ Vagrant::Config.run do |config|
       "fqdn"=> "local-build.mapofmedicine.com",
       "map_display" => {
         "md_fqdn" => "127.0.0.1:8080",
-        "dbhost" => "db",
-        "dbname" => "mtmdb",
+        "save_ram" => "true",
+        "dbhost" => "hathor.foxdev.mapofmedicine.com",
+        "dbname" => "test_mapdisplay",
         "dbuser" => "mtmuser",
         "dbpass" => "medic1"
       },
