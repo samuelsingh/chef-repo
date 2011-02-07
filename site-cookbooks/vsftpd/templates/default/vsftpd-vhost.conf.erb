@@ -15,6 +15,10 @@
 
     ServerName <%= @hostname %>
 
+    <% @aliases.each do |alias| -%>
+    ServerAlias <%= alias %>
+    <% end -%>
+
     # The DocumentRoot isn't used for much, anything not inside a webapp.
     # Mainly this is used for the holding page.
 

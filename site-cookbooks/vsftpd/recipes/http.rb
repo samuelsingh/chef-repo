@@ -10,6 +10,7 @@ include_recipe "apache2"
 ftp_users = node[:vsftpd][:users]
 ftp_base = node[:vsftpd][:ftp_base]
 ftp_host = node[:vsftpd][:ftp_host]
+ftp_aliases = node[:vsftpd][:ftp_aliases]
 
 template "#{node[:apache][:dir]}/sites-available/#{ftp_host}.conf" do
   source "vsftpd-vhost.conf.erb"
@@ -17,7 +18,8 @@ template "#{node[:apache][:dir]}/sites-available/#{ftp_host}.conf" do
   variables(
     :users => ftp_users.map{|k,v| k},
     :hostname => ftp_host,
-    :ftp_base => ftp_base
+    :ftp_base => ftp_base,
+    :aliases => ftp_aliases
   )
   notifies :reload, resources(:service => "apache2")
 end
