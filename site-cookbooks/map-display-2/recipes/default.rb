@@ -127,17 +127,18 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     
     if ajp_port == 9001
       
-      shared_loader = "#{node[:tomcat][:basedir]}/server#{ajp_port}/shared/lib"
+      server_dir = node[:tomcat][:basedir] + "/server" + ajp_port
+      shared_loader = "#{server_dir}/shared/lib"
       
-      directory "#{node[:tomcat][:basedir]}/server9001/webapps" do
+      directory "#{server_dir}/webapps" do
         owner t_user
         group t_group
         mode "0755"
         action :create
-        not_if "test -d #{node[:tomcat][:basedir]}/server9001/webapps"
+        not_if "test -d #{server_dir}/webapps"
       end
       
-      template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mom.xml" do
+      template "#{server_dir}/conf/Catalina/localhost/mom.xml" do
         source "mom.xml.erb"
         mode 0644
         group t_user
@@ -148,7 +149,23 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :dbhost => dbhost,
           :dbname => dbname
         )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost"
+        only_if "test -d #{server_dir}/conf/Catalina/localhost"
+      end
+      
+      if (node[:map_display][:save_ram] == "true" || node[:ec2][:instance_type] == "m1.small")
+      
+        template "#{server_dir}/etc/java_opts.conf" do
+          source "etc/java_opts.conf.erb"
+          mode 0644
+          group t_user
+          group t_group
+          variables(
+            :start_memory => "512m",
+            :max_memory => "950m"
+          )
+          only_if "test -d #{server_dir}/etc"
+        end
+        
       end
       
       template "#{shared_loader}/mom-log4j.xml" do
@@ -177,17 +194,19 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     
     if ajp_port == 9002
       
-      shared_loader = "#{node[:tomcat][:basedir]}/server#{ajp_port}/shared/lib"
+      server_dir = node[:tomcat][:basedir] + "/server" + ajp_port
+      shared_loader = "#{server_dir}/shared/lib"
       
-      directory "#{node[:tomcat][:basedir]}/server9002/webapps" do
+      
+      directory "#{server_dir}/webapps" do
         owner t_user
         group t_group
         mode "0755"
         action :create
-        not_if "test -d #{node[:tomcat][:basedir]}/server9002/webapps"
+        not_if "test -d #{server_dir}/webapps"
       end
       
-      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml" do
+      template "#{server_dir}/conf/Catalina/localhost/adminapp.xml" do
         source "adminapp.xml.erb"
         mode 0644
         group t_user
@@ -198,7 +217,23 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :dbhost => dbhost,
           :dbname => dbname
         )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
+        only_if "test -d #{server_dir}/conf/Catalina/localhost"
+      end
+      
+      if (node[:map_display][:save_ram] == "true" || node[:ec2][:instance_type] == "m1.small")
+      
+        template "#{server_dir}/etc/java_opts.conf" do
+          source "etc/java_opts.conf.erb"
+          mode 0644
+          group t_user
+          group t_group
+          variables(
+            :start_memory => "256m",
+            :max_memory => "450m"
+          )
+          only_if "test -d #{server_dir}/etc"
+        end
+        
       end
       
       template "#{shared_loader}/adminapp-log4j.xml" do

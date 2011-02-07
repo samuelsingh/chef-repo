@@ -1,0 +1,2 @@
+# Custom startup parameters for Tomcat
+JAVA_OPTS="-server -Xmx<%= @max_memory %> -Xms<%= @start_memory %> -XX:MaxPermSize=128m -Djava.awt.headless=true"
