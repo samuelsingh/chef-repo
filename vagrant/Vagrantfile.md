@@ -7,7 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.box = "base"
 
   config.vm.customize do |vm|
-    vm.memory_size = 17408
+    vm.memory_size = 1740
   end 
 
   # The url from where the 'config.vm.box' box will be fetched if it
