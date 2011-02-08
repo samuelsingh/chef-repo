@@ -58,6 +58,6 @@ end
 
 cron "rotate-httpd-logs" do
   hour node[:apache][:rotate_hour]
-  minute node[:apache][:rotate_hour]
+  minute node[:apache][:rotate_min]
   command "#{sbin}/gather-httpd-logs"
 end
