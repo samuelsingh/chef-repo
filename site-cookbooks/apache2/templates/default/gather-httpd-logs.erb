@@ -1,0 +1,84 @@
+#!/bin/sh
+
+# Configuration options
+VERBOSE=1
+
+# Where application logs are found
+HTTPD_LOGS=<%= @node[:apache][:log_dir] %>
+
+# Binaries to run
+LOGROTATE=<%= @rotate_command %>
+LSOF=<%= @lsof_bin %>
+WEBLOGDATE=<%= @bin %>/weblogdate.pl
+
+# Globals
+ME=`basename $0`
+HOSTNAME=`hostname -s`
+DATESTAMP=`date '+%Y%m%d_%H%M%S'`
+ARCHIVE_DIR=<%= @rotate_base %>/$HOSTNAME
+BACKUP_DIR=<%= @backup_base %>/$HOSTNAME/current
+
+
+fail()
+{
+    echo "[$ME] FAIL: $*"
+	exit 1
+}
+
+warn()
+{
+	echo "[$ME] WARN: $*"
+}
+
+check_reqs()
+{
+	[ -x "$LSOF" ] || fail "Could not find required binary $LSOF"
+	[ -x "$WEBLOGDATE" ] || fail "Could not find required script $WEBLOGDATE"
+}
+
+ensure_dir()
+{
+	KDIR="$1"
+	[ -n "$VERBOSE" ] && echo "ensure_dir \"$KDIR\""
+	[ -d "$KDIR" ] || mkdir -p "$KDIR" 
+	[ -d "$KDIR" ] || fail "$KDIR is missing and could not be created"
+	[ -n "$VERBOSE" ] && echo "dir \"$KDIR\" is ready"
+}
+
+
+rotate_httpd()
+{
+	WEBARCHIVE_DIR="$ARCHIVE_DIR/httpd"
+	ensure_dir $WEBARCHIVE_DIR
+
+	$LOGROTATE || fail "Could not run logrotate"
+	
+	cd "$HTTPD_LOGS" || fail "Could not cd $HTTPD_LOGS"
+	for f in access*.???????? ; do
+		if [ -f "$f" ] ; then
+			$LSOF $f > /dev/null
+			if [ "$?" = "1" ] ; then
+				FIRST_DATE=`head -1 "$f" | $WEBLOGDATE`
+				LAST_DATE=`tail -1 "$f" | $WEBLOGDATE`
+				CORENAME=`echo "$f" | sed 's/\..$//'`
+				NEWNAME="$HOSTNAME.$CORENAME.$FIRST_DATE-$LAST_DATE.log"
+				[ -n "$VERBOSE" ] && echo "mv $f $WEBARCHIVE_DIR/$NEWNAME"
+				mv "$f" "$WEBARCHIVE_DIR/$NEWNAME" || fail "Could not move $f $WEBARCHIVE_DIR/$NEWNAME"
+			else
+				echo "Log $f is still open"
+				cp "$f" "$BACKUP_DIR/current-$f"
+			fi
+		fi
+	done
+}
+
+check_reqs
+
+rm -rf "$BACKUP_DIR"
+ensure_dir "$BACKUP_DIR"
+
+if [ -d "$HTTPD_LOGS" ] ; then
+	rotate_httpd
+else
+	warn "Not rotating weblogs, there is no $HTTPD_LOGS directory"
+fi
