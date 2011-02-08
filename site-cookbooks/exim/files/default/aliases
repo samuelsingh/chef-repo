@@ -756,7 +756,7 @@ unknown:						bitbucket
 factory-queue:					marjorie.debruyn
 kanban-queue:					bitbucket
 content-queue:					bitbucket
-website-queue:					patrick.clancey
+website-queue:					patrick.clancey, lucy
 ipg-queue:						bitbucket
 sdg:							bitbucket
 mobile-support:					support
