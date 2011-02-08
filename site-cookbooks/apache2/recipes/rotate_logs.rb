@@ -56,9 +56,8 @@ remote_file "#{bin}/weblogdate.pl" do
   mode 0755
 end
 
-# Minute is randomised to try to avoid galloping herd syndrome
-#cron "rotate-httpd-logs" do
-#  hour "1"
-#  minute rand(59).to_s
-#  command "#{sbin}/gather-httpd-logs"
-#end
+cron "rotate-httpd-logs" do
+  hour node[:apache][:rotate_hour]
+  minute node[:apache][:rotate_hour]
+  command "#{sbin}/gather-httpd-logs"
+end
