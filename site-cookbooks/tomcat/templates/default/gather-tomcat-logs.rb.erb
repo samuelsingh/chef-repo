@@ -24,7 +24,7 @@ def rotate_tomcat(tomcat_base,dest_dir)
 end
 
 def stamped_log(file)
-  host_name = Socket::gethostname[/\A[^.]+/]
+  hostname = Socket::gethostname[/\A[^.]+/]
   datestamp = Time.now.strftime('%Y%m%d_%H%M%S')
   [hostname,datestamp,file].join('-')
 end
