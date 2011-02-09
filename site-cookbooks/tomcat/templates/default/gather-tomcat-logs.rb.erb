@@ -3,9 +3,9 @@
 require 'fileutils'
 require 'socket'
 
-tomcat_ports = <% @tomcat_ports -%>
-tomcat_base = '<% @tomcat_srv -%>'
-rotate_dir = '<% @rotate_base -%>'
+tomcat_ports = <%= @tomcat_ports %>
+tomcat_base = '<%= @tomcat_srv %>'
+rotate_dir = '<%= @rotate_base %>'
 
 @lsof_bin = '/usr/bin/lsof'
 
