@@ -15,7 +15,7 @@ def rotate_tomcat(tomcat_base,dest_dir)
     next if (entry == '.' || entry == '..')
     if entry[/\Acatalina/]
       newfile = stamped_log(entry)
-      move_log_file("#{log_dir}/#{entry}","#{dest_dir}/#{newfile}")
+      move_log_file("#{log_dir}/#{entry}",dest_dir,newfile)
     else
       purge_log_file("#{log_dir}/#{entry}")
     end
@@ -38,13 +38,13 @@ def get_dest_dir(base,port)
   "#{base}/#{host_name}/tomcat#{port}"
 end
 
-def move_log_file(file,dest)
+def move_log_file(file,dest,newfile)
   if file_open?(file)
     puts "#{file} open, so skipping."
   else
     puts "Moving #{file} to #{dest}"
     FileUtils.mkdir_p(dest) unless File.directory?(dest)
-    FileUtils.mv(file,dest)
+    FileUtils.mv(file,"#{dest}/#{newfile}")
   end
 end
 
