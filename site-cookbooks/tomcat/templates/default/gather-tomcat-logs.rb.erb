@@ -56,7 +56,7 @@ def purge_log_file(file)
   end
 end
 
-tomcat_ports.each do |port|
+tomcat_ports.split(',').each do |port|
   tomcat_base = "/var/tomcat/server#{port}"
   dest_dir = get_dest_dir(rotate_dir,port)
   rotate_tomcat(tomcat_base,dest_dir)
