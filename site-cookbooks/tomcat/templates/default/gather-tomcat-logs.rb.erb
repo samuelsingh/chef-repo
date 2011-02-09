@@ -14,7 +14,8 @@ def rotate_tomcat(tomcat_base,dest_dir)
   Dir.entries(log_dir).each do |entry|
     next if (entry == '.' || entry == '..')
     if entry[/\Acatalina/]
-      move_log_file("#{log_dir}/#{entry}",dest_dir)
+      newfile = stamped_log(entry)
+      move_log_file("#{log_dir}/#{entry}","#{dest_dir}/#{newfile}")
     else
       purge_log_file("#{log_dir}/#{entry}")
     end
