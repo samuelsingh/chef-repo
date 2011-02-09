@@ -1,7 +1,7 @@
 name "stage-euromd-appserver"
 description "Configures Stage MD application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[map-display]", "recipe[map-display::contentloader]"
+run_list "recipe[java]", "recipe[tomcat]", "recipe[tomcat::rotate_logs]", "recipe[map-display]", "recipe[map-display::contentloader]"
 
 override_attributes(
   "map_display" => {
@@ -15,5 +15,9 @@ override_attributes(
     "client" => {
       "experimental" => "true"
     }
+  },
+  "tomcat" => {
+    "srv_dir" => "/var/tomcat",
+    "log_rotate_dir" => "/var/shared/rotated-logs"
   }
 )
