@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'socket'
+
+tomcat_ports = <% @tomcat_ports -%>
+tomcat_base = '<% @tomcat_srv -%>'
+rotate_dir = '<% @rotate_base -%>'
+
+@lsof_bin = '/usr/bin/lsof'
+
+def rotate_tomcat(tomcat_base,dest_dir)
+  log_dir = tomcat_base + '/logs'
+  Dir.entries(log_dir).each do |entry|
+    next if (entry == '.' || entry == '..')
+    if entry[/\Acatalina/]
+      move_log_file("#{log_dir}/#{entry}",dest_dir)
+    else
+      purge_log_file("#{log_dir}/#{entry}")
+    end
+  end
+  
+end
+
+def stamped_log(file)
+  host_name = Socket::gethostname[/\A[^.]+/]
+  datestamp = Time.now.strftime('%Y%m%d_%H%M%S')
+  [hostname,datestamp,file].join('-')
+end
+
+def file_open?(file)
+  system("#{@lsof_bin} #{file} 1> /dev/null 2>&1")
+end
+
+def get_dest_dir(base,port)
+  host_name = Socket::gethostname[/\A[^.]+/]
+  "#{base}/#{host_name}/tomcat#{port}"
+end
+
+def move_log_file(file,dest)
+  if file_open?(file)
+    puts "#{file} open, so skipping."
+  else
+    puts "Moving #{file} to #{dest}"
+    FileUtils.mkdir_p(dest) unless File.directory?(dest)
+    FileUtils.mv(file,dest)
+  end
+end
+
+def purge_log_file(file)
+  if file_open?(file)
+    puts "#{file} open, so skipping."
+  else
+    puts "Purging #{file}"
+    FileUtils.rm(file)
+  end
+end
+
+tomcat_ports.each do |port|
+  tomcat_base = "/var/tomcat/server#{port}"
+  dest_dir = get_dest_dir(rotate_dir,port)
+  rotate_tomcat(tomcat_base,dest_dir)
+end
