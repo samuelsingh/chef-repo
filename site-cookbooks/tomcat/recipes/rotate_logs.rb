@@ -37,6 +37,7 @@ template "#{sbin}/gather-tomcat-logs.rb" do
     :bin => bin,
     :tomcat_srv => tomcat_srv,
     :rotate_base => rotate_base,
+    :tomcat_ports => tomcat_ports,
     :lsof_bin => lsof_bin
   )
 end
