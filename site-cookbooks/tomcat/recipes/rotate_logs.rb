@@ -8,7 +8,7 @@
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
 
-tomcat_srv = node[:tomcat][:tomcat_srv_dir]
+tomcat_srv = node[:tomcat][:srv_dir]
 rotate_base = node[:tomcat][:log_rotate_dir]
 tomcat_ports = node[:tomcat][:ajp_ports]
 
