@@ -1,5 +1,5 @@
-name "md-stage-version"
-description "MD staging version snippet"
+name "md-contentuat-version"
+description "MD content uat version snippet"
 
 run_list "recipe[stage-server]"
 
