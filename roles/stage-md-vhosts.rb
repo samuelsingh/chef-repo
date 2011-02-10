@@ -15,7 +15,7 @@ override_attributes(
       "lpa_hostname" => "localcare.regression.mapofmedicine.com",
       "lb_alive_port" => 0
     },
-    "stage-mdnoprov.map-cloud-01.eu" => {
+    "euromd.contentuat.mapofmedicine.com" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/stage/euro-md",
       "holding_page" => "false",
