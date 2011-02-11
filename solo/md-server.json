@@ -6,7 +6,7 @@
 "map_display": {
   "md_fqdn": "127.0.0.1:8080",
   "dbhost": "stage-db-01.map-cloud-01.eu",
-  "save_ram" => "true",
+  "save_ram": "true",
   "dbname": "md-test",
   "dbuser": "mtmuser",
   "dbpass": "MtMUs3r"
