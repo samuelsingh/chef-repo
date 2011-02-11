@@ -5,10 +5,11 @@
 "chef_packages": "",
 "map_display": {
   "md_fqdn": "127.0.0.1:8080",
-  "dbhost": "db",
-  "dbname": "mtmdb",
+  "dbhost": "stage-db-01.map-cloud-01.eu",
+  "save_ram" => "true",
+  "dbname": "md-test",
   "dbuser": "mtmuser",
-  "dbpass": "medic1"
+  "dbpass": "MtMUs3r"
 },
 "tomcat": { "ajp_ports": [ 9001, 9002 ] },
 "run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[map-display-2]" ]
