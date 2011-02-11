@@ -127,7 +127,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     
     if ajp_port == 9001
       
-      server_dir = node[:tomcat][:basedir] + "/server" + ajp_port
+      server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
       shared_loader = "#{server_dir}/shared/lib"
       
       directory "#{server_dir}/webapps" do
@@ -145,7 +145,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         group t_group
         variables(
           :dbuser => dbuser,
-          :dbpass => dbpass,
+          :dbpass => dbpass,  
           :dbhost => dbhost,
           :dbname => dbname
         )
@@ -194,7 +194,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     
     if ajp_port == 9002
       
-      server_dir = node[:tomcat][:basedir] + "/server" + ajp_port
+      server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
       shared_loader = "#{server_dir}/shared/lib"
       
       
