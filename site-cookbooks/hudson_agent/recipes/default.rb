@@ -32,6 +32,7 @@ end
 
 group "#{group}" do
   gid 10099
+  not_if "grep #{group} /etc/group > /dev/null"
 end
 
 user "#{user}" do
@@ -40,7 +41,7 @@ user "#{user}" do
   gid 10099
   home "#{hudson_home}"
   shell "/bin/bash"
-  not_if "[ ! -z \"`who | grep hudson-agent`\" ]"
+  not_if "grep #{user} /etc/passwd > /dev/null"
 end
 
 directory "#{hudson_home}" do
