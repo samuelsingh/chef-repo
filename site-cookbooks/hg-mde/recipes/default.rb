@@ -29,12 +29,18 @@ end
 template "#{path9001}/conf/Catalina/localhost/choices.xml" do
   source "choices.xml.erb"
   mode 0755
+  variables(
+    :specify_docbase => node[:hg_mde][:specify_docbase]
+  )
   only_if "test -d #{path9001}/conf"
 end
 
 template "#{path9002}/conf/Catalina/localhost/evidence.xml" do
   source "evidence.xml.erb"
   mode 0755
+  variables(
+    :specify_docbase => node[:hg_mde][:specify_docbase]
+  )
   only_if "test -d #{path9002}/conf"
 end
 

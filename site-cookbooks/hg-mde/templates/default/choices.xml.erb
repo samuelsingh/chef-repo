@@ -1,5 +1,7 @@
-<Context path="/choices" 
+<Context path="/choices"
+<% if @specify_docbase == "true" -%>
 docBase="<%= @node[:hg_mde][:hg_war_path] %>/<%= @node[:hg_mde][:hg_version] %>.war"
+<% end -%>
 	    reloadable="false"
 	    debug="0">
 

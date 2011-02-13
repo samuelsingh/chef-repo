@@ -1,5 +1,7 @@
-<Context path="/evidence" 
+<Context path="/evidence"
+<% if @specify_docbase == "true" -%>
 docBase="<%= @node[:hg_mde][:mde_war_path] %>/<%= @node[:hg_mde][:mde_version] %>.war"
+<% end -%>
 	    reloadable="true"
 	    debug="0">
 
