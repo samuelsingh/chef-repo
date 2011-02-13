@@ -45,3 +45,9 @@ template "zone-id" do
   mode 0644
   backup false
 end
+
+remote_directory "/usr/local/devops" do
+  source "devops"
+  files_mode "0755"
+  mode "0755"
+end
