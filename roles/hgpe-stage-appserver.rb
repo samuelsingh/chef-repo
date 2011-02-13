@@ -9,6 +9,7 @@ override_attributes(
   },
   "hg_mde" => {
     "hg_war_path" =>  "/var/shared/deployment/stage/healthguides/wars",
-    "mde_war_path" =>  "/var/shared/deployment/stage/mde/wars"
+    "mde_war_path" =>  "/var/shared/deployment/stage/mde/wars",
+    "specify_docbase" => "false"
   }
 )
