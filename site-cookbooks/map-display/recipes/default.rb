@@ -25,7 +25,7 @@
 mtmpath = node[:map_display][:mtmpath]
 md_fqdn = node[:map_display][:md_fqdn]
 deploy_dir = node[:map_display][:deploy_dir]
-webapp_dir = node[:map_display][:webapp_dir]
+webapp_dir = "#{node[:map_display][:deploy_dir]}/md-#{node[:map_display][:version]}/webapps"
 md_version = node[:map_display][:version]
 
 dbuser = node[:map_display][:dbuser]
