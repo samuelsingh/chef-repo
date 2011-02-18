@@ -8,7 +8,7 @@
 
 include_recipe "apache2"
 
-node[:map_display_vhost].each do |hostname,params|
+node[:lpa_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
 
@@ -17,7 +17,7 @@ node[:map_display_vhost].each do |hostname,params|
     params["aa_port"].nil? ? aa_port = "9002" : aa_port = params["aa_port"]
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-      source "map-display-vhost.conf.erb"
+      source "lpa-vhost.conf.erb"
       mode 0644
       owner node[:apache][:user]
       group node[:apache][:group]
@@ -43,7 +43,7 @@ node[:map_display_vhost].each do |hostname,params|
   end
   
   remote_directory "/var/www/vhosts/#{hostname}" do
-    source "docroot"
+    source "lpa"
     files_owner node[:apache][:user]
     files_group node[:apache][:group]
     files_mode "0644"
@@ -54,14 +54,14 @@ node[:map_display_vhost].each do |hostname,params|
     not_if "test -d /var/www/vhosts/#{hostname}"
   end
   
-  template "/var/www/vhosts/#{hostname}/holding.html" do
-    source "holding.html.erb"
-    mode 0644
-    owner node[:apache][:user]
-    group node[:apache][:group]
-    variables(
-        :holding_page_msg => params["holding_page_msg"]
-    )
-  end
+  # template "/var/www/vhosts/#{hostname}/holding.html" do
+  #   source "holding.html.erb"
+  #   mode 0644
+  #   owner node[:apache][:user]
+  #   group node[:apache][:group]
+  #   variables(
+  #       :holding_page_msg => params["holding_page_msg"]
+  #   )
+  # end
 
 end
