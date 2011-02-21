@@ -12,7 +12,7 @@ content_store = '/var/shared/content'
 loadq = content_store + '/load-queue'
 
 contentpath = node[:mms][:contentpath]
-rotate_base = node[:tomcat][:log_rotate_dir]
+rotate_dir = node[:tomcat][:log_rotate_dir]
 
 # Installs dependent packages
 ["unzip","lsof"].each do |pkg|
@@ -95,7 +95,7 @@ template "#{sbin}/gather-mms-logs.rb" do
   variables(
     :lib => lib,
     :log_dir => node[:mms][:logpath],
-    :rotate_dir => rotate_base,
+    :rotate_dir => rotate_dir,
     :lsof_bin => lsof_bin
   )
 end
