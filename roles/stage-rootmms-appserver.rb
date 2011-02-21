@@ -1,7 +1,8 @@
 name "stage-rootmms-appserver"
 description "Configures Stage Root MMS application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]"
+run_list "recipe[java]", "recipe[tomcat]", "recipe[tomcat::rotate_logs]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]"
+
 default_attributes(
   "mms" => {
     "dbhost" => "stage-db-01.map-cloud-01.eu"
