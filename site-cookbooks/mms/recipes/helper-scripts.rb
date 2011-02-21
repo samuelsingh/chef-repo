@@ -11,13 +11,24 @@ content_store = '/var/shared/content'
 loadq = content_store + '/load-queue'
 
 contentpath = node[:mms][:contentpath]
+rotate_base = node[:tomcat][:log_rotate_dir]
 
 # Installs dependent packages
-["unzip"].each do |pkg|
+["unzip","lsof"].each do |pkg|
   package pkg do
     action :install
   end
 end
+
+lsof_bin = value_for_platform(
+  [ "ubuntu", "debian" ] => {
+    "default" => "/usr/bin/lsof"
+  },
+  [ "redhat", "centos", "fedora" ] => {
+    "default" => "/usr/sbin/lsof"
+  },
+  "default" => "/usr/bin/lsof"
+)
 
 template "#{sbin}/clean_package_names.sh" do
   source "helper-scripts/clean_package_names.sh.erb"
@@ -75,4 +86,15 @@ template "#{sbin}/mmsclean" do
   mode 0755
   owner "sysadmin"
   group "sysadmin"
+end
+
+template "#{sbin}/gather-mms-logs.rb" do
+  source "helper-scripts/gather-mms-logs.rb.erb"
+  mode 0755
+  variables(
+    :lib => lib,
+    :log_dir => node[:mms][:logpath],
+    :rotate_dir => rotate_base,
+    :lsof_bin => lsof_bin
+  )
 end
