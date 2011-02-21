@@ -36,5 +36,9 @@ override_attributes(
     "client" => {
       "experimental" => "true"
     }
+  },
+  "tomcat" => {
+    "srv_dir" => "/var/tomcat",
+    "log_rotate_dir" => "/var/shared/rotated-logs"
   }
 )
