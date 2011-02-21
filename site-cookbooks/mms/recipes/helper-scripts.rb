@@ -7,6 +7,7 @@
 
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
+lib = '/usr/local/lib'
 content_store = '/var/shared/content'
 loadq = content_store + '/load-queue'
 
