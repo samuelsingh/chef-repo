@@ -46,8 +46,8 @@ template "#{sbin}/gather-tomcat-logs.rb" do
   )
 end
 
-#cron "rotate-httpd-logs" do
-#  hour node[:tomcat][:rotate_hour]
-#  minute node[:tomcat][:rotate_min]
-#  command "#{sbin}/gather-tomcat-logs.rb"
-#end
+cron "rotate-tomcat-logs" do
+  hour node[:tomcat][:rotate_hour]
+  minute node[:tomcat][:rotate_min]
+  command "#{sbin}/gather-tomcat-logs.rb"
+end
