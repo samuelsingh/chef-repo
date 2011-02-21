@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'gather-logs'
+require '<%= @lib %>/gather-logs'
 
 tomcat_ports = '<%= @tomcat_ports %>'
 tomcat_base = '<%= @tomcat_srv %>'
 rotate_dir = '<%= @rotate_base %>'
+lsof_bin = '<%= @lsof_bin %>'
 
 log_act = GatherLogs::Log.new(lsof_bin)
 
