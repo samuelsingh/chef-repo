@@ -15,14 +15,14 @@ lib = '/usr/local/lib'
 qmgr_bin = "#{node[:mms][:queuemgr][:path]}/queue-manager"
 
 cron "rotate_mms_logs" do
-  hour node[:tomcat][:rotate_hour] + 1
+  hour "#{node[:tomcat][:rotate_hour] + 1}"
   minute node[:tomcat][:rotate_min]
   command "#{sbin}/gather-mms-logs.rb"
 end
 
 cron "clean_mms" do
-  hour node[:tomcat][:rotate_hour] + 1
-  minute node[:tomcat][:rotate_min] + 5
+  hour "#{node[:tomcat][:rotate_hour] + 1}"
+  minute "#{node[:tomcat][:rotate_min] + 5}"
   command "#{sbin}/mmsclean"
 end
 
