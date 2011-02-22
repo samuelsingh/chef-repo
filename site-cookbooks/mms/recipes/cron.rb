@@ -26,7 +26,7 @@ cron "clean_mms" do
   command "#{sbin}/mmsclean"
 end
 
-if search(:node, 'run_list:"recipe[prod-server]"')
+if search(:node, 'run_list:"recipe[prod-server]"').member?(node[:fqdn])
   
   # Start quartz queue at the end of working hours
   cron "start_qrtz_jobs" do
