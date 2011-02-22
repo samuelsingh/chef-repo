@@ -91,7 +91,7 @@ directory ws_archive do
   mode "0755"
   recursive true
   action :create
-  not_if "test -d #{ws-archive}"
+  not_if "test -d #{ws_archive}"
 end
 
 directory "#{ws_archive}/interim" do
