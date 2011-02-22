@@ -11,6 +11,7 @@ include_recipe "mms::helper-scripts"
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
 lib = '/usr/local/lib'
+test = node[:tomcat][:rotate_hour + 1
 
 qmgr_bin = "#{node[:mms][:queuemgr][:path]}/queue-manager"
 
