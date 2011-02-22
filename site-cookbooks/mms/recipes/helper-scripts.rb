@@ -5,6 +5,9 @@
 # Copyright 2011, Map of Medicine
 #
 
+include_recipe "mms"
+include_recipe "tomcat::rotate_logs"
+
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
 lib = '/usr/local/lib'
