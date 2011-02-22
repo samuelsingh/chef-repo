@@ -11,19 +11,18 @@ include_recipe "mms::helper-scripts"
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
 lib = '/usr/local/lib'
-test = node[:tomcat][:rotate_hour]+1
 
 qmgr_bin = "#{node[:mms][:queuemgr][:path]}/queue-manager"
 
 cron "rotate_mms_logs" do
-  hour "#{node[:tomcat][:rotate_hour] + 1}"
+  hour "#{node[:tomcat][:rotate_hour].to_i + 1}"
   minute node[:tomcat][:rotate_min]
   command "#{sbin}/gather-mms-logs.rb"
 end
 
 cron "clean_mms" do
-  hour "#{node[:tomcat][:rotate_hour] + 1}"
-  minute "#{node[:tomcat][:rotate_min] + 5}"
+  hour "#{node[:tomcat][:rotate_hour].to_i + 1}"
+  minute "#{node[:tomcat][:rotate_min].to_i + 5}"
   command "#{sbin}/mmsclean"
 end
 
