@@ -1,7 +1,7 @@
 name "stage-euromd-appserver"
 description "Configures Stage MD application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[tomcat::rotate_logs]", "recipe[map-display]", "recipe[map-display::contentloader]"
+run_list "role[tomcat]", "recipe[tomcat::rotate_logs]", "recipe[map-display]", "recipe[map-display::contentloader]"
 
 override_attributes(
   "map_display" => {

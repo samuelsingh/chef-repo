@@ -4,7 +4,7 @@ description "Map of Medicine Hudson deployment server"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
 # run_list "recipe[java]", "recipe[tomcat]", "recipe[hudson_server]", "recipe[nexus-sonar]", "recipe[mysql::server]"
-run_list "recipe[java]", "recipe[tomcat]", "recipe[hudson_server]", "recipe[aws]", "recipe[nexus::ebs]", "recipe[nexus]"
+run_list "role[tomcat]", "recipe[hudson_server]", "recipe[aws]", "recipe[nexus::ebs]", "recipe[nexus]"
 
 override_attributes(
   "tomcat" => {

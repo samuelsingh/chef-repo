@@ -1,7 +1,7 @@
 name "hgpe-stage-appserver"
 description "Configures HG / MDE application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "recipe[hg-mde]", "recipe[hudson_agent]"
+run_list "role[tomcat]", "recipe[hg-mde]", "recipe[hudson_agent]"
 
 override_attributes(
   "tomcat" => {
