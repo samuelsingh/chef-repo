@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: tomcat
-# Recipe:: helper-scripts
+# Cookbook Name:: mms
+# Recipe:: cron
 #
 # Copyright 2011, Map of Medicine
 #
 
 include_recipe "mms"
-include_recipe "mms::helper_scripts"
+include_recipe "mms::helper-scripts"
 
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
