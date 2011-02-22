@@ -32,6 +32,7 @@ me_version      = node[:mms][:me_version]
 dict_version    = node[:mms][:dict_version]
 athens_link     = node[:mms][:athens_link]
 multiple_views  = node[:mms][:multiple_views]
+ws-archive	= node[:mms][:ws_archive]
 
 mmpath = node[:mms][:mapmanager][:path]
 
@@ -82,18 +83,34 @@ directory "#{contentpath}/sync-packages"  do
   not_if "test -d #{contentpath}/sync-packages"
 end
 
-# On cloud machines, creates a directory in ephemeral space to chuck stuff to that 
-# we don't really need.  This directory can then be emptied periodically.
+# Workspace archive directories
 
-directory "/mnt/mms-bucket"  do
+directory ws-archive do
   owner "tomcat"
   group "tomcat"
   mode "0755"
   recursive true
   action :create
-  not_if "test -d /mnt/mms-bucket"
+  not_if "test -d #{ws-archive}"
 end
 
+directory "#{ws-archive}/interim" do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{ws-archive}/interim"
+end
+
+directory "#{ws-archive}/historical" do
+  owner "tomcat"
+  group "tomcat"
+  mode "0755"
+  recursive true
+  action :create
+  not_if "test -d #{ws-archive}/historical"
+end
 
 ## Creates configuration directories for the mom webapp, used by full map preview
 
@@ -315,7 +332,8 @@ template "#{mmpath}/config/m2mr2-cs-base.properties" do
     :deployment_name => deployment_name,
     :previewhour => previewvals[1],
     :previewmin => previewvals[2],
-    :fqdn => fqdn
+    :fqdn => fqdn,
+    :ws_archive => ws-archive
   )
 end
 

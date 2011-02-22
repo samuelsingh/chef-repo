@@ -25,6 +25,7 @@ set_unless[:mms][:dict_version] = "0.1" # sure that production has picked up its
 set_unless[:mms][:logpath] = "/var/mms/logs"
 set_unless[:mms][:contentpath] = "/var/mms/content"
 set_unless[:mms][:content_in] = "/var/mms/content-in"
+set_unless[:mms][:ws_archive] = "/mnt/ws-archive"
 set_unless[:mms][:deployment_name] = "unset" # Should be either "Client MMS" or "Map of Medicine Root MMS"
 set_unless[:mms][:deployment][:id] = "0" # Should be set appropriately in JSON properties
 set_unless[:mms][:deployment][:external_start] = "0" # Should be set appropriately in JSON properties
