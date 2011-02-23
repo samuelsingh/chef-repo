@@ -57,7 +57,8 @@ directory "/gfs" do
   not_if "test -d /gfs"
 end
 
-node.set[:glusterfs][:volumes] = Dir.entries(vol_base).map{|e| e unless (e == '.' || e == '..' || File.file?(e))}.compact
+gluster_vols = Dir.entries(vol_base).map{|e| e unless (e == '.' || e == '..' || File.file?(e))}.compact
+node.set[:glusterfs][:volumes] = gluster_vols unless gluster_vols.nil?
 
 # Configure up node peering
 if node[:glusterfs][:bootstrap] == "true"
