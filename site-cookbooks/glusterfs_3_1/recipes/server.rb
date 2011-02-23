@@ -17,6 +17,13 @@
 # limitations under the License.
 #
 
+# Installs package dependencies
+["libibverbs1","nfs-common"].each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
 if node[:kernel][:machine] == "x86_64"
   deb_pkg = "glusterfs_3.1.2-1_amd64.deb"
 else
