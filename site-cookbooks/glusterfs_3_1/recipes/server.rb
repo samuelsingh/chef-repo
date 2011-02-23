@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+vol_base = node[:glusterfs][:vol_base]
+
 # Installs package dependencies
 ["libibverbs1","nfs-common"].each do |pkg|
   package pkg do
@@ -47,22 +49,6 @@ service "glusterd" do
   action [ :enable, :start ]
 end
 
-# Configure up node peering
-if node[:glusterfs][:primary] == "true"
-  
-  nodes = search(:node, "glusterfs_node:true").map { |n| n["ipaddress"] }.sort
-  
-  nodes.each do |node|
-    
-    execute "add_peer_if_missing" do
-      command "gluster peer status | grep #{node} > /dev/null || gluster peer probe #{node} > /dev/null"
-      action :run
-    end
-    
-  end
-  
-end
-
 directory "/gfs" do
   owner "root"
   group "root"
@@ -70,3 +56,43 @@ directory "/gfs" do
   action :create
   not_if "test -d /gfs"
 end
+
+node.set[:glusterfs][:volumes] = Dir.entries(vol_base).map{|e| e unless (e == '.' || e == '..' || File.file?(e))}.compact
+
+# Configure up node peering
+if node[:glusterfs][:bootstrap] == "true"
+  
+  stores = search(:node, "glusterfs_node:true").map { |n| n["ipaddress"] }.sort
+  
+  stores.each do |store|
+    
+    execute "add_peer_if_missing" do
+      command "gluster peer status | grep #{store} > /dev/null || gluster peer probe #{store} > /dev/null"
+      action :run
+    end
+    
+  end
+
+  node[:glusterfs][:volumes].each do |v|
+  
+    # Find all nodes that advertise the mountpoint
+    brickmaps = search(:node, "glusterfs_volumes:#{v}").map { |n| "#{n[:ipaddress]}:#{volbase}/#{v}" }.sort
+    replicas = brickmaps.length
+    
+    execute "add_volume" do
+      command "gluster volume create gluster-volume replica #{replicas} transport tcp #{brickmaps.join(' ')}"
+      action :run
+      only_if "gluster volume info gluster-volume | grep \"not present\" > /dev/null"
+    end
+    
+    execute "online_volume"
+      command "gluster volume start #{v}"
+      action :run
+      only_if "gluster volume info #{v} | grep Created > /dev/null"
+    end
+
+  end
+
+end
+  
+

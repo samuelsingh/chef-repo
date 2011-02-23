@@ -27,10 +27,11 @@
 #}
 
 volumes = node[:glusterfs][:server_eph_volumes]
+vol_base = node[:glusterfs][:vol_base]
 
 volumes.each do |name, conf|
   
-  directory "/gfs/#{name}" do
+  directory "#{vol_base}/#{name}" do
     owner "root"
     group "root"
     mode "0755"
@@ -38,9 +39,9 @@ volumes.each do |name, conf|
     action :create
   end
   
-  mount "/gfs/#{name}" do
-    device "#{conf.fetch("device")}"
-    fstype "#{conf.fetch("fstype")}"
+  mount "#{vol_base}/#{name}" do
+    device "#{conf["device"]}"
+    fstype "#{conf["fstype"]}"
     options "noatime"
   end
   

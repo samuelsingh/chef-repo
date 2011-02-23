@@ -32,7 +32,7 @@ volumes = node[:glusterfs][:server_ebs_volumes]
 
 volumes.each do |name, conf|
   
-  if node[:fqdn] == conf.fetch("host")
+  if node[:fqdn] == conf["host"]
   
     aws_ebs_volume "#{name}" do
       provider "aws_ebs_volume"
@@ -42,19 +42,19 @@ volumes.each do |name, conf|
       availability_zone node[:ec2][:placement_availability_zone]
       device conf.fetch("device")
       action :attach
-      not_if "test -b #{conf.fetch("device")}"
+      not_if "test -b #{conf["device"]}"
     end
     
-    directory "#{conf.fetch("mount")}" do
+    directory "#{conf["mount"]}" do
       owner "root"
       group "root"
       mode "0755"
       action :create
     end
   
-    mount "#{conf.fetch("mount")}" do
-      device "#{conf.fetch("device")}1"
-      fstype "#{conf.fetch("fstype")}"
+    mount "#{conf["mount"]}" do
+      device "#{conf["device"]}1"
+      fstype "#{conf["fstype"]}"
     end
   
   end
