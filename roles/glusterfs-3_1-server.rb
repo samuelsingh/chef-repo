@@ -10,6 +10,7 @@ override_attributes(
     "aws_secret_access_key" => "bRym4lrXR0Qy67wvS6IAWDvUrZdxXIdFzMYzL28B"
   },
   "glusterfs" => {
+    "primary" => "true",
     "server_eph_volumes" => {
       "eph_share" => {
         "device" => "/dev/sdc",
