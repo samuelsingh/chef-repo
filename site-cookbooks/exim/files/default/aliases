@@ -354,7 +354,8 @@ l.wardle:						lauren.wardle
 laurenwardle:						lauren.wardle
 lorna.archer:                           lorna.archer@natbill.hostpilot.com
 l.archer:                                       lorna.archer
-lornaa:                                         lorna.archer 
+lornaa:                                         lorna.archer
+legal:                                  Legal@natbill.hostpilot.com   
 lucy.cowcill:				Lucy.Cowcill@natbill.hostpilot.com
 l.cowcill:					lucy.cowcill
 lucyc:						lucy.cowcill
@@ -670,7 +671,7 @@ ProductMgtDist:						ProductMgtDist@natbill.hostpilot.com
 ios:								ios@natbill.hostpilot.com
 mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
-
+LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
 # Mailing list for receving svn commit emails
 map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
 map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie
