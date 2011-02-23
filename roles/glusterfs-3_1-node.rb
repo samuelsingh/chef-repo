@@ -11,6 +11,7 @@ override_attributes(
   },
   "glusterfs" => {
     "node" => "true",
+    "vol_base" => "/gfs",
     "server_eph_volumes" => {
       "eph_share" => {
         "device" => "/dev/sdc",
