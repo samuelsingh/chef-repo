@@ -85,7 +85,7 @@ if node[:glusterfs][:bootstrap] == "true"
       only_if "gluster volume info gluster-volume | grep \"not present\" > /dev/null"
     end
     
-    execute "online_volume"
+    execute "online_volume" do
       command "gluster volume start #{v}"
       action :run
       only_if "gluster volume info #{v} | grep Created > /dev/null"
