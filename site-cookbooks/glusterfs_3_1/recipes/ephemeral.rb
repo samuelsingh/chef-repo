@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: glusterfs
-# Recipe:: client
+# Cookbook Name:: glusterfs_3_1
+# Recipe:: ephemeral
 #
 # Copyright 2010, Map of Medicine
 #
@@ -34,6 +34,7 @@ volumes.each do |name, conf|
     owner "root"
     group "root"
     mode "0755"
+    recursive true
     action :create
   end
   
