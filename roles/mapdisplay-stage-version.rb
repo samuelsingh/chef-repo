@@ -1,4 +1,4 @@
-name "md-stage-version"
+name "mapdisplay-stage-version"
 description "MD staging version snippet"
 
 # This role calls the recipe[stage-server] to build
