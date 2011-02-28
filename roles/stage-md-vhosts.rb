@@ -61,7 +61,7 @@ override_attributes(
       "lb_alive_port" => 0
     }
   },
-    "stage-md-app-01.map-cloud-01.eu" => {
+    "stage-md.map-cloud-01.eu" => {
       "srv_aliases" => ["euromd.stage.mapofmedicine.com"],
       "deploy_dir" => "/var/shared/deployment/stage/stage-md",
       "holding_page" => "false",
