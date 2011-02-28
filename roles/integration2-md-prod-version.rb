@@ -1,9 +1,9 @@
 name "integration2-md-prod-version"
-description "MD integration prod version snippet"
+description "MD stage version snippet"
 
 # This should change to recipe[prod-server] when Euro MD
 # goes live. Changed to prod.
-run_list "recipe[prod-server]"
+run_list "recipe[stage-server]"
 
 override_attributes(
   "map_display" => {
