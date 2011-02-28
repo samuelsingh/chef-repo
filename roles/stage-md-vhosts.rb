@@ -49,7 +49,15 @@ override_attributes(
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "appserver" => "qa-md02-app-01.map-cloud-01.eu",
       "lb_alive_port" => 0
-    }
+    },
+"stage-md.map-cloud-01.eu" => {
+       "srv_aliases" => ["euromd.stage.mapofmedicine.com"],
+       "deploy_dir" => "/var/shared/deployment/stage/stage-md",
+       "holding_page" => "false",
+       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance. We apologise for any inconvenience this may cause.",
+        "appserver" => "stage-md-app-01.map-cloud-01.eu",
+        "lb_alive_port" => 0
+      }
   },
   "lpa_vhost" => {
     "localcare.regression.mapofmedicine.com" => {
@@ -61,12 +69,4 @@ override_attributes(
       "lb_alive_port" => 0
     }
   },
-    "stage-md.map-cloud-01.eu" => {
-      "srv_aliases" => ["euromd.stage.mapofmedicine.com"],
-      "deploy_dir" => "/var/shared/deployment/stage/stage-md",
-      "holding_page" => "false",
-      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-      "appserver" => "stage-md-app-01.map-cloud-01.eu",
-      "lb_alive_port" => 0
-    }
 )
