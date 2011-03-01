@@ -97,10 +97,10 @@
         
         <% if @holding_page == 'true' -%>
         # The holding page is ENABLED
-        RewriteRule ^/mom /holding.html [R]
+        RewriteRule .* /holding/maintenance.html [R]
         <% else -%>
         # The holding page is DISABLED
-        RewriteRule ^/holding.html / [R]
+        RewriteRule ^/holding/maintenance.html / [R]
         <% end -%>
         
         # Redirects access from the base url, plus other fixes
