@@ -97,7 +97,7 @@
         
         <% if @holding_page == 'true' -%>
         # The holding page is ENABLED
-        RewriteRule .* /holding/maintenance.html [R]
+        RewriteRule /mom.* /holding/maintenance.html [R]
         <% else -%>
         # The holding page is DISABLED
         RewriteRule ^/holding/maintenance.html / [R]
