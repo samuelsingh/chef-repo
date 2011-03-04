@@ -107,7 +107,13 @@ killtomcat()
 
 start()
 {
-	echo "Starting tomcat"
+        if [ $1 == "debug" ] ; then
+            echo "Starting tomcat in debugger mode"
+            JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
+            export JAVA_OPTS
+        else
+            echo "Starting tomcat"
+        fi
 	status
 	RET="$?"
 	if [ "$RET" = "0" ] ; then
@@ -180,11 +186,14 @@ fi
 while [ -n "$1" ] ; do
 	case "$1" in
 		start)
-			start
+			start "normal"
+			;;
+		start-debug)
+			start "debug"
 			;;
 		restart)
 			stop
-			start
+			start "normal"
 			;;
 		stop)
 			stop
