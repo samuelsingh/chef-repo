@@ -5,6 +5,7 @@ run_list "role[tomcat]", "recipe[tomcat::rotate_logs]", "recipe[map-display]", "
 
 override_attributes(
   "map_display" => {
+    "md_fqdn" =>  "euromd.regression.mapofmedicine.com",
     "deploy_dir" =>  "/var/shared/deployment/stage/euro-md",
     "dbhost" => "stage-db-02.map-cloud-01.eu",
     "dbname" => "prov_mtmdb",
