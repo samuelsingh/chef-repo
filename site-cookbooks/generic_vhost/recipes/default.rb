@@ -4,18 +4,6 @@
 #
 # Copyright 2010, Map of Medicine
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-# 
-#     http://www.apache.org/licenses/LICENSE-2.0
-# 
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 
 node[:generic_vhost].each do |hostname,params|
 
@@ -24,15 +12,16 @@ node[:generic_vhost].each do |hostname,params|
     template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
       source "#{hostname}.conf.erb"
       mode 0644
-      owner "sysadmin"
-      group "sysadmin"
+      owner node[:apache][:user]
+      group node[:apache][:group]
       variables(
         :hostname => hostname,
-        :srv_aliases => params.fetch("srv_aliases"),
-        :webapps => params.fetch("webapps"),
-        :primary_webapp => params.fetch("primary_webapp"),
+        :srv_aliases => params[:srv_aliases],
+        :webapps => params[:webapps],
+        :primary_webapp => params[:primary_webapp],
         :restricted_ips => node[:apache][:restricted_ips],
-        :holding_page => params.fetch("holding_page")
+        :holding_page => params[:holding_page],
+        :docroot => params[:docroot]
       )
       only_if "test -d #{node[:apache][:dir]}/sites-available"
     end
@@ -43,25 +32,29 @@ node[:generic_vhost].each do |hostname,params|
     
   end
   
-  remote_directory "/var/www/vhosts/#{hostname}" do
-    source "docroot"
-    files_owner "sysadmin"
-    files_group "sysadmin"
-    files_mode "0644"
-    owner "sysadmin"
-    group "sysadmin"
-    mode "0755"
-    recursive true
-  end
+  if params[:docroot].nil?
   
-  template "/var/www/vhosts/#{hostname}/holding.html" do
-    source "holding.html.erb"
-    mode 0644
-    owner "sysadmin"
-    group "sysadmin"
-    variables(
-        :holding_page_msg => params.fetch("holding_page_msg")
-    )
+    remote_directory "/var/www/vhosts/#{hostname}" do
+      source "docroot"
+      owner node[:apache][:user]
+      group node[:apache][:group]
+      files_mode "0644"
+      owner node[:apache][:user]
+      group node[:apache][:group]
+      mode "0755"
+      recursive true
+    end
+    
+    template "/var/www/vhosts/#{hostname}/holding.html" do
+      source "holding.html.erb"
+      mode 0644
+      owner node[:apache][:user]
+      group node[:apache][:group]
+      variables(
+          :holding_page_msg => params[:holding_page_msg]
+      )
+    end
+  
   end
 
 end
