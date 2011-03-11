@@ -7,6 +7,6 @@ run_list "recipe[prod-server]"
 
 override_attributes(
   "map_display" => {
-    "version" => "2.7.0.ALL.21.37297"
+    "version" => "2.7.0.ALL.25.37384"
   }
 )                     
