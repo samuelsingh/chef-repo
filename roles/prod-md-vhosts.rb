@@ -13,11 +13,11 @@ override_attributes(
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 8050
     },
-    "integration-app-02.map-cloud-01.eu" => {
+    "integration-app-01.map-cloud-01.eu" => {
       "srv_aliases" => ["integration.mapofmedicine.com"],
       "deploy_dir" => "/var/shared/deployment/prod/integration-md",
       "holding_page" => "false",
-      "appserver" => "integration-app-02.map-cloud-01.eu",
+      "appserver" => "integration-app-01.map-cloud-01.eu",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
       "lb_alive_port" => 0
     }
