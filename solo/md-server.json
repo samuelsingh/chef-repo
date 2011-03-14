@@ -12,5 +12,5 @@
   "dbpass": "MtMUs3r"
 },
 "tomcat": { "ajp_ports": [ 9001, 9002 ] },
-"run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[map-display-2]", "recipe[smoke-test]" ]
+"run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[map-display-2]", "recipe[smoke_test]" ]
 }
