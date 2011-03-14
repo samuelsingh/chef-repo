@@ -26,7 +26,7 @@ gem_package 'hoe' do
   version "2.6.2"
 end
 
-['cucumber','commonwatir'].each do |pkg|
+['cucumber','commonwatir','firewatir'].each do |pkg|
   gem_package pkg do
     action :install
   end
