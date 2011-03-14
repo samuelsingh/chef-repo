@@ -20,7 +20,13 @@
 agent_user = 'ubuntu'
 agent_group = 'ubuntu'
 
-['cucumber','firewatir'].each do |pkg|
+# Rubygems 1.3.6 needs an earlier version of hoe
+gem_package 'hoe' do
+  action :install
+  version "2.6.2"
+end
+
+['cucumber','commonwatir'].each do |pkg|
   gem_package pkg do
     action :install
   end
