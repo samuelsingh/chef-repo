@@ -20,41 +20,33 @@
 agent_user = 'ubuntu'
 agent_group = 'ubuntu'
 
-['cucumber','firewatir','headless'].each do |pkg|
+['cucumber','firewatir'].each do |pkg|
   gem_package pkg do
     action :install
   end
 end
 
-package "xvfb" do
+package "tightvncserver" do
   action :install
 end
 
+if node[:kernel][:machine] == "x86_64"
+  profile_pkg = "mozilla-jssh-lucid-64.tar.gz"
+else
+  profile_pkg = "mozilla-jssh-lucid-32.tar.gz"
+end
+
 # Deploy firefox application
-execute "deploy_firefox" do
-  command "cd /usr/local && tar xjf /var/tmp/firefox-3.6.13.tar.bz2"
+execute "deploy_firefox_profile" do
+  command "cd /home/#{agent_user} && tar xzf /var/tmp/#{profile_pkg} && chown -R #{agent_user}:#{agent_group} .mozilla"
   action :nothing
 end
 
 # Grab firefox data files, if they're not already in place
-remote_file "/var/tmp/firefox-3.6.13.tar.bz2" do
-  source "firefox-3.6.13.tar.bz2"
+remote_file "/var/tmp/#{profile_pkg}" do
+  source profile_pkg
   backup false
   mode "0644"
-  notifies :run, resources(:execute => "deploy_firefox")
-  not_if "test -f /usr/local/firefox/run-mozilla.sh"
-end
-
-directory "/home/#{agent_user}/.mozilla" do
-  owner agent_user
-  group agent_group
-  mode "0755"
-  recursive true
-  action :create
-end
-
-remote_directory "/home/#{agent_user}/.mozilla/firefox" do
-  source 'firefox-profile'
-  owner agent_user
-  group agent_group
+  notifies :run, resources(:execute => "deploy_firefox_profile")
+  not_if "test -d /home/#{agent_user}/.mozilla"
 end
