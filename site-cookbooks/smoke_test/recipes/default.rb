@@ -36,6 +36,10 @@ package "tightvncserver" do
   action :install
 end
 
+package "firefox" do
+  action :install
+end
+
 if node[:kernel][:machine] == "x86_64"
   profile_pkg = "mozilla-jssh-lucid-64.tar.gz"
 else
