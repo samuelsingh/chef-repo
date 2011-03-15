@@ -35,7 +35,7 @@ override_attributes(
       "deploy_dir" => "/var/tmp",
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-      "appserver" => "builder-04.map-cloud-01.eu",
+      "appserver" => "test-md-appserver-01.map-cloud-01.eu",
       "lb_alive_port" => 0,
       "static_offload" => false,
       "lpa_hostname" => "localcare.test.mapofmedicine.com",
