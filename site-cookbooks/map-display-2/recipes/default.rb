@@ -26,6 +26,7 @@ mtmpath = node[:map_display][:mtmpath]
 md_fqdn = node[:map_display][:md_fqdn]
 webapp_dir = node[:map_display][:webapp_dir]
 md_version = node[:map_display][:version]
+quova_svr = 'geoip.map-cloud-01.eu' # Bad, set this right!
 
 dbuser = node[:map_display][:dbuser]
 dbpass = node[:map_display][:dbpass]
@@ -186,7 +187,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         group t_group
         variables(
           :mtmpath => mtmpath,
-          :md_fqdn => md_fqdn
+          :md_fqdn => md_fqdn,
+          :quova_svr => quova_svr
         )
       end
       
