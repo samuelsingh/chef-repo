@@ -19,6 +19,7 @@
 
 t_user = node[:tomcat][:user]
 t_group = node[:tomcat][:group]
+t_home = node[:tomcat][:user_home]
 
 group "#{t_group}"  do
   gid 10008
@@ -28,7 +29,7 @@ user "#{t_user}"  do
   comment "Tomcat"
   uid "10008"
   gid t_group
-  home "/home/#{t_user}"
+  home t_home
   shell "/bin/bash"
   not_if "[ ! -z \"`who | grep #{t_user}`\" ]"
 end
