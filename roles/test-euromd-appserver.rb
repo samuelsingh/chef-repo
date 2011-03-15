@@ -1,7 +1,7 @@
 name "test-euromd-appserver"
 description "Configures test MD application server"
 
-run_list "role[tomcat]", "recipe[map-display-2]", "recipe[smoke_test]"
+run_list "role[java_builder]", "role[tomcat]", "recipe[map-display-2]", "recipe[smoke_test]"
 
 override_attributes(
   "map_display" => {
@@ -20,5 +20,9 @@ override_attributes(
   "tomcat" => {
     "srv_dir" => "/var/tomcat",
     "log_rotate_dir" => "/var/shared/rotated-logs"
+  },
+  "hudson_agent" => {
+    "user" => "tomcat",
+    "group" => "tomcat"
   }
 )
