@@ -20,7 +20,8 @@ override_attributes(
   "tomcat" => {
     "srv_dir" => "/var/tomcat",
     "log_rotate_dir" => "/var/shared/rotated-logs",
-    "user_home" => "/var/hudson-agent"
+    "user_home" => "/var/hudson-agent",
+    "unpackwars" => "true"
   },
   "hudson_agent" => {
     "user" => "tomcat",
