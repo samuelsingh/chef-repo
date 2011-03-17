@@ -180,18 +180,6 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
       end
       
-      template "#{shared_loader}/mom.properties" do
-        source "mom.properties.erb"
-        mode 0644
-        group t_user
-        group t_group
-        variables(
-          :mtmpath => mtmpath,
-          :md_fqdn => md_fqdn,
-          :quova_svr => quova_svr
-        )
-      end
-      
     end
     
     if ajp_port == 9002
@@ -249,17 +237,29 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
       end
       
-      template "#{shared_loader}/adminapp.properties" do
-        source "adminapp.properties.erb"
-        mode 0644
-        group t_user
-        group t_group
-        variables(
-          :mtmpath => mtmpath,
-          :md_fqdn => md_fqdn
-        )
-      end
+      # template "#{shared_loader}/adminapp.properties" do
+      #   source "adminapp.properties.erb"
+      #   mode 0644
+      #   group t_user
+      #   group t_group
+      #   variables(
+      #     :mtmpath => mtmpath,
+      #     :md_fqdn => md_fqdn
+      #   )
+      # end
       
+    end
+    
+    template "#{shared_loader}/mom.properties" do
+      source "mom.properties.erb"
+      mode 0644
+      group t_user
+      group t_group
+      variables(
+        :mtmpath => mtmpath,
+        :md_fqdn => md_fqdn,
+        :quova_svr => quova_svr
+      )
     end
     
   end
