@@ -19,34 +19,35 @@
 
 include_recipe "apache2"
 
-if defined?(node[:apache][:dir])
-  
-  hostname = node[:rails][:vhost][:hostname]
-  
-  template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-    source "rails-vhost.conf.erb"
-    mode 0644
-    owner "sysadmin"
-    group "sysadmin"
-    variables(
-      :hostname => hostname,
-      :appserver => node[:rails][:vhost][:appserver],
-      :srv_aliases => node[:rails][:vhost][:srv_aliases],
-      :restricted_ips => node[:apache][:restricted_ips]
-    )
-    notifies :reload, resources(:service => "apache2"), :delayed
-    only_if "test -d #{node[:apache][:dir]}/sites-available"
-  end
-  
-  link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
-    to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
-  end
-  
-end
+node[:rails][:vhost].each do |hostname,attr|
 
-directory "/var/www/vhosts/#{hostname}" do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  recursive true
+  if defined?(node[:apache][:dir])
+    
+    template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
+      source "rails-vhost.conf.erb"
+      mode 0644
+      variables(
+        :hostname => hostname,
+        :appserver => attr[:appserver],
+        :srv_aliases => attr[:srv_aliases],
+        :port => attr[:port],
+        :restricted_ips => node[:apache][:restricted_ips]
+      )
+      notifies :reload, resources(:service => "apache2"), :delayed
+      only_if "test -d #{node[:apache][:dir]}/sites-available"
+    end
+    
+    link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
+      to "#{node[:apache][:dir]}/sites-available/#{hostname}.conf"
+    end
+    
+  end
+  
+  directory "/var/www/vhosts/#{hostname}" do
+    owner node[:apache][:user]
+    group node[:apache][:group]
+    mode "0755"
+    recursive true
+  end
+
 end
