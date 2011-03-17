@@ -41,9 +41,16 @@ override_attributes(
   },
   "rails" => {
     "vhost" => {
-      "hostname" => "support-reporting.mapofmedicine.com",
-      "appserver" => "wikijira-app-01",
-      "srv_aliases" => []
+      "support-reporting.mapofmedicine.com" => {
+        "appserver" => "wikijira-app-01",
+        "port" => "3000",
+        "srv_aliases" => []
+      },
+      "wallboard.mapofmedicine.com" => {
+        "appserver" => "wikijira-app-01",
+        "port" => "3001",
+        "srv_aliases" => []
+      }
     }
   },
   "chef_proxy" => {
