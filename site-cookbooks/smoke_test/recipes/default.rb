@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-agent_user = 'ubuntu'
-agent_group = 'ubuntu'
+agent_user = 'root'
+agent_group = 'root'
 
 # Rubygems 1.3.6 needs an earlier version of hoe
 gem_package 'hoe' do
@@ -46,9 +46,15 @@ else
   profile_pkg = "mozilla-jssh-lucid-32.tar.gz"
 end
 
+if agent_user == 'root'
+  home_dir = '/root'
+else
+  home_dir = "/home/#{agent_user}"
+end
+
 # Deploy firefox application
 execute "deploy_firefox_profile" do
-  command "cd /home/#{agent_user} && tar xzf /var/tmp/#{profile_pkg} && chown -R #{agent_user}:#{agent_group} .mozilla"
+  command "cd #{home_dir} && tar xzf /var/tmp/#{profile_pkg} && chown -R #{agent_user}:#{agent_group} .mozilla"
   action :nothing
 end
 
@@ -58,5 +64,5 @@ remote_file "/var/tmp/#{profile_pkg}" do
   backup false
   mode "0644"
   notifies :run, resources(:execute => "deploy_firefox_profile")
-  not_if "test -d /home/#{agent_user}/.mozilla"
+  not_if "test -d #{home_dir}/.mozilla"
 end
