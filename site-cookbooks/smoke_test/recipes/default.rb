@@ -31,12 +31,12 @@ gem_package 'json' do
   version "1.4.6"
 end
 
-gem_package 'cucumber' do
-  action :install
-  version "1.8.5"
-end
+# gem_package 'cucumber' do
+#   action :install
+#   version "1.8.5"
+# end
 
-['commonwatir','firewatir'].each do |pkg|
+['cucumber','commonwatir','firewatir'].each do |pkg|
   gem_package pkg do
     action :install
   end
