@@ -26,6 +26,11 @@ gem_package 'hoe' do
   version "2.6.2"
 end
 
+gem_package 'json' do
+  action :install
+  version "1.4.6"
+end
+
 gem_package 'cucumber' do
   action :install
   version "1.8.5"
