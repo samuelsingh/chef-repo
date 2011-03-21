@@ -11,6 +11,9 @@
   "dbuser": "mtmuser",
   "dbpass": "MtMUs3r"
 },
-"tomcat": { "ajp_ports": [ 9001, 9002 ] },
+"tomcat": { 
+  "ajp_ports": [ 9001, 9002 ],
+  "unpackwars": "true" 
+},
 "run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[map-display-2]", "recipe[smoke_test]" ]
 }
