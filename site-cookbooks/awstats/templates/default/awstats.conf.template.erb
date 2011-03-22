@@ -13,7 +13,7 @@
 # If there are several log files from load balancing servers :
 # Example: "/pathtotools/logresolvemerge.pl *.log |"
 #
-LogFile="/usr/share/doc/awstats/examples/logresolvemerge.pl <%= @log_base %>/<%= @host_regex %>/*/*/*/apache2/access\:<%= @vhost %>* |"
+LogFile="/usr/share/doc/awstats/examples/logresolvemerge.pl <%= @log_base %>/<%= @host_regex %>/httpd/*.access-<%= @vhost %>* |"
 
 
 # Enter the log file type you want to analyze.
