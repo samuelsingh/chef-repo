@@ -60,4 +60,6 @@ cron "rotate-httpd-logs" do
   hour node[:apache][:rotate_hour]
   minute node[:apache][:rotate_min]
   command "#{sbin}/gather-httpd-logs"
+  # Can't use the default Chef cron resource with bcron
+  not_if "dpkg -l | grep bcron > /dev/null"
 end
