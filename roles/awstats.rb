@@ -14,6 +14,15 @@ override_attributes(
     },
     "training-mms.mapofmedicine.com" => {
       "host_regex" => "prod-web-0[1-9]"
+    },
+    "mms.mapofmedicine.com" => {
+      "host_regex" => "prod-web-0[1-9]"
+    },
+    "mapofmedicine.com" => {
+      "host_regex" => "prod-web-0[1-9]"
+    },
+    "localise.mapofmedicine.com" => {
+      "host_regex" => "prod-web-0[1-9]"
     }
   }
 )
