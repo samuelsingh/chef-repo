@@ -36,8 +36,6 @@ node[:awstats].each do |vhost,params|
   template "/etc/awstats/awstats.#{vhost}.conf" do
     source "awstats.conf.template.erb"
     mode 0644
-    owner "sysadmin"
-    group "sysadmin"
     variables(
       :vhost => vhost,
       :host_regex => params.fetch("host_regex"),
@@ -64,8 +62,6 @@ end
 template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
   source "awstats-server-vhost.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
     :hostname => hostname
   )
@@ -93,8 +89,6 @@ end
 template "/var/www/awstats/top.html" do
   source "top.html.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
     :vhosts => vhosts
   )
