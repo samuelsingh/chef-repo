@@ -26,20 +26,28 @@ gem_package 'hoe' do
   version "2.6.2"
 end
 
+# Pinning cucumber to specific versions, as it was enough
+# of a nightmare getting it to work in the first place...
+#
+
 gem_package 'json' do
   action :install
   version "1.4.6"
 end
 
-# gem_package 'cucumber' do
-#   action :install
-#   version "1.8.5"
-# end
+gem_package 'cucumber' do
+  action :install
+  version "0.10.2"
+end
 
-['cucumber','commonwatir','firewatir'].each do |pkg|
-  gem_package pkg do
-    action :install
-  end
+gem_package 'commonwatir' do
+  action :install
+  version "1.8.0"
+end
+
+gem_package 'firewatir' do
+  action :install
+  version "1.8.0"
 end
 
 package "tightvncserver" do
