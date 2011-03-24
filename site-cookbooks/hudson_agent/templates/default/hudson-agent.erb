@@ -10,6 +10,7 @@
 USER=<%= @user %>
 GROUP=<%= @group %>
 
+DISPLAY=
 JAVA_HOME=/usr/local/java
 JAVA_BIN="$JAVA_HOME/bin/java"
 JAVA_OPTS="-Xmx<%= @max_heap %> -Xms<%= @start_heap %> -Djava.awt.headless=true"
@@ -17,7 +18,7 @@ JAVA_OPTS="-Xmx<%= @max_heap %> -Xms<%= @start_heap %> -Djava.awt.headless=true"
 HUDSON_SERVER_URL="<%= @server_url %>"
 HUDSON_HOME=<%= @hudson_home %>
 
-export JAVA_HOME JAVA_OPTS HUDSON_HOME
+export JAVA_HOME JAVA_OPTS HUDSON_HOME DISPLAY
 
 LSOF=/usr/bin/lsof
 HUDSON_LOG=$HUDSON_HOME/logs/hudson-agent.log
