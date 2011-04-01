@@ -1,0 +1,7 @@
+{
+"domain": "mapofmedicine.com",
+"hostname": "md-server",
+"fqdn": "md-server.mapofmedicine.com",
+"chef_packages": "",
+"run_list": [ "recipe[extra-repos]", "recipe[smoke_test]" ]
+}
