@@ -5,12 +5,14 @@ run_list "recipe[java]", "recipe[tomcat]", "recipe[map-display-3::application]",
 
 override_attributes(
   "map_display" => {
-    "application" => {
-      "md_fqdn" =>  "app.mapofmedicine.com",
+    "common" => {
       "dbhost" => "raspberry.mapofmedicine.com",
       "dbname" => "live_mtmdb",
       "dbuser" => "mtmuser",
       "dbpass" => "medic1"
+    },
+    "application" => {
+      "md_fqdn" =>  "app.mapofmedicine.com"
     },
     "vhost" => {
       "app.mapofmedicine.com" => {
