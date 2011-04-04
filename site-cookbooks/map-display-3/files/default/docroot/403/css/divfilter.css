@@ -1,0 +1,17 @@
+			#divFilter {position:absolute;top:126px;left:10%;width:75%;overflow:auto;opacity:0.8;font-size:200%;border:1px solid #888;z-index:1;}
+				#divFilter,
+				#divFilter #formFilterSearch {display:none;}
+				#divFilter H2 {font-weight:normal;font-size:1.1em;background-color:#0D6DCC;padding:4px 10px 10px 20px;margin:0;}
+				#divFilter H2 A {color:#fff;}
+				#divFilter H2 SPAN {font-size:0.7em}
+				#divFilter #inputFilterSearch {font-size:100% !important;height:1.1em;}
+				#divFilter #inputButtonFilterSearch {font-size:100% !important;height:1.4em;margin-left:1em;}
+				#divFilter #pDisplay,
+				#divFilter #formFilterSearch {margin:0;height:260px;overflow:auto;}
+				#divFilter #formFilterSearch {padding:20px;}
+				#divFilter #pDisplay {padding:10px 20px 0 10px;}
+				#pDisplay A {display:block;padding:3px 8px 3px 8px;}
+				#pDisplay A.on {border:3px solid #fff;padding:0px 5px 0px 5px;}
+				#spanInfo {visibility:hidden;}
+				#anchorFilterTop SPAN {font-size:80%;}
+				#divFilter {filter:progid:DXImageTransform.Microsoft.Shadow(color='#808080', Direction=135, Strength=10) alpha(opacity=80);}

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Globals
+ME=`basename $0`
+HOSTNAME=`hostname -s`
+DATESTAMP=`date '+%Y%m%d_%H%M%S'`
+ARCHIVE_DIR=<%= @archive_dir %>
+WEBINJECT_DIR=<%= @tt_path %>/webinject
+PARSER_SCRIPT="$WEBINJECT_DIR/webinject-parser"
+
+fail()
+{
+        echo "[$ME] FAIL: $*"
+        exit 1
+}
+
+[ -x "$PARSER_SCRIPT" ] || fail "Can't find $PARSER_SCRIPT"
+[ -d "$WEBINJECT_DIR" ] || fail "Can't find $WEBINJECT_DIR"
+
+cd "$WEBINJECT_DIR" || fail "Can't change to $WEBINJECT_DIR"
+./webinject.pl > /dev/null || fail "Can't run webinject.pl"
+ARCHFILE="$ARCHIVE_DIR/transactions-$DATESTAMP.xml"
+SUMFILE="$ARCHIVE_DIR/transactions-$DATESTAMP-summary.txt"
+mv results.xml "$ARCHFILE"
+$PARSER_SCRIPT < $ARCHFILE > $SUMFILE

@@ -1,0 +1,36 @@
+#divBrowser 
+{position   :static;background-color:#fff;}	
+#divBrowser DIV.borderLeft 
+{background-image:url(../i/menu/nav_border_l.gif);background-repeat:repeat-y;background-position:left bottom ;}	
+#divBrowser DIV.borderBottom 
+{background-image:url(../i/menu/nav_border_bottom.gif);background-repeat:no-repeat;background-position:left bottom ;}
+#divBrowser DIV.borderRight 
+{background-image:url(../i/menu/nav_border_right.gif);background-repeat:no-repeat;background-position:right bottom ;padding:0 4px 2px 2px;}
+#divBrowser H2 
+{margin:0;padding:8px 0 8px 15px;border-bottom :1px dashed #ccc;}				
+#divBrowser UL {margin:0;padding:0;}			
+#divBrowser LI {display:inline;list-style-type:none;}			
+#historyDivNav_0,
+#bcDivNav_0, 
+#bcDivNav_1,
+#bcDivNav_2,
+#bcDivNav_3					
+{height:15.90em;overflow:scroll;overflow-x:hidden;}							
+#divBrowser TABLE 		
+{width:100%;border-collapse:collapse;}					
+#divBrowser TABLE TD 	{padding:0;margin:0;}					
+#divBrowser TABLE TD A 
+{display:block;border-top:1px solid #E7ECF1;padding:3px 23px 3px 14px;text-decoration:none;background-image:url(../i/menu/arrow_0.gif);background-repeat:no-repeat;background-position:98% 50% ;}				
+#divBrowser TABLE TD LI.top A
+{border-top:1px solid #fff;} 	
+#divBrowser TABLE TD A.true 
+{background-image:url(../i/menu/arrow_1.gif);background-color:#F4F2E4;color:#000;}					
+#divBrowser TABLE TD LI.link A 
+{background-image:none !important;}					
+#divBrowser TABLE TD A:hover
+{background-color:#F4F2E4;}
+#divBrowser TABLE TR TD A.disabled,
+#divBrowser TABLE TR TD A.disabled:hover
+{background-image:url(../i/menu/arrow_disabled.gif);background-color:#fbfbfb;color:#888;cursor:default;}
+* HTML #divBrowser TABLE {table-layout:fixed;}
+* HTML #divBrowser TABLE TD {word-wrap:break-word;}

@@ -1,0 +1,15 @@
+#tabs {float:left;* float:none;width:100%;background:#e7ecf4 url("../i/tabs/tab_bg.gif") repeat-x bottom;margin:0px;padding:0px;}
+div.white#tabs {background:#fff url("../i/tabs/tab_w_bg.gif") repeat-x bottom;}
+#tabs ul {margin:0 0 0 0;padding:0px 0px 0px 5px;list-style:none;}
+ #tabs li {float:left;margin:0 2px 0 2px;padding:0 0 1px 0;background:url("../i/tabs/tab_right.gif") no-repeat right top;}
+  #tabs li#selected {background-position:100% -27px;}
+ #tabs li.none {float:left;margin:0;padding:0 0 1px 0;background:none;}
+#tabs a {margin:0px;padding:5px 8px 5px 8px;display:block;text-decoration:none;background:url("../i/tabs/tab_left.gif") no-repeat left top;height:16px;* height:auto;line-height:16px;* line-height:16px;Fix line height so tab will remain ok if user font setting are extream */
+ }
+div.white#tabs a {background:url("../i/tabs/tab_w_left.gif") no-repeat left top;}
+ #tabs li#selected a {padding:5px 8px 5px 8px;background-position:0 -27px;}
+ #tabs li.none a {background:none;}
+#tabs li.p {padding:6px 0 0 6px} 
+#tabs li.p ,
+#tabs li.p a {display:inline;background:none;}
+ 

@@ -1,0 +1,97 @@
+#divBrandingBar 
+{text-align:right;height:60px;}
+#divBrandingBar A 				{float:left;}
+#divBrandingBar #imgMOM 		{margin:18px 0 0 15px;}
+#divBrandingBar #imgPartnership {margin:16px 14px 0 0;}
+#divTitleToolBar 
+{border-top:1px solid #C1D7DD;border-bottom:1px solid #cdcdcd;background-color:#3385D6;min-height:40px;height:42px;}
+HTML>BODY #divTitleToolBar {height:auto;}
+#divTitleToolBar H1 
+{margin:7px 300px 0px 15px;padding:0 0 6px 0;font-size:1.8em;color:#fff;}
+#divTitleToolBar #divTools {position:absolute;top:4px;right:13px;}
+#divTitleToolBar #divTools IMG,
+#divTitleToolBar #divTools INPUT {margin-left:4px;}
+#divTitleToolBar #divTools FORM {margin:0;padding:0;}
+#divTitleToolBar #divFeedbackCounter_true, 
+#divTitleToolBar #divFeedbackCounter_false	{width:26px;position:absolute;top:9px;font-size:11px;font-weight:bold;color:#06c;cursor:pointer;}
+#divTitleToolBar #divFeedbackCounter_true 	{right:130px;}
+#divTitleToolBar #divFeedbackCounter_false	{right:50px;}
+#divPersonalisationBar
+{border-top:1px solid #E3DEBF;border-bottom:1px solid #F5F2D8;background-color:#FEFEED;padding:3px 0 3px 0 ;min-height:1.1em;}
+#divPersonalisationBar P 
+{margin:0;padding:3px 0 0 0;}
+#divPersonalisationBar UL, 
+#divPersonalisationBar UL LI {float:left;padding:0;margin:0;list-style-type:none;}
+#divPersonalisationBar UL LI.first {padding:0;margin:0;}
+#divPersonalisationBar UL LI.last {float:right;}
+* HTML #divPersonalisationBar  {height:1.0em;}
+#divPersonalisationBar SPAN {color:#999;}
+#divPersonalisationBar FORM {display:block;margin:0;padding:0 0 0 0;}
+#divPersonalisationBar #pHomeVariantLink {margin-top:0;padding-top:0;}
+#divPersonalisationBar #pVariantSwitch	{margin-top:0;padding:0;}
+#divPersonalisationBar #pVariantSwitch form	{margin-top:0;padding:0 0 1px 0;}
+#divNavigationBar 				{min-height:30px;}
+#divNavigationBar #divOpenMenu 	
+{padding:4px 0 0 0 ;position:absolute;left:15px;}
+#divNavigationBar #divSearch 	
+{background-image :url(../i/header/bg_search_border.gif);background-repeat:no-repeat;padding:4px 12px 0 0;position:absolute;right:0;width:340px;text-align:right;}
+#divNavigationBar #divSearch #inputFreeText
+{width:200px;}
+#divNavigationBar P 			
+{padding:8px 352px 4px 68px;color:#06c;font-size:1.1em;margin:0;cursor:pointer;}
+#divNavigationBar P SPAN 		{color:#999;}
+#divNavigationBar P SPAN.stage 	{color:#666;}
+#divDemobar 
+{height:99px;background-color:#46BCBE;background-image:url(../i/header/m2m2_bg.gif);}
+#demoHeader {float:left;width:auto;padding-left:17px;}
+#demoHeader p, #demoHeader h2 {color:#fff;}
+#demoLogo {float:right;width:168px;}
+#divDemobar ul 
+{position:absolute;top:77px;left:20px;list-style-type:none;margin:0 0 0 0;padding:0 0 0 0;height:20px;}
+#divDemobar ul  li 
+{padding-top:0;margin-top:-3px;float:left;color:#fff;}
+#divDemobar ul  li.border
+{border-right:1px solid white;padding-right:10px;} 
+#divDemobar ul  li.leftpadding 
+{padding-left:10px;}
+#divDemobar #demoPhone SPAN,
+#divDemobar ul  li span 
+{color:#46bcbe;}
+#demoPhone {background-color:#008585;}
+#demoPhone a {color:#fff;}
+#divDemobar ul  li a 
+{padding:0;color:#fff;font-weight:bold;text-decoration:underline;}
+#divDemobar ul  li a:hover 
+{padding:0;color:#fff;font-weight:bold;text-decoration:underline;}
+#divDemobar H3 {position:absolute;z-index:2;left:20px;top:16px;padding:0;margin:0;color:white;font-size:16px;}
+#divDemobar P.intro {position:absolute;z-index:2;left:20px;top:38px;padding:0;margin:0;color:white;font-size:12px;}
+#divDemobar #imageDemoLogo {margin-left:580px;margin-top:12px;margin-right:4px;float:right;}
+#divDemobar #imageDemoButton {position:absolute;bottom:-22px;right:170px;}
+#divDemobar #demoPhone {position:absolute;top:75px;right:12px;color:#fff;}
+#divDemobar #demoPhone A {text-decoration:underline;}
+#divTooltip_top {position:absolute;top:69px;left:40%;width:196px;height:98px;background:transparent url("../i/header/tooltip_top.gif") no-repeat;}
+#divTooltip_side {position:absolute;top:259px;left:25%;width:198px;height:94px;background:transparent url("../i/header/tooltip_side.gif") no-repeat;}
+#divTooltip_top p {padding:7px 10px 10px 14px;margin:0;}
+#divTooltip_side p {padding:15px 10px 10px 23px;margin:0;}
+#dynContent #divHomelinkBar
+{position:relative;width:99%;}
+#dynContent #divHomelinkBar P 
+{position:absolute;right:0;padding:4px 0 0 0;margin:0;text-align:right;background-color:#E7ECF4;}
+#divHomelinkBar
+{position:static;width:auto;}
+#divHomelinkBar P 
+{position:static;padding:6px 15px 0 0;margin:0;text-align:right;background-color:#E7ECF4;}
+#divNavigationBar FORM LABEL,
+#divPersonalisationBar FORM LABEL
+{color:#666;font-weight:normal;position:relative;top:-2px;}
+#divNavigationBar FORM INPUT,
+#divPersonalisationBar FORM INPUT
+{}
+SELECT.mr,
+INPUT.mr
+{margin-right:8px;}
+SELECT,ml,
+INPUT.ml
+{margin-left:8px;}
+#feedbackPanel 
+{display:none;background-color:#E7ECF4;border-bottom:2px ridge #CDCDCD;width:100%;vertical-align:middle;}

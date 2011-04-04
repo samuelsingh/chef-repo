@@ -1,0 +1,15 @@
+#legalContent {position   :relative;padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:30px;border-left:1px solid #d5deeb;border-right:1px solid #d5deeb;color:#000000;}
+
+.instructions {width :500px;margin-bottom:10px;text-align:justify;}
+
+.termTitle {margin-left:35px;margin-bottom:5px;clear:both;}
+
+.termNumber {width:35px;float:left;}
+
+.termText {position:relative;width:465px;float:left;clear:right:text-align:justify;margin-bottom:10px;}
+
+.goBack {clear:both;}
+
+.privacyText {position:relative;width:465px;text-align:justify;margin-bottom:10px;}
+
+UL {}

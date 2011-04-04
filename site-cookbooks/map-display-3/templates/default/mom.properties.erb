@@ -1,0 +1,26 @@
+### Map Display configuration file ###
+######################################
+
+# authentication type choices are: basic, athens, nasp, wia and who
+auth.type=athens
+
+# Map Display home directory
+mom.home = <%= @mtmpath %>
+
+# Map Display FQDN
+mom.fqdn = <%= @md_fqdn %>
+
+# NLH Search Service
+nlh.mtmService.searchServiceProviderURL=http://services.library.nhs.uk/nlhinfoapi.asmx
+
+# local admin synchronisation can be turned off by this property
+local.admin.info.synchronise=false
+local.admin.info.web.service.url=https://admin.sync.host/synchronisation-ws/services/LocalAdminInfoWebService
+
+# Added by 2.7.1
+quova.primaryServerIp=<%= @quova_svr %>
+
+mail.designated_Email_For.PathwayContent=Andrew.Sowerby@mapofmedicine.com
+mail.designated_Email_For.GeneralPurpose=Shak.Adepoju@mapofmedicine.com
+mail.lpaFeedback.subject=LPA-Feedback
+mail.lpaFeedback.from=noreply@mapofmedicine.com

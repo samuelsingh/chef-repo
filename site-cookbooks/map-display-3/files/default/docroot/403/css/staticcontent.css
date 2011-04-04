@@ -1,0 +1,42 @@
+body {margin:0;}
+H2 {font-size:1.3em;font-weight:bold;}
+H3 {font-size:1.1em;font-weight:bold;}
+H4 {font-size:1.1em;font-weight:bold;}
+DIV.hr {margin-top:8px;border-top:1px solid #06c;height:8px;font-size:2px;}
+DIV.hr HR {display:none;}
+DIV.mainHelpMenu A,
+DIV.subMenu A {color:#06c;text-decoration:underline;}
+DIV.subMenu {padding-bottom:12px;margin-bottom:20px;border-bottom:1px solid #cecece;}
+DIV.subMenu H3,
+DIV.mainHelpMenu H3 {margin:0;padding:2px 2px 2px 0 ;font-size:1.1em;}
+DIV.subMenu P.subMenuIntro,
+DIV.mainHelpMenu P {margin:0;padding:0 0 4px 0;}
+P.mainIntro {margin-top:0;}
+P.base		{clear:both;border-top:1px solid #cecece;padding-top:8px;margin-top:40px;}
+P.topLink {margin:0;padding:0;height:0;} 
+TABLE.accesskey {border-collapse:collapse;width:100%}
+TABLE.accesskey TD,
+TABLE.accesskey TH 
+{padding:4px;text-align:left;}
+TABLE.accesskey TR.tint1 {background-color:#ecf0f7;}
+DIV.newAndUpdated p.anchorLinks {padding:0px 0px 2px 0px;}
+DIV.newAndUpdated p.anchorLinks span  {color:#999;}
+DIV.newAndUpdated .bottomDashedLine {border-top:dashed 1px #cccccc;margin-bottom:0px;margin-top:10px;* margin-top:15px;}
+DIV.newAndUpdated ul {list-style-type:none;}
+.rightPanel {float:right;width:30%;margin-top:24px;_margin-top:44px;margin-right:14px;}
+.leftPanel {float:left;width:65%;}
+#divBrowserBG {background-color:#e7ecf4;float:left;width:100%;overflow:hidden;margin-bottom:0;padding-bottom:0;}
+#divBrowserBG DIV.fieldset {background-color:#fff;margin:10px;}
+* HTML DIV.fieldset {height:0%;}
+#CPFilter {text-align:left;padding-bottom:10px;}
+#systemReq {text-align:left;padding-bottom:10px;}
+p.clearfix {height:2px;color:#fff;}
+.fieldset .CPTop {border-top:1px solid #bfbfbf;}
+.fieldset IMG.borderTL {float:left;clear:both;z-index:99;width:8px;height:8px;padding:0;border:0;margin-top:-2px;}
+.fieldset IMG.borderTR {float:right;clear:right;z-index:99;width:9px;height:8px;padding:0;border:0;margin-top:-2px;margin-right:-1px;}
+.fieldset .CPL {border-left:1px solid #bfbfbf;margin-bottom:-10px;margin-bottom:0px;padding-bottom:5px;* padding-bottom:0px;}
+.fieldset .CPR {background:url(../i/index/c_cpf_r.gif) repeat-y right;margin-bottom:-20px;padding-bottom:0px;margin-right:-2px;}
+.fieldset .CPBottom {background:url(../i/index/c_cpf_b.gif) repeat-x 0px 0px;height:13px;margin-top:0px;}
+.fieldset IMG.borderBL {float:left;clear:both;z-index:99;width:9px;height:13px;padding:0;margin-top:0px;margin-left:-1px;}
+.fieldset IMG.borderBR {float:right;clear:right;z-index:99;width:9px;height:13px;padding:0;border:0;margin-top:0px;margin-right:-2px;}
+.CPR {padding:14px;}

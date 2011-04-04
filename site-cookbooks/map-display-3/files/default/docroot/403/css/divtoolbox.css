@@ -1,0 +1,156 @@
+#divToolBox
+{position:absolute;z-index:99;top:8px;right:12px;padding-right:2px;height:360px;background-image:url(../i/toolbox/bg01.gif);background-repeat:repeat-y;background-position:top right;}
+#divToolBox.open 
+{padding-right:1px;}
+#divToolBox.closed
+{padding-right:2px;}
+#divToolBox #divQuickInfoGlobalHeader 
+{}
+#divToolBox #divTabs 
+{width:21px;position:absolute;top:0;left:-21px;background-image:url(../i/toolbox/ccc.gif);background-repeat:repeat-y;background-position:top right;height:360px;}
+#divToolBox #divSearchBar
+{position:absolute;bottom:1px;left:0;height:30px;width:268px;border-top:1px solid #ccc;background-color:#F3F1E7;display:none;z-index:9;}
+#divToolBox #divSearchBar P {padding:6px 0 0 12px;margin:0;color:#333;}
+#divToolBox DIV.closed
+{display:none;}
+#divToolBox DIV.open
+{display:block;}
+#divToolBox DIV.unit 
+{height:358px;border-top:1px solid #ccc;border-bottom:1px solid #ccc;background-color:#fff;float:left;}
+#divToolBox DIV.unit 		{width:268px;}
+#divToolBox TEXTAREA 		{width:100%;}
+#divToolBox DIV.container 
+{position:relative;padding-bottom:4px;padding-left:12px;padding-right:8px;}
+#divToolBox #divLocalInfo DIV.container
+{padding-right:0;padding-top:0;}
+#divToolBox #divNotes #formNoteEditorForm {margin-left:12px;margin-top:8px;margin-right:8px;}
+#divToolBox #divNotes #formNoteFeedbackForm {margin-left:12px;margin-top:0;}
+#divToolBox DIV.unit #divQuickInfoGlobalHeader DIV.container {padding-top:8px;padding-left:10px;padding-bottom:8px;}
+#divToolBox DIV.unit DIV.container 
+{padding-top:8px;} 
+#divToolBox DIV.hr 		{margin-top:2px;border-top:1px solid #ccc;height:4px;font-size:1px;}
+#divToolBox DIV.hr HR 	{display:none;} 
+#divToolBox UL 			{color:#333;}
+#divToolBox TEXTAREA.readonly	
+{}
+#divToolBox H4 		{font-size:1.3em;line-height:130%;margin:0 ;padding:0;}
+#divToolBox H5 		{font-size:1.0em;margin:0 0 6px 0;padding:0;}
+#divToolBox H6 		{font-size:1.0em;margin:0 0 6px 0;padding:0;font-weight:normal;}
+#divToolBox UL 		{margin :0 0 0 20px;padding :0;}
+#divToolBox TEXTAREA{height:180px;}
+#divToolBox P 		{margin:0;padding:0;}
+#divToolBox P.p 	{padding-bottom:8px;padding-top:4px;}
+#divToolBox P.pb 	{padding-bottom:8px;}
+A.cePopLink {text-decoration:underline;}
+A.cePopLink:hover {text-decoration:underline;}
+A.cePopLink IMG {vertical-align:bottom;margin-left:2px;}
+A.ceInsert {display:block;padding-bottom:6px;}
+#divToolBox #divLocalInfo #pLocalInfo_data {padding-top:4px;color:#666;font-style:italic;}
+#divToolBox #divAdminInfoForm #spanAddUrlButton INPUT[type=button] {display:none}
+#divToolBox #divAdminInfoForm #spanAddUrlButton:after {content:attr(title);}
+#divToolBox #divAdminInfoForm *.textarea {height:188px;}
+#divToolBox #divAdminInfoForm *.textarea DIV {padding:0 12px;}
+#divToolBox #divAdminInfoForm #pEditData, 
+#divToolBox #divAdminInfoForm #pFromData,
+#divToolBox #divAdminInfoForm #pToData 
+{height:14px;min-height:14px;padding:2px 2px 2px 4px;font-size:90%;font-style:italic;}
+#divToolBox #divAdminInfoForm DIV[id=pEditData] 
+{height:auto;min-height:14px;}
+#divToolBox #divGuidanceNoteContainer 								{width:430px;border-left:1px solid #ccc;}
+#divToolBox #divGuidanceNoteContainer DIV.border 					{border:1px solid #999;margin-bottom:2px;}
+#divToolBox #divGuidanceNoteContainer DIV.display	{padding:12px ;}
+#divToolBox #divGuidanceNoteContainer DIV.scroll	{height:320px;overflow:auto;width:400px;}
+#divToolBox #divGuidanceNoteContainer UL,
+#divToolBox #divGuidanceNoteContainer P			{margin-bottom:8px;}
+#divToolBox #divGuidanceNoteContainer #pSubHeadText_admininfo		{padding:0 0 8px 2px;}
+#divToolBox #divLocalInfo #divLiBody, 			
+#divToolBox #divQuickInfo #divQiBody
+{height:200px;overflow:auto;padding:0 0 0 0 ;color:#333;position:relative;}
+#divToolBox #divLocalInfo #divLiBody {padding-top:10px;}
+#divToolBox #divQuickInfo #divQiBody DIV.container {width:88%;padding-right:0;}
+#divLocalInfo P {padding:4px 0 0 0;}
+#divToolBox #divQuickInfo #divAdminInfo_display {margin-top:6px;font-size:94%;}
+#divToolBox #divQuickInfo #pEditAdminInfo_data {font-style:italic;font-size:90%;}
+#divToolBox #divQuickInfo #divCePop		
+{position:absolute;display:none;width:187px;top:0;left:25px;z-index:10;border:1px solid #666;background-color:#fff;}
+#divToolBox #divQuickInfo #divCePop		
+{filter:progid:DXImageTransform.Microsoft.Shadow(color='#808080', Direction=135, Strength=2)
+}
+#divToolBox #divQuickInfo #divCePop H4  
+{background-color:#F3F1E7;border-bottom:1px dashed #ccc;font-size:1.0em;margin:0;padding:2px 2px 4px 10px;font-weight:bold;}
+#divToolBox #divQuickInfo #divCePop H4 SPAN
+{display:block;height:16px;padding-top:1px;}
+#divToolBox #divQuickInfo #divCePop A,  	
+#divToolBox #divQuickInfo #divCePop #spanText  	
+{display:block;padding:3px 10px 4px 10px;}
+#divToolBox #divQuickInfo #divCePop #strongSearchTerm {color:#333;}
+#divToolBox #divNotes #textareaNotesFeedback
+{height:200px;width:100%;border:0 none;overflow:auto;padding:10px 0 0 0 ;color:#333;position:relative;word-wrap:break-word;overflow-x:hidden;margin-top:0;}
+* HTML #divToolBox #divNotes #textareaNotesFeedback {margin-top:-1px;}
+#divToolBox #divNotes TEXTAREA.readonly 
+{}	
+* HTML #divToolBox #divNotes TEXTAREA.readonly 
+{}
+#divToolBox #divSearchPanelForm,
+#divToolBox #divSearchPanelCE, 
+#divToolBox #divSearchPanel 
+{width:430px;}
+#divToolBox #divSearchPanelCE IFRAME, 
+#divToolBox #divSearchPanel IFRAME 
+{width:430px;margin:0;padding:0;}
+#divToolBox #divSearchPanel {}
+#divToolBox #divSearchPanel #iframeSearchResults {height:318px;}
+#divToolBox #divSearchPanelCE #iframeSearchResultsCE {height:338px;}
+#divToolBox #divSearchPanel,
+#divToolBox #divSearchPanelCE,
+#divToolBox #divSearchPanelForm {border-left:1px solid #ccc;}
+#divToolBox #divSearchPanelForm {position:relative;}
+#divToolBox #divSearchPanelForm DIV.body {padding:6px 12px 12px 12px;}
+#divToolBox #divSearchPanelForm DIV.body DIV.foot {position:absolute;left:12px;bottom:12px;}
+#divToolBox #divSearchPanelForm UL							{margin-top:10px}
+#divToolBox #divSearchPanelForm #inputTermBox				{width:208px}
+#divToolBox #divSearchPanelForm LI							{list-style-type:square;}
+#divToolBox #divSearchPanelForm *.innerBlock 				{width:380px;}
+#divToolBox #divSearchPanelForm P 							{padding:8px 0 0 0;}
+#divToolBox #divSearchPanelForm LABEL 						{font-weight:bold;color:#666;}
+#divToolBox #divSearchPanelForm LABEL.header				{display:block;padding-bottom:4px;}
+#divToolBox #divSearchPanelForm #inputTermBox				{margin-right:12px}
+#divToolBox #divSearchPanelForm #divSnomedSelectBox 		{overflow:auto;overflow-x:hidden;}
+#divToolBox #divSearchPanelForm #divSnomedSelectBox SPAN 		{display:block;clear:both;}
+#divToolBox #divSearchPanelForm #divSnomedSelectBox SPAN INPUT{float:left;}
+#divToolBox #divSearchPanelForm #divSnomedSelectBox LABEL 	{margin-left:22px;font-weight:normal;display:block;padding:2px 0 3px 0;}
+#divToolBox #divSearchPanelForm #divAdditionalSelectBox 		{height:70px;overflow:auto;overflow-x:hidden;}
+#divToolBox #divSearchPanelForm #divAdditionalSelectBox SPAN 		{display:block;clear:both;}
+#divToolBox #divSearchPanelForm #divAdditionalSelectBox SPAN INPUT{float:left;}
+#divToolBox #divSearchPanelForm #divAdditionalSelectBox LABEL 	{margin-left:22px;font-weight:normal;display:block;padding:2px 0 3px 0;}
+#divToolBox #divGuidanceNote H4,
+#divToolBox #divSearchPanel H4,
+#divToolBox #divSearchPanelForm H4,
+#divToolBox #divAdminInfoRevert H4,
+#divToolBox #divAdminInfoRevertTest H4 {padding:8px 0 8px 10px ;border-bottom:1px dashed #ccc;}
+#divToolBox #divAdminInfoRevert H4 {border-bottom:0 none;}
+#divToolBox #divAdminInfoRevert {width:739px;}
+#divToolBox #divAdminInfoRevert DIV.first {margin-right:12px;}
+#divToolBox #divAdminInfoRevert DIV.revertwidth {width:240px;}
+#divToolBox #divAdminInfoRevert DIV.container {padding-right:0!important;}
+#divToolBox #divAdminInfoRevert TEXTAREA {width:100%;}
+#divToolBox #divGuidanceNote H4 A,
+#divToolBox #divSearchPanel H4 A,
+#divToolBox #divSearchPanelForm H4 A,
+#divToolBox #divAdminInfoRevert H4 A,
+#divToolBox #divAdminInfoRevertTest H4 A
+ {padding:0 12px 0 0;display:block;float :right;}
+#divToolBox #divSearchPanel #spanSearchPanelLink A {font-weight:normal;display:inline;float:right;padding:0 0 0 0;margin:0 8px 0 0;font-size:0.8em;}
+#divToolBox DIV.divTabStrip {width:100%;height:24px;overflow:hidden;background-image:url("../i/tabs/tab_w_bg.gif");background-repeat:repeat-x ;background-position:0 100% ;}
+#divToolBox DIV.divTabStrip UL {margin:0 0 0 0;padding:0 0 0 4px;list-style:none;}
+#divToolBox DIV.divTabStrip LI {float:left;background:url("../i/tabs/tab_w_left.gif") no-repeat left top;margin:0 2px 0 0 ;padding:0 0 0 4px;border-bottom:1px solid #cccccc;}
+#divToolBox DIV.divTabStrip LI.first {margin-left:2px;}
+#divToolBox DIV.divTabStrip LI A {display:block;background:url("../i/tabs/tab_right.gif") no-repeat right top;padding:5px 0.4em 4px 0.3em;text-decoration:none;line-height:14px;}
+#divToolBox DIV.divTabStrip LI.selected 
+{background-position:0 -27px;border-width:0;}
+#divToolBox DIV.divTabStrip LI.selected A
+{background-position:100% -27px;padding:5px 0.3em 5px 0.2em;color:#999;font-weight:bold;cursor :default;}
+#divToolBox DIV.divTabStrip LI.off 
+{background-position:0 27px;border-width:0;}
+#divToolBox DIV.divTabStrip LI.off A
+{background-position:100% 27px;padding-bottom:5px;text-decoration:underline;}

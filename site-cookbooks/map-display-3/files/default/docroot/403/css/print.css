@@ -1,0 +1,12 @@
+TEXTAREA,
+INPUT,
+*.pathwayFormBox TABLE,
+*.minPageWidth {width:auto !important ;}
+*.noprint {visibility:hidden;display:none !important;}
+#bcDivNav_0, 
+#bcDivNav_1,					
+#bcDivNav_2,					
+#bcDivNav_3,	
+#cpResults {height :auto !important;overflow :visible !important;}
+#divBrowser TABLE TD {vertical-align:top;}
+*.pathwayFormBox TABLE TEXTAREA {width:90% !important}

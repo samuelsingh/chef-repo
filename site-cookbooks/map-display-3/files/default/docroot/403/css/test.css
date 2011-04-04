@@ -1,0 +1,48 @@
+BODY {font-family:Arial, verdana,  helvetica, sans-serif;font-size:76%;color:#000;}
+INPUT,SELECT,OPTION,TEXTAREA,*.fixedFont {}
+P 	{}
+DFN {}
+A {}
+A:hover {}
+.detailText {}
+TH,
+*.standardTextTitle {}
+TD,
+P,
+LABEL,
+*.standardText {}
+*.standardText STRONG,
+*.standardText B {color:#333;}
+*.pagination {color:#666;}
+LABEL {font-weight:bold;padding-right:6px;}
+.standardTextWhite {font-family:Arial;font-size:1em;color:#ffffff;}
+.standardTextHighlight {font-family:Arial;font-size:1em;font-weight:bold;color:#666666;}
+#pHomeVarientLink A, 
+a.standardTextLink:link, 
+a.standardTextLink:visited, 
+a.highlightTextLink:link, 
+a.highlightTextLink:visited  {font-family:Arial;text-decoration:underline;color:#0066cc;}
+a.standardTextLink:hover,a.highlightTextLink:hover {font-family:Arial;text-decoration:underline;color:#003399;}
+a.detailTextLink:link, a.detailTextLink:visited  {font-family:Arial;text-decoration:underline;color:#0066cc;}
+a.detailTextLink:hover{font-family:Arial;text-decoration:underline;color:#003399;}
+a.highlightTextLink:link, a.highlightTextLink:visited  {font-weight:bold;}
+a.highlightTextLink:hover {font-weight:bold;}
+.textActiveTab {font-family:Arial;font-size:1.1em;font-weight:bold;color:#333333;}
+a.textInactiveTab:link, a.textInactiveTab:visited {font-family:Arial;font-size:1.1em;color:#0066cc;text-decoration:none;}
+a.textInactiveTab:hover {font-family:Arial;font-size:1.1em;color:#003399;text-decoration:none;}
+.tableHeader {font-family:Arial;font-size:1.1em;font-weight:bold;color:#333333;}
+TH a:link, TH a:visited, 
+a.tableHeaderLink:link, a.tableHeaderLink:visited {font-family:Arial;font-weight:bold;text-decoration:underline;color:#0066cc;}
+TH a:hover,
+a.tableHeaderLink:hover {font-family:Arial;font-weight:bold;text-decoration:underline;color:#003399;}
+a.tableHighlightLink:link, a.tableHighlightHeaderLink:visited {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:underline;color:#0066cc;}
+a.tableHighlightLink:hover {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:underline;color:#003399;}
+.headerText {font-family:Arial;font-size:1em;font-weight:normal;color:#ffffff;}
+.headerTextHighlight {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:none;color:#ffffff;}
+a.headerTextLink:link, a.headerTextLink:visited {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:none;color:#ffffff;}
+a.headerTextLink:hover {font-family:Arial;font-size:1em;font-weight:bold;text-decoration:none;color:#cccccc;}
+*.error 	{color:#f00;}
+*.bold 		{font-weight:bold;}
+*.i			{font-style:italic;}
+*.s			{font-size:90%;}
+*.disabledLink {color:#888;text-decoration:underline;cursor:default;}

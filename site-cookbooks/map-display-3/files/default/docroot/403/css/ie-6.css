@@ -1,0 +1,15 @@
+DIV.minheightContainer 
+{height:260px;}
+.DBBottom IMG.borderBR 
+{margin-right:-4px !important;}
+#divBrowser,
+#divHistory 
+{}	
+#divNavigationBar 
+{height:30px;}
+#divTitleToolBar #divTools 
+{top:5px;}
+BODY #divNavigation
+{top	:1px ;}
+#divInlineFeedbackForm FORM DIV.fieldset {height:228px;}
+BODY #divInlineFeedbackForm FORM P.buttonBar SPAN.info {margin-left:0;padding-left:125px;}

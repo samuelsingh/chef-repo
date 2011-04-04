@@ -1,0 +1,54 @@
+#divHistory 
+{position   :static;background-color:#fff;}	
+#divHistory TABLE 		
+{border-collapse:collapse;width:100%;* width :auto;}					
+#divHistory TABLE TD,  
+#divHistory TABLE TH  
+{padding:3px 23px 3px 14px;text-align:left;}				
+#divHistory TABLE TR.over TD
+{background-color:#F4F2E4 ;}
+#divHistory TABLE TR.expired TD,
+#divHistory TABLE TR.expired A,
+#divHistory TABLE TR.expired A:hover
+{color:#888;cursor:default;}
+* HTML #divHistory TABLE {table-layout:fixed;}
+* HTML #divHistory TABLE TD {word-wrap:break-word;}
+#divHistory TABLE TD
+{border-top:1px solid #E7ECF1;}				
+* HTML SPAN.button_one_active A,
+* HTML SPAN.button_one_hover A,
+* HTML SPAN.button_one_off A
+{padding:3px 0 4px 12px;display:inline-block;}
+SPAN[class=button_one_active] A,
+SPAN[class=button_one_hover] A,
+SPAN[class=button_one_off] A
+{padding:0 12px 5px 12px;top:-2px;position:relative;}
+SPAN.button_divider {padding:3px 6px 4px 6px;color:#999;* display:inline-block;}
+P.buttonContainer SPAN SPAN SPAN SPAN SPAN #anchorBrowseButton {width:12.9em;}
+P.buttonContainer SPAN SPAN SPAN SPAN SPAN #anchorRecentButton {width:9.5em;}
+SPAN.button_one_active {background-image:url(../i/buttons/one/active/background.gif);}
+SPAN.button_one_active A {}
+P.buttonContainer SPAN SPAN SPAN SPAN SPAN A.stage {color:#333;font-weight:bold;}
+P.buttonContainer SPAN SPAN SPAN SPAN SPAN A.stage:hover {color:#333;font-weight:bold;}
+SPAN.button_one_active SPAN {background-image:url(../i/buttons/one/active/top_left.gif);background-repeat:no-repeat;}
+SPAN.button_one_active SPAN SPAN {background-image:url(../i/buttons/one/active/top_right.gif);background-position:top right;}
+SPAN.button_one_active SPAN SPAN SPAN {background-image:url(../i/buttons/one/active/bottom_right.gif);background-position:bottom right;}
+SPAN.button_one_active SPAN SPAN SPAN SPAN {background-image:url(../i/buttons/one/active/bottom_left.gif);background-position:bottom left;}
+SPAN[class=button_one_active] {font-size:24px;line-height:24px;}
+SPAN[class=button_one_active] A {font-size:12px;}
+SPAN.button_one_hover {background-image:url(../i/buttons/one/hover/background.gif);}
+SPAN.button_one_hover A {}
+SPAN.button_one_hover SPAN {background-image:url(../i/buttons/one/hover/top_left.gif);background-repeat:no-repeat;}
+SPAN.button_one_hover SPAN SPAN {background-image:url(../i/buttons/one/hover/top_right.gif);background-position:top right;}
+SPAN.button_one_hover SPAN SPAN SPAN {background-image:url(../i/buttons/one/hover/bottom_right.gif);background-position:bottom right;}
+SPAN.button_one_hover SPAN SPAN SPAN SPAN {background-image:url(../i/buttons/one/hover/bottom_left.gif);background-position:bottom left;}	
+SPAN[class=button_one_hover] {font-size:24px;line-height:24px;}
+SPAN[class=button_one_hover] A {font-size:12px;}
+SPAN.button_one_off {background-image:url(../i/buttons/one/off/background.gif);}
+SPAN.button_one_off A {}
+SPAN.button_one_off SPAN {background-image:url(../i/buttons/one/off/top_left.gif);background-repeat:no-repeat;}
+SPAN.button_one_off SPAN SPAN {background-image:url(../i/buttons/one/off/top_right.gif);background-position:top right;}
+SPAN.button_one_off SPAN SPAN SPAN {background-image:url(../i/buttons/one/off/bottom_right.gif);background-position:bottom right;}
+SPAN.button_one_off SPAN SPAN SPAN SPAN {background-image:url(../i/buttons/one/off/bottom_left.gif);background-position:bottom left;}	
+SPAN[class=button_one_off] {font-size:24px;line-height:24px;}
+SPAN[class=button_one_off] A {font-size:12px;}

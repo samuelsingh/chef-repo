@@ -1,0 +1,42 @@
+SPAN.borderDarkUp
+{border-left:1px solid #EBEAEA;border-top:1px solid #EBEAEA;border-right:1px solid #666;border-bottom:1px solid #666;}
+SPAN.borderUp		
+{border-left:1px solid #EBEAEA;border-top:1px solid #EBEAEA;border-right:1px solid #999;border-bottom:1px solid #999;}
+SPAN.borderDarkDown,		
+SPAN.borderDown		
+{border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #EBEAEA;border-bottom:1px solid #EBEAEA;}
+* HTML SPAN INPUT {border:1px solid #fff;font-weight:bold;cursor:pointer;width:auto;overflow:visible;padding-left:6px;padding-right:6px;}
+SPAN.borderDarkDown A,		
+SPAN.borderDown A, 
+SPAN.borderDarkUp A,		
+SPAN.borderUp A 
+{border:1px solid #fff;font-weight:bold;cursor:pointer;padding-left:10px;padding-right:10px;}
+* HTML SPAN.borderDarkDown A,		
+* HTML SPAN.borderDown	A, 
+* HTML SPAN.borderDarkUp A,		
+* HTML SPAN.borderUp A 
+{border:1px solid #fff;font-weight:bold;cursor:pointer;padding-left:6px;padding-right:6px;}
+SPAN INPUT.blue			{background-color:#3385D6;color:#fff;}
+SPAN INPUT.blueHover	{background-color:#039;color:#fff;}
+SPAN INPUT.white		{background-color:#E9E5CA;color:#06c;}
+SPAN INPUT.whiteHover	{background-color:#D4D0B4;color:#06c;}
+SPAN A.blue			{background-color:#3385D6;color:#fff;font-weight:bold;}
+SPAN A.blue:hover	{background-color:#039;color:#fff;font-weight:bold;}
+SPAN A.white		{background-color:#E9E5CA;color:#06c;font-weight:bold;}
+SPAN A.white:hover	{background-color:#D4D0B4;color:#06c;font-weight:bold;}
+SPAN INPUT {cursor:pointer;}
+SPAN INPUT[class=blue] 		{background-color:#3385D6;color:#fff;}
+SPAN INPUT[class=blueHover] {background-color:#039;color:#fff;}
+SPAN INPUT[class=white] 	{background-color:#E9E5CA;color:#06c;}
+SPAN INPUT[class=whiteHover]{background-color:#D4D0B4;color:#06c;}
+SPAN INPUT					{font-weight:bold;}
+SPAN[class=borderUp]		{border:0 none !important;}
+SPAN[class=borderDown]		{border:0 none !important;}
+SPAN A[class=blue] 		{background-color:#3385D6;color:#fff;}
+SPAN A[class=blueHover] {background-color:#039;color:#fff;}
+SPAN A[class=white] 	{background-color:#E9E5CA;color:#06c;}
+SPAN A[class=whiteHover]{background-color:#D4D0B4;color:#06c;}
+SPAN.linkButton {border:1px solid #fff;margin-right:0px;}
+* HTML SPAN.linkButton a {width:auto;padding:2px 6px;}
+SPAN.linkButton a {border:1px solid #ccc;background-color:#3385D6;color:#fff;}
+SPAN.linkButton a:hover {color:#fff;}

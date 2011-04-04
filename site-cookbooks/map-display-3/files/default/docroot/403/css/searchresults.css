@@ -1,0 +1,66 @@
+#divBrandingBar {background-color:#fff;}
+#divFooter {background-color:#fff;border-top:1px solid #ccc;}
+.searchResultContainer {background-color:#fff;min-width:99%;}
+A.searchLink {text-decoration:underline !important;}
+#searchresultsContent {position:relative;padding-top:0px;margin-top:0;padding-left:0px;padding-bottom:20px;border-left:1px solid #d5deeb;border-right:1px solid #d5deeb;overflow:hidden;background-color:#e7ecf4;}
+#searchresultsContent TABLE TR TD {vertical-align:top;}
+.sortLabel {line-height:20px;margin-right:10px;float:left;}
+.sortField {width:150px;float:left;}
+.resultsMessage {padding-top:15px;}
+.resultsMessage  H2 {font-size:1.2em;}
+.resultsMessage  UL {margin:0;padding:0;list-style-type:none;}
+.resultsMessage  UL LI {margin-top:3px;margin-bottom:3px;}
+DIV.mtmResultsMessage {padding-top:15px;}
+.searchResult {padding-bottom:15px;}
+.searchResult H2 A {font-weight:normal !important;}
+.searchResult H2 {padding-bottom:0;margin-bottom:0;}
+TD.resultHeader {text-align:center;vertical-align:top;width:60px;}
+.resultBreadcrumb, .resultBreadcrumbDisabled {padding-bottom:5px;}
+.sharedResultBreadcrumb, .sharedResultBreadcrumbDisabled {padding:12px 0px 2px 0px;}
+.sharedResultBreadcrumb P {margin:0;padding:0;}
+.resultPathwayIcon {padding-left:35px;padding-right:9px;}
+.resultPathwayLink {width:100%;}
+.resultNodeText {padding-bottom:2px;padding-top:2px;padding-right:4px;}
+.resultList {margin-left:15px;}
+.topDashedLine {border-top:dashed 1px #cccccc;margin-bottom:15px;margin-top:15px;margin-left:17px;margin-right:15px;}
+.middleDashedLine {border-top:dashed 1px #cccccc;margin-bottom:15px;}
+.bottomDashedLine {border-top:dashed 1px #cccccc;margin-bottom:10px;margin-left:17px;margin-right:15px;}
+#lowerLeft {width:100%;}
+TD#lowerLeft UL.nlhResultsExplanation {list-style-type:none;margin-left:0;padding-left:17px;}
+.lowerLeftMinWidth {width:456px;width:100%;height:0px;overflow:hidden;}
+.searchField {width:175px;margin-bottom:5px;border:1px solid #7f9db9;}
+DIV#refineSearchContainer {color:#333;border-top:1px solid #ccc;border-bottom:1px solid #e7ecf4;background-color:#e7ecf4;}
+DIV#refineSearchContainer H2 {margin-top:1em;font-size:1.2em;}
+DIV#refineSearchContainer UL {margin:0;padding:0;list-style-type:none;}
+DIV#refineSearchContainer DIV.searchWithinLabel {margin-bottom:5px;} 
+.refineSearchSubmit {float:left;padding-top:0px;* padding-top:1px;padding-left:5px;padding-bottom:1px;margin-top:-1px;}
+P.titleSearchLink {display:block;padding-top:20px;text-align:left;}
+.headerPagination {float:left;padding-top:3px;* padding-top:5px;color:#666;}
+.pagination {padding-bottom:10px;}
+SPAN.borderUp {margin-top:2px;}
+DIV.tablefix {line-height:0.5em;}
+TABLE#pagination TD {padding-top:5px;}
+TABLE#searchSource {margin:10px 10px 20px 0px;color:#eee;}
+TABLE#searchSource TD {vertical-align:top;}
+TABLE#searchSource TD#searchField {padding-left:5px;padding-right:6px;}
+TABLE#searchSource TD.searchHelp {padding-left:5px;}
+TABLE#searchSource TD.smallSearchLabel {padding-top:2px;}
+DIV.searchFieldLabel {margin-top:7px;padding-left:15px;}
+DIV.searchFieldLabel LABEL {font-weight:normal;color:#333;}
+DIV.searchSubmit {padding-top:4px;* padding-top:5px;}
+SPAN.NLHLabel {color:#808080;font-weight:normal;}
+TABLE#searchSource INPUT#inputFreeText2 {border:1px solid #7f9db9;margin-top:5px;width:180px;}
+DIV#inputFreeText {float:left;width:185px;}
+TABLE#searchSource A#toRefineSearch {margin-left:40px;margin-top:20px;text-decoration:none;}
+TABLE#searchSource TD.searchLabel {padding-top:6px;padding-right:10px;}
+TABLE#searchSource TD.searchInput {padding-top:4px;}
+.resultIcon {padding-top:3px;padding-right:3px;}
+P.nlhResultsExplanation {padding:6px 0 2px 0;margin:0;}
+DIV.nlhResultsExplanation P {padding-right:15px;padding-left:17px;}
+*.noResult {background:transparent url(../i/search/message_icon.gif) no-repeat 1em 1em;padding-left:2.5em;padding-top:15px;padding-right:15px;}
+DIV.filterSubmit {display:inline;}
+DIV.displaySynonyms {padding-left:17px;padding-right:15px;padding-top:8px;}
+DIV.displaySynonyms div{margin-left:-17px;}
+H2 SPAN {font-weight:normal;}
+DIV.sectionBottom div {padding-top:1.4em;}
+DIV.sortResultsBy {float:right;padding-bottom:1px;}
