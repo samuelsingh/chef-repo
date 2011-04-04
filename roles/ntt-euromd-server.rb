@@ -12,7 +12,8 @@ override_attributes(
       "dbpass" => "medic1"
     },
     "application" => {
-      "md_fqdn" =>  "app.mapofmedicine.com"
+      "md_fqdn" =>  "app.mapofmedicine.com",
+      "save_ram" => "true"
     },
     "vhost" => {
       "app.mapofmedicine.com" => {
