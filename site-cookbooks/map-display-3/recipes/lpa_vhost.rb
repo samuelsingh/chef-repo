@@ -1,10 +1,9 @@
 #
-# Cookbook Name:: lpa-vhost
-# Recipe:: default
+# Cookbook Name:: map-display-3
+# Recipe:: lpa_vhost
 #
 # Copyright 2010, Map of Medicine
 #
-
 
 include_recipe "apache2"
 
@@ -24,7 +23,6 @@ node[:map_display][:lpa_vhost].each do |hostname,params|
       variables(
         :hostname => hostname,
         :srv_aliases => params["srv_aliases"],
-        :deploy_dir => params["deploy_dir"],
         :appserver => params["appserver"],
         :restricted_ips => node[:apache][:restricted_ips],
         :holding_page => params["holding_page"],

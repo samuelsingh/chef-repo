@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: map-display-2
+# Cookbook Name:: map-display-3
 # Recipe:: default
 #
 # Copyright 2010, Map of Medicine
@@ -18,4 +18,4 @@
 #
 
 # Added for backwards compatibility with previous recipes.
-include_recipe "map-display-2::application"
+include_recipe "map-display-3::application"
