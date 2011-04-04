@@ -19,6 +19,7 @@
 
 set_unless[:map_display][:application][:mtmpath] = "/var/mtm"
 set_unless[:map_display][:application][:md_fqdn] = "app.md-cloud-01.eu"
+set_unless[:map_display][:application][:save_ram] = "false"
 
 set_unless[:map_display][:common][:dbuser] = "mtmuser"
 set_unless[:map_display][:common][:dbpass] = "medic1"
