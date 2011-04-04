@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: map-display-2
+# Cookbook Name:: map-display-3
 # Recipe:: application
 #
 # Copyright 2010, Map of Medicine
