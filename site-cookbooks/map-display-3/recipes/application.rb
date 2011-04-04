@@ -147,7 +147,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
       
-      if (node[:map_display][:application][:save_ram] == "true" || node[:ec2][:instance_type] == "m1.small")
+      if (node[:map_display][:application][:save_ram] == "true" || (defined?(node[:ec2][:instance_type]) != nil && node[:ec2][:instance_type] == "m1.small"))
       
         template "#{server_dir}/etc/java_opts.conf" do
           source "etc/java_opts.conf.erb"
@@ -204,7 +204,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
       
-      if (node[:map_display][:application][:save_ram] == "true" || node[:ec2][:instance_type] == "m1.small")
+      if (node[:map_display][:application][:save_ram] == "true" || (defined?(node[:ec2][:instance_type]) != nil && node[:ec2][:instance_type] == "m1.small"))
       
         template "#{server_dir}/etc/java_opts.conf" do
           source "etc/java_opts.conf.erb"
