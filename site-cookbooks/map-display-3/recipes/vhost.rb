@@ -75,7 +75,7 @@ node[:map_display][:vhost].each do |hostname,params|
   if hostname == 'app.mapofmedicine.com'
     
     template "#{node[:apache][:dir]}/sites-available/#{hostname}-aliases.conf" do
-      source "#{hostname}-aliases.conf"
+      source "#{hostname}-aliases.conf.erb"
       mode 0644
       variables(
         :hostname => hostname
