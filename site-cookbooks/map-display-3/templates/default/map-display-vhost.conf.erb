@@ -147,11 +147,6 @@
         RewriteRule ^/$ /mom/1/index.html [R,L]
         RewriteRule ^/mom/(\d+)/?$ /mom/$1/index.html [R,L]
         RewriteRule ^/admin$ /adminapp [R,L]
-
-        # This rule points to the attachments, which have been moved outside of the webapp context base.
-        # This makes life easier when upgrading the application.
-
-        RewriteRule ^/mom/attachments/(.+) /attachments/$1 [R,L]
         
         # Added to 'fix' issue in OPS-24530
         
