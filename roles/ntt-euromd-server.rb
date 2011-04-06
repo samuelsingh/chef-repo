@@ -32,5 +32,10 @@ override_attributes(
         "lb_alive_port" => 0
       }
     }
+  },
+  "tomcat" => {
+    "srv_dir" => "/var/tomcat",
+    "log_rotate_dir" => "/var/shared/rotated-logs",
+    "unpackwars" => "true"
   }
 )
