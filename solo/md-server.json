@@ -15,5 +15,9 @@
   "ajp_ports": [ 9001, 9002 ],
   "unpackwars": "true" 
 },
+"hudson_agent": {
+  "user": "root",
+  "group": "root"
+},
 "run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[map-display-2]", "recipe[smoke_test]" ]
 }
