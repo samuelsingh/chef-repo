@@ -13,6 +13,7 @@ override_attributes(
     },
     "application" => {
       "md_fqdn" =>  "app.ntt.mapofmedicine.com",
+      "geoip_server" => "geoip.mapofmedicine.com",
       "save_ram" => "true"
     },
     "vhost" => {
