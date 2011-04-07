@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-agent_user = 'root'
-agent_group = 'root'
+node[:hudson_agent][:user].nil? ? agent_user = 'root' : agent_user = node[:hudson_agent][:user]
+node[:hudson_agent][:group].nil? ? agent_group = 'root' : agent_group = node[:hudson_agent][:group]
 
 # Rubygems 1.3.6 needs an earlier version of hoe
 gem_package 'hoe' do
