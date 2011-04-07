@@ -20,7 +20,7 @@
 mtmpath = node[:map_display][:application][:mtmpath]
 md_fqdn = node[:map_display][:application][:md_fqdn]
 webapp_dir = node[:map_display][:application][:webapp_dir]
-quova_svr = 'geoip.map-cloud-01.eu' # Bad, set this right!
+quova_svr = node[:map_display][:application][:geoip_server]
 
 dbuser = node[:map_display][:common][:dbuser]
 dbpass = node[:map_display][:common][:dbpass]
