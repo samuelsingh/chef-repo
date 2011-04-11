@@ -3,5 +3,9 @@
 "hostname": "md-server",
 "fqdn": "md-server.mapofmedicine.com",
 "chef_packages": "",
+"hudson_agent": {
+  "user": "root",
+  "group": "root"
+},
 "run_list": [ "recipe[extra-repos]", "recipe[smoke_test]" ]
 }
