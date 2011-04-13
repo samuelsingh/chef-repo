@@ -26,6 +26,7 @@ dbuser = node[:map_display][:common][:dbuser]
 dbpass = node[:map_display][:common][:dbpass]
 dbhost = node[:map_display][:common][:dbhost]
 dbname = node[:map_display][:common][:dbname]
+dbtype = node[:map_display][:common][:dbtype]
 
 t_user = node[:tomcat][:user]
 t_group = node[:tomcat][:group]
@@ -134,7 +135,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       template "#{server_dir}/conf/Catalina/localhost/mom.xml" do
-        source "mom.xml.erb"
+        source "mom.xml.#{dbtype}.erb"
         mode 0644
         group t_user
         group t_group
@@ -191,7 +192,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       end
       
       template "#{server_dir}/conf/Catalina/localhost/adminapp.xml" do
-        source "adminapp.xml.erb"
+        source "adminapp.xml.#{dbtype}.erb"
         mode 0644
         group t_user
         group t_group

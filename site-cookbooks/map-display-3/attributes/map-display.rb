@@ -25,6 +25,7 @@ set_unless[:map_display][:common][:dbuser] = "mtmuser"
 set_unless[:map_display][:common][:dbpass] = "medic1"
 set_unless[:map_display][:common][:dbhost] = "db"
 set_unless[:map_display][:common][:dbname] = "mtmdb"
+set_unless[:map_display][:common][:dbtype] = "mssql"
 
 
 #set_unless[:map_display][:contentloader][:contentloaderpath] = "/usr/local/contentloader"
