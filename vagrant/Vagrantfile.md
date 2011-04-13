@@ -1,4 +1,8 @@
 Vagrant::Config.run do |config|
+
+  # Custom MoM vars
+  dist_mount = "/dist_in"
+  
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -28,7 +32,7 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  config.vm.share_folder "dist_in", "/dist_in", "/path/to/war/output/dir"
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "/home/andrew/svn/chef-experimental/chef-repo/site-cookbooks"
@@ -44,12 +48,16 @@ Vagrant::Config.run do |config|
         "dbuser" => "mtmuser",
         "dbpass" => "medic1"
       },
+      "vagrant_helpers" => {
+        "devops_tools" => "/usr/local/devops",
+        "dist_mount" => "#{dist_mount}"
+      }
       "tomcat" => { "ajp_ports" => [ 9001, 9002 ] }
     }
     chef.add_recipe("extra-repos")
     chef.add_recipe("java")
     chef.add_recipe("tomcat")
-    chef.add_recipe("map-display-2")
+    chef.add_recipe("map-display-3")
   end
 
 end
