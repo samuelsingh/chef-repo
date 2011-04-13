@@ -1,0 +1,21 @@
+<Context path="/mom" reloadable="true" debug="0">
+
+	<Resource name="jdbc/mom" 
+              auth="Container"
+              type="javax.sql.DataSource" 
+              username="<%= @dbuser %>" 
+              password="<%= @dbpass %>"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://<%= @dbhost %>:3306/<%= @dbname %>"
+              validationQuery="/* ping */"
+	      testOnBorrow="true"
+	      testWhileIdle="true"
+	      timeBetweenEvictionRunsMillis="10000"
+	      minEvictableIdleTimeMillis="60000"
+              maxActive="10" 
+              maxIdle="4"/>
+        
+	<Resource name="mail/mom" auth="Container" type="javax.mail.Session" mail.smtp.host="localhost" mail.smtp.port="25"
+		mail.smtp.auth="false" mail.smtp.starttls.enable="false" mail.transport.protocol="smtp" mail.from="support@mapofmedicine.com"/>
+        
+</Context>
