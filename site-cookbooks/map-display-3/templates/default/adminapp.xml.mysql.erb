@@ -7,7 +7,7 @@
         password="<%= @dbpass %>"
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://<%= @dbhost %>:3306/<%= @dbname %>"
-        validationQuery="/* ping */"
+        validationQuery="select 1"
         testOnBorrow="true"
         testWhileIdle="true"
         timeBetweenEvictionRunsMillis="10000"
