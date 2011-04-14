@@ -50,6 +50,11 @@ override_attributes(
         "appserver" => "wikijira-app-01",
         "port" => "3001",
         "srv_aliases" => []
+      },
+      "ebs2s3.mapofmedicine.com" => {
+        "appserver" => "wikijira-app-01",
+        "port" => "3002",
+        "srv_aliases" => []
       }
     }
   },
