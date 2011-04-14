@@ -36,7 +36,7 @@ end
 if File.exists?("#{cl_dist}/ContentLoader.zip")
   
   execute "deploy_contentloader" do
-    command "rm -rf #{cl_path} && unzip #{cl_dist}/ContentLoader.zip -d #{cl_path}"
+    command "rm -rf #{cl_path} && unzip #{cl_dist}/ContentLoader.zip -d #{cl_path} && chmod 755 #{cl_path}/bin/*.sh"
     action :nothing
   end
   
