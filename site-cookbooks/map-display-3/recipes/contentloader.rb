@@ -43,7 +43,7 @@ if File.exists?("#{cl_dist}/ContentLoader.zip")
   # Checksum the contentloader
   execute "checksum_contentloader" do
     command "md5sum #{cl_dist}/ContentLoader.zip > md5sum #{cl_dist}/ContentLoader.zip"
-    notifies :run, resources(:execute => "deploy_contentloader")
+    notifies :run, resources(:execute => "deploy_contentloader"), :immediately
     not_if "md5sum -c --status #{cl_dist}/ContentLoader.zip.md5 > /dev/null"
   end
   
@@ -58,4 +58,5 @@ template "#{contentloader_path}/config/contentloader.properties" do
     :dbhost => dbhost,
     :dbname => dbname
   )
+  only_if "test -d #{cl_path}"
 end
