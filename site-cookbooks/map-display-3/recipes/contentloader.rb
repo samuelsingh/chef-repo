@@ -49,7 +49,7 @@ if File.exists?("#{cl_dist}/ContentLoader.zip")
   
 end
 
-template "#{contentloader_path}/config/contentloader.properties" do
+template "#{cl_path}/config/contentloader.properties" do
   source "contentloader/contentloader.properties.erb"
   variables(
     :contentloader_path => cl_path,
