@@ -17,8 +17,8 @@ hibernate.show_sql=false
 log.capturer.pattern=%d{HH:mm:ss.SSS} %p - %m%n
 
 copy.attachments=true
-<% if @node[:map_display][:deploy_dir] -%>
-attachments.dir=<%= @node[:map_display][:deploy_dir] %>
+<% if @node[:map_display][:application][:mtmpath] -%>
+attachments.dir=<%= @node[:map_display][:application][:mtmpath] %>
 <% else -%>
 attachments.dir=/var/tmp
 <% end -%>
@@ -50,5 +50,5 @@ hibernate.hbm2ddl.auto=false
 # Content Loader new properties for R2.7
 accreditation.attained=31-10-2010
 accreditation.validUntil=01-05-2012
-accreditation.status=2 
+accreditation.status=2
 

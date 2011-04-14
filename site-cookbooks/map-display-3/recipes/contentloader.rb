@@ -17,139 +17,45 @@
 # limitations under the License.
 #
 
-## This recipe is currently broken
-## so needs fixing!
+cl_path = node[:map_display][:contentloader][:path]
+cl_dist = node[:map_display][:contentloader][:dist_path]
 
-contentloader_path = node[:map_display][:contentloaderpath]
-deploy_dir = node[:map_display][:deploy_dir]
-md_version = node[:map_display][:version]
+dbuser = node[:map_display][:common][:dbuser]
+dbpass = node[:map_display][:common][:dbpass]
+dbhost = node[:map_display][:common][:dbhost]
+dbname = node[:map_display][:common][:dbname]
+dbtype = node[:map_display][:common][:dbtype]
 
-dbuser = node[:map_display][:dbuser]
-dbpass = node[:map_display][:dbpass]
-dbhost = node[:map_display][:dbhost]
-dbname = node[:map_display][:dbname]
-
-directory "#{contentloader_path}/bin"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
+# Gives us somewhere to grab the contentloader from
+directory "#{cl_dist}" do
   action :create
   recursive true
-  not_if "test -d #{contentloader_path}/bin"
+  not_if "test -d #{cl_dist}"
 end
 
-directory "#{contentloader_path}/config"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  not_if "test -d #{contentloader_path}/config"
-end
-
-directory "#{contentloader_path}/loader/failure"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  recursive true
-  not_if "test -d #{contentloader_path}/loader/failure"
-end
-
-directory "#{contentloader_path}/loader/input"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  not_if "test -d #{contentloader_path}/loader/input"
-end
-
-directory "#{contentloader_path}/loader/success"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  not_if "test -d #{contentloader_path}/loader/success"
-end
-
-directory "#{contentloader_path}/packager/input"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  recursive true
-  not_if "test -d #{contentloader_path}/packager/input"
-end
-
-directory "#{contentloader_path}/packager/output"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  not_if "test -d #{contentloader_path}/packager/output"
-end
-
-directory "#{contentloader_path}/attachments"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  not_if "test -d #{contentloader_path}/attachments"
-end
-
-directory "#{contentloader_path}/logs"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  action :create
-  not_if "test -d #{contentloader_path}/logs"
-end
-
-remote_file "#{contentloader_path}/bin/contentloader.sh" do
-  source "contentloader/contentloader.sh"
-  mode 0755
-  owner "root"
-  group "root"
+if File.exists?("#{cl_dist}/ContentLoader.zip")
+  
+  execute "deploy_contentloader" do
+    command "rm -rf #{cl_path} && unzip #{cl_dist}/ContentLoader.zip -d #{cl_path}"
+    action :nothing
+  end
+  
+  # Checksum the contentloader
+  execute "checksum_contentloader" do
+    command "md5sum #{cl_dist}/ContentLoader.zip > md5sum #{cl_dist}/ContentLoader.zip"
+    notifies :run, resources(:execute => "deploy_contentloader")
+    not_if "md5sum -c --status #{cl_dist}/ContentLoader.zip.md5 > /dev/null"
+  end
+  
 end
 
 template "#{contentloader_path}/config/contentloader.properties" do
   source "contentloader/contentloader.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
-    :contentloader_path => contentloader_path,
+    :contentloader_path => cl_path,
     :dbuser => dbuser,
     :dbpass => dbpass,
     :dbhost => dbhost,
     :dbname => dbname
   )
-end
-
-template "#{contentloader_path}/config/log4j.properties" do
-  source "contentloader/log4j.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :contentloader_path => contentloader_path
-  )
-end
-
-remote_file "#{contentloader_path}/config/mom.properties" do
-  source "contentloader/mom.properties"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-end
-
-remote_file "#{contentloader_path}/config/thesaurusSearchServiceManager.properties" do
-  source "contentloader/thesaurusSearchServiceManager.properties"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-end
-
-link "#{contentloader_path}/lib"  do
-  to "#{deploy_dir}/md-#{md_version}/contentloader/lib"
-  only_if "test -d #{deploy_dir}/md-#{md_version}"
 end
