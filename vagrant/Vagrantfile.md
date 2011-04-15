@@ -27,15 +27,14 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  # config.vm.forward_port "http", 80, 8080
+  config.vm.forward_port "http", 80, 8080
 
-  # Share an additional folder to the guest VM. The first argument is
-  # an identifier, the second is the path on the guest to mount the
-  # folder, and the third is the path on the host to the actual folder.
-  config.vm.share_folder "dist_in", "/dist_in", "/path/to/war/output/dir"
+  # This line allows a host folder to be mounted on the guest.  Useful when transferring
+  # New warfiles to the guest tomcat.
+  config.vm.share_folder "dist_in", "/dist_in", "< set me to /path/to/war/output/dir >"
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "/home/andrew/svn/chef-experimental/chef-repo/site-cookbooks"
+    chef.cookbooks_path = "< set me to path to chef repo >/site-cookbooks"
     chef.json = {
       "domain" => "mapofmedicine.com",
       "hostname" => "local-build",
@@ -43,10 +42,11 @@ Vagrant::Config.run do |config|
       "map_display" => {
         "md_fqdn" => "127.0.0.1:8080",
         "save_ram" => "true",
-        "dbhost" => "hathor.foxdev.mapofmedicine.com",
-        "dbname" => "test_mapdisplay",
-        "dbuser" => "mtmuser",
-        "dbpass" => "medic1"
+        "dbhost" => "< set me >",
+        "dbname" => "< set me >",
+        "dbuser" => "< set me >",
+        "dbpass" => "< set me >",
+        "dbtype" => "< set me, (mysql|mssql), defaults to mssql if omitted >"
       },
       "vagrant_helpers" => {
         "devops_tools" => "/usr/local/devops",
@@ -58,6 +58,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe("java")
     chef.add_recipe("tomcat")
     chef.add_recipe("map-display-3")
+    chef.add_recipe("vagrant-helpers")
   end
 
 end
