@@ -40,25 +40,28 @@ Vagrant::Config.run do |config|
       "hostname" => "local-build",
       "fqdn"=> "local-build.mapofmedicine.com",
       "map_display" => {
-        "md_fqdn" => "127.0.0.1:8080",
-        "save_ram" => "true",
-        "dbhost" => "< set me >",
-        "dbname" => "< set me >",
-        "dbuser" => "< set me >",
-        "dbpass" => "< set me >",
-        "dbtype" => "< set me, (mysql|mssql), defaults to mssql if omitted >"
+        "common" => {
+          "dbhost" => "< set me >",
+          "dbname" => "< set me >",
+          "dbuser" => "< set me >",
+          "dbpass" => "< set me >",
+          "dbtype" => "< set me, (mysql|mssql), defaults to mssql if omitted >"
+        },
+        "application" => {
+          "md_fqdn" =>  "127.0.0.1:8080",
+          "geoip_server" => "geoip.mapofmedicine.com",
+          "save_ram" => "true"
+        }
       },
-      "vagrant_helpers" => {
-        "devops_tools" => "/usr/local/devops",
-        "dist_mount" => "#{dist_mount}"
+      "tomcat" => {
+        "ajp_ports" => [ 9001, 9002 ],
+        "unpackwars" => "true"
       }
-      "tomcat" => { "ajp_ports" => [ 9001, 9002 ] }
     }
     chef.add_recipe("extra-repos")
     chef.add_recipe("java")
     chef.add_recipe("tomcat")
     chef.add_recipe("map-display-3")
-    chef.add_recipe("vagrant-helpers")
   end
 
 end
