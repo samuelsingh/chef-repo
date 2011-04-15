@@ -27,7 +27,8 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.forward_port "http", 80, 8080
+  config.vm.forward_port "http", 8080, 8080
+  config.vm.forward_port "http2", 8081, 8081
 
   # This line allows a host folder to be mounted on the guest.  Useful when transferring
   # New warfiles to the guest tomcat.
