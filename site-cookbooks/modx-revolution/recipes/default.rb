@@ -50,39 +50,50 @@ end
 
 # Relocated to shared store
 # TODO: make this configurable on/off, so that the recipe can be used by chef-solo
-directory "#{modx_path}/assets" do
-  recursive true
-  action :delete
+
+# Symlink tests are included here for backwards compatibility.
+
+directories = ["#{modx_path}/global","#{modx_path}/assets","#{modx_path}/core/components","#{modx_path}/core/cache"]
+
+directories.each do |dir|
+  
+  directory dir do
+    action :create
+    not_if "test -L #{dir}"
+  end
+
+end
+
+mount "#{modx_path}/global" do
+  device "#{deployment_home}/global"
+  fstype "none"
+  options "bind,rw"
+  action :mount
+  not_if "test -L #{modx_path}/global"
+end
+
+mount "#{modx_path}/assets" do
+  device "#{deployment_home}/shared/assets"
+  fstype "none"
+  options "bind,rw"
+  action :mount
   not_if "test -L #{modx_path}/assets"
 end
 
-directory "#{modx_path}/core/components" do
-  recursive true
-  action :delete
+mount "#{modx_path}/core/components" do
+  device "#{deployment_home}/shared/components"
+  fstype "none"
+  options "bind,rw"
+  action :mount
   not_if "test -L #{modx_path}/core/components"
 end
 
-directory "#{modx_path}/core/cache" do
-  recursive true
-  action :delete
+mount "#{modx_path}/core/cache" do
+  device "#{deployment_home}/shared/cache"
+  fstype "none"
+  options "bind,rw"
+  action :mount
   not_if "test -L #{modx_path}/core/cache"
-end
-
-# Link shared resources
-link "#{modx_path}/global"  do
-  to "#{deployment_home}/global"
-end
-
-link "#{modx_path}/assets"  do
-  to "#{deployment_home}/shared/assets"
-end
-
-link "#{modx_path}/core/components"  do
-  to "#{deployment_home}/shared/components"
-end
-
-link "#{modx_path}/core/cache"  do
-  to "#{deployment_home}/shared/cache"
 end
 
 # Update php.ini file
