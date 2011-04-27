@@ -44,7 +44,6 @@ end
 
 user "desktop-support" do 
   uid "10023"
-  home "/var/shared/home/desktop-support"
   shell "/bin/bash"
   supports :manage_home => true
   password "$6$a6BU8mv3$.Y.K/Dzsi.wdLOBxdSriTI6twJ/iKX.DbFZW9ABXRlYx1xbv6buuER.NUath2n2fs59iYfl3wpjuRk8el.dUP0"
@@ -53,7 +52,6 @@ end
 
 user "sdk-support" do
   uid "10022"
-  home "/var/shared/home/sdk-support"
   shell "/bin/bash"
   supports :manage_home => true
   password "$6$TxxebpuN$y6m2li1F1xpr4iygtFa8CVYfMdWBuha13ZREW44RyD7rLYfDgsiTbQRV2c3syAB.kcuagjDK8qKlys.cYcGX51"
@@ -62,9 +60,16 @@ end
 
 user "tracking" do
   uid "10024"
-  home "/var/shared/home/tracking"
   shell "/bin/bash"
   supports :manage_home => true
   password "$6$Jwfu4j9I$eFZqoZMlAfu1Uqb/d781LvfsQ1fpvg.aD1E9Amrg1Yaj3PBbrp4zpH4UWxI644.kUfwtroDG1SpiLiO9yXhqi0"
   not_if "[ ! -z \"`who | grep tracking`\" ]"
+end
+
+# See OPS-33344 for details of this user
+user "productivity" do
+  uid "10025"
+  shell "/bin/bash"
+  supports :manage_home => true
+  password "$6$/MJN3wH6$g9/J0jEAeTvlmMqhXDN0WkkKvFC1leBlcfdRoIT6h8y11qt0mE/edMAx22pqls9.JL3lhtbuG0AXbABrTfgJd1"
 end
