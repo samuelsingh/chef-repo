@@ -5,6 +5,8 @@
 # Copyright 2010, Map of Medicine
 #
 
+include_recipe "apache2"
+
 node[:generic_vhost].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
@@ -24,6 +26,7 @@ node[:generic_vhost].each do |hostname,params|
         :docroot => params[:docroot]
       )
       only_if "test -d #{node[:apache][:dir]}/sites-available"
+      notifies :reload, resources(:service => "apache2")
     end
     
     link "#{node[:apache][:dir]}/sites-enabled/#{hostname}.conf"  do
@@ -57,8 +60,4 @@ node[:generic_vhost].each do |hostname,params|
   
   end
 
-end
-
-service "apache2" do
-  action :restart
 end
