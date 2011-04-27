@@ -27,6 +27,10 @@ JAVA_OPTS="-server -Xmx2550m -Xms2550m -XX:MaxNewSize=512m -XX:NewSize=512m -XX:
 # Add config for JMX monitoring
 JAVA_OPTS="$JAVA_OPTS -Dzenjmx.rmi.agent.port=<%= @jmx_port %> -javaagent:/usr/local/tomcat/lib/jagent.jar"
 
+# Set cached DNS values to expire after 30 minutes.
+# This is necessary when using ELB, which regularly shifts IP address
+JAVA_OPTS="$JAVA_OPTS -Dsun.net.inetaddr.ttl=1800"
+
 CATALINA_HOME=/usr/local/tomcat
 CATALINA_BASE=/var/tomcat/server<%= @ajp_port %>
 CATALINA_OPTS="-Djavax.net.ssl.trustStore=/var/mtm/ssl/truststore.jks -Djavax.net.ssl.trustStorePassword=truststorepassword -Djavax.net.ssl.keyStore=/var/mtm/ssl/client.jks -Djavax.net.ssl.keyStorePassword=clientkeystorepassword"
