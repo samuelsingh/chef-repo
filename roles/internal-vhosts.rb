@@ -31,6 +31,19 @@ override_attributes(
       "restricted_ips" => [],
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
+    },
+    "nexus.dev.mapofmedicine.com" => {
+      "srv_aliases" => [],
+      "webapps" => {
+        "nexus" => {
+          "port" => "9002",
+          "appserver" => "hudson-01.map-cloud-01.eu"
+        }
+      },
+      "primary_webapp" => "nexus",
+      "restricted_ips" => [],
+      "holding_page" => "false",
+      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
     }
   },
   "zenoss" => {
