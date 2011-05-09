@@ -50,6 +50,11 @@ node[:users].each do |username,params|
       append true
     end
     
+    group "admin" do
+      members ["#{username}"]
+      append true
+    end
+    
   end
 
 end
