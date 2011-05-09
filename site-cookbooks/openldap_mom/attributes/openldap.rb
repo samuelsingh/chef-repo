@@ -16,10 +16,8 @@
 # limitations under the License.
 #
 
-if domain.length > 0
-  set_unless[:openldap][:basedn] = "dc=mapofmedicine,dc=com"
-  set_unless[:openldap][:server] = "ldap.#{domain}"
-end
+set_unless[:openldap][:basedn] = "dc=mapofmedicine,dc=com"
+set_unless[:openldap][:server] = "ldap.map-cloud-01.eu"
 
 openldap[:rootpw] = "\{SSHA\}lEy3ajJDnWQQjS0ndWC9UKNaBT3o0WKd"
 
