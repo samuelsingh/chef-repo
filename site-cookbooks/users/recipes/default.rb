@@ -26,11 +26,11 @@ group "sysadmin" do
 end
 
 node[:users].each do |username,params|
-  
-  if params.has_key?("home")
-    user_home = params.fetch("home")
+
+  if params[:home].nil?
+    user_home = "/home/#{username}"
   else
-    user_home = "/var/shared/home/#{username}"
+    user_home = params[:home]
   end
 
   user "#{username}"  do
@@ -43,7 +43,7 @@ node[:users].each do |username,params|
     not_if "[ ! -z \"`who | grep #{username}`\" ]"
   end
 
-  if params.fetch("is_admin") == "true"
+  if params[:is_admin] == "true"
     
     group "sysadmin" do
       members ["#{username}"]

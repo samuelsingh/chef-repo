@@ -21,4 +21,3 @@
 # set_unless[:users] = {"username" => {"uid" => "999999", "home" => "/path/to/home", "pwd_hash" => "hash", "is_admin" => "true" }}
 #
 
-set_unless[:users] = ""
