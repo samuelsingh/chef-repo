@@ -1,0 +1,1 @@
+Use the thesaurus index builder to create the lucene search index that lives here.

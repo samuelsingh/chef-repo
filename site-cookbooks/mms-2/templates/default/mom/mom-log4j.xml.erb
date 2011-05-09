@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ***********************************************************************
+	Appender section - use the appenders to control at runtime how the
+	messages are formatted and where they are reported.
+	**************************************************************************-->
+	
+	<appender name="AUDITLOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/audit.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="datetime=[%d{yyyy-MM-dd HH:mm:ss.SSS}],status=[%5p],%m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="REC_UPDATE#com.oyster.mom.aspect.logging.level.audit.RecordUpdatedLevel" />
+			<param name="LevelMax" value="USECASE_SUCCESS#com.oyster.mom.aspect.logging.level.audit.UsecaseSuccessLevel" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="SECURITYLOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/security.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="datetime=[%d{yyyy-MM-dd HH:mm:ss.SSS}],status=[%5p],%m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ATHENS_USER_NOT_FOUND#com.oyster.mom.aspect.logging.level.security.AthensUserNotFoundLevel" />
+			<param name="LevelMax" value="FAILED_AUTHORIZATION#com.oyster.mom.aspect.logging.level.security.FailedAuthorizationLevel" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<param name="LevelToMatch" value="info" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="EXCEPTIONS" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/exceptions.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<param name="Threshold" value="WARN"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %5p - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/error.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<param name="Threshold" value="ERROR"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d: %5p %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/javascript.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<param name="Threshold" value="DEBUG"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d: %5p %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="APPLICATION" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/application.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<param name="Threshold" value="DEBUG"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d: %5p (%F:%L) - %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="USERBATCHLOG-DISPLAY" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/user-display.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d|%m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="USER_LOGIN#com.oyster.mom.aspect.logging.level.audit.UserLoginLevel" />
+			<param name="LevelMax" value="USER_LOGIN#com.oyster.mom.aspect.logging.level.audit.UserLoginLevel" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="ADMINBATCHLOG-DISPLAY" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="<%= @logpath %>/mom/admin-display.log"/>
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d|%m**EOL*%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ADMIN_NOTE#com.oyster.mom.aspect.logging.level.audit.AdminNoteLevel" />
+			<param name="LevelMax" value="ADMIN_NOTE#com.oyster.mom.aspect.logging.level.audit.AdminNoteLevel" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="MTMAUDIT-DISPLAY-ADMIN" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="dbclass" value="net.sourceforge.jtds.jdbc.Driver" />
+		<param name="url" value="jdbc:jtds:sqlserver://db:1433/mtmaudit" />
+		<param name="username" value="mtmuser" />
+		<param name="password" value="medic1" />
+		<param name="sql" value="INSERT INTO r3_display_admin_notes_audit(user_id, log_date, admin_info_text) values('@MDC:userId@', '@TIMESTAMP@', '@MDC:adminInfotext@')"/>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ADMIN_NOTE#com.oyster.mom.aspect.logging.level.audit.AdminNoteLevel" />
+			<param name="LevelMax" value="ADMIN_NOTE#com.oyster.mom.aspect.logging.level.audit.AdminNoteLevel" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<appender name="MTMAUDIT-DISPLAY-USER" class="org.apache.log4j.jdbcplus.JDBCAppender">
+		<param name="dbclass" value="net.sourceforge.jtds.jdbc.Driver" />
+		<param name="url" value="jdbc:jtds:sqlserver://db:1433/mtmaudit" />
+		<param name="username" value="mtmuser" />
+		<param name="password" value="medic1" />
+		<param name="sql" value="INSERT INTO r3_display_user_audit(logon_date, user_id, org_code, organisation_description, user_name) values('@TIMESTAMP@', '@MDC:userId@', '@MDC:orgCode@', '@MDC:orgDesc@', '@MDC:userName@')"/>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="USER_LOGIN#com.oyster.mom.aspect.logging.level.audit.UserLoginLevel" />
+			<param name="LevelMax" value="USER_LOGIN#com.oyster.mom.aspect.logging.level.audit.UserLoginLevel" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- ***********************************************************************
+	Logger section - use the loggers to control logging according to message type
+	and level.
+	**************************************************************************-->
+	
+	<logger name="com.oyster.mom" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="APPLICATION" />
+	</logger>
+	
+	<logger name="com.oyster.mom.aspect.logging" additivity="false">
+		<level value="info" />
+		<appender-ref ref="SECURITYLOG"/>
+		<appender-ref ref="AUDITLOG"/>
+		<!--<appender-ref ref="USERBATCHLOG-DISPLAY"/>-->
+		<!--<appender-ref ref="ADMINBATCHLOG-DISPLAY"/>-->
+		<!--<appender-ref ref="MTMAUDIT-DISPLAY-ADMIN"/>-->
+		<!--<appender-ref ref="MTMAUDIT-DISPLAY-USER"/>-->
+	</logger>
+	
+	<logger name="MoMSessionTerminationService" additivity="true">
+		<level value="debug" />
+		<appender-ref ref="SECURITYLOG" />
+	</logger>
+
+	<logger name="exceptions" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="EXCEPTIONS" />
+	</logger>
+
+	<root>
+		<level value="error" />
+		<appender-ref ref="ERROR" />
+	</root>
+
+</log4j:configuration>

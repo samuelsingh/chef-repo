@@ -1,0 +1,163 @@
+# settings for internal JCR users, workspaces management.
+m2mr2.jcr.internal.user=admin
+m2mr2.jcr.internal.password=admin
+m2mr2.jcr.internal.workspace=system
+
+m2mr2.jcr.pool.testOnBorrow=true
+m2mr2.jcr.pool.testOnReturn=true
+m2mr2.jcr.pool.testWhileIdle=false
+# Sets the number of milliseconds to sleep between runs of the idle object evictor thread. When non-positive, no idle object evictor thread will be run.
+m2mr2.jcr.pool.timeBetweenEvictionRunsMillis=300000
+# minEvictableIdleTimeMillis the minimum time that an idle object can sit in the pool before it becomes subject to eviction. Default is 1800000 (30 minutes). Note that eviction runs need to be performed to take this setting into effect.
+m2mr2.jcr.pool.minEvictableIdleTimeMillis=60000
+# location of JCR configuration
+m2mr2.jcr.repositoryHome=<%= @mmpath %>/crx
+m2mr2.jcr.repositoryConfigFile=repository.xml
+m2mr2.jcr.repositoryConfig=${m2mr2.jcr.repositoryHome}/${m2mr2.jcr.repositoryConfigFile}
+m2mr2.jcr.repositoryIndexDir=${m2mr2.jcr.repositoryHome}/workspaces
+
+# fixing variants is fast, as it uses only one (system) workspace.
+m2mr2.jcr.fix.variants.enabled=true
+# fixing nodes can be time consuming, because it check all current releases from all locally created variants (goes through many workspaces)
+m2mr2.jcr.fix.nodes.enabled=false
+
+# location of export folders
+m2mr2.export.folder=<%= @contentpath %>
+m2mr2.export.tempFolder=<%= @previewpath %>/tmp
+m2mr2.export.previewsFolder=<%= @previewpath %>/input
+m2mr2.export.attachmentsFolder=<%= @previewpath %>
+m2mr2.export.publicationsFolder=${m2mr2.export.folder}/md-packages
+m2mr2.export.m2mr1.notification.servlet=http://<%= @fqdn %>/previewloader
+
+# deployment settings
+m2mr2.export.publication.deployment.guid=cafebabe-cafe-babe-cafe-babecafebabe
+m2mr2.export.publication.deployment.name=<%= @deployment_name %>
+m2mr2.export.preview.deployment.guid=
+m2mr2.export.preview.deployment.name=previewserver
+
+# export encoding
+m2mr2.export.encoding=UTF-8
+
+# synchronization settings
+# unique numeric deployment id
+m2mr2.synchronization.deployment.id=<%= @node[:mms][:deployment][:id] %>
+m2mr2.synchronization.deployment.externalId.start=<%= @node[:mms][:deployment][:external_start] %>
+m2mr2.synchronization.deployment.externalId.end=<%= @node[:mms][:deployment][:external_end] %>
+m2mr2.synchronization.folder=${m2mr2.export.folder}/sync-packages
+m2mr2.synchronization.tempFolder=${m2mr2.synchronization.folder}/tmp
+
+m2mr2.batchProcessing.enabled=true
+m2mr2.asynchronousPublishing.enabled=false
+
+# CS session timeout, set to 1h (correct values eg. 90s, 55m, 3h)
+m2mr2.session.timeout.length=1h
+
+# locks refresh interval - default to 1 minute
+m2mr2.locks.refresh.interval.length=1m
+
+m2mr2.max.allowed.accreditations.count=20
+m2mr2.max.allowed.certifications.count=20
+
+# environment check settings
+m2mr2.environment.check.throws.exceptions=true
+m2mr2.environment.check.version.xalan=false
+m2mr2.environment.check.version.xerces=false
+m2mr2.environment.check.version.repo=false
+m2mr2.environment.check.version.jcr.libs=false
+m2mr2.environment.check.version.mapeditor=true
+
+# jcr transactions decorator
+m2mr2.decorator.transactions.enabled=true
+# default transaction timeout in seconds
+m2mr2.decorator.transactions.timeout=30
+
+# jcr synchronization decorator - when enabled all write operations and commits to jcr repository are serialized
+m2mr2.decorator.synchronization.enabled=false
+# synchronization lock timeout in seconds
+m2mr2.decorator.synchronization.timeout=10
+
+# rules engine decorator
+m2mr2.decorator.drools.enabled=true
+
+# integrity check decorator
+m2mr2.decorator.integrity.enabled=false
+
+# performance logging decorator
+m2mr2.decorator.performance.enabled=false
+m2mr2.decorator.performance.memoryTracingEnabled=false
+
+# web service used by tests
+#webservice.url=http://127.0.0.1:8080/m2mr2/services/ContentWebService
+
+# external location where configuration will be stored
+#m2mr2.configuration.files.location=/var/mtm
+
+# if realm is set to 1 then ASA Service authentication is on
+# if realm is set to 2 then standard username and password authentication is on
+#web.service.authentication.realm=1
+
+### username and password for QUARTZ jobs ###
+quartz.username=<%= @node[:mms][:quartz][:user] %>
+quartz.password=<%= @node[:mms][:quartz][:password] %>
+
+### failover config
+m2mr2.failover.enabled=false
+m2mr2.failover.idleTimeout=30
+m2mr2.failover.initTimeout=60
+m2mr2.failover.dataSource=jdbc/quorum
+m2mr2.failover.dateFunction=getdate()
+m2mr2.failover.restartCmd=/test/tomcat1/shutdown.bat
+
+# TEST database config
+#datasource.username=mtmuser
+#datasource.password=medic1
+#datasource.driver.class.name=net.sourceforge.jtds.jdbc.Driver
+#datasource.url=jdbc:jtds:sqlserver://crxdatabase:1433/mcs
+datasource.username=
+datasource.password=
+datasource.driver.class.name=
+datasource.url=
+
+# The jndi name of the datasource. Should correspond to the configured in the tomcat context xml.  
+datasource.jndi.name=jdbc/mom
+
+
+### scheduled time definition for full map preview ###
+# VARIABLE ALLOWED VALUES
+# m2mr2.fullMapPreview.seconds 0-59
+# m2mr2.fullMapPreview.minutes 0-59
+# m2mr2.fullMapPreview.hours 0-23
+#
+# Additionally there is special character "*" that means every second, minute, hour.
+m2mr2.fullMapPreview.seconds=0
+m2mr2.fullMapPreview.minutes=<%= @previewmin %>
+m2mr2.fullMapPreview.hours=<%= @previewhour %>
+# flag indicating if Map Display content package will be generated for updated variant
+m2mr2.udr.export.release.enabled=false
+# flag indicating if synchronization package will be generated for updated variant
+m2mr2.udr.export.content.enabled=false
+
+
+### POST 2.6.4 UPGRADE
+
+#workspace.cleanup.*.enabled=   # true|false
+#workspace.cleanup.*.cron=    # cron expression
+#workspace.cleanup.*.timeout=   # 0 - to unlimited
+#workspace.cleanup.*.archiveFolder=  # empty - do do not archive
+workspace.cleanup.unused.enabled=true
+
+#For debugging, this will run every 5 minutes
+#workspace.cleanup.unused.cron=0 0/5 * * * ?
+
+#For production, this will run every night at 8 PM
+workspace.cleanup.unused.cron=0 0 20 * * ?
+workspace.cleanup.unused.timeout=1
+workspace.cleanup.interim.enabled=true
+workspace.cleanup.interim.cron=0 0 20 * * ?
+workspace.cleanup.interim.timeout=1
+workspace.cleanup.interim.archiveFolder=<%= @ws_archive %>/interim
+workspace.cleanup.historical.enabled=false
+workspace.cleanup.historical.cron=0 0 20 * * ?
+workspace.cleanup.historical.timeout=1
+workspace.cleanup.historical.archiveFolder=<%= @ws_archive %>/historical
+
