@@ -20,387 +20,211 @@
 # Generates the mtm directory structure
 #
 
-# Variables
-#
-logpath         = node[:mms][:logpath]
-contentpath     = node[:mms][:contentpath]
-fqdn            = node[:mms][:fqdn]
-deploy_dir      = node[:mms][:deploy_dir]
-deployment_name = node[:mms][:deployment_name]
-version         = node[:mms][:version]
-me_version      = node[:mms][:me_version]
-dict_version    = node[:mms][:dict_version]
-athens_link     = node[:mms][:athens_link]
-multiple_views  = node[:mms][:multiple_views]
-ws_archive	= node[:mms][:ws_archive]
-
-mmpath = node[:mms][:mapmanager][:path]
-
-previewpath = node[:mms][:previewloader][:path]
-
-mompath = node[:mms][:mom][:path]
-mom_dbuser = node[:mms][:mom][:dbuser]
-mom_dbpass = node[:mms][:mom][:dbpass]
-mom_dbhost = node[:mms][:mom][:dbhost]
-mom_dbname = node[:mms][:mom][:dbname]
-
+# User / group that Tomcat runs under
 t_user = node[:tomcat][:user]
 t_group = node[:tomcat][:group]
 
-quova_svr = 'geoip.map-cloud-01.eu' # Bad, set this right!
+# User that a sysadmin uses to interact with the application
+sys_usr = [:mms][:common][:interactive_usr]
 
-## Creates MMS common configuration directories
-
-directory "#{logpath}"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{logpath}"
-end
-
-directory "#{contentpath}/md-packages"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{contentpath}/md-packages"
-end
-
-directory "#{contentpath}/sync-packages"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{contentpath}/sync-packages"
-end
-
-# Workspace archive directories
-
-directory ws_archive do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{ws_archive}"
-end
-
-directory "#{ws_archive}/interim" do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{ws_archive}/interim"
-end
-
-directory "#{ws_archive}/historical" do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{ws_archive}/historical"
-end
-
-## Creates configuration directories for the mom webapp, used by full map preview
-
-directory "#{mompath}"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{mompath}"
-end
-
-directory "#{mompath}/index"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  action :create
-  not_if "test -d #{mompath}/index"
-end
-
-directory "#{mompath}/ipgIndex"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  action :create
-  not_if "test -d #{mompath}/ipgIndex"
-end
-
-directory "#{mompath}/nelhIndex"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  action :create
-  not_if "test -d #{mompath}/nelhIndex"
-end
-
-# Static directories
+## First, let's  create the MMS base directory structure.  This looks something like:
 #
+# mms_base
+# |- content-in
+# |- content-out
+# |- mapmanager
+# |- mom
+# |- previewloader
+#
+# cs-tools and queue-manager are dealt with in separate recipes
 
-remote_directory "#{mompath}/athens" do
-  source "athens"
-  files_owner "sysadmin"
-  files_group "sysadmin"
-  files_mode "0644"
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
+mms_base            = node[:mms][:base]
+content_in          = "#{mms_base}/content-in"
+content_out         = "#{mms_base}/content-out"
+mapmanager_base     = "#{mms_base}/mapmanager"
+mom_base            = "#{mms_base}/mom"
+previewloader_base  = "#{mms_base}/previewloader"
+
+base_dirs = [mms_base,content_in,content_out,mapmanager_base,mom_base,previewloader_base]
+
+base_dirs.each do |dir|
+  
+  directory dir do
+    owner t_user
+    group t_group
+    action :create
+  end
+
 end
 
-remote_directory "#{mompath}/ssl" do
-  source "ssl"
-  files_owner "sysadmin"
-  files_group "sysadmin"
-  files_mode "0644"
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-end
+## Now we'll populate these base directories
 
-remote_directory "#{mompath}/thesaurusindex" do
-  source "thesaurusindex"
-  files_owner "sysadmin"
-  files_group "sysadmin"
-  files_mode "0644"
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-end
+## This is the structure for content-in which is used to import synchronisation packages into MMS
+## Looks like:
+#
+# mms_base
+# |- content-in
+#   |- import
+#   |- scheduled
 
-remote_directory "#{mompath}/translation" do
-  source "translation"
-  files_owner "sysadmin"
-  files_group "sysadmin"
-  files_mode "0644"
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-end
-
-## Creates configuration directories for the mapmanager webapp
-
-directory "#{mmpath}/config"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  recursive true
+directory "#{content_in}/scheduled"  do
+  owner t_user
+  group t_group
   action :create
-  not_if "test -d #{mmpath}/config"
 end
 
-template "#{mmpath}/config/cs-webservice.properties" do
-  source "mapmanager/cs-webservice.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :mmpath => mmpath,
-    :fqdn => fqdn
-  )
-end
-
-directory "#{mmpath}/crx"  do
-  mode "0755"
-  recursive true
+directory "#{content_in}/import"  do
+  owner sys_usr
   action :create
-  not_if "test -d #{mmpath}/crx"
-  owner "tomcat"
-  group "tomcat"
 end
 
-# Tests for whether an EBS vloume is present to hold JCR indexes
-# and, if found, mounts it to the correct location.
+## This is the structure for content-out which is where published content shows up
+## Looks like:
+#
+# mms_base
+# |- content-out
+#   |- md-packages
+#   |- sync-packages
 
-mount "#{mmpath}/crx" do
+["#{content_out}/md-packages,#{content_out}/sync-packages"].each do |dir|
+  
+  directory dir do
+    owner t_user
+    group t_group
+    action :create
+  end
+  
+end
+
+## This is the structure required for the mapmanager webapp:
+#
+# mms_base
+# |- mapmanager
+#   |- logs
+#   |- repo
+#     |- repository.xml
+#     |- indexing_configuration.xml
+
+repo_home = "#{mapmanager_base}/repo"
+
+directory "#{repo_home}/logs" do
+  owner t_user
+  group t_group
+  action :create
+end
+
+# For Client MMS, there needs to be an EBS volume to handle the workspace indexes,
+# as they take so long to construct.  So if one is found where expected, mount it.
+
+mount repo_home do
   device "/dev/sdh1"
   fstype "ext3"
   action [:mount, :enable]
   only_if "test -b /dev/sdh1"
+  # TODO: trigger a chown of repo_home to the Tomcat user if a mount happens
 end
 
-directory "#{mmpath}/crx/workspaces"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{mmpath}/crx/workspaces"
-end
-
-template "#{mmpath}/crx/repository.xml" do
+template "#{repo_home}/repository.xml" do
   source "mapmanager/repository.xml.erb"
   mode 0644
-  owner "tomcat"
-  group "tomcat"
   variables(
-    :mmpath => mmpath,
-    :dbuser => node[:mms][:repository][:dbuser],
-    :dbpass => node[:mms][:repository][:dbpass],
-    :dbhost => node[:mms][:repository][:dbhost],
-    :dbname => node[:mms][:repository][:dbname],
-    :datastore => node[:mms][:datastore]
+    :repo_home => repo_home,
+    :dbuser => node[:mms][:application][:repository][:dbuser],
+    :dbpass => node[:mms][:application][:repository][:dbpass],
+    :dbhost => node[:mms][:application][:repository][:dbhost],
+    :dbname => node[:mms][:application][:repository][:dbname],
+    :datastore => node[:mms][:application][:datastore]
   )
 end
 
-remote_file "#{mmpath}/crx/indexing_configuration.xml" do
+remote_file "#{repo_home}/indexing_configuration.xml" do
   source "mapmanager/indexing_configuration.xml"
-  owner "sysadmin"
-  group "sysadmin"
   mode "0644"
 end
 
-# Routine to figure out preview time values
-previewvals = /[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d):[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d)/.match("#{node[:mms][:preview_time]}")
+# End: mapmanager
 
-template "#{mmpath}/config/m2mr2-cs-base.properties" do
-  source "mapmanager/m2mr2-cs-base.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :mmpath => mmpath,
-    :logpath => logpath,
-    :contentpath => contentpath,
-    :previewpath => previewpath,
-    :deployment_name => deployment_name,
-    :previewhour => previewvals[1],
-    :previewmin => previewvals[2],
-    :fqdn => fqdn,
-    :ws_archive => ws_archive
-  )
+## This is the structure required for the mom webapp:
+#
+# mms_base
+# |- mom
+#   |- athens
+#   |- index
+#   |- ipgIndex
+#   |- logs
+#   |- nelhIndex
+#   |- ssl
+#   |- thesaurusindex
+#   |- translation
+#
+# The mom webapp here is used by full map preview (FMP)
+
+# Create empty directories, which are then populated dynamically by the application
+
+[mom_base,"#{mom_base}/index","#{mom_base}/ipgIndex","#{mom_base}/nelhIndex","#{mom_base}/logs"].each do |dir|
+  
+  directory dir do
+    owner t_user
+    group t_group
+    action :create
+  end
+  
 end
 
-template "#{mmpath}/config/MapEditorCentralConfig.xml" do
-  source "mapmanager/MapEditorCentralConfig.xml.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :mmpath => mmpath,
-    :fqdn => fqdn,
-    :me_version => me_version,
-    :dict_version => dict_version
-  )
+# These directories contain static files, so are constructed from the recipe
+
+['athens','ssl','thesaurusindex','translation'].each do |sdir|
+  
+  remote_directory "#{mom_base}/#{sdir}" do
+    source "#{sdir}"
+    files_mode "0644"
+    mode "0755"
+  end
+  
 end
 
-template "#{mmpath}/config/mapmanager.properties" do
-  source "mapmanager/mapmanager.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :mmpath => mmpath,
-    :fqdn => fqdn,
-    :athens_link => athens_link,
-    :multiple_views => multiple_views
-  )
+# End: mom webapp
+
+## This is the structure required for the previewloader webapp:
+#
+# mms_base
+# |- previewloader
+#   |- attachments
+#   |- failure
+#   |- input
+#   |- logs
+#   |- success
+#   |- tmp
+#
+
+# Create empty directories, which are then populated dynamically by the application
+
+preview_dirs = Array.new
+preview_dirs << previewloader_base
+preview_dirs << previewloader_base/attachments
+preview_dirs << previewloader_base/failure
+preview_dirs << previewloader_base/input
+preview_dirs << previewloader_base/logs
+preview_dirs << previewloader_base/success
+preview_dirs << previewloader_base/tmp
+
+preview_dirs.each do |dir|
+  
+  directory dir do
+    owner t_user
+    group t_group
+    action :create
+  end
+  
 end
 
-template "#{mmpath}/config/mapmanager-log4j.xml" do
-  source "mapmanager/mapmanager-log4j.xml.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :logpath => logpath
-  )
-end
+# End: previewloader webapp
 
-## Creates configuration directories for the previewloader webapp
+## Tomcat configuration
 
-directory "#{previewpath}/attachments"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{previewpath}/attachments"
-end
-
-directory "#{previewpath}/config"  do
-  owner "sysadmin"
-  group "sysadmin"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{previewpath}/config"
-end
-
-directory "#{previewpath}/failure"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{previewpath}/failure"
-end
-
-directory "#{previewpath}/input"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{previewpath}/input"
-end
-
-directory "#{previewpath}/success"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{previewpath}/success"
-end
-
-directory "#{previewpath}/tmp"  do
-  owner "tomcat"
-  group "tomcat"
-  mode "0755"
-  recursive true
-  action :create
-  not_if "test -d #{previewpath}/tmp"
-end
-
-template "#{previewpath}/config/previewloader-log4j.properties" do
-  source "previewloader/previewloader-log4j.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :logpath => logpath
-  )
-end
-
-template "#{previewpath}/config/contentloader.properties" do
-  source "previewloader/contentloader.properties.erb"
-  mode 0644
-  owner "sysadmin"
-  group "sysadmin"
-  variables(
-    :previewpath => previewpath,
-    :mom_dbuser => mom_dbuser,
-    :mom_dbpass => mom_dbpass,
-    :mom_dbhost => mom_dbhost,
-    :mom_dbname => mom_dbname
-  )
-  only_if "test -d #{previewpath}/config"
-end
-
-## Tomcat base configuration
-
-link "#{deploy_dir}/webapps-running"  do
-  to "#{deploy_dir}/mms-#{version}/webapps"
-  only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
-end
+# As deployed in production, the mapmanager webapp is deployed to tomcat9001 while adminapp, mom and previewloader
+# are on tomcat9002.  This allows the two tomcat processes to be controlled independently; useful when the previewloader
+# fails (again).
 
 if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
   
@@ -408,32 +232,65 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     
     if ajp_port == 9001
       
-      directory "#{node[:tomcat][:basedir]}/server9001/webapps" do
-        owner "tomcat"
-        group "tomcat"
-        mode "0755"
+      server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
+      shared_loader = "#{server_dir}/shared/lib"
+      
+      directory "#{server_dir}/webapps" do
+        owner t_user
+        group t_group
         action :create
-        not_if "test -d #{node[:tomcat][:basedir]}/server9001/webapps"
       end
       
-      link "#{node[:tomcat][:basedir]}/server9001/webapps/mapmanager"  do
-        to "#{deploy_dir}/mms-#{version}/webapps/mapmanager"
-        only_if "test -d #{deploy_dir}/mms-#{version}/webapps"
-      end
+      ## Start: configuration for the mapmanager webapp
       
-      template "#{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost/mapmanager.xml" do
+      deployment_name = node[:mms][:application][:deployment_name]
+      athens_link     = node[:mms][:application][:athens_link]
+      multiple_views  = node[:mms][:application][:multiple_views]
+      
+      template "#{server_dir}/conf/Catalina/localhost/mapmanager.xml" do
         source "mapmanager/mapmanager.xml.erb"
-        mode 0644
-        owner "sysadmin"
-        group "sysadmin"
         variables(
-          :dbuser => node[:mms][:mapmanager][:dbuser],
-          :dbpass => node[:mms][:mapmanager][:dbpass],
-          :dbhost => node[:mms][:mapmanager][:dbhost],
-          :dbname => node[:mms][:mapmanager][:dbname]
+          :dbuser => node[:mms][:application][:mapmanager][:dbuser],
+          :dbpass => node[:mms][:application][:mapmanager][:dbpass],
+          :dbhost => node[:mms][:application][:mapmanager][:dbhost],
+          :dbname => node[:mms][:application][:mapmanager][:dbname]
         )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9001/conf/Catalina/localhost"
+        only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
+      
+      # Routine to figure out preview time values
+      previewvals = /[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d):[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d)/.match("#{node[:mms][:application][:preview_time]}")
+      
+      template "#{shared_loader}/m2mr2-cs-base.properties" do
+        source "mapmanager/m2mr2-cs-base.properties.erb"
+        variables(
+          :mapmanager_base => mapmanager_base,
+          :repo_home => repo_home,
+          :content_out => content_out,
+          :previewloader_base => previewloader_base,
+          :deployment_name => deployment_name,
+          :previewhour => previewvals[1],
+          :previewmin => previewvals[2]
+        )
+      end
+      
+      template "#{shared_loader}/mapmanager.properties" do
+        source "mapmanager/mapmanager.properties.erb"
+        variables(
+          :mapmanager_base => mapmanager_base,
+          :athens_link => athens_link,
+          :multiple_views => multiple_views
+        )
+      end
+      
+      template "#{shared_loader}/mapmanager-log4j.xml" do
+        source "mapmanager/mapmanager-log4j.xml.erb"
+      end
+      
+      # MapEditorCentralConfig.xml eliminated
+      # cs-webservice.properties eliminated
+      
+      ## End: configuration for the mapmanager webapp
       
     end
     
@@ -442,103 +299,94 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
       shared_loader = "#{server_dir}/shared/lib"
       
-      directory "#{node[:tomcat][:basedir]}/server9002/webapps" do
-        owner "tomcat"
-        group "tomcat"
-        mode "0755"
+      directory "#{server_dir}/webapps" do
+        owner t_user
+        group t_group
         action :create
-        not_if "test -d #{node[:tomcat][:basedir]}/server9002/webapps"
       end
       
-      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/mom.xml" do
+      ## Start: configuration for the mom webapp
+      
+      template "#{server_dir}/conf/Catalina/localhost/mom.xml" do
         source "mom/mom.xml.erb"
-        mode 0644
-        owner "sysadmin"
-        group "sysadmin"
         variables(
-          :dbuser => mom_dbuser,
-          :dbpass => mom_dbpass,
-          :dbhost => mom_dbhost,
-          :dbname => mom_dbname
+          :dbuser => node[:mms][:application][:mom][:dbuser],
+          :dbpass => node[:mms][:application][:mom][:dbpass],
+          :dbhost => node[:mms][:application][:mom][:dbhost],
+          :dbname => node[:mms][:application][:mom][:dbname]
         )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
-      end
-      
-      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/adminapp.xml" do
-        source "mom/adminapp.xml.erb"
-        mode 0644
-        owner "sysadmin"
-        group "sysadmin"
-        variables(
-          :dbuser => node[:mms][:mapmanager][:dbuser],
-          :dbpass => node[:mms][:mapmanager][:dbpass],
-          :dbhost => node[:mms][:mapmanager][:dbhost],
-          :dbname => node[:mms][:mapmanager][:dbname]
-        )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
-      end
-      
-      template "#{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost/previewloader.xml" do
-        source "previewloader/previewloader.xml.erb"
-        mode 0644
-        owner "sysadmin"
-        group "sysadmin"
-        variables(
-          :dbuser => mom_dbuser,
-          :dbpass => mom_dbpass,
-          :dbhost => mom_dbhost,
-          :dbname => mom_dbname
-        )
-        only_if "test -d #{node[:tomcat][:basedir]}/server9002/conf/Catalina/localhost"
+        only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
       
       template "#{shared_loader}/mom-log4j.xml" do
         source "mom/mom-log4j.xml.erb"
-        mode 0644
-        group t_user
-        group t_group
-        variables(
-          :mtmpath => mompath,
-          :md_fqdn => fqdn
-        )
       end
       
+      ## End: configuration for the mom webapp
+      
+      ## Start: configuration for the adminapp webapp
+      
+      template "#{server_dir}/conf/Catalina/localhost/adminapp.xml" do
+        source "mom/adminapp.xml.erb"
+        variables(
+          :dbuser => node[:mms][:application][:mapmanager][:dbuser],
+          :dbpass => node[:mms][:application][:mapmanager][:dbpass],
+          :dbhost => node[:mms][:application][:mapmanager][:dbhost],
+          :dbname => node[:mms][:application][:mapmanager][:dbname]
+        )
+        only_if "test -d #{server_dir}/conf/Catalina/localhost"
+      end
+
       template "#{shared_loader}/adminapp-log4j.xml" do
         source "mom/adminapp-log4j.xml.erb"
-        mode 0644
-        group t_user
-        group t_group
+      end
+      
+      ## End: configuration for the adminapp webapp
+      
+      ## Start: configuration for the previewloader webapp
+      
+      template "#{shared_loader}/previewloader-log4j.properties" do
+        source "previewloader/previewloader-log4j.properties.erb"
         variables(
-          :mtmpath => mompath,
-          :md_fqdn => fqdn
+          :previewloader_base => previewloader_base
         )
       end
       
-      template "#{shared_loader}/previewloader-log4j.xml" do
-        source "previewloader/previewloader-log4j.xml.erb"
-        mode 0644
-        group t_user
-        group t_group
+      template "#{server_dir}/conf/Catalina/localhost/previewloader.xml" do
+        source "previewloader/previewloader.xml.erb"
         variables(
-          :mtmpath => previewpath,
-          :md_fqdn => fqdn
+          :dbuser => node[:mms][:application][:mom][:dbuser],
+          :dbpass => node[:mms][:application][:mom][:dbpass],
+          :dbhost => node[:mms][:application][:mom][:dbhost],
+          :dbname => node[:mms][:application][:mom][:dbname]
         )
+        only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
+      
+      template "#{shared_loader}/contentloader.properties" do
+        source "previewloader/contentloader.properties.erb"
+        variables(
+          :previewpath => previewloader_base,
+          :mom_dbuser => node[:mms][:application][:mom][:dbuser],
+          :mom_dbpass => node[:mms][:application][:mom][:dbpass],
+          :mom_dbhost => node[:mms][:application][:mom][:dbhost],
+          :mom_dbname => node[:mms][:application][:mom][:dbname]
+        )
+        only_if "test -d #{shared_loader}"
+      end
+      
+      ## End: configuration for the previewloader webapp
       
     end
     
+    # mom.properties is required by all webapps
     template "#{shared_loader}/mom.properties" do
       source "mom/mom.properties.erb"
-      mode 0644
-      group t_user
-      group t_group
       variables(
-        :mtmpath => mompath,
-        :md_fqdn => fqdn,
-        :quova_svr => quova_svr
+        :mom_base => mom_base
       )
     end
     
   end
   
-end 
+end

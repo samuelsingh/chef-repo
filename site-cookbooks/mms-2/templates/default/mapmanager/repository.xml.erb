@@ -22,7 +22,7 @@
       <!-- <param name="defaultUserId" value="superuser"/> -->
     </LoginModule>
   </Security>
-  <Workspaces rootPath="<%= @mmpath %>/crx/workspaces" defaultWorkspace="system" configRootPath="/workspaces" maxIdleTime="900" />
+  <Workspaces rootPath="<%= @repo_home %>/workspaces" defaultWorkspace="system" configRootPath="/workspaces" maxIdleTime="900" />
   <Workspace name="${wsp.name}">
     <FileSystem class="org.apache.jackrabbit.core.fs.db.CSFileSystem">
       <param name="driver" value="net.sourceforge.jtds.jdbc.Driver" />

@@ -17,38 +17,7 @@
 # limitations under the License.
 #
 
-set_unless[:mms][:fqdn] = "mms.md-cloud-01.eu"
-set_unless[:mms][:deploy_dir] = "/var/shared/deployment/mms"
-set_unless[:mms][:version] = "1.1.1.ALL.1.1"
-set_unless[:mms][:me_version] = "7.6.8" # TODO:These should be set to dummy values once we're
-set_unless[:mms][:dict_version] = "0.1" # sure that production has picked up its override attributes
-set_unless[:mms][:logpath] = "/var/mms/logs"
-set_unless[:mms][:contentpath] = "/var/mms/content"
-set_unless[:mms][:content_in] = "/var/mms/content-in"
-set_unless[:mms][:ws_archive] = "/mnt/ws-archive"
-set_unless[:mms][:deployment_name] = "unset" # Should be either "Client MMS" or "Map of Medicine Root MMS"
-set_unless[:mms][:deployment][:id] = "0" # Should be set appropriately in JSON properties
-set_unless[:mms][:deployment][:external_start] = "0" # Should be set appropriately in JSON properties
-set_unless[:mms][:deployment][:external_end] = "0" # Should be set appropriately in JSON properties
-set_unless[:mms][:quartz][:user] = "quartz@mapofmedicine.com"
-set_unless[:mms][:quartz][:password] = "password"
-set_unless[:mms][:preview_time] = "22:00" # Format is HH:MM
-set_unless[:mms][:athens_link] = "true" # True for Client MMS, false for Root MMS
-set_unless[:mms][:multiple_views] = "true" # True for Client MMS, false for Root MMS
-set_unless[:mms][:datastore] = true # True for everywhere except Client MMS
-
-set_unless[:mms][:dbuser] = "mtmuser"
-set_unless[:mms][:dbpass] = "medic1"
-set_unless[:mms][:dbhost] = "db"
-
-# Settings for the mapmanager webapp config
-set_unless[:mms][:mapmanager][:path] = "/var/mms/mapmanager"
-
-# Settings for the mom/adminapp webapp config
-set_unless[:mms][:mom][:path] = "/var/mms/mom"
-
-# Settings for the previewloader webapp config
-set_unless[:mms][:previewloader][:path] = "/var/mms/previewloader"
+# Old attributes
 
 # Settings for cs-tools
 set_unless[:mms][:cstools][:path] = "/var/mms/cs-tools"
@@ -56,20 +25,43 @@ set_unless[:mms][:cstools][:path] = "/var/mms/cs-tools"
 # Settings for batchProcessing
 set_unless[:mms][:queuemgr][:path] = "/var/mms/queue-manager"
 
-# Settings for the mappreview database
-set[:mms][:mom][:dbuser] = node[:mms][:dbuser]
-set[:mms][:mom][:dbpass] = node[:mms][:dbpass]
-set[:mms][:mom][:dbhost] = node[:mms][:dbhost]
-set_unless[:mms][:mom][:dbname] = "mappreview"
+
+## New attributes
+
+# Attributes common to all recipes
+set_unless[:mms][:common][:interactive_usr] = 'root'
+set_unless[:mms][:common][:dbuser] = "mtmuser"
+set_unless[:mms][:common][:dbpass] = "medic1"
+set_unless[:mms][:common][:dbhost] = "db"
+set_unless[:mms][:common][:fqdn] = "mms.md-cloud-01.eu"
+set_unless[:mms][:common][:quova_svr] = "geoip.map-cloud-01.eu"
+
+# Used by m2mr2-cs-base.properties
+set_unless[:mms][:application][:deployment_name] = "unset" # Should be either "Client MMS" or "Map of Medicine Root MMS"
+set_unless[:mms][:application][:deployment][:id] = "0" # Should be set appropriately in JSON properties
+set_unless[:mms][:application][:deployment][:external_start] = "0" # Should be set appropriately in JSON properties
+set_unless[:mms][:application][:deployment][:external_end] = "0" # Should be set appropriately in JSON properties
+set_unless[:mms][:application][:quartz][:user] = "quartz@mapofmedicine.com"
+set_unless[:mms][:application][:quartz][:password] = "password"
+set_unless[:mms][:application][:preview_time] = "22:00" # Format is HH:MM
+set_unless[:mms][:application][:athens_link] = "true" # True for Client MMS, false for Root MMS
+set_unless[:mms][:application][:multiple_views] = "true" # True for Client MMS, false for Root MMS
+
+# Settings for the jackrabbit repository
+set_unless[:mms][:application][:datastore] = true # True for everywhere except Client MMS
+set_unless[:mms][:application][:repository][:dbuser] = node[:mms][:common][:dbuser]
+set_unless[:mms][:application][:repository][:dbpass] = node[:mms][:common][:dbpass]
+set_unless[:mms][:application][:repository][:dbhost] = node[:mms][:common][:dbhost]
+set_unless[:mms][:application][:repository][:dbname] = "crx"
 
 # Settings for the mcs database
-set[:mms][:mapmanager][:dbuser] = node[:mms][:dbuser]
-set[:mms][:mapmanager][:dbpass] = node[:mms][:dbpass]
-set[:mms][:mapmanager][:dbhost] = node[:mms][:dbhost]
-set_unless[:mms][:mapmanager][:dbname] = "mcs"
+set_unless[:mms][:application][:mapmanager][:dbuser] = node[:mms][:common][:dbuser]
+set_unless[:mms][:application][:mapmanager][:dbpass] = node[:mms][:common][:dbpass]
+set_unless[:mms][:application][:mapmanager][:dbhost] = node[:mms][:common][:dbhost]
+set_unless[:mms][:application][:mapmanager][:dbname] = "mcs"
 
-# Settings for the jackrabbit repository database
-set[:mms][:repository][:dbuser] = node[:mms][:dbuser]
-set[:mms][:repository][:dbpass] = node[:mms][:dbpass]
-set[:mms][:repository][:dbhost] = node[:mms][:dbhost]
-set_unless[:mms][:repository][:dbname] = "crx"
+# Settings for the mappreview database
+set_unless[:mms][:application][:mom][:dbuser] = node[:mms][:common][:dbuser]
+set_unless[:mms][:application][:mom][:dbpass] = node[:mms][:common][:dbpass]
+set_unless[:mms][:application][:mom][:dbhost] = node[:mms][:common][:dbhost]
+set_unless[:mms][:application][:mom][:dbname] = "mappreview"

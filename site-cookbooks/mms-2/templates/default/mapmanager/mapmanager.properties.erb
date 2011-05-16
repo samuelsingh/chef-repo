@@ -1,56 +1,8 @@
-#Editor integration configuration
-editor.config.location=http://<%= @fqdn %>/mapmanager/services/ContentWebService
-editor.download.url=mapeditor/ShellApplication.msi
-ms.net.framework=mapeditor/dotnetfx.exe
-editor.shell.version=1.5.9
+mm.home=<%= @mapmanager_base %>
+mm.fqdn=<%= @node[:mms][:common][:fqdn] %>
 
-# Map Display integration configuration
-mom.baseUrl=/mom/
-
-# Map Display live version
-mom.live.url=http://app.mapofmedicine.com
-mom.live.nameVersion=Live Map Display (UK/EU)
-preview.url=http://<%= @fqdn %>/previewloader
-# Map Manager jsp properties
-static.baseUrl=
-help.baseUrl=files/help/
-images.accreditation.baseUrl=img/content/accreditations/
-images.certification.baseUrl=img/content/certifications/
-show.profile.link=false
-
-# MapManager Search Highlighting
-searchUtils.highlightSearchPrefix=<span class=\"searchText\">
-searchUtils.highlightSearchPostfix=</span>
-
-# Error properties
-support.email.address=support@mapofmedicine.com
-page.locking.error.timestamp.pattern=dd/MMM/yyyy, HH:mm zz
-verbose.error.page=true
-
-# url encoding used by controllers
-url.encoding.format=UTF-8
-
-#Allow launch of map editor from username password version of app.
-map.editor.m2m.integration=true
-
-# indicate whether users can publish or only request publication
-# false for Accenture, true for Informa/Medic to Medic, and for integrations tests
-#release.always.really.publish=false
-# Text to display in message 'Begin publication process'
-publicationRequest.textPlaceholder.beginPage=This should happen within 2 working days.
-# Text for message bar on home page when the view is locked for publishing 
-publicationRequest.textPlaceholder.messageBar=for editing within 2 working days.
-#List of email recipients for publication request and cancel alert
-publicationRequest.mail_recipients=systems@mapofmedicine.com
-
-
-#indicate wheteher to show athens login link
-show.athens.login.link=<%= @athens_link %>
-# url to Athens logout screen
-athens.logout.url=http://auth.athensams.net/?ath_dspid=MOM&ath_action=logout
-# Default role new Athens users are given to their home variant
-#securityRealm.athensUsers.homeVariantRoles=Reviewer
-
+# Indicate whether to show option to log into 'Home view' or 'See full list of views' on login page.
+# Should be false only for Root MMS.
 <% if @multiple_views == 'false' -%>
 # Whether to allow the choice of view on login
 chooseTabAction.active=false
@@ -61,10 +13,8 @@ chooseTabAction.active=true
 show.variant.selector=true
 <% end -%>
 
-#url to redirect to if the user is not activated
-user.inactive.url=mapmanager.htm?_flowId=athens-registration
+# Indicate whether to show athens login link
+show.athens.login.link=<%= @athens_link %>
 
-mail.smtp.username=
-mail.smtp.password=
-
-date.patterns=dd-MMM-yy;dd-MMM-yyyy;dd/MM/yy;dd/MM/yyyy;dd-MM-yy;dd-MM-yyyy
+mom.fqdn=<%= @node[:mms][:common][:fqdn] %>
+securityRealm.athensUsers.homeVariantRoles=Viewer
