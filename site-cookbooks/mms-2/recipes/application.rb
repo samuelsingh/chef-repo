@@ -25,7 +25,7 @@ t_user = node[:tomcat][:user]
 t_group = node[:tomcat][:group]
 
 # User that a sysadmin uses to interact with the application
-sys_usr = [:mms][:common][:interactive_usr]
+sys_usr = node[:mms][:common][:interactive_usr]
 
 ## First, let's  create the MMS base directory structure.  This looks something like:
 #
@@ -38,7 +38,7 @@ sys_usr = [:mms][:common][:interactive_usr]
 #
 # cs-tools and queue-manager are dealt with in separate recipes
 
-mms_base            = node[:mms][:base]
+mms_base            = node[:mms][:common][:base]
 content_in          = "#{mms_base}/content-in"
 content_out         = "#{mms_base}/content-out"
 mapmanager_base     = "#{mms_base}/mapmanager"
@@ -86,7 +86,7 @@ end
 #   |- md-packages
 #   |- sync-packages
 
-["#{content_out}/md-packages,#{content_out}/sync-packages"].each do |dir|
+["#{content_out}/md-packages","#{content_out}/sync-packages"].each do |dir|
   
   directory dir do
     owner t_user
@@ -107,7 +107,7 @@ end
 
 repo_home = "#{mapmanager_base}/repo"
 
-directory "#{repo_home}/logs" do
+directory repo_home do
   owner t_user
   group t_group
   action :create
@@ -201,12 +201,12 @@ end
 
 preview_dirs = Array.new
 preview_dirs << previewloader_base
-preview_dirs << previewloader_base/attachments
-preview_dirs << previewloader_base/failure
-preview_dirs << previewloader_base/input
-preview_dirs << previewloader_base/logs
-preview_dirs << previewloader_base/success
-preview_dirs << previewloader_base/tmp
+preview_dirs << "#{previewloader_base}/attachments"
+preview_dirs << "#{previewloader_base}/failure"
+preview_dirs << "#{previewloader_base}/input"
+preview_dirs << "#{previewloader_base}/logs"
+preview_dirs << "#{previewloader_base}/success"
+preview_dirs << "#{previewloader_base}/tmp"
 
 preview_dirs.each do |dir|
   

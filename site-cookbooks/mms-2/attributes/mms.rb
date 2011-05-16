@@ -29,6 +29,7 @@ set_unless[:mms][:queuemgr][:path] = "/var/mms/queue-manager"
 ## New attributes
 
 # Attributes common to all recipes
+set_unless[:mms][:common][:base] = '/var/mms'
 set_unless[:mms][:common][:interactive_usr] = 'root'
 set_unless[:mms][:common][:dbuser] = "mtmuser"
 set_unless[:mms][:common][:dbpass] = "medic1"
