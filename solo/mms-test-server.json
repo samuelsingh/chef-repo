@@ -1,0 +1,44 @@
+{
+"domain": "mapofmedicine.com",
+"hostname": "mms-server",
+"fqdn": "mms-server.mapofmedicine.com",
+"chef_packages": "",
+"mms": {
+  "common": {
+    "interactive_usr": "dev",
+    "fqdn": "mms-test-2.dev.mapofmedicine.com",
+    "dbuser": "mtmuser",
+    "dbpass": "medic1",
+    "dbhost": "192.168.35.20"
+  },
+  "application": {
+    "deployment": {
+      "id": "1",
+      "external_start": "0",
+      "external_end": "10000000" 
+    },
+    "quartz": {
+      "user": "super@nhs.com",
+      "password": "password"
+    },
+    "repository": {
+      "dbname": "mms_test_2_repo"
+    },
+    "mapmanager": {
+      "dbname": "mms_test_2_mcs"
+    },
+    "mom": {
+      "dbname": "mms_test_2_mappreview"
+    }
+  }
+},
+"tomcat": { 
+  "ajp_ports": [ 9001, 9002 ],
+  "unpackwars": "true" 
+},
+"hudson_agent": {
+  "user": "root",
+  "group": "root"
+},
+"run_list": [ "recipe[extra-repos]", "recipe[java]", "recipe[tomcat]", "recipe[mms-2::application]" ]
+}
