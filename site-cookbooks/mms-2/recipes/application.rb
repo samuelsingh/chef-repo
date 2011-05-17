@@ -249,6 +249,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{server_dir}/conf/Catalina/localhost/mapmanager.xml" do
         source "mapmanager/mapmanager.xml.erb"
+        mode 0644
         variables(
           :dbuser => node[:mms][:application][:mapmanager][:dbuser],
           :dbpass => node[:mms][:application][:mapmanager][:dbpass],
@@ -263,6 +264,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/m2mr2-cs-base.properties" do
         source "mapmanager/m2mr2-cs-base.properties.erb"
+        mode 0644
         variables(
           :mapmanager_base => mapmanager_base,
           :repo_home => repo_home,
@@ -276,6 +278,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/mapmanager.properties" do
         source "mapmanager/mapmanager.properties.erb"
+        mode 0644
         variables(
           :mapmanager_base => mapmanager_base,
           :athens_link => athens_link,
@@ -285,6 +288,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/mapmanager-log4j.xml" do
         source "mapmanager/mapmanager-log4j.xml.erb"
+        mode 0644
       end
       
       # MapEditorCentralConfig.xml eliminated
@@ -309,6 +313,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{server_dir}/conf/Catalina/localhost/mom.xml" do
         source "mom/mom.xml.erb"
+        mode 0644
         variables(
           :dbuser => node[:mms][:application][:mom][:dbuser],
           :dbpass => node[:mms][:application][:mom][:dbpass],
@@ -320,6 +325,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/mom-log4j.xml" do
         source "mom/mom-log4j.xml.erb"
+        mode 0644
       end
       
       ## End: configuration for the mom webapp
@@ -328,6 +334,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{server_dir}/conf/Catalina/localhost/adminapp.xml" do
         source "mom/adminapp.xml.erb"
+        mode 0644
         variables(
           :dbuser => node[:mms][:application][:mapmanager][:dbuser],
           :dbpass => node[:mms][:application][:mapmanager][:dbpass],
@@ -339,6 +346,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
 
       template "#{shared_loader}/adminapp-log4j.xml" do
         source "mom/adminapp-log4j.xml.erb"
+        mode 0644
       end
       
       ## End: configuration for the adminapp webapp
@@ -347,6 +355,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/previewloader-log4j.properties" do
         source "previewloader/previewloader-log4j.properties.erb"
+        mode 0644
         variables(
           :previewloader_base => previewloader_base
         )
@@ -354,6 +363,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{server_dir}/conf/Catalina/localhost/previewloader.xml" do
         source "previewloader/previewloader.xml.erb"
+        mode 0644
         variables(
           :dbuser => node[:mms][:application][:mom][:dbuser],
           :dbpass => node[:mms][:application][:mom][:dbpass],
@@ -365,6 +375,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/contentloader.properties" do
         source "previewloader/contentloader.properties.erb"
+        mode 0644
         variables(
           :previewpath => previewloader_base,
           :mom_dbuser => node[:mms][:application][:mom][:dbuser],
@@ -382,6 +393,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     # mom.properties is required by all webapps
     template "#{shared_loader}/mom.properties" do
       source "mom/mom.properties.erb"
+      mode 0644
       variables(
         :mom_base => mom_base
       )
