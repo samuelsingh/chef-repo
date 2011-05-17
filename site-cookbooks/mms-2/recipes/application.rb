@@ -335,6 +335,9 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       template "#{shared_loader}/mom-log4j.xml" do
         source "mom/mom-log4j.xml.erb"
         mode 0644
+        variables(
+          :mom_base => mom_base
+        )
       end
       
       ## End: configuration for the mom webapp
@@ -356,6 +359,9 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       template "#{shared_loader}/adminapp-log4j.xml" do
         source "mom/adminapp-log4j.xml.erb"
         mode 0644
+        variables(
+          :mom_base => mom_base
+        )
       end
       
       ## End: configuration for the adminapp webapp

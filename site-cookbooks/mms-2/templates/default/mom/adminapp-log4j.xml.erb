@@ -13,7 +13,7 @@
     </appender>
     
     <appender name="AUDITLOG" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${mom.base}/logs/adminapp/audit.log"/>
+        <param name="File" value="<%= @mom_base %>/logs/adminapp/audit.log"/>
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="datetime=[%d{yyyy-MM-dd HH:mm:ss.SSS}],status=[%5p],%m%n"/>
@@ -26,7 +26,7 @@
     </appender>
 
     <appender name="SECURITYLOG" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${mom.base}/logs/adminapp/security.log"/>
+        <param name="File" value="<%= @mom_base %>/logs/adminapp/security.log"/>
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="datetime=[%d{yyyy-MM-dd HH:mm:ss.SSS}],status=[%5p],%m%n"/>
@@ -43,7 +43,7 @@
     </appender>
 
     <appender name="EXCEPTIONS" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${mom.base}/logs/adminapp/exceptions.log" />
+        <param name="File" value="<%= @mom_base %>/logs/adminapp/exceptions.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
         <param name="Threshold" value="WARN"/>
         <layout class="org.apache.log4j.PatternLayout">
@@ -52,7 +52,7 @@
     </appender>
 
     <appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${mom.base}/logs/adminapp/error.log" />
+        <param name="File" value="<%= @mom_base %>/logs/adminapp/error.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
         <param name="Threshold" value="ERROR"/>
         <layout class="org.apache.log4j.PatternLayout">
@@ -61,7 +61,7 @@
     </appender>
     
     <appender name="APPLICATION" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="${mom.base}/logs/adminapp/application.log" />
+        <param name="File" value="<%= @mom_base %>/logs/adminapp/application.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
         <param name="Threshold" value="DEBUG"/>
         <layout class="org.apache.log4j.PatternLayout">
@@ -70,7 +70,7 @@
     </appender>
     
    	<appender name="SCHEDULER" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${mom.base}/logs/adminapp/scheduler.log" />
+		<param name="File" value="<%= @mom_base %>/logs/adminapp/scheduler.log" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
 		<param name="Threshold" value="DEBUG"/>
 		<layout class="org.apache.log4j.PatternLayout">
@@ -79,7 +79,7 @@
 	</appender>
 
 	<appender name="METHOD-INTERCEPTOR" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${mom.base}/logs/adminapp/methods.log" />
+		<param name="File" value="<%= @mom_base %>/logs/adminapp/methods.log" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
 		<param name="Threshold" value="DEBUG"/>
 		<layout class="org.apache.log4j.PatternLayout">
