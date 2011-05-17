@@ -295,6 +295,9 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       template "#{shared_loader}/mapmanager-log4j.xml" do
         source "mapmanager/mapmanager-log4j.xml.erb"
         mode 0644
+        variables(
+          :mapmanager_base => mapmanager_base
+        )
       end
       
       # MapEditorCentralConfig.xml eliminated
