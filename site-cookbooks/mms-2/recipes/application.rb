@@ -107,6 +107,12 @@ end
 
 repo_home = "#{mapmanager_base}/repo"
 
+directory "#{mapmanager_base}/logs" do
+  owner t_user
+  group t_group
+  action :create
+end
+
 directory repo_home do
   owner t_user
   group t_group
