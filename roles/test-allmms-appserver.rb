@@ -10,7 +10,8 @@ override_attributes(
       "fqdn"=> "mms.test.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "MtMUs3r",
-      "dbhost"=> "stage-db-01.map-cloud-01.eu"
+      "dbhost"=> "stage-db-01.map-cloud-01.eu",
+      "base"=> "/mnt"
     },
     "application"=> {
       "deployment"=> {
