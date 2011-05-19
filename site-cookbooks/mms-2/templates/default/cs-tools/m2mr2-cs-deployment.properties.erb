@@ -1,11 +1,11 @@
 # configuration for JCR connection to database
-m2mr2.jcr.host=<%= @node[:mms][:repository][:dbhost] %>
+m2mr2.jcr.host=<%= @node[:mms][:application][:repository][:dbhost] %>
 m2mr2.jcr.port=1433
-m2mr2.jcr.dbname=<%= @node[:mms][:repository][:dbname] %>
+m2mr2.jcr.dbname=<%= @node[:mms][:application][:repository][:dbname] %>
 m2mr2.jcr.url=jdbc:jtds:sqlserver://${m2mr2.jcr.host}:${m2mr2.jcr.port}/${m2mr2.jcr.dbname};lobBuffer=131072
 
-m2mr2.jcr.user=<%= @node[:mms][:repository][:dbuser] %>
-m2mr2.jcr.password=<%= @node[:mms][:repository][:dbpass] %>
+m2mr2.jcr.user=<%= @node[:mms][:application][:repository][:dbuser] %>
+m2mr2.jcr.password=<%= @node[:mms][:application][:repository][:dbpass] %>
 m2mr2.jcr.schema=mssql
 
 m2mr2.jcr.driver=net.sourceforge.jtds.jdbc.Driver
