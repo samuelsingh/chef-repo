@@ -1,7 +1,7 @@
 name "test-allmms-appserver"
 description "Configures test MD application server"
 
-run_list "role[java_builder]", "role[tomcat]", "recipe[mms-2::application]", "recipe[smoke_test]"
+run_list "role[java_builder]", "role[tomcat]", "recipe[mms-2::application]", "recipe[mms-2::cs-tools]", "recipe[smoke_test]"
 
 override_attributes(
   "mms" => {
