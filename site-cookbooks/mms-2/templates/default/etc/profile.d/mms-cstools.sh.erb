@@ -4,6 +4,6 @@
 # changes will be lost!
 
 # set PATH to include cs-tools and queue-manager
-[ -d <%= @cstools_path %> ] && PATH="<%= @cstools_path %>:$PATH"
+[ -d <%= @cstools_base %> ] && PATH="<%= @cstools_base %>:$PATH"
 
 export PATH
