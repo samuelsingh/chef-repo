@@ -1,0 +1,13 @@
+# set to 1 if Map Editor is to be launched from MapManager. This is the usual case
+# set to 2 if using a version of Map Editor to be launched 
+# from the command line, with username password login. This is only for some test scenarios.
+web.service.authentication.realm=1
+
+# external location where configuration (MapEditorCentralConfig.xml) will be stored
+web.service.configuration.files.location=${mm.home}/ws
+
+# web service used by tests
+web.service.url=http://127.0.0.1:8080/mapmanager/services/ContentWebService
+
+# property decide if web service will check client version
+web.service.check.version.mapeditor=true

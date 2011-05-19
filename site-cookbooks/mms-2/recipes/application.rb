@@ -119,8 +119,11 @@ end
 #   |- repo
 #     |- repository.xml
 #     |- indexing_configuration.xml
+#   |- ws
+#     |- MapEditorCentralConfig.xml
 
 repo_home = "#{mapmanager_base}/repo"
+ws_home = "#{mapmanager_base}/ws"
 
 directory "#{mapmanager_base}/logs" do
   owner t_user
@@ -129,6 +132,12 @@ directory "#{mapmanager_base}/logs" do
 end
 
 directory repo_home do
+  owner t_user
+  group t_group
+  action :create
+end
+
+directory ws_home do
   owner t_user
   group t_group
   action :create
@@ -162,6 +171,13 @@ end
 
 remote_file "#{repo_home}/indexing_configuration.xml" do
   source "mapmanager/indexing_configuration.xml"
+  mode "0644"
+end
+
+# Used by the Map Editor webservice
+
+template "#{ws_home}/MapEditorCentralConfig.xml" do
+  source "mapmanager/MapEditorCentralConfig.xml.erb"
   mode "0644"
 end
 
@@ -317,8 +333,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
       end
       
-      # MapEditorCentralConfig.xml eliminated
-      # cs-webservice.properties eliminated
+      template "#{shared_loader}/cs-webservice.properties" do
+        source "mapmanager/cs-webservice.properties.erb"
+        mode "0644"
+      end
       
       ## End: configuration for the mapmanager webapp
       
