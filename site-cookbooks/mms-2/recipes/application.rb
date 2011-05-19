@@ -148,6 +148,8 @@ end
 template "#{repo_home}/repository.xml" do
   source "mapmanager/repository.xml.erb"
   mode 0644
+  owner t_user
+  group t_group
   variables(
     :repo_home => repo_home,
     :dbuser => node[:mms][:application][:repository][:dbuser],
