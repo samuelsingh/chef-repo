@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mms
+# Cookbook Name:: mms-2
 # Recipe:: cs-tools
 #
 # Copyright 2010, Map of Medicine
@@ -17,15 +17,16 @@
 # limitations under the License.
 #
 
-cstools    = node[:mms][:cstools][:path]
-version    = node[:mms][:version]
-deploy_dir = node[:mms][:deploy_dir]
-mmpath     = node[:mms][:mapmanager][:path]
-logpath    = node[:mms][:logpath]
+cstools    = "#{node[:mms][:common][:base]}/cs-tools"
+#version    = node[:mms][:version]
+#deploy_dir = node[:mms][:deploy_dir]
+mmpath     = "#{node[:mms][:common][:base]}/mapmanager"
+logpath    = "#{node[:mms][:common][:base]}/logs"
+
+t_user = node[:tomcat][:user]
+t_group = node[:tomcat][:group]
 
 directory "#{cstools}/config"  do
-  owner "sysadmin"
-  group "sysadmin"
   mode "0755"
   recursive true
   action :create
@@ -38,8 +39,8 @@ remote_file "#{cstools}/cs-tools" do
 end
 
 directory "#{logpath}/cs-tools"  do
-  owner "tomcat"
-  group "tomcat"
+  owner t_user
+  group t_group
   mode "0755"
   recursive true
   action :create
@@ -51,8 +52,6 @@ end
 template "#{cstools}/config/mom.properties" do
   source "mom/mom.properties.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
     :mompath => "/tmp",
     :fqdn => "unset"
@@ -62,15 +61,11 @@ end
 template "#{cstools}/config/m2mr2-cs-deployment.properties" do
   source "cs-tools/m2mr2-cs-deployment.properties.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
 end
 
 template "#{cstools}/config/repository.properties" do
   source "cs-tools/repository.properties.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
     :mmpath => mmpath
   )
@@ -84,15 +79,11 @@ end
 remote_file "#{cstools}/config/auto-approve.properties" do
   source "cs-tools/config/auto-approve.properties"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
 end
 
 template "#{cstools}/config/log4j.xml" do
   source "cs-tools/log4j.xml.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
     :logpath => logpath
   )
@@ -101,8 +92,6 @@ end
 template "/etc/profile.d/mms-cstools.sh" do
   source "etc/profile.d/mms-cstools.sh.erb"
   mode 0755
-  owner "root"
-  group "root"
   variables(
     :cstools_path => cstools
   )
@@ -111,16 +100,14 @@ end
 remote_file "#{cstools}/config/m2mr2-cs-spring.properties" do
   source "cs-tools/config/m2mr2-cs-spring.properties"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
 end
 
-link "#{cstools}/lib"  do
-  to "#{deploy_dir}/mms-#{version}/cs-tools/lib"
-  only_if "test -d #{deploy_dir}/mms-#{version}/cs-tools"
-end
+#link "#{cstools}/lib"  do
+#  to "#{deploy_dir}/mms-#{version}/cs-tools/lib"
+#  only_if "test -d #{deploy_dir}/mms-#{version}/cs-tools"
+#end
 
-link "#{cstools}/archive"  do
-  to "#{deploy_dir}/mms-#{version}/cs-tools/archive"
-  only_if "test -d #{deploy_dir}/mms-#{version}/cs-tools"
-end
+#link "#{cstools}/archive"  do
+#  to "#{deploy_dir}/mms-#{version}/cs-tools/archive"
+#  only_if "test -d #{deploy_dir}/mms-#{version}/cs-tools"
+#end

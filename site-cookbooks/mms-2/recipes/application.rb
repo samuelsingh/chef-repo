@@ -32,6 +32,7 @@ sys_usr = node[:mms][:common][:interactive_usr]
 # mms_base
 # |- content-in
 # |- content-out
+# |- logs
 # |- mapmanager
 # |- mom
 # |- previewloader
@@ -41,6 +42,7 @@ sys_usr = node[:mms][:common][:interactive_usr]
 mms_base            = node[:mms][:common][:base]
 content_in          = "#{mms_base}/content-in"
 content_out         = "#{mms_base}/content-out"
+log_base            = "#{mms_base}/logs"
 mapmanager_base     = "#{mms_base}/mapmanager"
 mom_base            = "#{mms_base}/mom"
 previewloader_base  = "#{mms_base}/previewloader"
@@ -94,6 +96,19 @@ end
     action :create
   end
   
+end
+
+## This is the structure for content-out which is where published content shows up
+## Looks like:
+#
+# mms_base
+# |- logs
+#   |- < dir for each webapp >
+
+directory log_base do
+  owner t_user
+  group t_group
+  action :create
 end
 
 ## This is the structure required for the mapmanager webapp:
