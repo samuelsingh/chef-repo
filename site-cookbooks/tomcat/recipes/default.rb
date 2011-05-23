@@ -34,6 +34,19 @@ user "#{t_user}"  do
   not_if "[ ! -z \"`who | grep #{t_user}`\" ]"
 end
 
+template "/etc/pam.d/su" do
+  source "etc-pamd-su.erb"
+  mode 0644
+end
+
+template "/etc/security/limits.d/tomcat.conf" do
+  source "etc-security-limitsd-tomcat.conf.erb"
+  mode 0644
+  variables(
+    :t_user => t_user
+  )
+end
+
 # Deploy Tomcat application
 execute "deploy_tomcat" do
   command "cd /usr/local && tar xzf /var/tmp/#{node[:tomcat][:version]}.tar.gz"
