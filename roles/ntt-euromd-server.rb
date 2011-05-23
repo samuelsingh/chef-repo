@@ -23,7 +23,8 @@ override_attributes(
     "time_transactions" => {
       "base" => "/usr/local/webinject",
       "user" => "webinject",
-      "group" => "webinject"
+      "group" => "webinject",
+      "out_dir" => "/var/shared/webinject"
     },
     "vhost" => {
       "app.ntt.mapofmedicine.com" => {
@@ -45,7 +46,7 @@ override_attributes(
   },
   "tomcat" => {
     "srv_dir" => "/var/tomcat",
-    "log_rotate_dir" => "/var/rotated-logs",
+    "log_rotate_dir" => "/var/shared/rotated-logs",
     "unpackwars" => "true"
   }
 )
