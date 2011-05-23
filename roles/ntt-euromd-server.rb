@@ -12,7 +12,7 @@ override_attributes(
       "dbpass" => "medic1"
     },
     "application" => {
-      "md_fqdn" =>  "app.ntt.mapofmedicine.com",
+      "md_fqdn" =>  "app.mapofmedicine.com",
       "geoip_server" => "geoip.mapofmedicine.com",
       "save_ram" => "true"
     },
@@ -27,7 +27,7 @@ override_attributes(
       "out_dir" => "/var/shared/webinject"
     },
     "vhost" => {
-      "app.ntt.mapofmedicine.com" => {
+      "app.mapofmedicine.com" => {
         "srv_aliases" => ["app.mapofmedicine.info"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
@@ -36,7 +36,7 @@ override_attributes(
       }
     },
     "lpa_vhost" => {
-      "localcare.ntt.mapofmedicine.com" => {
+      "localcare.mapofmedicine.com" => {
         "srv_aliases" => [],
         "holding_page" => "false",
         "appserver" => "127.0.0.1",
