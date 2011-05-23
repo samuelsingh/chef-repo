@@ -108,15 +108,5 @@ end
 cron "time-transactions" do
   user tt_user
   minute '15,45'
-  command "#{tt_path}/time_transactions.sh"
+  command "#{tt_path}/time-transactions.sh"
 end
-
-#template "/etc/cron.d/test-transactions" do
-#  source "time-transactions/test-transactions.erb"
-#  mode 0644
-#  owner "root"
-#  group "root"
-#  variables(
-#    :tt_path => tt_path
-#  )
-#end
