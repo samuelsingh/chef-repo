@@ -21,7 +21,7 @@ tt_path = node[:map_display][:time_transactions][:base]
 tt_user = node[:map_display][:time_transactions][:user]
 tt_group = node[:map_display][:time_transactions][:group]
 
-archive_dir = node[:map_display][:time_transactions][:archive_dir]
+archive_dir = node[:map_display][:time_transactions][:out_dir]
 md_fqdn = node[:map_display][:application][:md_fqdn]
 
 group "#{tt_group}"  do
