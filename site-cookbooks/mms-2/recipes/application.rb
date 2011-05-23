@@ -375,6 +375,11 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
       end
       
+      template "#{shared_loader}/mom-previewloader.properties" do
+        source "mom/mom-previewloader.properties.erb"
+        mode 0644
+      end
+      
       ## End: configuration for the mom webapp
       
       ## Start: configuration for the adminapp webapp
