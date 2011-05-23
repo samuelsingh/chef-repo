@@ -31,6 +31,10 @@ override_attributes(
       },
       "mom"=> {
         "dbname"=> "mms_test_mappreview"
+      },
+      "live_md" => {
+        "name" => "MD Test",
+        "url" => "http://euromd.test.mapofmedicine.com"
       }
     }
   },
