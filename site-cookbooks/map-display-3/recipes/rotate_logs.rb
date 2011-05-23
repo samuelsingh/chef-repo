@@ -10,7 +10,7 @@ sbin = '/usr/local/sbin'
 lib = '/usr/local/lib'
 
 log_dir = "#{node[:map_display][:application][:mtmpath]}/logs"
-rotate_base = node[:tomcat][:log_rotate_dir]
+rotate_dir = node[:tomcat][:log_rotate_dir]
 
 # Installs dependent packages
 ["lsof"].each do |pkg|
