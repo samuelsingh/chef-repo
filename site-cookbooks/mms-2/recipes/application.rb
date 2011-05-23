@@ -335,6 +335,9 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       template "#{shared_loader}/cs-webservice.properties" do
         source "mapmanager/cs-webservice.properties.erb"
+        variables(
+          :mapmanager_base => mapmanager_base
+        )
         mode "0644"
       end
       
