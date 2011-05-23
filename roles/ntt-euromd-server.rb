@@ -1,7 +1,7 @@
 name "ntt-euromd-server"
 description "Configures Live MD application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]"
+run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::rotate_logs]", "recipe[map-display-3::time_transactions]"
 
 override_attributes(
   "map_display" => {
