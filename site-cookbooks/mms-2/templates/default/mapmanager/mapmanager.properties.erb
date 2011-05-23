@@ -1,6 +1,10 @@
 mm.home=<%= @mapmanager_base %>
 mm.fqdn=<%= @node[:mms][:common][:fqdn] %>
 
+mom.fqdn=<%= @node[:mms][:common][:fqdn] %>
+mom.live.url=<%= @node[:mms][:application][:live_md][:url] %>
+mom.live.nameVersion=<%= @node[:mms][:application][:live_md][:name] %>
+
 # Indicate whether to show option to log into 'Home view' or 'See full list of views' on login page.
 # Should be false only for Root MMS.
 <% if @multiple_views == 'false' -%>
@@ -16,5 +20,5 @@ show.variant.selector=true
 # Indicate whether to show athens login link
 show.athens.login.link=<%= @athens_link %>
 
-mom.fqdn=<%= @node[:mms][:common][:fqdn] %>
+
 securityRealm.athensUsers.homeVariantRoles=Viewer
