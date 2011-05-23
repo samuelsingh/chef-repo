@@ -20,6 +20,11 @@ override_attributes(
       "path" => "/usr/local/contentloader",
       "dist_path" => "/usr/local/contentloader-dist"
     },
+    "time_transactions" => {
+      "base" => "/usr/local/webinject",
+      "user" => "webinject",
+      "group" => "webinject"
+    },
     "vhost" => {
       "app.ntt.mapofmedicine.com" => {
         "srv_aliases" => ["app.mapofmedicine.info"],
@@ -40,7 +45,7 @@ override_attributes(
   },
   "tomcat" => {
     "srv_dir" => "/var/tomcat",
-    "log_rotate_dir" => "/var/shared/rotated-logs",
+    "log_rotate_dir" => "/var/rotated-logs",
     "unpackwars" => "true"
   }
 )
