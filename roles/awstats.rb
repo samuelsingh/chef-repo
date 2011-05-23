@@ -6,23 +6,39 @@ run_list "recipe[awstats]"
 
 override_attributes(
   "awstats" => {
-    "healthguides.mapofmedicine.com" => {
-      "host_regex" => "hgpe-app-0[1-9]"
-    },
-    "eng.mapofmedicine.com" => {
-      "host_regex" => "hgpe-app-0[1-9]"
-    },
-    "training-mms.mapofmedicine.com" => {
-      "host_regex" => "prod-web-0[1-9]"
-    },
-    "mms.mapofmedicine.com" => {
-      "host_regex" => "prod-web-0[1-9]"
-    },
-    "mapofmedicine.com" => {
-      "host_regex" => "prod-web-0[1-9]"
-    },
-    "localise.mapofmedicine.com" => {
-      "host_regex" => "prod-web-0[1-9]"
+    "hostname" => "awstats.map-cloud-01.eu",
+    "log_base" => "/var/shared/rotated-logs",
+    "sites" => {
+      "healthguides.mapofmedicine.com" => {
+        "host_regex" => "hgpe-app-0[1-9]",
+        "minute" => "25",
+        "hour" => "0"
+      },
+      "eng.mapofmedicine.com" => {
+        "host_regex" => "hgpe-app-0[1-9]",
+        "minute" => "55",
+        "hour" => "0"
+      },
+      "training-mms.mapofmedicine.com" => {
+        "host_regex" => "prod-web-0[1-9]",
+        "minute" => "25",
+        "hour" => "1"
+      },
+      "mms.mapofmedicine.com" => {
+        "host_regex" => "prod-web-0[1-9]",
+        "minute" => "55",
+        "hour" => "1"
+      },
+      "mapofmedicine.com" => {
+        "host_regex" => "prod-web-0[1-9]",
+        "minute" => "25",
+        "hour" => "2"
+      },
+      "localise.mapofmedicine.com" => {
+        "host_regex" => "prod-web-0[1-9]",
+        "minute" => "55",
+        "hour" => "2"
+      }
     }
   }
 )
