@@ -19,8 +19,8 @@
 
 include_recipe "apache2"
 
-log_base = "/var/shared/rotated-logs"
-hostname = "awstats.map-cloud-01.eu"
+log_base = node[:awstats][:log_base]
+hostname = node[:awstats][:hostname]
 vhosts = Array.new
 
 package "awstats" do
@@ -31,28 +31,24 @@ package "awstats" do
   action :install
 end
 
-node[:awstats].each do |vhost,params|
+node[:awstats][:sites].each do |vhost,params|
   
   template "/etc/awstats/awstats.#{vhost}.conf" do
     source "awstats.conf.template.erb"
     mode 0644
     variables(
       :vhost => vhost,
-      :host_regex => params.fetch("host_regex"),
+      :host_regex => params["host_regex"],
       :log_base => log_base
     )
     only_if "test -d /etc/awstats"
   end
 
-  # Cron doesn't like filenames containing .
-  template "/etc/cron.d/awstats-#{vhost.gsub('.','-')}" do
-    source "awstats-cron-template.erb"
-    mode 0644
-    owner "root"
-    group "root"
-    variables(
-      :vhost => vhost
-    )
+  cron "awstats-#{vhost}" do
+    user node[:apache][:user]
+    hour params[:hour]
+    minute params[:minute]
+    command "[ -x /usr/lib/cgi-bin/awstats.pl ] && /usr/lib/cgi-bin/awstats.pl -config=#{vhost} -update > /tmp/awstats-#{vhost}.log"
   end
   
   vhosts << vhost
@@ -78,11 +74,11 @@ end
 remote_directory "/var/www/awstats" do
   source "www"
   files_backup 0
-  files_owner "root"
-  files_group "root"
+  files_owner node[:apache][:user]
+  files_group node[:apache][:group]
   files_mode "0644"
-  owner "root"
-  group "root"
+  owner node[:apache][:user]
+  group node[:apache][:group]
   mode "0755"
 end
 
