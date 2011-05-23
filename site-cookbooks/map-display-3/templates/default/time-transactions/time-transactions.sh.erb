@@ -5,7 +5,7 @@ ME=`basename $0`
 HOSTNAME=`hostname -s`
 DATESTAMP=`date '+%Y%m%d_%H%M%S'`
 ARCHIVE_DIR=<%= @archive_dir %>
-WEBINJECT_DIR=<%= @tt_path %>/webinject
+WEBINJECT_DIR=<%= @tt_path %>
 PARSER_SCRIPT="$WEBINJECT_DIR/webinject-parser"
 
 fail()

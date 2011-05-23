@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: map-display
-# Recipe:: time-transactions
+# Cookbook Name:: map-display-3
+# Recipe:: time_transactions
 #
 # Copyright 2010, Map of Medicine
 #
@@ -17,9 +17,24 @@
 # limitations under the License.
 #
 
-tt_path = "/usr/local/time-transactions"
-archive_dir = "/var/shared/archive/stats/transactions"
-md_fqdn = node[:map_display][:md_fqdn]
+tt_path = node[:map_display][:time_transactions][:base]
+tt_user = node[:map_display][:time_transactions][:user]
+tt_group = node[:map_display][:time_transactions][:group]
+
+archive_dir = node[:map_display][:time_transactions][:archive_dir]
+md_fqdn = node[:map_display][:application][:md_fqdn]
+
+group "#{tt_group}"  do
+  gid 10070
+end
+
+user "#{tt_user}"  do
+  comment "Webinject user"
+  uid "10070"
+  gid tt_group
+  home tt_path
+  shell "/bin/bash"
+end
 
 package "libxml-simple-perl" do
   action :install
@@ -33,18 +48,18 @@ package "liberror-perl" do
   action :install
 end
 
-directory "#{tt_path}/webinject"  do
-  owner "sysadmin"
-  group "sysadmin"
+directory tt_path  do
+  owner tt_user
+  group tt_group
   mode "0755"
   action :create
   recursive true
-  not_if "test -d #{tt_path}/webinject"
+  not_if "test -d #{tt_path}"
 end
 
 directory "#{archive_dir}"  do
-  owner "sysadmin"
-  group "sysadmin"
+  owner tt_user
+  group tt_group
   mode "0755"
   action :create
   recursive true
@@ -55,11 +70,9 @@ webinject_pls = ["webinject.pl", "webinject-parser"]
 
 webinject_pls.each do |pl|
 
-  template "#{tt_path}/webinject/#{pl}" do
+  template "#{tt_path}/#{pl}" do
     source "time-transactions/#{pl}.erb"
     mode 0755
-    owner "root"
-    group "root"
   end
 
 end
@@ -68,20 +81,16 @@ webinject_files = ["config.xml", "mycert.pem", "mycertkey.pem"]
 
 webinject_files.each do |name|
 
-  template "#{tt_path}/webinject/#{name}" do
+  template "#{tt_path}/#{name}" do
     source "time-transactions/#{name}.erb"
     mode 0644
-    owner "sysadmin"
-    group "sysadmin"
   end
 
 end
 
-template "#{tt_path}/webinject/transactions.xml" do
+template "#{tt_path}/transactions.xml" do
   source "time-transactions/transactions.xml.erb"
   mode 0644
-  owner "sysadmin"
-  group "sysadmin"
   variables(
     :md_fqdn => md_fqdn
   )
@@ -90,20 +99,24 @@ end
 template "#{tt_path}/time-transactions.sh" do
   source "time-transactions/time-transactions.sh.erb"
   mode 0755
-  owner "root"
-  group "root"
   variables(
     :archive_dir => archive_dir,
     :tt_path => tt_path
   )
 end
 
-template "/etc/cron.d/test-transactions" do
-  source "time-transactions/test-transactions.erb"
-  mode 0644
-  owner "root"
-  group "root"
-  variables(
-    :tt_path => tt_path
-  )
+cron "time-transactions" do
+  user tt_user
+  minute '15,45'
+  command "#{tt_path}/time_transactions.sh"
 end
+
+#template "/etc/cron.d/test-transactions" do
+#  source "time-transactions/test-transactions.erb"
+#  mode 0644
+#  owner "root"
+#  group "root"
+#  variables(
+#    :tt_path => tt_path
+#  )
+#end

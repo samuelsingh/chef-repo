@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require '<%= @lib %>/gather-logs'
+
+log_dir = '<%= @log_dir %>'
+rotate_dir = '<%= @rotate_dir %>'
+lsof_bin = '<%= @lsof_bin %>'
+app = 'map-display'
+
+log_act = GatherLogs::Log.new(lsof_bin)
+
+log_act.get_log_dirs(log_dir).each do |dir|
+
+  puts "Working on logfiles in #{log_dir}/#{dir}"
+  
+  src_dir = "#{log_dir}/#{dir}"
+  dest_dir = log_act.set_dest_dir(rotate_dir) + "/#{app}/#{dir}"
+  
+  # Deal with log files that haven't been rotated
+  log_act.match_current(src_dir).each do |file|
+    newfile = log_act.stamped_log(file)
+    log_act.move_log_file("#{src_dir}/#{file}",dest_dir,newfile)
+  end
+  
+  # Deal with rotated log files
+  log_act.match_rotated(src_dir).each do |file|
+    newfile = [log_act.hostname,file].join('.')
+    log_act.move_log_file("#{src_dir}/#{file}",dest_dir,newfile)
+  end
+  
+end
