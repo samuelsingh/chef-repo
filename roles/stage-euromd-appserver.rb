@@ -31,7 +31,7 @@ override_attributes(
     },
     "lpa_vhost" => {
       "localcare.regression.mapofmedicine.com" => {
-        "srv_aliases" => [localcare.uat.mapofmedicine.com],
+        "srv_aliases" => [],
         "holding_page" => "false",
         "appserver" => "127.0.0.1",
         "lb_alive_port" => 0
