@@ -1,7 +1,7 @@
 name "stage-clientmms-appserver"
 description "Configures Stage Client MMS application server"
 
-run_list "role[tomcat]", "recipe[mms-2::application]", "recipe[mms-2::cs-tools]"
+run_list "role[tomcat]", "recipe[mms-2::application]", "recipe[mms-2::cs-tools]", "recipe[mms-2::cs-batch]"
 
 override_attributes(
   "mms" => {
