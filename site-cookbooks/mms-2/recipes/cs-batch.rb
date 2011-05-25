@@ -36,6 +36,7 @@ sys_usr = node[:mms][:common][:interactive_usr]
 # |- content-in
 #   |- import
 #   |- scheduled
+# |- cs-batch
 
 directory "#{content_in}/scheduled"  do
   owner sys_usr
@@ -77,6 +78,7 @@ end
 remote_file "#{csbatch_base}/cs-batch.sh" do
   source "cs-batch/cs-batch.sh"
   mode "0755"
+  only_if "test -d #{csbatch_base}"
 end
 
 directory "#{log_path}/cs-batch"  do
@@ -84,6 +86,7 @@ directory "#{log_path}/cs-batch"  do
   mode "0755"
   recursive true
   action :create
+  only_if "test -d #{log_path}"
 end
 
 template "#{csbatch_base}/config/m2mr2-batch.properties" do
@@ -92,6 +95,7 @@ template "#{csbatch_base}/config/m2mr2-batch.properties" do
   variables(
     :content_in => content_in
   )
+  only_if "test -d #{csbatch_base}"
 end
 
 template "#{csbatch_base}/config/log4j.xml" do
@@ -100,6 +104,7 @@ template "#{csbatch_base}/config/log4j.xml" do
   variables(
     :logpath => log_path
   )
+  only_if "test -d #{csbatch_base}"
 end
 
 template "#{csbatch_base}/config/cs-batch.conf" do
@@ -108,6 +113,7 @@ template "#{csbatch_base}/config/cs-batch.conf" do
   variables(
     :sys_usr => sys_usr
   )
+  only_if "test -d #{csbatch_base}"
 end
 
 template "/etc/profile.d/mms-cs-batch.sh" do
