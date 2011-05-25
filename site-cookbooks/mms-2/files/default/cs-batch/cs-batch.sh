@@ -4,7 +4,10 @@ DIR=`dirname $0`
 CONFIG="$DIR/config"
 HLP="$DIR/help"
 CLASSPATH=""
-USER="sysadmin"
+USER="root"
+
+# The above parameters can be overriden by a custom configuration file, if it exists
+[ -f "$CONFIG/cs-bt.conf" ] && source "$CONFIG/cs-bt.conf"
 
 for JAR in $DIR/lib/*.jar; do
     CLASSPATH="$CONFIG:$HLP:$CLASSPATH:$JAR"

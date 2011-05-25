@@ -18,7 +18,6 @@
 #
 
 mms_base            = node[:mms][:common][:base]
-content_in          = "#{mms_base}/content-in"
 content_out         = "#{mms_base}/content-out"
 cstools_base        = "#{mms_base}/cs-tools"
 log_base            = "#{mms_base}/logs"

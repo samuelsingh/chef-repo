@@ -30,7 +30,6 @@ sys_usr = node[:mms][:common][:interactive_usr]
 ## First, let's  create the MMS base directory structure.  This looks something like:
 #
 # mms_base
-# |- content-in
 # |- content-out
 # |- logs
 # |- mapmanager
@@ -40,14 +39,13 @@ sys_usr = node[:mms][:common][:interactive_usr]
 # cs-tools and queue-manager are dealt with in separate recipes
 
 mms_base            = node[:mms][:common][:base]
-content_in          = "#{mms_base}/content-in"
 content_out         = "#{mms_base}/content-out"
 log_base            = "#{mms_base}/logs"
 mapmanager_base     = "#{mms_base}/mapmanager"
 mom_base            = "#{mms_base}/mom"
 previewloader_base  = "#{mms_base}/previewloader"
 
-base_dirs = [mms_base,content_in,content_out,mapmanager_base,mom_base,previewloader_base]
+base_dirs = [mms_base,content_out,mapmanager_base,mom_base,previewloader_base]
 
 base_dirs.each do |dir|
   
@@ -60,25 +58,6 @@ base_dirs.each do |dir|
 end
 
 ## Now we'll populate these base directories
-
-## This is the structure for content-in which is used to import synchronisation packages into MMS
-## Looks like:
-#
-# mms_base
-# |- content-in
-#   |- import
-#   |- scheduled
-
-directory "#{content_in}/scheduled"  do
-  owner t_user
-  group t_group
-  action :create
-end
-
-directory "#{content_in}/import"  do
-  owner sys_usr
-  action :create
-end
 
 ## This is the structure for content-out which is where published content shows up
 ## Looks like:
@@ -160,12 +139,12 @@ template "#{repo_home}/repository.xml" do
   owner t_user
   group t_group
   variables(
-    :repo_home => repo_home,
-    :dbuser => node[:mms][:application][:repository][:dbuser],
-    :dbpass => node[:mms][:application][:repository][:dbpass],
-    :dbhost => node[:mms][:application][:repository][:dbhost],
-    :dbname => node[:mms][:application][:repository][:dbname],
-    :datastore => node[:mms][:application][:datastore]
+    :repo_home  => repo_home,
+    :dbuser     => node[:mms][:application][:repository][:dbuser],
+    :dbpass     => node[:mms][:application][:repository][:dbpass],
+    :dbhost     => node[:mms][:application][:repository][:dbhost],
+    :dbname     => node[:mms][:application][:repository][:dbname],
+    :datastore  => node[:mms][:application][:repository][:datastore]
   )
 end
 
@@ -282,7 +261,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       ## Start: configuration for the mapmanager webapp
       
-      deployment_name = node[:mms][:application][:deployment_name]
+      deployment_name = node[:mms][:application][:deployment][:name]
       athens_link     = node[:mms][:application][:athens_link]
       multiple_views  = node[:mms][:application][:multiple_views]
       
