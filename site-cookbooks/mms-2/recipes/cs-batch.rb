@@ -80,7 +80,7 @@ remote_file "#{csbatch_base}/cs-batch.sh" do
 end
 
 directory "#{log_path}/cs-batch"  do
-  owner sys_user
+  owner sys_usr
   mode "0755"
   recursive true
   action :create
