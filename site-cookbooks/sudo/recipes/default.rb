@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-log node.run_list.run_list.flatten.member?("recipe[hg-mde::content_source]").inspect
+# Only add sudoers line for sync user if the hg-mde::content_source recipe is in the run list
 node.run_list.run_list.flatten.member?("recipe[hg-mde::content_source]") ? content_source = true : content_source = false
 
 package "sudo" do
