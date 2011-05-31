@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-log node.run_state[:seen_recipes].inspect
+log node.run_state.inspect
 node.run_state[:seen_recipes].has_key?("hg-mde::content_source") ? content_source = true : content_source = false
 
 package "sudo" do
