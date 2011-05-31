@@ -18,6 +18,7 @@
 #
 
 log node.run_state.inspect
+log node.run_list.inspect
 node.run_state[:seen_recipes].has_key?("hg-mde::content_source") ? content_source = true : content_source = false
 
 package "sudo" do
