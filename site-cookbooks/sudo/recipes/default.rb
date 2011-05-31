@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+node.run_state[:seen_recipes].has_key?("hg-mde::content_source") ? content_source = true : content_source = false
+
 package "sudo" do
   action :upgrade
 end
@@ -28,6 +30,7 @@ template "/etc/sudoers" do
   group "root"
   variables(
     :sudoers_groups => node[:authorization][:sudo][:groups], 
-    :sudoers_users => node[:authorization][:sudo][:users]
+    :sudoers_users => node[:authorization][:sudo][:users],
+    :content_source => content_source
   )
 end

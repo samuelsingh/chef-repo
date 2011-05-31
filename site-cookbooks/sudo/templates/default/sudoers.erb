@@ -32,3 +32,6 @@ ubuntu  ALL=(ALL) NOPASSWD:ALL
 hudson ALL = NOPASSWD: /usr/bin/chef-client
 <% end -%>
 
+<% if @content_source == true -%>
+syncuser ALL = NOPASSWD: /usr/local/bin/sync_fix_perms.sh
+<% end -%>
