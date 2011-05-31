@@ -17,7 +17,7 @@ user 'syncuser' do
   supports :manage_home => true
 end
 
-directory '/home/syncuser' do
+directory '/home/syncuser/.ssh' do
   owner 'syncuser'
   group 'syncuser'
   action :create
