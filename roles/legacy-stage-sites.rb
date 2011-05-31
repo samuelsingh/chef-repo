@@ -2,7 +2,7 @@ name "legacy-stage-sites"
 description "Configures legacy dev/stage sites"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
-run_list "recipe[generic_vhost]", "recipe[java]", "recipe[ant]"
+run_list "recipe[generic_vhost]", "recipe[java]", "recipe[ant]", "recipe[hg-mde::stats]"
 
 override_attributes(
   "generic_vhost" => {
