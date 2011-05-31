@@ -10,22 +10,22 @@ group 'syncuser' do
 end
 
 user 'syncuser' do
-  username 'syncuser',
-  comment 'syncuser',
-  gid 'syncuser',
-  home '/home/syncuser',
+  username 'syncuser'
+  comment 'syncuser'
+  gid 'syncuser'
+  home '/home/syncuser'
   supports :manage_home => true
 end
 
 directory '/home/syncuser' do
-  owner 'syncuser',
-  group 'syncuser',
+  owner 'syncuser'
+  group 'syncuser'
   action :create
 end
 
 remote_file '/home/syncuser/.ssh/authorized_keys' do
-  source 'authorized_keys',
-  owner 'syncuser',
-  group 'syncuser',
+  source 'authorized_keys'
+  owner 'syncuser'
+  group 'syncuser'
   mode '0600'
 end
