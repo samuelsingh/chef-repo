@@ -4,8 +4,7 @@ UNZIP_BIN=/usr/bin/unzip
 CLEAN_BIN=<%= @sbin %>/clean_package_names.sh
 
 CONTENT_OUT=<%= @contentpath %>/md-packages
-HG_IN_LOCAL=<%= @loadq %>/healthguides/local
-HG_IN_ROOT=<%= @loadq %>/healthguides/root
+HG_IN=<%= @loadq %>/healthguides
 
 # Let's remove spaces from the packages first.
 sh $CLEAN_BIN
@@ -17,14 +16,14 @@ for a in $CONTENT_OUT/*.zip ; do
   
     # E&W content package
     unzip -p $a package.xml | grep "NHS England and Wales" | grep -v empty > /dev/null \
-    && echo "$a is an E&W package, so copying it to $HG_IN_LOCAL..." \
-    && cp $a $HG_IN_LOCAL/ \
+    && echo "$a is an E&W package, so copying it to $HG_IN..." \
+    && cp $a $HG_IN/ \
     && echo "Done."
   
     # Root (International) content package
     unzip -p $a package.xml | grep '<variant guid="baseroot-base-root-base-rootbaseroot" name="International" short-name="International"/>' > /dev/null \
-    && echo "$a is an International package, so copying it to $HG_IN_ROOT..." \
-    && cp $a $HG_IN_ROOT/ \
+    && echo "$a is an International package, so copying it to $HG_IN..." \
+    && cp $a $HG_IN/ \
     && echo "Done."
     
   fi
