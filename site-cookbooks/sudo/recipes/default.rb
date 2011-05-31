@@ -17,10 +17,8 @@
 # limitations under the License.
 #
 
-log node.run_state.inspect
-#log node.run_list.run_list.flatten.member?("hg-mde::content_source").inspect
-log node.run_list.run_list.flatten.inspect
-node.run_state[:seen_recipes].has_key?("hg-mde::content_source") ? content_source = true : content_source = false
+log node.run_list.run_list.flatten.member?("recipe[hg-mde::content_source]").inspect
+node.run_list.run_list.flatten.member?("recipe[hg-mde::content_source]") ? content_source = true : content_source = false
 
 package "sudo" do
   action :upgrade
