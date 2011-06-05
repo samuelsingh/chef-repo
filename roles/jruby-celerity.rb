@@ -1,5 +1,5 @@
 name "jruby-celerity"
-description "Configures Quova"
+description "Configures jruby + celerity"
 
 run_list "recipe[java]", "recipe[jruby]", "recipe[jruby::gem]"
 
