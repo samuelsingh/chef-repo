@@ -15,7 +15,7 @@ JAVA_HOME=/usr/local/java
 JAVA_BIN="$JAVA_HOME/bin/java"
 
 JAVA_OPTS_32="-Xmx256m -Xms256m -Djava.awt.headless=true"
-JAVA_OPTS_64="-Xmx512m -XX:MaxPermSize=256m -Djava.awt.headless=true"
+JAVA_OPTS_64="-server -Xmx512m -XX:MaxPermSize=256m -Djava.awt.headless=true"
 
 [ `uname -m`=='x86_64' ] && JAVA_OPTS=$JAVA_OPTS_64 || JAVA_OPTS=$JAVA_OPTS_32
 
