@@ -35,6 +35,11 @@ gem_package 'json' do
   version "1.4.6"
 end
 
+gem_package 'gherkin' do
+  action :install
+  version "2.3.10"
+end
+
 gem_package 'cucumber' do
   action :install
   version "0.10.2"
