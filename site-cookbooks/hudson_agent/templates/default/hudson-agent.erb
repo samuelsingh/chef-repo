@@ -13,7 +13,11 @@ GROUP=<%= @group %>
 DISPLAY=
 JAVA_HOME=/usr/local/java
 JAVA_BIN="$JAVA_HOME/bin/java"
-JAVA_OPTS="-Xmx<%= @max_heap %> -Xms<%= @start_heap %> -Djava.awt.headless=true"
+
+JAVA_OPTS_32="-Xmx256m -Xms256m -Djava.awt.headless=true"
+JAVA_OPTS_64="-Xmx512m -XX:MaxPermSize=256m -Djava.awt.headless=true"
+
+[ `uname -m`=='x86_64' ] && JAVA_OPTS=$JAVA_OPTS_64 || JAVA_OPTS=$JAVA_OPTS_32
 
 HUDSON_SERVER_URL="<%= @server_url %>"
 HUDSON_HOME=<%= @hudson_home %>
