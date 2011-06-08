@@ -11,7 +11,7 @@ override_attributes(
       "dbuser"=> "mtmuser",
       "dbpass"=> "medic1",
       "dbhost"=> "stage-db-02.map-cloud-01.eu",
-      "base"=> "/mnt"
+      "base"=> "/mnt/mms"
     },
     "application"=> {
       "deployment"=> {
