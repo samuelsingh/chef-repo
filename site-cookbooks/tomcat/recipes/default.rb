@@ -130,6 +130,24 @@ node[:tomcat][:ajp_ports].each do |ajp_port|
     not_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}/shared/lib"
   end
   
+  directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/common/classes"  do
+    owner t_user
+    group t_group
+    mode "0755"
+    recursive true
+    action :create
+    only_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}"
+  end
+  
+  directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/common/lib"  do
+    owner t_user
+    group t_group
+    mode "0755"
+    recursive true
+    action :create
+    only_if "test -d #{node[:tomcat][:basedir]}/server#{ajp_port}"
+  end
+  
   remote_directory "#{node[:tomcat][:basedir]}/server#{ajp_port}/conf" do
     source "conf"
     owner t_user
