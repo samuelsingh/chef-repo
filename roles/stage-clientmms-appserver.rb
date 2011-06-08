@@ -18,7 +18,8 @@ override_attributes(
         "name" => "Client MMS",
         "id" => "3",
         "external_start" => "20000001",
-        "external_end" => "30000000"
+        "external_end" => "30000000",
+        "me_url" => "https://mms-map-editor.s3.amazonaws.com/"
       },
       "quartz"=> {
         "user"=> "support@mapofmedicine.com",
