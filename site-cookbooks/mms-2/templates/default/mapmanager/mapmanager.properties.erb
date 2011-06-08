@@ -5,6 +5,8 @@ mom.fqdn=<%= @node[:mms][:common][:fqdn] %>
 mom.live.url=<%= @node[:mms][:application][:live_md][:url] %>
 mom.live.nameVersion=<%= @node[:mms][:application][:live_md][:name] %>
 
+mapeditor.manifest.baseUrl=<%= @node[:mms][:application][:me_url] %>
+
 # Indicate whether to show option to log into 'Home view' or 'See full list of views' on login page.
 # Should be false only for Root MMS.
 <% if @multiple_views == 'false' -%>
