@@ -431,7 +431,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :mom_dbhost => node[:mms][:application][:mom][:dbhost],
           :mom_dbname => node[:mms][:application][:mom][:dbname]
         )
-        only_if "test -d #{shared_loader}"
+        only_if "test -d #{common_loader}"
       end
       
       ## End: configuration for the previewloader webapp
