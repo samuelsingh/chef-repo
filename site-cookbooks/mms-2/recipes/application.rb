@@ -337,7 +337,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     if ajp_port == 9002
       
       server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
-      common_loader = "#{server_dir}/shared/lib"
+      common_loader = "#{server_dir}/common/classes"
       common_lib = "#{server_dir}/common/lib"
       
       directory "#{server_dir}/webapps" do
