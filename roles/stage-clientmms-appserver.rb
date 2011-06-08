@@ -18,8 +18,7 @@ override_attributes(
         "name" => "Client MMS",
         "id" => "3",
         "external_start" => "20000001",
-        "external_end" => "30000000",
-        "me_url" => "https://mms-map-editor.s3.amazonaws.com/"
+        "external_end" => "30000000"
       },
       "quartz"=> {
         "user"=> "support@mapofmedicine.com",
@@ -40,7 +39,8 @@ override_attributes(
         "url" => "http://euromd.regression.mapofmedicine.com"
       },
       "athens_link" => "true",
-      "multiple_views" => "true"
+      "multiple_views" => "true",
+      "me_url" => "https://mms-map-editor.s3.amazonaws.com/"
     }
   },
   "glusterfs" => {
