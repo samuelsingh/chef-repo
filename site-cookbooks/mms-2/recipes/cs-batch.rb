@@ -67,7 +67,7 @@ if File.exists?("#{dist_dir}/#{dist_zip}")
   end
   
   # Checksum the contentloader
-  execute "checksum_contentloader" do
+  execute "checksum_csbatch" do
     command "md5sum #{dist_dir}/#{dist_zip} > #{dist_dir}/#{dist_zip}.md5"
     notifies :run, resources(:execute => "deploy_dist"), :immediately
     not_if "md5sum -c --status #{dist_dir}/#{dist_zip}.md5 > /dev/null"

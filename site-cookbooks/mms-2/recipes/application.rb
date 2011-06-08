@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: mms
+# Cookbook Name:: mms-2
 # Recipe:: default
 #
 # Copyright 2010, Map of Medicine
@@ -90,11 +90,23 @@ directory log_base do
   action :create
 end
 
+# Construct a log directory for each webapp
+webapps = ['adminapp','mapmanager','mom','previewloader']
+
+webapps.each do |app|
+  
+  directory "#{log_base}/#{app}" do
+    owner t_user
+    group t_group
+    action :create
+  end
+  
+end
+
 ## This is the structure required for the mapmanager webapp:
 #
 # mms_base
 # |- mapmanager
-#   |- logs
 #   |- repo
 #     |- repository.xml
 #     |- indexing_configuration.xml
@@ -169,7 +181,6 @@ end
 #   |- athens
 #   |- index
 #   |- ipgIndex
-#   |- logs
 #   |- nelhIndex
 #   |- ssl
 #   |- thesaurusindex
@@ -179,7 +190,7 @@ end
 
 # Create empty directories, which are then populated dynamically by the application
 
-[mom_base,"#{mom_base}/index","#{mom_base}/ipgIndex","#{mom_base}/nelhIndex","#{mom_base}/logs"].each do |dir|
+[mom_base,"#{mom_base}/index","#{mom_base}/ipgIndex","#{mom_base}/nelhIndex"].each do |dir|
   
   directory dir do
     owner t_user
@@ -210,7 +221,6 @@ end
 #   |- attachments
 #   |- failure
 #   |- input
-#   |- logs
 #   |- success
 #   |- tmp
 #
@@ -222,7 +232,6 @@ preview_dirs << previewloader_base
 preview_dirs << "#{previewloader_base}/attachments"
 preview_dirs << "#{previewloader_base}/failure"
 preview_dirs << "#{previewloader_base}/input"
-preview_dirs << "#{previewloader_base}/logs"
 preview_dirs << "#{previewloader_base}/success"
 preview_dirs << "#{previewloader_base}/tmp"
 
@@ -251,7 +260,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     if ajp_port == 9001
       
       server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
-      shared_loader = "#{server_dir}/shared/lib"
+      common_loader = "#{server_dir}/common/classes"
+      common_lib = "#{server_dir}/common/lib"
       
       directory "#{server_dir}/webapps" do
         owner t_user
@@ -280,7 +290,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       # Routine to figure out preview time values
       previewvals = /[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d):[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d)/.match("#{node[:mms][:application][:preview_time]}")
       
-      template "#{shared_loader}/m2mr2-cs-base.properties" do
+      template "#{common_loader}/m2mr2-cs-base.properties" do
         source "mapmanager/m2mr2-cs-base.properties.erb"
         mode 0644
         variables(
@@ -294,7 +304,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
       end
       
-      template "#{shared_loader}/mapmanager.properties" do
+      template "#{common_loader}/mapmanager.properties" do
         source "mapmanager/mapmanager.properties.erb"
         mode 0644
         variables(
@@ -304,15 +314,15 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
       end
       
-      template "#{shared_loader}/mapmanager-log4j.xml" do
+      template "#{common_loader}/mapmanager-log4j.xml" do
         source "mapmanager/mapmanager-log4j.xml.erb"
         mode 0644
         variables(
-          :mapmanager_base => mapmanager_base
+          :log_base => log_base
         )
       end
       
-      template "#{shared_loader}/cs-webservice.properties" do
+      template "#{common_loader}/cs-webservice.properties" do
         source "mapmanager/cs-webservice.properties.erb"
         variables(
           :mapmanager_base => mapmanager_base
@@ -327,7 +337,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     if ajp_port == 9002
       
       server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
-      shared_loader = "#{server_dir}/shared/lib"
+      common_loader = "#{server_dir}/shared/lib"
+      common_lib = "#{server_dir}/common/lib"
       
       directory "#{server_dir}/webapps" do
         owner t_user
@@ -349,15 +360,15 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
       
-      template "#{shared_loader}/mom-log4j.xml" do
+      template "#{common_loader}/mom-log4j.xml" do
         source "mom/mom-log4j.xml.erb"
         mode 0644
         variables(
-          :mom_base => mom_base
+          :log_base => log_base
         )
       end
       
-      template "#{shared_loader}/mom-previewloader.properties" do
+      template "#{common_loader}/mom-previewloader.properties" do
         source "mom/mom-previewloader.properties.erb"
         mode 0644
       end
@@ -378,11 +389,11 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
 
-      template "#{shared_loader}/adminapp-log4j.xml" do
+      template "#{common_loader}/adminapp-log4j.xml" do
         source "mom/adminapp-log4j.xml.erb"
         mode 0644
         variables(
-          :mom_base => mom_base
+          :log_base => log_base
         )
       end
       
@@ -390,7 +401,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
       
       ## Start: configuration for the previewloader webapp
       
-      template "#{shared_loader}/previewloader-log4j.properties" do
+      template "#{common_loader}/previewloader-log4j.properties" do
         source "previewloader/previewloader-log4j.properties.erb"
         mode 0644
         variables(
@@ -410,7 +421,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
       
-      template "#{shared_loader}/contentloader.properties" do
+      template "#{common_loader}/contentloader.properties" do
         source "previewloader/contentloader.properties.erb"
         mode 0644
         variables(
@@ -428,7 +439,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
     end
     
     # mom.properties is required by all webapps
-    template "#{shared_loader}/mom.properties" do
+    template "#{common_loader}/mom.properties" do
       source "mom/mom.properties.erb"
       mode 0644
       variables(
