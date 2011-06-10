@@ -52,15 +52,16 @@ if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node
     EOH
   end
   
+  execute "fix_apt" do
+    command "apt-get -y -f install"
+    action :nothing
+  end
+  
   remote_file "/var/lib/dpkg/info/sun-java6-bin.postinst" do
     source "sun-java6-bin.postinst"
     backup false
     mode "0755"
-  end
-  
-  execute "fix_apt" do
-    command "apt-get -y -f install"
-    not_if "test -f /var/lib/dpkg/info/sun-java6-bin.postinst"
+    notifies :run, resources(:execute => "fix_apt"), :immediately
   end
   
 end
