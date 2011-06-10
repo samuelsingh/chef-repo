@@ -7,5 +7,10 @@ override_attributes(
   "tomcat" => {
     "unpackwars" => "true",
     "ajp_ports" => [9001]
+  },
+  "glusterfs" => {
+    "client" => {
+      "iocache" => "16"
+    }
   }
 )
