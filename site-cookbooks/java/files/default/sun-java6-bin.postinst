@@ -85,7 +85,7 @@ configure)
     case i386 in i386|sparc)
 	rm -f $basedir/jre/lib/i386/client/classes.jsa
 	log=$(tempfile)
-	if ! $basedir/bin/java -client -Xshare:dump -XX:MaxPermSize=128m > $log; then
+	if ! $basedir/bin/java -client -Xshare:dump -Xmx18m -XX:PermSize=12m -XX:MaxPermSize=16m > $log; then
 	    rm -f $basedir/jre/lib/i386/client/classes.jsa
 	    cat >&2 $log
 	    echo "Ignoring error generating classes.jsa"
