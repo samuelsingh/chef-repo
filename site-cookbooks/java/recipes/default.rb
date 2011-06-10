@@ -35,6 +35,18 @@ execute "update-java-alternatives" do
   action :nothing
 end
 
+# Fix for https://bugs.launchpad.net/ubuntu/+source/linux-ec2/+bug/634487
+
+if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node[:ec2][:instance_type] == 't1.micro'
+  
+  remote_file "/var/lib/dpkg/info/sun-java6-bin.postinst" do
+    source "sun-java6-bin.postinst"
+    backup false
+    mode "0755"
+  end
+  
+end
+
 package java_pkg do
   action :install
   if platform?("ubuntu", "debian")
