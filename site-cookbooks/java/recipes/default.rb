@@ -49,7 +49,6 @@ if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node
     done
     aptitude download sun-java6-bin
     dpkg --unpack sun-java6-bin*.deb
-    apt-get -f install
     EOH
   end
   
@@ -57,6 +56,11 @@ if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node
     source "sun-java6-bin.postinst"
     backup false
     mode "0755"
+  end
+  
+  execute "fix_apt" do
+    command "apt-get -y -f install"
+    not_if "test -f /var/lib/dpkg/info/sun-java6-bin.postinst"
   end
   
 end
