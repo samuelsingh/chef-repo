@@ -39,6 +39,11 @@ end
 
 if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node[:ec2][:instance_type] == 't1.micro'
   
+  execute "unpack-sun-java6-bin" do
+    command "aptitude download sun-java6-bin && dpkg --unpack sun-java6-bin*.deb"
+    not_if "test -f /var/lib/dpkg/info/sun-java6-bin.postinst"
+  end
+  
   remote_file "/var/lib/dpkg/info/sun-java6-bin.postinst" do
     source "sun-java6-bin.postinst"
     backup false
