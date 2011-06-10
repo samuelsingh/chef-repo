@@ -39,9 +39,17 @@ end
 
 if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node[:ec2][:instance_type] == 't1.micro'
   
-  execute "unpack-sun-java6-bin" do
-    command "aptitude download sun-java6-bin && dpkg --unpack sun-java6-bin*.deb"
+  bash "unpack-sun-java6-bin" do
+    user "root"
+    cwd "/tmp"
     not_if "test -f /var/lib/dpkg/info/sun-java6-bin.postinst"
+    code <<-EOH
+    for i in bin jdk jre; do
+      echo "sun-java6-$i shared/accepted-sun-dlj-v1-1 select true" | debconf-set-selections
+    done
+    aptitude download sun-java6-bin
+    dpkg --unpack sun-java6-bin*.deb
+    EOH
   end
   
   remote_file "/var/lib/dpkg/info/sun-java6-bin.postinst" do
