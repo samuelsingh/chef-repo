@@ -49,6 +49,7 @@ if platform?("ubuntu", "debian") && defined?(node[:ec2][:instance_type]) && node
     done
     aptitude download sun-java6-bin
     dpkg --unpack sun-java6-bin*.deb
+    apt-get -f install
     EOH
   end
   
