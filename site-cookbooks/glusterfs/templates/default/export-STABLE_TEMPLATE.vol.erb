@@ -34,7 +34,7 @@ end-volume
 
 volume iocache_<%= @mount_point %>
   type performance/io-cache
-  option cache-size 256MB               # default is 32MB
+  option cache-size <%= @node[:glusterfs][:client][:iocache] %>MB               # default is 32MB
   option cache-timeout 2                # default is 1 second
   subvolumes iothreads_<%= @mount_point %>
 end-volume
