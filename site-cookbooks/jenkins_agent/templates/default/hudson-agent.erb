@@ -1,0 +1,252 @@
+#!/bin/sh
+#
+# hudson-agent Startup script for Hudson headless node
+#
+# chkconfig: 2345 92 08
+#
+# description: Startup script for a Hudson headless agent node
+#
+
+USER=<%= @user %>
+GROUP=<%= @group %>
+
+DISPLAY=
+JAVA_HOME=/usr/local/java
+JAVA_BIN="$JAVA_HOME/bin/java"
+
+JAVA_OPTS_32="-Xmx256m -Xms256m -Djava.awt.headless=true"
+JAVA_OPTS_64="-server -Xmx512m -XX:MaxPermSize=256m -Djava.awt.headless=true"
+
+[ `uname -m`=='x86_64' ] && JAVA_OPTS=$JAVA_OPTS_64 || JAVA_OPTS=$JAVA_OPTS_32
+
+HUDSON_SERVER_URL="<%= @server_url %>"
+HUDSON_HOME=<%= @hudson_home %>
+
+export JAVA_HOME JAVA_OPTS HUDSON_HOME DISPLAY
+
+LSOF=/usr/bin/lsof
+HUDSON_LOG=$HUDSON_HOME/logs/hudson-agent.log
+HUDSON_PID=$HUDSON_HOME/logs/hudson-agent.pid
+SLAVE_NAME=`/bin/hostname -s`
+SLAVE_JAR_URL="$HUDSON_SERVER_URL/jnlpJars/slave.jar"
+HUDSON_LIB="$HUDSON_HOME/lib"
+JNLP_URL="$HUDSON_SERVER_URL/computer/$SLAVE_NAME/slave-agent.jnlp"
+
+
+bail()
+{
+	echo $*
+	echo "Usage: $0 {start|stop|restart}"
+	echo "   You can use multiple commands, for example:"
+	echo "   $0 stop start"
+	exit 1
+}
+
+status()
+{
+	if [ ! -f "$HUDSON_LOG" ] ; then
+		return 1
+	fi
+	$LSOF $HUDSON_LOG > /dev/null 2>&1
+	RET="$?"
+	
+   	case "$RET" in
+	0)
+		return 0
+		;;
+	1)
+		return 1
+		;;
+	*)
+		return $RET
+		;;
+	esac
+}
+
+rotatelog()
+{
+	[ -f "$HUDSON_LOG.5" ] && mv "$HUDSON_LOG.5" "$HUDSON_LOG.6"
+	[ -f "$HUDSON_LOG.4" ] && mv "$HUDSON_LOG.4" "$HUDSON_LOG.5"
+	[ -f "$HUDSON_LOG.3" ] && mv "$HUDSON_LOG.3" "$HUDSON_LOG.4"
+	[ -f "$HUDSON_LOG.2" ] && mv "$HUDSON_LOG.2" "$HUDSON_LOG.3"
+	[ -f "$HUDSON_LOG.1" ] && mv "$HUDSON_LOG.1" "$HUDSON_LOG.2"
+	[ -f "$HUDSON_LOG" ] && mv "$HUDSON_LOG" "$HUDSON_LOG.1"
+}
+
+
+get_slave_jar()
+{
+	SLAVE_JAR="$HUDSON_LIB/slave.jar"
+
+	# Get the current slave.jar from the Hudson master
+	echo "Getting current slave jar from server"
+	#echo "wget -q -O $SLAVE_JAR.new $SLAVE_JAR_URL"
+	wget -q -O "$SLAVE_JAR.new" "$SLAVE_JAR_URL"
+
+	# Make sure the file is a zip - otherwise the server may have
+	# returned an error.
+	unzip -tqq "$SLAVE_JAR.new"
+	RET="$?"
+
+	if [ "$RET" = "0" ] ; then
+		# It is a valid zip
+		if [ -f "$SLAVE_JAR" ] ; then
+			# We already have a slave.jar, see if the downloaded one is different
+			diff -q "$SLAVE_JAR.new" "$SLAVE_JAR" > /dev/null
+			RET="$?"
+			if [ "$RET" = "0" ] ; then
+				# It's not changed, clean up and we're done
+				rm -f "$SLAVE_JAR.new"
+			else
+				# It has changed, put it in place
+				mv "$SLAVE_JAR.new" "$SLAVE_JAR"
+			fi
+		else
+			# There is no slave.jar already, so moved the downloaded one into place
+			mv "$SLAVE_JAR.new" "$SLAVE_JAR"
+		fi
+	else
+		# We failed to download the slave.jar. See if we already have one.
+		echo "Attempt to download slave.jar from the server failed."
+		if [ -f "$SLAVE_JAR" ] ; then
+			echo "We'll use the existing slave.jar, which is normally OK."
+			echo "But this may indicate a problem with the Hudson server config"
+		else
+			echo "We have not been able to download a slave.jar from the server"
+			echo "Attempted to download from $SLAVE_JAR_URL"
+			bail "No slave.jar to use, can't start Hudson agent"
+		fi
+		
+	fi
+}
+
+stophudson()
+{
+	PIDS=
+	if [ -f "$HUDSON_LOG" ] ; then
+		PIDS=`$LSOF -t $HUDSON_LOG`
+	fi
+	if [ -n "$PIDS" ] ; then
+		#echo "Stopping Hudson Agent pids $PIDS"
+		kill $PIDS
+	else
+		echo "No pid found"
+	fi
+}
+
+killhudson()
+{
+	PIDS=
+	if [ -f "$HUDSON_LOG" ] ; then
+		PIDS=`$LSOF -t $HUDSON_LOG`
+	fi
+	if [ -n "$PIDS" ] ; then
+		#echo "Killing Hudson Agent pids $PIDS"
+		kill -9 $PIDS
+	else
+		echo "No pid found"
+	fi
+}
+
+start()
+{
+	echo "Starting Hudson Agent"
+	status
+	RET="$?"
+	if [ "$RET" = "0" ] ; then
+		echo "NOT STARTING: Hudson Agent is already running"
+		return
+	fi
+	if [ -f "$HUDSON_LOG" ] ; then
+		rotatelog
+	fi
+
+	# Make sure we have the current slave.jar from the Hudson server
+	get_slave_jar
+
+	echo "Starting Hudson Agent" >> "$HUDSON_LOG"
+	echo "$JAVA_BIN $JAVA_OPTS -jar $SLAVE_JAR -jnlpUrl $JNLP_URL" >> "$HUDSON_LOG"
+	nohup $JAVA_BIN $JAVA_OPTS -jar "$SLAVE_JAR" -jnlpUrl "$JNLP_URL" >> "$HUDSON_LOG" 2>&1 &
+	RET="$?"
+	if [ "$RET" != "0" ] ; then
+		bail "Failed to start Hudson Agent"
+	fi
+}
+
+stop()
+{
+	echo "Stopping Hudson Agent"
+	status
+	RET="$?"
+	if [ "$RET" = "1" ] ; then
+		echo "NOT STOPPING: Hudson Agent is not running"
+		return
+	fi
+
+	stophudson
+	for n in 10 9 8 7 6 5 4 3 2 1 ; do
+		status
+		RET="$?"
+		if [ "$RET" != "1" ] ; then
+			echo "Hudson Agent not stopped, waiting ... [$n]"
+			sleep 3
+		fi
+	done
+	status
+	[ "$RET" = "0" ] && killhudson
+}
+
+[ -n "$1" ] || bail "No arguments given, must use start|stop|restart|status"
+[ -d "$HUDSON_HOME" ] || bail "Cant find HUDSON_HOME $HUDSON_HOME"
+
+if [ -n "$USER" ] ; then
+	ID=`id -u -n`
+	if [ "$ID" = "root" ] ; then
+		#echo "Re-running this script as $USER"
+		exec su $USER $0 $*
+	elif [ "$ID" != "$USER" ] ; then
+		echo "Attempting to sudo to re-run this script"
+		exec sudo $0 $*
+	fi
+fi
+
+[ -d "$HUDSON_LIB" ] || mkdir -p "$HUDSON_LIB"
+[ -d "$HUDSON_HOME/logs" ] || mkdir -p "$HUDSON_HOME/logs"
+
+while [ -n "$1" ] ; do
+	case "$1" in
+		start)
+			start
+			;;
+		restart)
+			stop
+			start
+			;;
+		stop)
+			stop
+			;;
+		kill)
+			killhudson
+			;;
+		status)
+			status
+			RET="$?"
+			case "$RET" in
+			0)
+				echo "Hudson Agent is running"
+				;;
+			1)
+				echo "Hudson Agent is stopped"
+				;;
+			*)
+				echo "Hudson Agent state is unknown ($RET)"
+				;;
+			esac
+			;;
+		*)
+			bail "Missing argument"
+			;;
+		esac
+	shift
+done
+
