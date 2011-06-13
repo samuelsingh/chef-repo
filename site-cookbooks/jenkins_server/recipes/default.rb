@@ -29,7 +29,7 @@ directory "#{node[:tomcat][:basedir]}/server9001/webapps" do
 end
 
 template "#{node[:jenkins_server][:install_path]}/conf/Catalina/localhost/hudson.xml" do
-  source "hudson.xml.erb"
+  source "jenkins.xml.erb"
   owner "root"
   group "root"
   mode 0755
