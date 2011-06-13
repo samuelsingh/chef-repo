@@ -8,6 +8,9 @@ override_attributes(
     "unpackwars" => "true",
     "ajp_ports" => [9001]
   },
+  "hudson_server" => {
+    "java_opts" => "-server -Xmx256m -Djava.awt.headless=true"
+  },
   "glusterfs" => {
     "client" => {
       "iocache" => "16"
