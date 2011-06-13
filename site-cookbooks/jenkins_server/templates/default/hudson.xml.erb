@@ -1,0 +1,9 @@
+<Context path="/jenkins" 
+docBase="<%= @node[:jenkins_server][:war_path] %>/<%= @node[:jenkins_server][:version] %>.war"
+	    reloadable="false"
+	    debug="0">
+
+    <Logger className="org.apache.catalina.logger.FileLogger"
+        prefix="webapp-jenkins." suffix=".log" timestamp="true"/>
+
+</Context>
