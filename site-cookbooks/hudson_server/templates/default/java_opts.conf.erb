@@ -1,2 +1,2 @@
-JAVA_OPTS="-server -Xmx768m -Djava.awt.headless=true"
+JAVA_OPTS="<%= @node[:hudson_server][:java_opts] %>"
 export HUDSON_HOME=<%= @node[:hudson_server][:home] %>
