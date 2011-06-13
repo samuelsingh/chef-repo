@@ -44,6 +44,19 @@ override_attributes(
       "restricted_ips" => [],
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
+    },
+    "jenkins.prod.mapofmedicine.com" => {
+      "srv_aliases" => [],
+      "webapps" => {
+        "jenkins" => {
+          "port" => "9001",
+          "appserver" => "jenkins-02.map-cloud-01.eu"
+        }
+      },
+      "primary_webapp" => "jenkins",
+      "restricted_ips" => [],
+      "holding_page" => "false",
+      "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause."
     }
   },
   "zenoss" => {
