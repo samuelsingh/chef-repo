@@ -28,7 +28,7 @@ directory "#{node[:tomcat][:basedir]}/server9001/webapps" do
 	not_if "test -d #{node[:tomcat][:basedir]}/server9001/webapps"
 end
 
-template "#{node[:jenkins_server][:install_path]}/conf/Catalina/localhost/hudson.xml" do
+template "#{node[:jenkins_server][:install_path]}/conf/Catalina/localhost/jenkins.xml" do
   source "jenkins.xml.erb"
   owner "root"
   group "root"
