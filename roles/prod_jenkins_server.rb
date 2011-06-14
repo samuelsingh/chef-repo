@@ -1,7 +1,7 @@
 name "prod_jenkins_server"
 description "Map of Medicine Jenkins deployment server"
 
-run_list "role[tomcat]", "recipe[jenkins_server]"
+run_list "recipe[prod-server]", "role[tomcat]", "recipe[jenkins_server]", "role[its-users]"
 
 override_attributes(
   "tomcat" => {
