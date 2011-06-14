@@ -10,6 +10,6 @@ override_attributes(
     "jvm" => {
       "java_opts" => "-server -Xmx64m -Djava.awt.headless=true"
     },
-    "server_url" => "http://deploy-01.map-cloud-01.eu:8080/hudson"
+    "server_url" => "http://hudson-01.map-cloud-01.eu:8080/hudson"
   }
 )
