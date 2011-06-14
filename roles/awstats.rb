@@ -12,12 +12,12 @@ override_attributes(
       "healthguides.mapofmedicine.com" => {
         "host_regex" => "hgpe-app-0[1-9]",
         "minute" => "25",
-        "hour" => "0"
+        "hour" => "5"
       },
       "eng.mapofmedicine.com" => {
         "host_regex" => "hgpe-app-0[1-9]",
         "minute" => "55",
-        "hour" => "0"
+        "hour" => "5"
       },
       "training-mms.mapofmedicine.com" => {
         "host_regex" => "prod-web-0[1-9]",
