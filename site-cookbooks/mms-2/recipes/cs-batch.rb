@@ -80,10 +80,14 @@ if File.exists?("#{dist_dir}/#{dist_zip}")
   
 end
 
-remote_file "#{csbatch_base}/cs-batch.sh" do
+remote_file "#{csbatch_base}/cs-bt.sh" do
   source "cs-batch/cs-batch.sh"
   mode "0755"
   only_if "test -d #{csbatch_base}"
+end
+
+link "#{csbatch_base}/queue-manager" do
+  to "#{csbatch_base}/cs-bt.sh"
 end
 
 directory "#{log_path}/cs-batch"  do
