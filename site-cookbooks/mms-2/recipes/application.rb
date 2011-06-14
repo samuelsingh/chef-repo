@@ -405,7 +405,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         source "previewloader/previewloader-log4j.properties.erb"
         mode 0644
         variables(
-          :previewloader_base => previewloader_base
+          :log_base => log_base
         )
       end
       
