@@ -29,6 +29,10 @@ dist_zip    = "cs-batch.zip"
 # User that a sysadmin uses to interact with the application
 sys_usr = node[:mms][:common][:interactive_usr]
 
+# User / group that Tomcat runs under
+t_user = node[:tomcat][:user]
+t_group = node[:tomcat][:group]
+
 ## This is the structure for content-in which is used to import synchronisation packages into MMS
 ## Looks like:
 #
@@ -55,6 +59,7 @@ end
 # Zipfiles placed here will be deployed by the next chef run
 directory "#{dist_dir}" do
   action :create
+  owner t_user
   recursive true
   not_if "test -d #{dist_dir}"
 end

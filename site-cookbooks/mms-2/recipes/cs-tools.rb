@@ -39,6 +39,7 @@ repo_home = "#{mapmanager_base}/repo"
 # Zipfiles placed here will be deployed by the next chef run
 directory "#{dist_dir}" do
   action :create
+  owner t_user
   recursive true
   not_if "test -d #{dist_dir}"
 end
