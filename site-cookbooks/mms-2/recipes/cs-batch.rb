@@ -88,6 +88,7 @@ end
 
 link "#{csbatch_base}/queue-manager" do
   to "#{csbatch_base}/cs-bt.sh"
+  only_if "test -f #{csbatch_base}/cs-bt.sh"
 end
 
 directory "#{log_path}/cs-batch"  do
