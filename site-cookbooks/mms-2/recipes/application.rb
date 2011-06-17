@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-# Generates the mtm directory structure
-#
-
 # User / group that Tomcat runs under
 t_user = node[:tomcat][:user]
 t_group = node[:tomcat][:group]
