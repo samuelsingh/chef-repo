@@ -1,41 +1,58 @@
 name "trainingmms-appserver"
-description "Configures Client MMS application server"
+description "Configures Training MMS application server"
 
-run_list "role[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]", "recipe[mms::cron]"
+#run_list "role[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]", "recipe[mms::cron]"
 
-default_attributes(
-  "mms" => {
-    "dbhost" => "lightmms-db-01.map-cloud-01.eu"
-  }
-)
+run_list "role[tomcat]", "recipe[mms-2::application]", "recipe[mms-2::cs-tools]", "recipe[mms-2::cs-batch]", "role[prod-jenkins-agent]"
+
 override_attributes(
   "mms" => {
-    "fqdn" =>  "training-mms.mapofmedicine.com",
-    "deploy_dir" =>  "/var/shared/deployment/prod/training-mms",
-    "deployment_name" => "Training MMS",
-    "contentpath" => "/var/mms/content-out",
-    "content_in" => "/var/mms/content-in",
-    "deployment" => {
-      "id" => "50",
-      "external_start" => "30000001",
-      "external_end" => "40000000"
+    "common"=> {
+      "interactive_usr"=> "sysadmin",
+      "fqdn"=> "training-mms.mapofmedicine.com",
+      "dbuser"=> "mtmuser",
+      "dbpass"=> "MtMUs3r",
+      "dbhost"=> "lightmms-db-01.map-cloud-01.eu",
+      "base"=> "/mnt/mms"
     },
-    "quartz" => {
-      "user" => "quartz@mapofmedicine.com",
-      "password" => "SoZ8siMi"
-    },
-    "mapmanager" => {
-      "dbname" => "training_mcs"
-    },
-    "repository" => {
-      "dbname" => "training_repo"
-    },
-    "mom" => {
-      "dbname" => "training_preview"
-    },
-    "athens_link" => "true",
-    "multiple_views" => "true",
-    "dbuser" => "mtmuser",
-    "dbpass" => "MtMUs3r"
+    "application"=> {
+      "deployment"=> {
+        "name" => "Training MMS",
+        "id" => "50",
+        "external_start" => "30000001",
+        "external_end" => "40000000"
+      },
+      "quartz"=> {
+        "user"=> "quartz@mapofmedicine.com",
+        "password"=> "SoZ8siMi"
+      },
+      "repository"=> {
+        "dbname"=> "training_repo",
+        "datastore"=> "false"
+      },
+      "mapmanager"=> {
+        "dbname"=> "training_mcs"
+      },
+      "mom"=> {
+        "dbname"=> "training_preview"
+      },
+      "live_md" => {
+        "name" => "Euro MD",
+        "url" => "http://app.mapofmedicine.com"
+      },
+      "athens_link" => "true",
+      "multiple_views" => "true"
+    }
+  },
+  "glusterfs" => {
+    "client" => {
+      "stable" => "true"
+    }
+  },
+  "tomcat" => {
+    "srv_dir" => "/var/tomcat",
+    "log_rotate_dir" => "/var/shared/rotated-logs",
+    "unpackwars" => "true"
   }
 )
+
