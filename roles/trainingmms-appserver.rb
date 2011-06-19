@@ -27,8 +27,7 @@ override_attributes(
         "password"=> "SoZ8siMi"
       },
       "repository"=> {
-        "dbname"=> "training_repo",
-        "datastore"=> "false"
+        "dbname"=> "training_repo"
       },
       "mapmanager"=> {
         "dbname"=> "training_mcs"
