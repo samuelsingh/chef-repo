@@ -7,9 +7,9 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,7 +45,7 @@ previewloader_base  = "#{mms_base}/previewloader"
 base_dirs = [mms_base,content_out,mapmanager_base,mom_base,previewloader_base]
 
 base_dirs.each do |dir|
-  
+
   directory dir do
     owner t_user
     group t_group
@@ -65,13 +65,13 @@ end
 #   |- sync-packages
 
 ["#{content_out}/md-packages","#{content_out}/sync-packages"].each do |dir|
-  
+
   directory dir do
     owner t_user
     group t_group
     action :create
   end
-  
+
 end
 
 ## This is the structure for content-out which is where published content shows up
@@ -91,13 +91,13 @@ end
 webapps = ['adminapp','mapmanager','mom','previewloader']
 
 webapps.each do |app|
-  
+
   directory "#{log_base}/#{app}" do
     owner t_user
     group t_group
     action :create
   end
-  
+
 end
 
 ## This is the structure required for the mapmanager webapp:
@@ -112,12 +112,6 @@ end
 
 repo_home = "#{mapmanager_base}/repo"
 ws_home = "#{mapmanager_base}/ws"
-
-directory "#{mapmanager_base}/logs" do
-  owner t_user
-  group t_group
-  action :create
-end
 
 directory repo_home do
   owner t_user
@@ -188,25 +182,25 @@ end
 # Create empty directories, which are then populated dynamically by the application
 
 [mom_base,"#{mom_base}/index","#{mom_base}/ipgIndex","#{mom_base}/nelhIndex"].each do |dir|
-  
+
   directory dir do
     owner t_user
     group t_group
     action :create
   end
-  
+
 end
 
 # These directories contain static files, so are constructed from the recipe
 
 ['athens','ssl','thesaurusindex','translation'].each do |sdir|
-  
+
   remote_directory "#{mom_base}/#{sdir}" do
     source "#{sdir}"
     files_mode "0644"
     mode "0755"
   end
-  
+
 end
 
 # End: mom webapp
@@ -233,13 +227,13 @@ preview_dirs << "#{previewloader_base}/success"
 preview_dirs << "#{previewloader_base}/tmp"
 
 preview_dirs.each do |dir|
-  
+
   directory dir do
     owner t_user
     group t_group
     action :create
   end
-  
+
 end
 
 # End: previewloader webapp
@@ -251,27 +245,27 @@ end
 # fails (again).
 
 if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
-  
+
   node[:tomcat][:ajp_ports].each do |ajp_port|
-    
+
     if ajp_port == 9001
-      
+
       server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
       common_loader = "#{server_dir}/common/classes"
       common_lib = "#{server_dir}/common/lib"
-      
+
       directory "#{server_dir}/webapps" do
         owner t_user
         group t_group
         action :create
       end
-      
+
       ## Start: configuration for the mapmanager webapp
-      
+
       deployment_name = node[:mms][:application][:deployment][:name]
       athens_link     = node[:mms][:application][:athens_link]
       multiple_views  = node[:mms][:application][:multiple_views]
-      
+
       template "#{server_dir}/conf/Catalina/localhost/mapmanager.xml" do
         source "mapmanager/mapmanager.xml.erb"
         mode 0644
@@ -283,10 +277,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
-      
+
       # Routine to figure out preview time values
       previewvals = /[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d):[0]{0,1}([1|2|3|4|5|6|7|8|9]{0,1}\d)/.match("#{node[:mms][:application][:preview_time]}")
-      
+
       template "#{common_loader}/m2mr2-cs-base.properties" do
         source "mapmanager/m2mr2-cs-base.properties.erb"
         mode 0644
@@ -300,7 +294,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :previewmin => previewvals[2]
         )
       end
-      
+
       template "#{common_loader}/mapmanager.properties" do
         source "mapmanager/mapmanager.properties.erb"
         mode 0644
@@ -310,7 +304,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :multiple_views => multiple_views
         )
       end
-      
+
       template "#{common_loader}/mapmanager-log4j.xml" do
         source "mapmanager/mapmanager-log4j.xml.erb"
         mode 0644
@@ -318,7 +312,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :log_base => log_base
         )
       end
-      
+
       template "#{common_loader}/cs-webservice.properties" do
         source "mapmanager/cs-webservice.properties.erb"
         variables(
@@ -326,25 +320,25 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
         mode "0644"
       end
-      
+
       ## End: configuration for the mapmanager webapp
-      
+
     end
-    
+
     if ajp_port == 9002
-      
+
       server_dir = "#{node[:tomcat][:basedir]}/server#{ajp_port}"
       common_loader = "#{server_dir}/common/classes"
       common_lib = "#{server_dir}/common/lib"
-      
+
       directory "#{server_dir}/webapps" do
         owner t_user
         group t_group
         action :create
       end
-      
+
       ## Start: configuration for the mom webapp
-      
+
       template "#{server_dir}/conf/Catalina/localhost/mom.xml" do
         source "mom/mom.xml.erb"
         mode 0644
@@ -356,7 +350,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
-      
+
       template "#{common_loader}/mom-log4j.xml" do
         source "mom/mom-log4j.xml.erb"
         mode 0644
@@ -364,16 +358,16 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :log_base => log_base
         )
       end
-      
+
       template "#{common_loader}/mom-previewloader.properties" do
         source "mom/mom-previewloader.properties.erb"
         mode 0644
       end
-      
+
       ## End: configuration for the mom webapp
-      
+
       ## Start: configuration for the adminapp webapp
-      
+
       template "#{server_dir}/conf/Catalina/localhost/adminapp.xml" do
         source "mom/adminapp.xml.erb"
         mode 0644
@@ -393,11 +387,11 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :log_base => log_base
         )
       end
-      
+
       ## End: configuration for the adminapp webapp
-      
+
       ## Start: configuration for the previewloader webapp
-      
+
       template "#{common_loader}/previewloader-log4j.properties" do
         source "previewloader/previewloader-log4j.properties.erb"
         mode 0644
@@ -405,7 +399,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :log_base => log_base
         )
       end
-      
+
       template "#{server_dir}/conf/Catalina/localhost/previewloader.xml" do
         source "previewloader/previewloader.xml.erb"
         mode 0644
@@ -417,7 +411,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
-      
+
       template "#{common_loader}/contentloader.properties" do
         source "previewloader/contentloader.properties.erb"
         mode 0644
@@ -430,11 +424,11 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         )
         only_if "test -d #{common_loader}"
       end
-      
+
       ## End: configuration for the previewloader webapp
-      
+
     end
-    
+
     # mom.properties is required by all webapps
     template "#{common_loader}/mom.properties" do
       source "mom/mom.properties.erb"
@@ -443,7 +437,8 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         :mom_base => mom_base
       )
     end
-    
+
   end
-  
+
 end
+
