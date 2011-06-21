@@ -40,7 +40,7 @@ override_attributes(
       },
       "athens_link" => "true",
       "multiple_views" => "true",
-      "me_url" => "https://mms-map-editor.s3.amazonaws.com"
+      #"me_url" => "https://mms-map-editor.s3.amazonaws.com"
     }
   },
   "glusterfs" => {
