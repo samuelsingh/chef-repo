@@ -39,8 +39,7 @@ override_attributes(
         "url" => "http://euromd.regression.mapofmedicine.com"
       },
       "athens_link" => "true",
-      "multiple_views" => "true",
-      #"me_url" => "https://mms-map-editor.s3.amazonaws.com"
+      "multiple_views" => "true"
     }
   },
   "glusterfs" => {
