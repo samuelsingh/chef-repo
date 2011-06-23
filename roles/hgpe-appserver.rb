@@ -9,7 +9,8 @@ override_attributes(
   },
   "hg_mde" => {
     "hg_war_path" =>  "/var/shared/deployment/prod/healthguides/wars",
-    "mde_war_path" =>  "/var/shared/deployment/prod/mde/wars"
+    "mde_war_path" =>  "/var/shared/deployment/prod/mde/wars",
+    "specify_docbase" => "false"
   },
   "jenkins_agent" => {
     "user" => "tomcat",
