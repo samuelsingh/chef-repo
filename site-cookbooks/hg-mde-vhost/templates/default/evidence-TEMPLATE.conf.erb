@@ -120,7 +120,14 @@
     </Location>
 
     <IfModule mod_rewrite.c>
-    
+
+        # Rewrite rule for the NHS organ donor subdomain
+        RewriteCond %{HTTP_HOST} ^organdonor\.mapofmedicine\.com$ [NC]
+        RewriteRule ^/evidence/map / [R,L]
+
+        RewriteCond %{HTTP_HOST} ^organdonor\.mapofmedicine\.com$ [NC]
+        RewriteRule ^/$ /evidence/nhsbt/index.html [R,L]
+
         RewriteEngine on 
         RewriteRule ^/$ /evidence [R,L]
             
