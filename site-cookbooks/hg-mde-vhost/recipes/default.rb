@@ -28,7 +28,7 @@ node[:hg_mde_vhost].each do |hostname,params|
     # Don't use indexes if run by chef-solo
     if $0[/chef-solo/].nil?
       # Figures out whether to link to AWStats
-      awstats_srv = search(:node, "awstats:#{hostname}").map { |n| n["fqdn"] }.first
+      awstats_srv = search(:node, "awstats_sites:#{hostname}").map { |n| n["fqdn"] }.first
 
       if awstats_srv.nil?
         awstats = false
