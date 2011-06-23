@@ -35,3 +35,9 @@ hudson ALL = NOPASSWD: /usr/bin/chef-client
 <% if @content_source == true -%>
 syncuser ALL = NOPASSWD: /usr/local/bin/sync_fix_perms.sh
 <% end -%>
+
+<% if defined?(@node[:tomcat][:user]) -%>
+<%= @node[:tomcat][:user] %> ALL = NOPASSWD: /usr/local/sbin/gather-tomcat-logs.rb
+<%= @node[:tomcat][:user] %> ALL = NOPASSWD: /usr/local/sbin/gather-mms-logs.rb
+<%= @node[:tomcat][:user] %> ALL = NOPASSWD: /usr/local/sbin/gather-md-logs.rb
+<% end -%>
