@@ -12,5 +12,5 @@ log_act = GatherLogs::Log.new(lsof_bin)
 tomcat_ports.split(',').each do |port|
   log_dir = "/var/tomcat/server#{port}/logs"
   dest_dir = log_act.set_dest_dir(rotate_dir) + "/tomcat#{port}"
-  log_act.move_else_purge(log_dir,dest_dir,'catalina')
+  log_act.move_else_purge(log_dir,dest_dir,'(catalina|evidence|healthguides)')
 end
