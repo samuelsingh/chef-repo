@@ -12,7 +12,10 @@ bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
 lib = '/usr/local/lib'
 
-qmgr_bin = "#{node[:mms][:queuemgr][:path]}/queue-manager"
+qmgr_bin = "#{node[:mms][:common][:base]}/cs-batch/cs-bt.sh"
+
+# Figures out whether or not this is a production server
+node.run_list.run_list.flatten.member?("recipe[prod-server]") ? production_server = true : production_server = false
 
 cron "rotate_mms_logs" do
   hour "#{node[:tomcat][:rotate_hour].to_i + 1}"
@@ -26,7 +29,7 @@ cron "clean_mms" do
   command "#{sbin}/mmsclean"
 end
 
-if node.run_list.recipes.member?("recipe[prod-server]")
+if production_server
   
   # Start quartz queue at the end of working hours
   cron "start_qrtz_jobs" do
