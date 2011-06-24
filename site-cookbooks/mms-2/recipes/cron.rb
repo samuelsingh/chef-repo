@@ -5,8 +5,8 @@
 # Copyright 2011, Map of Medicine
 #
 
-include_recipe "mms"
-include_recipe "mms::helper-scripts"
+include_recipe "mms-2::application"
+include_recipe "mms-2::helper-scripts"
 
 bin = '/usr/local/bin'
 sbin = '/usr/local/sbin'
