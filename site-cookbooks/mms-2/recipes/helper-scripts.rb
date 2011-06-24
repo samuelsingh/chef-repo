@@ -14,7 +14,7 @@ lib = '/usr/local/lib'
 content_store = '/var/shared/content'
 loadq = content_store + '/load-queue'
 
-contentpath = node[:mms][:commom][:base] + '/content-out'
+contentpath = node[:mms][:common][:base] + '/content-out'
 rotate_dir = node[:tomcat][:log_rotate_dir]
 
 # Installs dependent packages
