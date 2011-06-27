@@ -280,6 +280,7 @@ janew:							jane.wilde
 jane:							jane.wilde
 j.wilde:						jane.wilde
 janewilde:						jane.wilde
+jason.griffiths:                                       jason.griffiths@natbill.hostpilot.com
 jeff.deinhart:                                Jeff.Deinhart@natbill.hostpilot.com
 jeff.dienhart:                                Jeff.Dienhart@natbill.hostpilot.com 
 jennifer.dennington:            Jennifer.Dennington@natbill.hostpilot.com
@@ -620,7 +621,7 @@ maria.martin:                                   bitbucket
 marjorie.debruyn:                               bitbucket 
 surinder.madaher:                               bitbucket 
 michelle.mclachlan:                             bitbucket
-jason.griffiths:                                bitbucket
+#jason.griffiths:                                bitbucket
 
 ########################################################################
 # Informa BitBucket List 
