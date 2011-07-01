@@ -24,16 +24,17 @@ package "dovecot-pop3d" do
    options "--allow-unauthenticated"
 end
 
-#service "dovecot-pop3d" do 
-# supports :restart => true
-# action [:enable, :start]
-#end
+service "dovecot" do 
+ supports :restart => true
+ action [:enable, :start]
+end
 
 remote_file "/etc/dovecot/dovecot.conf" do
    source "dovecot.conf"
    mode 0644
    owner "root"
    group "root" 
+   notifies :restart, "service[dovecot]"
 end
 
 directory "/var/mail" do 
