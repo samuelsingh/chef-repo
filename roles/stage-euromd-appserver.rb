@@ -1,7 +1,7 @@
 name "stage-euromd-appserver"
 description "Configures Stage MD application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]"
+run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]", "role[stage-jenkins-agent]"
 
 override_attributes(
   "map_display" => {
