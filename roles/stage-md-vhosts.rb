@@ -2,7 +2,7 @@ name "stage-md-vhosts"
 description "Configures apache vhosts for MD staging use"
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 # run_list "recipe[zones]", "recipe[nfs_mounts]"
-run_list "recipe[map-display-vhost]", "recipe[lpa-vhost]", "recipe[stage-server]"
+run_list "recipe[map-display-3::vhost]", "recipe[lpa-vhost]", "recipe[stage-server]"
 
 override_attributes(
   "map_display_vhost" => {
