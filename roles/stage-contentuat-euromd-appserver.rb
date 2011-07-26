@@ -1,7 +1,7 @@
 name "stage-contentuat-euromd-appserver"
 description "Configures Stage Content MD application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]", "role[stage-jenkins-agent]"
+run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "role[stage-jenkins-agent]"
 
 override_attributes(
   "map_display" => {
@@ -12,7 +12,7 @@ override_attributes(
       "dbpass" => "medic1"
     },
     "application" => {
-      "md_fqdn" =>  "euromd.contentuat.mapofmedicine.com",
+      "md_fqdn" =>  "stage-euromd-app-02.map-cloud-01.eu",
       "geoip_server" => "geoip.mapofmedicine.com",
       "save_ram" => "true"
     },
@@ -29,20 +29,12 @@ override_attributes(
         "lb_alive_port" => 0
       }
     },
-    "lpa_vhost" => {
-      "localcare.regression.mapofmedicine.com" => {
-        "srv_aliases" => [],
-        "holding_page" => "false",
-        "appserver" => "127.0.0.1",
-        "lb_alive_port" => 0
-      }
-    }
-  },
   "tomcat" => {
     "srv_dir" => "/var/tomcat",
     "log_rotate_dir" => "/var/shared/rotated-logs",
     "unpackwars" => "true"
   }
+}
 )
 
 
