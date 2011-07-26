@@ -1,7 +1,7 @@
 name "stage-contentuat-euromd-appserver"
 description "Configures Stage Content MD application server"
 
-run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "role[stage-jenkins-agent]"
+run_list "recipe[java]", "recipe[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]"
 
 override_attributes(
   "map_display" => {
@@ -12,7 +12,7 @@ override_attributes(
       "dbpass" => "medic1"
     },
     "application" => {
-      "md_fqdn" =>  "stage-euromd-app-02.map-cloud-01.eu",
+      "md_fqdn" =>  "euromd.contentuat.mapofmedicine.com",
       "geoip_server" => "geoip.mapofmedicine.com",
       "save_ram" => "true"
     },
