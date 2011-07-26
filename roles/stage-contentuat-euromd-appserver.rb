@@ -6,7 +6,6 @@ run_list "recipe[java]", "recipe[tomcat]", "recipe[map-display]", "recipe[map-di
 override_attributes(
   "map_display" => {
     "md_fqdn" =>  "integration.mapofmedicine.com",
-    "deploy_dir" =>  "/var/shared/deployment/euromd",
     "dbhost" => "stage-db-02.map-cloud-01.eu",
     "dbname" => "uat_mtmdb",
     "dbuser" => "mtmuser",
