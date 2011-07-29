@@ -451,12 +451,6 @@ o.onamusi:                     olufunke.onamusi
 olufunke.onamusi:                 olufunke.onamusi
 owen:							o.epstein@rfc.ucl.ac.uk
 paco:							p.berlingieri@rfc.ucl.ac.uk
-pam.nicklin:					pam.nicklin@natbill.hostpilot.com
-pam:							pam.nicklin
-pamn:							pam.nicklin
-p.nicklin:						pam.nicklin
-pamnicklin:						pam.nicklin
-pnicklin:						pam.nicklin
 patrick.clancey:				patrick.clancey@natbill.hostpilot.com
 patrickc:						patrick.clancey
 p.clancey:						patrick.clancey
@@ -622,6 +616,7 @@ maria.martin:                                   bitbucket
 marjorie.debruyn:                               bitbucket 
 surinder.madaher:                               bitbucket 
 michelle.mclachlan:                             bitbucket
+pam.nicklin:                                    pam.nicklin@natbill.hostpilot.com
 #jason.griffiths:                                bitbucket
 
 ########################################################################
