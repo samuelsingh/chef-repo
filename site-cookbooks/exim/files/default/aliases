@@ -653,7 +653,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						kief, andrew, gerard.onochie
+support-team:						kief, andrew, gerard.onochie,nitin.shukla
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
@@ -678,8 +678,8 @@ mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
 LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
 # Mailing list for receving svn commit emails
-map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie
-map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie
+map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie, nitin.shukla
+map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie, nitin.shukla
 
 
 
@@ -691,12 +691,12 @@ map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie
 sysadmin:						support-team
 knowledge:						root
 systems:						sysadmin
-nagios:							andrew.fulcher,gerard.onochie
+nagios:							andrew.fulcher,gerard.onochie,nitin.shukla
 logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						gerard.onochie, andrew.fulcher, jason.griffiths
+csc-stats:						gerard.onochie, andrew.fulcher, jason.griffiths,nitin.shukla
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com, keith.k, nat.billington
@@ -746,7 +746,7 @@ stockholm-support:				support
 wales-support:					support
 fujitsu-support:				support
 csc-support:					support
-bt-support:					support,ketan.patel,andrew.fulcher,gerard.onochie
+bt-support:					support,ketan.patel,andrew.fulcher,gerard.onochie,nitin.shukla
 london-support:					support
 mod-support:                    support
 demo-support:					support
