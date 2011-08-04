@@ -653,7 +653,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						kief, andrew, gerard.onochie,nitin.shukla
+support-team:						kief, andrew, gerard.onochie,nitin.shukla,jason.griffiths
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
