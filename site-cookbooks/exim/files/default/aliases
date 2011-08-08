@@ -334,13 +334,6 @@ ketan:							ketan.patel
 ketanp:							ketan.patel
 k.patel:						ketan.patel
 ketanpatel:						ketan.patel
-kief.morris:					bitbucket
-kief:							kief.morris
-kiefm:							kief.morris
-k.morris:						kief.morris
-keith.morris:					kief.morris
-keith:							kief.morris
-kiefmorris:						kief.morris
 keith.kirtland:				Keith.Kirtland@natbill.hostpilot.com
 keith.k:					keith.kirtland
 k.kirtland:					keith.kirtland
@@ -652,7 +645,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						kief, andrew, gerard.onochie,nitin.shukla,jason.griffiths
+support-team:						andrew, gerard.onochie,nitin.shukla,jason.griffiths
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
@@ -677,8 +670,8 @@ mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
 LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
 # Mailing list for receving svn commit emails
-map-dev-commit:					kief.morris, andrew, stella, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie, nitin.shukla
-map-sys-commit:					kief.morris, andrew, jasong, gerard.onochie, nitin.shukla
+map-dev-commit:					andrew, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie, nitin.shukla
+map-sys-commit:					andrew, jasong, gerard.onochie, nitin.shukla
 
 
 
@@ -778,7 +771,7 @@ dev:							bitbucket
 special-dev:					bitbucket
 special-dev-queue:				bitbucket
 factory-qa:                     stella.nelson
-dev-feedback:					naeem,kief.morris
+dev-feedback:					naeem
 desktopsupport:					desktop-support
 desktop-support:				MaplanSupport@hearst.com
 zendesk:						zendesk@natbill.hostpilot.com
@@ -789,7 +782,6 @@ joinus:							jobs
 join:							jobs
 opportunities:					jobs
 careers:						jobs
-tech-jobs:						kief.morris
 
 sales:							sales@natbill.hostpilot.com
 telehealth:						sales
@@ -908,7 +900,7 @@ caroline.squires-int:				caroline.squires
 
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24759
 #sdk-support:					sdk-support@cherry.mapofmedicine.com
-sdk-support-queue:				michael.cole, naeem.malik, kief.morris
+sdk-support-queue:				michael.cole, naeem.malik
 
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24764
 qa-publisher:					stella.nelson
