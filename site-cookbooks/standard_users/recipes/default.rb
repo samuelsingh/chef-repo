@@ -32,7 +32,7 @@ user "sysadmin"  do
   shell "/bin/bash"
   supports :manage_home => true
   password "$6$omSzYslD$MzOq5M8cCCAoDZgS4L0y3JpSIrnPloUrC0WWW6c137k1K8DewKKpcvCNVsXKyAPYUYpK7J23N3Z9lrUoae0Bt0"
-  not_if "[ ! -z \"`who | grep sysadmin`\" ]"
+#  not_if "[ ! -z \"`who | grep sysadmin`\" ]"
 end
 
 remote_file "#{home_dir}/.profile" do
