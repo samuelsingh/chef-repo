@@ -31,7 +31,7 @@ user "sysadmin"  do
   home home_dir
   shell "/bin/bash"
   supports :manage_home => true
-  password "$6$EftNV8G/$Z9PfDF/ss6.FGFyJLE8oeFGXfD9g20Bf72m6D5ShhImW3NIAzXx91y3D9uCU.cvtH0N/2a/VRjIxJp7bpN2nH."
+  password "$6$omSzYslD$MzOq5M8cCCAoDZgS4L0y3JpSIrnPloUrC0WWW6c137k1K8DewKKpcvCNVsXKyAPYUYpK7J23N3Z9lrUoae0Bt0"
   not_if "[ ! -z \"`who | grep sysadmin`\" ]"
 end
 
