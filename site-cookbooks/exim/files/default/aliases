@@ -261,6 +261,7 @@ healthguidesf:                                          healthguides.feedback
 healthguides:                                           healthguides.feedback
 h.feedback:                                             healthguides.feedback
 healthguidesfeedback:                                   healthguides.feedback
+hiran:                                            	hiran.patel@natbill.hostpilot.com
 hiran.patel:                                            hiran.patel@natbill.hostpilot.com
 HR:							HR@natbill.hostpilot.com
 inderjit.Kundhi                                         inderjit.Kundhi@natbill.hostpilot.com
@@ -645,7 +646,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						andrew, gerard.onochie,nitin.shukla,jason.griffiths
+support-team:						andrew,nitin.shukla,jason.griffiths,hiran
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
@@ -670,8 +671,8 @@ mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
 LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
 # Mailing list for receving svn commit emails
-map-dev-commit:					andrew, naeem, farrukh, andrew.sowerby, patrick, gerard.onochie, nitin.shukla
-map-sys-commit:					andrew, jasong, gerard.onochie, nitin.shukla
+map-dev-commit:					andrew,naeem,farrukh,andrew.sowerby,patrick,nitin.shukla
+map-sys-commit:					andrew,jasong,nitin.shukla,hiran
 
 
 
@@ -683,12 +684,12 @@ map-sys-commit:					andrew, jasong, gerard.onochie, nitin.shukla
 sysadmin:						support-team
 knowledge:						root
 systems:						sysadmin
-nagios:							andrew.fulcher,gerard.onochie,nitin.shukla
+nagios:							andrew.fulcher,nitin.shukla,hiran,jasong
 logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						gerard.onochie, andrew.fulcher, jason.griffiths,nitin.shukla
+csc-stats:						andrew.fulcher,jason.griffiths,nitin.shukla,hiran
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com, keith.k, nat.billington
@@ -701,8 +702,8 @@ newsletter:						aneta.lasyk
 clients:						medictomedic@informa.com
 webinquiry:						ketan.patel
 #webinquiry:                     andrew.fulcher
-dnsadmin:                       andrew.fulcher
-dnstech:                        andrew.fulcher
+dnsadmin:                       andrew.fulcher,hiran,nitin.shukla
+dnstech:                        andrew.fulcher,hiran,nitin.shukla
 editorial:						editorial@natbill.hostpilot.com
 
 #implementation:					ketan.patel
@@ -715,9 +716,9 @@ itensil:						neil.ferguson
 content:						bitbucket
 temp:							temp@natbill.hostpilot.com
 
-godot:					andrew.fulcher
-support.manager:			andrew.fulcher
-operations:				andrew.fulcher
+godot:					andrew.fulcher,hiran
+support.manager:			andrew.fulcher,hiran
+operations:				andrew.fulcher,hiran
 
 # Spam filter
 spam:							patrick.clancey
@@ -738,7 +739,7 @@ stockholm-support:				support
 wales-support:					support
 fujitsu-support:				support
 csc-support:					support
-bt-support:					support,ketan.patel,andrew.fulcher,gerard.onochie,nitin.shukla
+bt-support:					support,andrew.fulcher,nitin.shukla,hiran,jasong
 london-support:					support
 mod-support:                    support
 demo-support:					support
