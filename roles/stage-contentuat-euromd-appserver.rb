@@ -1,4 +1,4 @@
-name "stage euromd-md-appserver"
+name "stage-euromd-md-appserver"
 description "Configures CEP ContentUAT MD application server on the stage euromd server"
 
 run_list "recipe[java]", "recipe[tomcat]", "recipe[map-display]", "recipe[map-display::contentloader]"
