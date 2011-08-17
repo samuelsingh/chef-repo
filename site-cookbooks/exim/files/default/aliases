@@ -135,10 +135,6 @@ anna:							anna.collie
 annac:							anna.collie
 a.collie:						anna.collie
 annacollie:						anna.collie
-asuntha:						asuntha.karunaratne
-asunthak:						asuntha.karunaratne
-a.karunaratne:					asuntha.karunaratne
-asuntha.karunaratne:			asuntha.karunaratne@natbill.hostpilot.com
 anna.ellis:					Anna.Ellis@natbill.hostpilot.com 
 annae:							anna.ellis
 a.ellis:						anna.ellis
@@ -330,11 +326,6 @@ kathrynh:						kathryn.holt
 kathryn:						kathryn.holt
 k.holt:							kathryn.holt
 kathrynholt:						kathryn.holt
-ketan.patel:					Ketan.Patel@natbill.hostpilot.com
-ketan:							ketan.patel
-ketanp:							ketan.patel
-k.patel:						ketan.patel
-ketanpatel:						ketan.patel
 keith.kirtland:				Keith.Kirtland@natbill.hostpilot.com
 keith.k:					keith.kirtland
 k.kirtland:					keith.kirtland
@@ -554,10 +545,6 @@ tamsin:						tamsin.leonard
 t.leonard:					tamsin.leonard
 tessa.radwan:                 tessa.radwan@natbill.hostpilot.com
 tessa.loughlin			tessa.radwan@natbill.hostpilot.com	
-tiffany.beale:                 Tiffany.Beale@natbill.hostpilot.com
-tiffanybeale:                  	tiffany.beale
-tiffanyb:                         	tiffany.beale
-tiffany:					tiffany.beale
 usergroup:                     usergroup@natbill.hostpilot.com
 wendy.kimber:					wendy.kimber@natbill.hostpilot.com
 wendy:							wendy.kimber
@@ -662,7 +649,7 @@ its-team:							dev-innovation-support
 management-team:					management-team@natbill.hostpilot.com
 marketing-team:						marketing-team@natbill.hostpilot.com
 programme-mgt:						programme-mgt@natbill.hostpilot.com
-implementation:						implementation@natbill.hostpilot.com,ketan.patel
+implementation:						implementation@natbill.hostpilot.com
 itsupport:							itsupport@natbill.hostpilot.com
 ITSSharedCalendar:					ITSSharedCalendar@natbill.hostpilot.com
 lsp-contracts-team:					lsp-contracts-team@natbill.hostpilot.com
@@ -701,13 +688,12 @@ information:					info
 news:							info
 newsletter:						aneta.lasyk
 clients:						medictomedic@informa.com
-webinquiry:						ketan.patel
+webinquiry:						hiran.patil@natbill.hostpilot.com
 #webinquiry:                     andrew.fulcher
 dnsadmin:                       andrew.fulcher,hiran,nitin.shukla
 dnstech:                        andrew.fulcher,hiran,nitin.shukla
 editorial:						editorial@natbill.hostpilot.com
 
-#implementation:					ketan.patel
 southernengland:				support
 northernengland:				support
 localisation:					support
