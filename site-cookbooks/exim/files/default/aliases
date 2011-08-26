@@ -369,13 +369,6 @@ melanies:						melanie.smith
 melanie:						melanie.smith
 m.smith:						melanie.smith
 melaniesmith:						melanie.smith 
-melissa.lowery-smith:				melissa.lowery-smith@natbill.hostpilot.com
-melissal:						melissa.lowery-smith
-melissa:						melissa.lowery-smith
-m.lowery-smith:						melissa.lowery-smith
-m.lowerysmith:						melissa.lowery-smith
-melissalowery-smith:					melissa.lowery-smith
-melissalowerysmith:					melissa.lowery-smith	
 mike.hansen:           			Mike.Hansen@natbill.hostpilot.com
 mikehansen:            				mike.hansen
 mikeh:                   				mike.hansen
@@ -482,10 +475,6 @@ rosie.hobbs:					rosie.hobbs@natbill.hostpilot.com
 rosie:						rosie.hobbs
 r.hobbs:					rosie.hobbs
 rosieh:						rosie.hobbs
-sarah.barnes:					Sarah.Barnes@natbill.hostpilot.com
-sarahb:							sarah.barnes
-s.barnes:						sarah.barnes
-sarahbarnes:					sarah.barnes
 sara.bardalez:                                  sara.bardalez@natbill.hostpilot.com
 shak.adepoju:                                   shak.adepoju@natbill.hostpilot.com
 shak:                                           shak.adepoju
@@ -892,8 +881,6 @@ sdk-support-queue:				michael.cole, naeem.malik
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24764
 qa-publisher:					stella.nelson
 
-# CEP http://tracking.mapofmedicine.com/jira/browse/OPS-24910
-melissa.lowery-smith1:				melissa.lowery-smith
 
 
 # Sales http://tracking.mapofmedicine.com/jira/browse/OPS-25674
