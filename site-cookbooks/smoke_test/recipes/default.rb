@@ -37,12 +37,12 @@ end
 
 gem_package 'gherkin' do
   action :install
-  version "2.4.16"
+  version "2.3.10"
 end
 
 gem_package 'cucumber' do
   action :install
-  version "0.10.2"
+  version "0.10.3"
 end
 
 gem_package 'commonwatir' do
