@@ -42,7 +42,7 @@ end
 
 gem_package 'cucumber' do
   action :install
-  version "0.10.3"
+  version "1.0.0"
 end
 
 gem_package 'commonwatir' do
