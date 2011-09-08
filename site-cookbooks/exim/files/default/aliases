@@ -311,11 +311,6 @@ katem:							kate.moran
 k.moran:						kate.moran
 katemoran:						kate.moran
 kate.pinault:					kate.moran
-katie.shering:					Katie.Shering@natbill.hostpilot.com
-katies:							katie.shering       
-k.shering:						katie.shering      
-katie:							katie.shering      
-katieshering:						katie.shering
 katy.shanahan:					bitbucket	# Removed as per OPS-28991
 katys:							katy.shanahan       
 k.shanahan:						katy.shanahan       
@@ -622,7 +617,7 @@ marvin.lee:						bitbucket
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						andrew,nitin.shukla,jason.griffiths,hiran
+support-team:						andrew,nitin.shukla,jason.griffiths,hiran,sachin.samuel
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
 content-team:						content-team@natbill.hostpilot.com
