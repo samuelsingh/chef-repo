@@ -645,8 +645,8 @@ mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
 LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
 # Mailing list for receving svn commit emails
-map-dev-commit:					andrew,naeem,farrukh,andrew.sowerby,patrick,nitin.shukla
-map-sys-commit:					andrew,jasong,nitin.shukla,hiran
+map-dev-commit:					andrew,naeem,farrukh,andrew.sowerby,patrick,nitin.shukla,sachin.samuel
+map-sys-commit:					andrew,jasong,nitin.shukla,hiran,sachin.samuel
 
 
 
@@ -658,12 +658,12 @@ map-sys-commit:					andrew,jasong,nitin.shukla,hiran
 sysadmin:						support-team
 knowledge:						root
 systems:						sysadmin
-nagios:							andrew.fulcher,nitin.shukla,hiran,jasong
+nagios:							andrew.fulcher,nitin.shukla,hiran,jasong,sachin.samuel
 logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						andrew.fulcher,jason.griffiths,nitin.shukla,hiran
+csc-stats:						andrew.fulcher,jason.griffiths,nitin.shukla,hiran,sachin.samuel
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com, keith.k, nat.billington
@@ -676,8 +676,8 @@ newsletter:						aneta.lasyk
 clients:						medictomedic@informa.com
 webinquiry:						hiran.patil@natbill.hostpilot.com
 #webinquiry:                     andrew.fulcher
-dnsadmin:                       andrew.fulcher,hiran,nitin.shukla
-dnstech:                        andrew.fulcher,hiran,nitin.shukla
+dnsadmin:                       andrew.fulcher,hiran,nitin.shukla,sachin.samuel
+dnstech:                        andrew.fulcher,hiran,nitin.shukla,sachin.samuel
 editorial:						editorial@natbill.hostpilot.com
 
 southernengland:				support
@@ -712,7 +712,7 @@ stockholm-support:				support
 wales-support:					support
 fujitsu-support:				support
 csc-support:					support
-bt-support:					support,andrew.fulcher,nitin.shukla,hiran,jasong
+bt-support:					support,andrew.fulcher,nitin.shukla,hiran,jasong,sachin.samuel
 london-support:					support
 mod-support:                    support
 demo-support:					support
