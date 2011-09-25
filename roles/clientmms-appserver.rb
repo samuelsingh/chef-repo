@@ -36,6 +36,10 @@ override_attributes(
       "mom"=> {
         "dbname"=> "mappreview"
       },
+      "cron"=> {
+        "startstopudrs"=> "true",
+        "movepackages"=> "true"
+      },
       "live_md" => {
         "name" => "Euro MD",
         "url" => "http://app.mapofmedicine.com"
