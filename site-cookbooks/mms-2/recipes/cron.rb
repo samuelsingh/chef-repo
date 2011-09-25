@@ -29,7 +29,7 @@ cron "clean_mms" do
   command "#{sbin}/mmsclean"
 end
 
-if production_server
+if node[:mms][:cron][:startstopudrs] = "true"
   
   # Start quartz queue at the end of working hours
   cron "start_qrtz_jobs" do
@@ -46,7 +46,11 @@ if production_server
     #command "#{qmgr_bin} stop-all"
     command "echo \"`date` - this is when we'd stop the quartz queue\" >> /tmp/qrtz.txt"
   end
+
+end
   
+if node[:mms][:cron][:movepackages] = "true"
+
   # Move any published packages to the right place
   cron "move_md_hg_packages" do
     hour 8

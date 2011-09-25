@@ -67,3 +67,7 @@ set_unless[:mms][:application][:mom][:dbuser] = node[:mms][:common][:dbuser]
 set_unless[:mms][:application][:mom][:dbpass] = node[:mms][:common][:dbpass]
 set_unless[:mms][:application][:mom][:dbhost] = node[:mms][:common][:dbhost]
 set_unless[:mms][:application][:mom][:dbname] = "mappreview"
+
+# Settings for the MMS cron tasks
+set_unless[:mms][:cron][:startstopudrs] = "false"
+set_unless[:mms][:cron][:movepackages] = "false"
