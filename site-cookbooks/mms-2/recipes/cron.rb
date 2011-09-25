@@ -14,9 +14,6 @@ lib = '/usr/local/lib'
 
 qmgr_bin = "#{node[:mms][:common][:base]}/cs-batch/cs-bt.sh"
 
-# Figures out whether or not this is a production server
-node.run_list.run_list.flatten.member?("recipe[prod-server]") ? production_server = true : production_server = false
-
 cron "rotate_mms_logs" do
   hour "#{node[:tomcat][:rotate_hour].to_i + 1}"
   minute node[:tomcat][:rotate_min]
