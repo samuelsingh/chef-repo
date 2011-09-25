@@ -46,7 +46,8 @@ override_attributes(
   },
   "glusterfs" => {
     "client" => {
-      "stable" => "true"
+      "stable" => "true",
+      "iocache" => "32"
     }
   },
   "tomcat" => {
