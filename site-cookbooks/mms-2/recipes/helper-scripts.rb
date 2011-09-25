@@ -87,7 +87,7 @@ template "#{sbin}/gather-mms-logs.rb" do
   mode 0755
   variables(
     :lib => lib,
-    :log_dir => node[:mms][:logpath],
+    :log_dir => "#{node[:mms][:common][:base]}/logs",
     :rotate_dir => rotate_dir,
     :lsof_bin => lsof_bin
   )
