@@ -17,7 +17,7 @@ srv_aliases = node[:modx][:srv_aliases]
 deployment_home = node[:modx][:deployment_home]
 apache_usr = node[:apache][:user]
 
-modx_pkg = "modx-2.0.6-pl2.zip"
+modx_pkg = "modx-2.1.3-pl.zip"
 modx_dir = modx_pkg.gsub('.zip', '')
 modx_path = "/usr/local/" + modx_dir
 
