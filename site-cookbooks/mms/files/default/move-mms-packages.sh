@@ -64,7 +64,7 @@ linkhg()
 	debug "Checking for packages to load to Healthguides"
  
         # E&W package
-        unzip -p "$PKG_DST_DIR/$PKG" package.xml | grep "NHS England and Wales" | grep -v empty > /dev/null \
+        unzip -p "$PKG_DST_DIR/$PKG" package.xml | grep "England" | grep -v empty > /dev/null \
         && debug "$PKG is an E&W package, so linking it to $PKG_LOAD_DIR/$ID/local" \
         && linkpkg "$PKG_DST_DIR/$PKG" "$PKG_LOAD_DIR/$ID/local"
 	    
