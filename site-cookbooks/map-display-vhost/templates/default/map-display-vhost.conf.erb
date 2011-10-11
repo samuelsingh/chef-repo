@@ -65,6 +65,7 @@
     ProxyPass /mom/  ajp://<%= @appserver %>:<%= @mom_port %>/mom/
     ProxyPass /adminapp  ajp://<%= @appserver %>:<%= @aa_port %>/adminapp
     ProxyPass /tomcat-manager  ajp://<%= @appserver %>:<%= @mom_port %>/tomcat-manager
+    ProxyPass /mapalongside/  ajp://<%= @appserver %>:<%= @mom_port %>/mapalongside/
 
     # Main access block, this allows anonymous access to everything by default
     <Location "/">
