@@ -1,7 +1,7 @@
-name "ntt-euromd-server"
-description "Configures Live MD application server"
+name "ntt-euromd-server-v01"
+description "Configures Euro MD web-application server"
 
-run_list "recipe[java]", "role[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::rotate_logs]", "recipe[map-display-3::time_transactions]"
+run_list "recipe[java]", "role[tomcat]", "role[web-server]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::vhost_v01]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::rotate_logs]", "recipe[map-display-3::time_transactions]"
 
 override_attributes(
   "map_display" => {
@@ -26,7 +26,7 @@ override_attributes(
       "group" => "webinject",
       "out_dir" => "/var/shared/webinject"
     },
-    "vhost" => {
+    "vhost_v01" => {
       "app.mapofmedicine.com" => {
         "srv_aliases" => ["app.mapofmedicine.info"],
         "holding_page" => "false",
