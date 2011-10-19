@@ -47,12 +47,12 @@ end
 
 gem_package 'commonwatir' do
   action :install
-  version "1.8.0"
+  version "1.9.2"
 end
 
 gem_package 'firewatir' do
   action :install
-  version "1.8.0"
+  version "1.9.4"
 end
 
 package "tightvncserver" do
