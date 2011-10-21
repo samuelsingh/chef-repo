@@ -4,15 +4,6 @@ description "Configures application server for content uat"
 
 run_list "recipe[java]", "role[tomcat]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::rotate_logs]"
 
-override_attributes(
-  "map_display" => {
-    "md_fqdn" =>  "euromd.contentuat.mapofmedicine.com",
-    "deploy_dir" =>  "/var/shared/deployment/stage/euro-md",
-    "dbhost" => "stage-db-02.map-cloud-01.eu",
-    "dbname" => "uat_mtmdb",
-    "dbuser" => "mtmuser",
-    "dbpass" => "medic1"
-  },
 
 override_attributes(
   "map_display" => {
