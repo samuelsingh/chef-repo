@@ -10,7 +10,7 @@ override_attributes(
       "fqdn"=> "localise.regression.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "medic1",
-      "dbhost"=> "stage-db-02.map-cloud-01.eu",
+      "dbhost"=> "ec2-46-137-155-209.eu-west-1.compute.amazonaws.com",
       "base"=> "/mnt/mms"
     },
     "application"=> {
