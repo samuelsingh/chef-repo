@@ -10,7 +10,7 @@ override_attributes(
         "srv_aliases" => ["app.mapofmedicine.info"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-        "appserver" => "euromd-app-01.map-cloud-01.eu",
+        "appserver" => "euromd-app-021.map-cloud-01.eu",
         "lb_alive_port" => 0
       }
     },
