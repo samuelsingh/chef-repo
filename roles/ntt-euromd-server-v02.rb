@@ -1,5 +1,5 @@
 name "ntt-euromd-server-v02"
-description "Configures Euro MD webserver-02"
+description "Configures Euro MD webserver"
 
 run_list "role[web-server]", "recipe[map-display-3::vhost_v01]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::time_transactions]"
 
