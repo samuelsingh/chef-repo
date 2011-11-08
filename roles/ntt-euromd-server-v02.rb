@@ -1,11 +1,11 @@
 name "ntt-euromd-server-v02"
-description "Configures Euro MD webserver"
+description "Configures euromd-app-02"
 
-run_list "role[web-server]", "recipe[map-display-3::vhost_v01]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::time_transactions]"
+run_list "role[web-server]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::time_transactions]"
 
 override_attributes(
   "map_display" => {
-    "vhost_v01" => {
+    "vhost" => {
       "app.mapofmedicine.com" => {
         "srv_aliases" => ["app.mapofmedicine.info"],
         "holding_page" => "false",
