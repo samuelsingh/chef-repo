@@ -1,0 +1,25 @@
+name "prod-lb-vhost-template"
+description "Configures Apache Web Server to server a production Map Display instance, behind ELB"
+
+run_list "role[web-server]", "recipe[map-display-3::vhost]", "recipe[map-display-3::lpa_vhost]"
+
+override_attributes(
+  "map_display" => {
+    "vhost" => {
+      "app.mapofmedicine.com" => {
+        "srv_aliases" => ["app.mapofmedicine.info","pre-prod-test.mapofmedicine.com"],
+        "holding_page" => "false",
+        "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
+        "lb_alive_port" => 8050
+      }
+    },
+    "lpa_vhost" => {
+      "localcare.mapofmedicine.com" => {
+        "srv_aliases" => [],
+        "holding_page" => "false",
+        "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
+        "lb_alive_port" => 0
+      }
+    }
+  }
+)
