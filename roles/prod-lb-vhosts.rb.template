@@ -7,7 +7,7 @@ override_attributes(
   "map_display" => {
     "vhost" => {
       "app.mapofmedicine.com" => {
-        "srv_aliases" => ["app.mapofmedicine.info","pre-prod-test.mapofmedicine.com"],
+        "srv_aliases" => ["app.mapofmedicine.info","app-pre-prod.mapofmedicine.com"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
         "lb_alive_port" => 8050
@@ -15,7 +15,7 @@ override_attributes(
     },
     "lpa_vhost" => {
       "localcare.mapofmedicine.com" => {
-        "srv_aliases" => [],
+        "srv_aliases" => ["localcare-pre-prod.mapofmedicine.com"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
         "lb_alive_port" => 0
