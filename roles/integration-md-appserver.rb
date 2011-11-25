@@ -7,7 +7,7 @@ override_attributes(
   "map_display" => {
     "common" => {
       "dbhost" => "md-db-01.map-cloud-01.eu",
-      "dbname" => "integration_mtmdb",
+      "dbname" => "integration_mtmdb01",
       "dbuser" => "mtmuser",
       "dbpass" => "medic1"
     },
