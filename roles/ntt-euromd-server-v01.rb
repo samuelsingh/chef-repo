@@ -14,6 +14,16 @@ override_attributes(
         "lb_alive_port" => 8050
       }
     },
+
+  "apache" => {
+    "listen_ports" => [
+      80,
+      443,
+      8050
+      	
+    ]
+  },
+
     "time_transactions" => {
       "base" => "/usr/local/webinject",
       "user" => "webinject",
