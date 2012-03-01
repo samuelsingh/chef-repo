@@ -345,7 +345,7 @@ wendykimber:					wendy.kimber
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						andrew,nitin.shukla,jason.griffiths,hiran,sachin.samuel
+support-team:						nitin.shukla,hiran,sachin.samuel
 devcloud:						nitin.shukla,sachin.samuel,duncan.mcintyre,Kulvinder.Maingi
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
@@ -371,8 +371,8 @@ mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
 jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
 LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
 # Mailing list for receving svn commit emails
-map-dev-commit:					andrew,naeem,farrukh,andrew.sowerby,patrick,nitin.shukla,sachin.samuel
-map-sys-commit:					andrew,jasong,nitin.shukla,hiran,sachin.samuel
+map-dev-commit:					naeem,farrukh,andrew.sowerby,patrick,nitin.shukla,sachin.samuel
+map-sys-commit:					jasong,nitin.shukla,hiran,sachin.samuel
 
 
 
@@ -384,12 +384,12 @@ map-sys-commit:					andrew,jasong,nitin.shukla,hiran,sachin.samuel
 sysadmin:						support-team
 knowledge:						root
 systems:						sysadmin
-nagios:							andrew.fulcher,nitin.shukla,hiran,jasong,sachin.samuel
-logs:							andrew.fulcher@gmail.com,stats.mapofmedicine@googlemail.com
+nagios:							nitin.shukla,hiran,sachin.samuel
+logs:							stats.mapofmedicine@googlemail.com
 reports:						root
 
 fujitsu-stats:					logs
-csc-stats:						andrew.fulcher,jason.griffiths,nitin.shukla,hiran,sachin.samuel
+csc-stats:						nitin.shukla,hiran,sachin.samuel
 appendix-MSSQLSERVER:           systems
 support-info:					support-info@natbill.hostpilot.com
 au.info:						au.info@natbill.hostpilot.com, keith.k, nat.billington
@@ -402,9 +402,9 @@ newsletter:						aneta.lasyk
 clients:						medictomedic@informa.com
 
 webinquiry:						hiran.patil@natbill.hostpilot.com
-#webinquiry:                     andrew.fulcher
-dnsadmin:                       andrew.fulcher,hiran,nitin.shukla,sachin.samuel
-dnstech:                        andrew.fulcher,hiran,nitin.shukla,sachin.samuel
+
+dnsadmin:                       hiran,nitin.shukla,sachin.samuel
+dnstech:                        hiran,nitin.shukla,sachin.samuel
 editorial:						editorial@natbill.hostpilot.com
 
 southernengland:				support
@@ -416,9 +416,9 @@ itensil:						neil.ferguson
 content:						bitbucket
 temp:							temp@natbill.hostpilot.com
 
-godot:					andrew.fulcher,hiran
-support.manager:			andrew.fulcher,hiran
-operations:				andrew.fulcher,hiran
+godot:					hiran
+support.manager:			hiran
+operations:				hiran
 
 # Spam filter
 spam:							patrick.clancey
@@ -439,7 +439,7 @@ stockholm-support:				support
 wales-support:					support
 fujitsu-support:				support
 csc-support:					support
-bt-support:					support,andrew.fulcher,nitin.shukla,hiran,jasong,sachin.samuel
+bt-support:					support,nitin.shukla,hiran,jasong,sachin.samuel
 london-support:					support
 mod-support:                    support
 demo-support:					support
@@ -447,7 +447,7 @@ mms-support:					support
 localise-support:				support
 alerts:							support
 feedback:						editorial@natbill.hostpilot.com
-feedback-digest:				andrew,michelle
+feedback-digest:				michelle
 neemfeedback:					medictomedic@informa.com
 neemtechsupport:				medictomedic@informa.com
 partners:						medictomedic@informa.com
