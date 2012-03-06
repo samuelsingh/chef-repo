@@ -431,7 +431,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
 
     # mom.properties is required by all webapps
     template "#{common_loader}/mom.properties" do
-      source "mom/mom.properties.erb"
+      source "mom/mom.properties-01.erb"
       mode 0644
       variables(
         :mom_base => mom_base
