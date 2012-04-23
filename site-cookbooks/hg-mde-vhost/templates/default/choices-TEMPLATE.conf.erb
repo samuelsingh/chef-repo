@@ -146,7 +146,7 @@
         # Not sure what this one is needed for...
         RewriteRule ^/map(.*)/?$ / [R,L]
         
-        <% unless @awstats == false -%>
+        <% unless @awstats == true -%>
         # Redirect for AWStats
         RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=<%= @hostname %> [R,L]
         RewriteRule ^/awstats-icon/(.+) /stats/awstats-icon/$1 [R,L]
