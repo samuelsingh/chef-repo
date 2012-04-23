@@ -94,7 +94,7 @@
         Allow from env=ELBAUTH
     </Location>
     
-    <% unless @awstats == false -%>
+    <% unless @awstats == true -%>
     # AWStats configuration
     
     ProxyPass /stats     http://awstats.<%= @node[:domain] %>
