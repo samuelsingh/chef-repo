@@ -1,0 +1,699 @@
+##
+#  Aliases in this file will NOT be expanded in the header from
+#  Mail, but WILL be visible over networks or from /bin/mail.
+#
+#	>>>>>>>>>>	The program "newaliases" must be run after
+#	>> NOTE >>	this file is updated for any changes to
+#	>>>>>>>>>>	show through to sendmail.
+#
+
+# Basic system aliases -- these MUST be present.
+mailer-daemon:	postmaster
+postmaster:		root
+
+# General redirections for pseudo accounts.
+bin:		root
+daemon:		root
+adm:		root
+lp:			root
+sync:		root
+shutdown:	root
+halt:		root
+mail:		root
+uucp:		root
+operator:	root
+games:		root
+gopher:		root
+ftp:		root
+nobody:		root
+radiusd:	root
+nut:		root
+dbus:		root
+vcsa:		root
+canna:		root
+wnn:		root
+rpm:		root
+nscd:		root
+pcap:		root
+apache:		root
+webalizer:	root
+dovecot:	root
+fax:		root
+quagga:		root
+radvd:		root
+pvm:		root
+amanda:		root
+privoxy:	root
+ident:		root
+named:		root
+xfs:		root
+gdm:		root
+mailnull:	root
+postgres:	root
+sshd:		root
+smmsp:		root
+postfix:	root
+netdump:	root
+ldap:		root
+squid:		root
+ntp:		root
+mysql:		root
+desktop:	root
+rpcuser:	root
+rpc:		root
+nfsnobody:	root
+
+ingres:		root
+system:		root
+toor:		root
+dumper:		root
+abuse:		root
+
+# mailman aliases
+mailman:	postmaster
+mailman-owner:	mailman
+
+newsadm:	news
+newsadmin:	news
+usenet:		news
+ftpadm:		ftp
+ftpadmin:	ftp
+ftp-adm:	ftp
+ftp-admin:	ftp
+www:		webmaster
+webmaster:	root
+noc:		root
+security:	root
+hostmaster:	root
+
+svn:		root
+
+
+# trap decode to catch security attacks
+decode:		root
+
+bitbucket:						/dev/null
+noreply:						bitbucket
+donotreply:						bitbucket
+
+########################################################################
+# Staff email aliases
+########################################################################
+
+
+
+alan.baldwin                                    alan.baldwin@natbill.hostpilot.com
+
+andrew.sowerby:					andrew.sowerby@natbill.hostpilot.com
+
+andrew.fulcher:					sachin.samuel,nitin.shukla
+andrew:							sachin.samuel,nitin.shukla
+andrewf:						sachin.samuel,nitin.shukla
+andrewff:						sachin.samuel,nitin.shukla
+a.fulcher:						sachin.samuel,nitin.shukla
+andrewfulcher:					sachin.samuel,nitin.shukla
+
+anna.collie:					anna.collie@natbill.hostpilot.com
+anna:							anna.collie
+annac:							anna.collie
+a.collie:						anna.collie
+annacollie:						anna.collie
+
+bertina.yen:                                            bertina.yen@natbill.hostpilot.com
+bertina:                                                bertina.yen
+bertinay:                                               bertina.yen
+b.yen:                                                  bertina.yen
+bertinayen:                                             bertina.yen
+
+carley.hutchins:                                carley.hutchins@natbill.hostpilot.com
+
+chris.ashton:					chris.ashton@natbill.hostpilot.com
+chrisas:						chris.ashton
+c.ashton:						chris.ashton
+
+
+ClientServicesCalendar:				 ClientServicesCalendar@natbill.hostpilot.com
+
+corrina.ralph:					corrina.ralph@natbill.hostpilot.com
+corrinaralph:					corrina.ralph
+corrina:						corrina.ralph
+corrinar:						corrina.ralph
+cralph:							corrina.ralph
+c.ralph:						corrina.ralph
+conor.clancy:					conor.clancy@natbill.hostpilot.com
+customerservice:				customerservice@natbill.hostpilot.com
+customersupport:                                customerservice@natbill.hostpilot.com
+customerservices:                               customerservice@natbill.hostpilot.com 
+
+deepti.mehta:					deepti.mehta@natbill.hostpilot.com
+deepti                                          deepti.mehta
+deeptim                                         deepti.mehta
+d.mehta                                         deepti.mehta
+duncan.mcintyre			duncan.mcintyre@natbill.hostpilot.com
+
+elizabeth.slade:			Elizabeth.Slade@natbill.hostpilot.com
+elizabeth:					elizabeth.slade
+eslade:						elizabeth.slade
+elizabeths:					elizabeth.slade
+e.slade:					elizabeth.slade
+erik.lundqvist:                         erik.lundqvist@natbill.hostpilot.com
+erik:                                   erik.lundqvist
+erikl:                                  erik.lundqvist
+e.lundqvist:                            erik.lundqvist   
+
+ergroup:                                        ergroup@natbill.hostpilot.com     
+
+fellows:						fellows@natbill.hostpilot.com 
+farrukh.mahmud: 					Farrukh.Mahmud@natbill.hostpilot.com
+farrukh:         					farrukh.mahmud
+farrukhm:        					farrukh.mahmud
+f.mahmud:      						farrukh.mahmud
+fred.walker:				     fred.walker@natbill.hostpilot.com
+frederick.mbuya:				 frederick.mbuya@natbill.hostpilot.com
+gabriella.ribenfors:			gabriella.ribenfors@natbill.hostpilot.com
+gabriellar:						gabriella.ribenfors
+gabriella:						gabriella.ribenfors
+g.ribenfors:					gabriella.ribenfors
+gabriellaribenfors:				gabriella.ribenfors
+gajan.srikanthan:			Gajan.Srikanthan@natbill.hostpilot.com
+gajan:						gajan.srikanthan
+gajans:						gajan.srikanthan
+g.srikanthan:					gajan.srikanthan
+gajansrikanthan:				gajan.srikanthan
+gazi.syed:				gazi.syed@natbill.hostpilot.com
+gazi:					gazi.syed
+gazis					gazi.syed
+g.syed					gazi.syed
+gsyed					gazi.syed
+
+healthguides.feedback:                                  healthguides.feedback@natbill.hostpilot.com
+healthguidesf:                                          healthguides.feedback
+healthguides:                                           healthguides.feedback
+h.feedback:                                             healthguides.feedback
+healthguidesfeedback:                                   healthguides.feedback
+hiran:                                            	hiran.patel@natbill.hostpilot.com
+hiran.patel:                                            hiran.patel@natbill.hostpilot.com
+Holly.Alsop:						Holly.Alsop@natbill.hostpilot.com
+HR:							HR@natbill.hostpilot.com
+
+info:                                                   info@natbill.hostpilot.com
+irene.chiwele:           Irene.Chiwele@natbill.hostpilot.com 
+irene:                      irene.chiwele
+irenec:                     irene.chiwele
+i.chiwele:					irene.chiwele
+james.williams:					James.Williams@natbill.hostpilot.com
+jamesw:							james.williams
+james:							james.williams
+j.williams:						james.williams
+jameswilliams:						james.williams
+
+jeff.deinhart:                                Jeff.Deinhart@natbill.hostpilot.com
+jeff.dienhart:                                Jeff.Dienhart@natbill.hostpilot.com
+Jean.Crawford:								Jean.Crawford@natbill.hostpilot.com
+jennifer.dennington:            Jennifer.Dennington@natbill.hostpilot.com
+jenniferdennington:             jennifer.dennington
+jennifer:                       jennifer.dennington
+jenniferd:                      jennifer.dennington
+j.dennington:                   jennifer.dennington
+jennifer.ward:            		Jennifer.Ward@natbill.hostpilot.com
+jenniferward:             	 		jennifer.ward
+jenniferw:                       		jennifer.ward
+j.ward:                      			jennifer.ward
+jessica.daniels:            		Jessica.Daniels@natbill.hostpilot.com 
+jessicadaniels:             	 		jessica.daniels
+jessicad:                       		jessica.daniels
+jignesh.patel:                           jignesh.patel@natbill.hostpilot.com
+j.daniels:                      			jessica.daniels
+joe.bullock:           			Joe.Bullock@natbill.hostpilot.com
+joebullock:            				joe.bullock
+joe:                   				joe.bullock
+joeb:                  				joe.bullock
+j.bullock:             				joe.bullock
+      
+kathryn.holt:					kathryn.holt@natbill.hostpilot.com
+kathrynh:						kathryn.holt
+kathryn:						kathryn.holt
+k.holt:							kathryn.holt
+kathrynholt:						kathryn.holt
+
+kulvinder.maingi:					Kulvinder.Maingi@natbill.hostpilot.com
+kulvinderm:						 kulvinder.maingi
+k.maingi:						 kulvinder.maingi
+kulvinder:						 kulvinder.maingi
+kulvindermaingi:					 kulvinder.maingi
+# Aliasing Laura's e-mails to bitbucket, as per OPS-30152
+
+legal:                                  Legal@natbill.hostpilot.com   
+	
+
+manish.rane:					manish.rane@natbill.hostpilot.com
+
+mary.aboagye:	                mary.aboagye@natbill.hostpilot.com
+
+michael.corkett:				Michael.Corkett@natbill.hostpilot.com
+michael.c:						michael.corkett
+m.corkett:						michael.corkett
+mcorkett:						michael.corkett
+michaelcorkett:						michael.corkett
+michael.cole:					bitbucket
+
+michael.cole:					michael.cole@natbill.hostpilot.com
+
+
+
+mter-berg:						sean.gomer@informa.com
+miriam.kingsley:           			Miriam.Kingsley@natbill.hostpilot.com
+miriamkingsley:            				miriam.kingsley
+miriamk:                   				miriam.kingsley
+miriam.k:                  				miriam.kingsley
+m.kingsley:             				miriam.kingsley
+
+naeem.malik:					naeem.malik@natbill.hostpilot.com
+naeemm:							naeem.malik
+naeem:							naeem.malik
+n.malik:						naeem.malik
+naeemmalik:						naeem.malik
+nat.billington:					nat.billington@natbill.hostpilot.com
+nat:							nat.billington
+natb:							nat.billington
+nathaniel.billington:			nat.billington
+n.billington:					nat.billington
+nbillington:					nat.billington
+natbillington:					nat.billington
+Nigel.Potter:					Nigel.Potter@natbill.hostpilot.com
+
+Nicola.Moralee:                 Nicola.Moralee@natbill.hostpilot.com 
+nicola:							nicola.silverstone
+
+nitin.shukla:                                            nitin.shukla@natbill.hostpilot.com
+Paul.Harker:          						Paul.Harker@natbill.hostpilot.com
+pomegranate.mapofmedicine.com:				nitin.shukla@natbill.hostpilot.com
+pomegranate:						pomegranate.mapofmedicine.com
+pomegranate.mapofmedicine.com.eu:			nitin.shukla@natbill.hostpilot.com
+pomegranate.mapofmedicine.com@eu.verio.net:		nitin.shukla@natbill.hostpilot.com
+sachin.samuel:						sachin.samuel@natbill.hostpilot.com
+
+oliver.thwaites:				oliver.thwaites@natbill.hostpilot.com
+olivert:						oliver.thwaites
+o.thwaites:						oliver.thwaites
+oliverthwaites:					oliver.thwaites
+
+patrick.clancey:				patrick.clancey@natbill.hostpilot.com
+patrickc:						patrick.clancey
+p.clancey:						patrick.clancey
+patrick:						patrick.clancey
+patrickclancey:					patrick.clancey
+panel:						panel@natbill.hostpilot.com
+pilot.support:					fred.walker,joe.bullock
+pritpal.tamber:					pritpal.S.tamber@natbill.hostpilot.com
+p.tamber:						pritpal.tamber
+pritpal.S.tamber:				pritpal.tamber
+pritpal.s.tamber:				pritpal.tamber
+pritpalstamber:					pritpal.tamber
+pritpalStamber:					pritpal.tamber
+ptamber:						pritpal.tamber
+pritpalt:						pritpal.tamber
+pritpal:						pritpal.tamber
+productivity:                                   productivity,editorial
+product-mgmt:                                           product_mgmt@natbill.hostpilot.com
+products:										Michael.Corkett,tessa.radwan,joe.bullock
+
+rita.carvalho:                                  rita.carvalho@natbill.hostpilot.com
+rita:                                           rita.carvalho
+r.carvalho:                                     rita.carvalho
+ritac:                                          rita.carvalho
+richard.hughes:					richard.hughes@natbill.hostpilot.com
+
+rosie.hobbs:					rosie.hobbs@natbill.hostpilot.com
+rosie:						rosie.hobbs
+r.hobbs:					rosie.hobbs
+rosieh:						rosie.hobbs
+Rosie.Martin:					Rosie.Martin@natbill.hostpilot.com
+
+
+
+
+Sasha.Jenkins:                                  Sasha.Jenkins@natbill.hostpilot.com
+sara.bardalez:                                  sara.bardalez@natbill.hostpilot.com
+Sarah.Pitcher:                                   Sarah.Pitcher@natbill.hostpilot.com
+shak.adepoju:                                   shak.adepoju@natbill.hostpilot.com
+shak:                                           shak.adepoju
+s.adepoju:                                      shak.adepoju
+shaka:                                          shak.adepoju
+shakadepoju:                                    shak.adepoju
+
+tessa.radwan:                 tessa.radwan@natbill.hostpilot.com
+tessa.loughlin			tessa.radwan@natbill.hostpilot.com	
+usergroup:                     usergroup@natbill.hostpilot.com
+wendy.kimber:					wendy.kimber@natbill.hostpilot.com
+wendy:							wendy.kimber
+wendyk:							wendy.kimber
+w.kimber:						wendy.kimber
+wendykimber:					wendy.kimber
+
+
+########################################################################
+# Bitbucket List 
+########################################################################
+
+
+
+
+
+
+########################################################################
+# Map of Medicine team mailing lists
+########################################################################
+
+support-team:						nitin.shukla,hiran,sachin.samuel
+devcloud:						nitin.shukla,sachin.samuel,duncan.mcintyre,Kulvinder.Maingi
+temp_support:						support-team@natbill.hostpilot.com
+implementation-team:				implementation-team@natbill.hostpilot.com
+content-team:						content-team@natbill.hostpilot.com
+cep:								content-team
+cep-team:							content-team
+special-projects:					special-projects@natbill.hostpilot.com
+mom-all:							mom-all@natbill.hostpilot.com
+factory:							factory@natbill.hostpilot.com
+dev-innovation-support:				dev-innovation-support@natbill.hostpilot.com
+its:								dev-innovation-support
+its-team:							dev-innovation-support
+management-team:					management-team@natbill.hostpilot.com
+marketing-team:						marketing-team@natbill.hostpilot.com
+programme-mgt:						programme-mgt@natbill.hostpilot.com
+implementation:						implementation@natbill.hostpilot.com
+itsupport:							itsupport@natbill.hostpilot.com
+ITSSharedCalendar:					ITSSharedCalendar@natbill.hostpilot.com
+lsp-contracts-team:					lsp-contracts-team@natbill.hostpilot.com
+ProductMgtDist:						ProductMgtDist@natbill.hostpilot.com  
+ios:								ios@natbill.hostpilot.com
+mapofmedicinewebleads:          	mapofmedicinewebleads@hearst.com, patrick
+jiradistribution:					andrew.sowerby, gazi.syed, shak.adepoju, farrukh, naeem, patrick
+LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.com
+# Mailing list for receving svn commit emails
+map-dev-commit:					naeem,farrukh,andrew.sowerby,patrick,nitin.shukla,sachin.samuel
+map-sys-commit:					jasong,nitin.shukla,hiran,sachin.samuel
+
+
+
+########################################################################
+# Map of Medicine generic aliases
+########################################################################
+
+
+sysadmin:						support-team
+knowledge:						root
+systems:						sysadmin
+nagios:							nitin.shukla,hiran,sachin.samuel
+logs:							stats.mapofmedicine@googlemail.com
+reports:						root
+
+fujitsu-stats:					logs
+csc-stats:						nitin.shukla,hiran,sachin.samuel
+appendix-MSSQLSERVER:           systems
+support-info:					support-info@natbill.hostpilot.com
+au.info:						au.info@natbill.hostpilot.com, keith.k, nat.billington
+
+enquiries:                                              enquiries@natbill.hostpilot.com
+info:							aneta.lasyk
+information:					info
+news:							info
+newsletter:						aneta.lasyk
+clients:						medictomedic@informa.com
+
+webinquiry:						hiran.patil@natbill.hostpilot.com
+
+dnsadmin:                       hiran,nitin.shukla,sachin.samuel
+dnstech:                        hiran,nitin.shukla,sachin.samuel
+editorial:						editorial@natbill.hostpilot.com
+
+southernengland:				support
+northernengland:				support
+localisation:					support
+scotland:						sales
+itensil:						neil.ferguson
+# Emails here are sent to bitbucket, as requested by Wendy.
+content:						bitbucket
+temp:							temp@natbill.hostpilot.com
+
+godot:					hiran
+support.manager:			hiran
+operations:				hiran
+
+# Spam filter
+spam:							patrick.clancey
+
+
+mom-tracking.mapofmedicine.com				bitbucket
+tracking:						tracking
+#tracking:									bitbucket
+support:						tracking
+#publicationrequest:					support
+#support:						support@natbill.hostpilot.com
+oz-support:						support
+user.admin:						support
+demo-help:						support
+accenturesupport:				support
+cscsupport:						support
+stockholm-support:				support
+wales-support:					support
+fujitsu-support:				support
+csc-support:					support
+bt-support:					support,nitin.shukla,hiran,jasong,sachin.samuel
+london-support:					support
+mod-support:                    support
+demo-support:					support
+mms-support:					support
+localise-support:				support
+alerts:							support
+feedback:						editorial@natbill.hostpilot.com
+feedback-digest:				michelle
+neemfeedback:					medictomedic@informa.com
+neemtechsupport:				medictomedic@informa.com
+partners:						medictomedic@informa.com
+uat-support:					systems
+uat-queue:						bitbucket
+training-updates:				bitbucket
+support-queue:					bitbucket
+innovation-team:				bitbucket
+editorial-queue:					bitbucket
+ias-project-queue:					bitbucket
+ops-to-factory: 				bitbucket
+clinical-queue:					bitbucket 
+unknown:						bitbucket
+factory-queue:					marjorie.debruyn
+kanban-queue:					bitbucket
+content-queue:					bitbucket
+website-queue:					patrick.clancey
+ipg-queue:						bitbucket
+sdg:							bitbucket
+mobile-support:					support
+dev:							bitbucket
+special-dev:					bitbucket
+special-dev-queue:				bitbucket
+factory-qa:                     stella.nelson
+dev-feedback:					naeem
+desktopsupport:					desktop-support
+desktop-support:				MaplanSupport@hearst.com
+zendesk:						zendesk@natbill.hostpilot.com
+
+
+jobs:							kate.moran
+joinus:							jobs
+join:							jobs
+opportunities:					jobs
+careers:						jobs
+
+sales:							sales@natbill.hostpilot.com
+telehealth:						sales
+marketing:						aneta.lasyk
+events:							aneta.lasyk
+
+
+
+#contributors:					editorial@natbill.hostpilot.com
+contributors:					contributors@natbill.hostpilot.com
+editorial.feedback:				enone.honeyman
+reviewertest:					Liz.Bickerdike@bazian.com
+
+development:					michael.cole
+tech-list:						its-team
+healthguides-queue:				patrick.clancey,marjorie.debruyn,elizabeth.slade
+healthguides-updates:					patrick.clancey,support
+healthguides-stats:				Healthguides-Stats@natbill.hostpilot.com
+healthguides-feedback:                          healthguides-feedback@natbill.hostpilot.com
+mobile-queue:					naeem.malik
+research-warwick:				neil.ferguson
+
+
+
+# Variant admins
+wales-admin:					Joanna.Dundon@gwent-wales.nhs.uk
+howis-admin:					support
+gwent-admin:					Joanna.Dundon@gwent.wales.nhs.uk
+aneurin-bevan-admin:				gwent-admin
+southbeds-admin:				paul.singer@gp-e81032.nhs.uk,Robin.Davis@ldh.nhs.uk
+kijabe-admin:					john.ollier
+stockholm-admin:				anette.falkenrot@sll.se
+northwestwales-admin:			Alison1.hughes@AngleseyLHB.wales.nhs.uk,Elizabeth.Powell@AngleseyLHB.wales.nhs.uk
+wirral-admin:					helen2.jones@wirral.nhs.uk
+westherts-admin:				caroline.raut@nhs.net
+westerncheshire-admin:			gill.swash@wcheshirepct.nhs.uk
+nz-admin:						anoop.singh@globalclinic.co.nz,richard.keyse@globalclinic.co.nz
+northmersey-admin:				Rachel.Wynne@liverpoolpct.nhs.uk
+admin-swessex:					neil.robinson@whiteravenassociates.com
+africa.admin:					kate.moran
+north-staffs-admin:				James.Davies@northstaffordshire.nhs.uk 
+dorset-admin:					Andy.Hadley@ferndown.nhs.uk
+telford-wrekin-admin:			Gary.Caton@telfordpct.nhs.uk
+worcestershire-admin:			Margaret.Rowley@worcsacute.nhs.uk
+wilts-admin:					katrina.brockbank@salisbury.nhs.uk
+dudley-admin:					Hayley.jennings@dudleyPCT.nhs.uk
+camden-admin:					support
+#denmark-admin:					lhj@sst.dk
+denmark-admin:					support
+ABM-admin:						nicola.williams4@wales.nhs.uk
+ben-hoeft-admin:				yvonne.richards@benpct.nhs.uk
+Greater-Manchester-admin:		james.walker@northwest.nhs.uk
+bury-admin:						Ann.Halpin@burypct.nhs.uk, mark.campbell@burypct.nhs.uk
+careuk-admin:					alexey.brovko
+
+tameside_and_glossop_lhc-admin:			Christopher.Hardy@stockport-pct.nhs.uk
+cumbria-admin:					Rachel.Chapman@cumbriaPCT.nhs.uk
+westminster-admin:				samantha.fry@westminister-pct.nhs.uk
+kensington-chelsea-admin:			samantha.fry@westminister-pct.nhs.uk
+cwm-taf-lhc:					Joanna.dundon@wales.nhs.uk
+stockport-admin:				Christopher.Hardy@stockport-pct.nhs.uk
+
+
+
+# Temporary admin account for Aneta to add Danish & Scottish users
+scotland-denmark.admin:			aneta.lasyk
+
+cov-warks-admin:				martina.ellery@nhs.net
+westmidlands-admin:				sue.hindle@westmidlands.nhs.uk
+
+root:							sysadmin
+stats-queue:					systems
+zenossuser_admin:				systems
+zenoss:							systems
+
+
+# for publish process
+publish:						publish@natbill.hostpilot.com
+
+########################################################################
+#Jira Requests
+########################################################################
+
+# QA requested http://tracking.mapofmedicine.com/jira/browse/OPS-16021
+kristinf01:					Kristin.Franclemont@natbill.hostpilot.com			
+kristinf02:					Kristin.Franclemont@natbill.hostpilot.com
+kristinf03:					Kristin.Franclemont@natbill.hostpilot.com
+kristinf04:					Kristin.Franclemont@natbill.hostpilot.com
+kristinf05:					Kristin.Franclemont@natbill.hostpilot.com
+
+# QA requested http://tracking.mapofmedicine.com/jira/browse/OPS-16811
+maria01:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com			
+maria02:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria03:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria04:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria05:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+
+
+# QA requested http://tracking.mapofmedicine.com/jira/browse/OPS-24507
+maria06:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com			
+maria07:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria08:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria09:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+maria10:					Maria.Martin@natbill.hostpilot.com,andrew.sowerby@natbill.hostpilot.com
+
+
+
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-17231
+test:						test@natbill.hostpilot.com 
+
+
+# IMP http://tracking.mapofmedicine.com/jira/browse/OPS-24754
+caroline.squires-int:				caroline.squires
+
+
+# DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24759
+#sdk-support:					sdk-support@cherry.mapofmedicine.com
+sdk-support-queue:				michael.cole, naeem.malik
+
+# DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24764
+qa-publisher:					stella.nelson
+
+
+
+# Sales http://tracking.mapofmedicine.com/jira/browse/OPS-25674
+tender:						alexey.brovko
+nor-tender:					alexey.brovko
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-25998
+LiveSync: 					LiveSync@natbill.hostpilot.com
+livesync: 					LiveSync@natbill.hostpilot.com
+
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-26110
+communications: 				communications@natbill.hostpilot.com 
+
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-26150
+ed_style_guide:					 ed_style_guide@natbill.hostpilot.com 
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-28145
+implementationmarketing:			ImplementationMarketing@natbill.hostpilot.com 
+ImplementationMarketing:			implementationmarketing
+
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-28329
+MapOfMedicineWebLeads:				MapOfMedicineWebLeads@hearst.com 
+
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-28376
+evidence:							evidence@natbill.hostpilot.com 
+
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-28475
+cloudproject:						CloudProject@natbill.hostpilot.com
+
+#http://tracking.mapofmedicine.com/jira/browse/OPS-28747
+ITSManagers: 						ITSManagers@natbill.hostpilot.com
+
+
+########################################################################
+# Temp contract accounts
+########################################################################
+
+rick.naylor:					ricknaylor@natbill.hostpilot.com
+ricknaylor:					ricknaylor@natbill.hostpilot.com
+
+kit.lewis:					Kit.Lewis@natbill.hostpilot.com
+kitl:							kit.lewis
+kit:							kit.lewis
+k.lewis:						kit.lewis
+kitlewis:						kit.lewis
+
+
+########################################################################
+# People who don't really want an address but just a forward
+########################################################################
+
+
+# OPS-25612
+caite.ni.ceileachair: 	caite.ni@natbill.hostpilot.com
+
+auto-response:					auto-response@cherry.mapofmedicine.com
+
+#######################################
+#                                     #
+#Temp account for incoming Jira emails# 
+#                                     #
+#######################################
+
+jira-temp:					jira-temp@natbill.hostpilot.com
+#tracking:                                       jira-temp@natbill.hostpilot.com
+
