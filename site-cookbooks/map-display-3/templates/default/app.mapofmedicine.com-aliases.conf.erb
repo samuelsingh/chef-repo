@@ -2824,6 +2824,31 @@
 
 <VirtualHost "*:80">
 
+    ServerName wam.mapofmedicine.com
+    DocumentRoot /var/www/vhosts/<%= @hostname %>
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteRule ^(.*)$ http://<%= @hostname %>/mom/234$1 [R,L]
+    </IfModule>
+
+    # This statement figures out whether X-Forwarded-For is set.
+    SetEnvIf X-FORWARDED-FOR "^.*\..*\..*\..*" behind-elb
+
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm env=!behind-elb
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm-elb env=behind-elb
+    
+    ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
+
+</VirtualHost>
+
+
+
+
+
+
+<VirtualHost "*:80">
+
     ServerName derbyshire.mapofmedicine.com
     DocumentRoot /var/www/vhosts/<%= @hostname %>
 
