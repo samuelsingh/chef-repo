@@ -368,7 +368,7 @@ wendykimber:					wendy.kimber
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						nitin.shukla,hiran,sachin.samuel
+support-team:						nitin.shukla,hiran,sachin.samuel,jignesh.patel,alan.baldwin
 devcloud:						nitin.shukla,sachin.samuel,duncan.mcintyre,Kulvinder.Maingi
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
