@@ -43,7 +43,7 @@ node[:hg_mde_vhost].each do |hostname,params|
     if defined?(node[:apache][:dir])
       
       template "#{node[:apache][:dir]}/sites-available/#{hostname}.conf" do
-        source "#{application}-TEMPLATE.conf.erb"
+        source "#{application}-TEMPLATE.conf-v1.erb"
         mode 0644
         owner "sysadmin"
         group "sysadmin"
