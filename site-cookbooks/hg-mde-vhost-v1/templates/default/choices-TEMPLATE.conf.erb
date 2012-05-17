@@ -39,15 +39,15 @@
     # the future, we'll do somethis more clever with mod_proxy_balancer
 
 ## OPS-38605
-<Location /choices>
-AuthUserFile /var/www/vhosts/.htpasswd
-AuthGroupFile /dev/null
-AuthName Usage
-AuthType Basic
-<Limit GET>
-require user admin
-</Limit>
-</Location>
+#<Location /choices>
+#AuthUserFile /var/www/vhosts/.htpasswd
+#AuthGroupFile /dev/null
+#AuthName Usage
+#AuthType Basic
+#<Limit GET>
+#require user admin
+#</Limit>
+#</Location>
 
     <% @webapps.each do |webapp,params| -%>
     ProxyPass /<%= webapp %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= webapp %>
