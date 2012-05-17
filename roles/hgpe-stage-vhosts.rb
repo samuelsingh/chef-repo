@@ -1,7 +1,7 @@
 name "hgpe-stage-vhosts"
 description "Configures HG / MDE vhosts"
 
-run_list "recipe[hg-mde-vhost-v1]"
+run_list "recipe[hg-mde-vhost]"
 
 override_attributes(
   "hg_mde_vhost" => {
