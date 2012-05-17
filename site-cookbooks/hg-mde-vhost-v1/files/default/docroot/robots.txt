@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /choices/attachments/
+Disallow: /choices/common/
+Disallow: /choices/decorators/
+Disallow: /choices/images/
+Disallow: /choices/map/
+Disallow: /choices/menu/
+Disallow: /choices/pdf/
+Disallow: /choices/references/
+Disallow: /choices/scripts/
+Disallow: /choices/styles/
+Disallow: /choices/thumbnails/
+Disallow: /choices/view_lite/
+
+
+
+

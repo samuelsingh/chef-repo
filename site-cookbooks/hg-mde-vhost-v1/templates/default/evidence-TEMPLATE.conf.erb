@@ -1,0 +1,160 @@
+<VirtualHost "*:80">
+    ServerName www.<%= @hostname %>
+	RewriteEngine on 
+	RewriteRule . http://<%= @hostname %> [R,L]
+</VirtualHost>
+
+<VirtualHost "*:80">
+
+    ServerName <%= @hostname %>
+    <% @srv_aliases.each do |srv_alias| -%>
+    ServerAlias <%= srv_alias %>
+    <% end -%>
+
+    DocumentRoot /var/www/vhosts/<%= @hostname %>
+
+    ProxyPass /evidence/attachments !
+    ProxyPass /evidence/images !
+    ProxyPass /evidence/pdf !
+    ProxyPass /evidence/policy !
+    ProxyPass /evidence/references !
+    ProxyPass /evidence/scripts !
+    ProxyPass /evidence/styles !
+    ProxyPass /evidence/thumbnails !
+
+    <% @webapps.each do |webapp,params| -%>
+    ProxyPass /<%= webapp %>     ajp://<%= params.fetch("appserver") %>:<%= params.fetch("port") %>/<%= webapp %>
+    <% end -%>
+
+<Location "/robots.txt">
+ SetHandler None
+</Location>
+
+    Alias /robots.txt <%= @webapp_base %>/evidence/robots.txt
+    
+    Alias /evidence/attachments <%= @webapp_base %>/evidence/attachments
+    Alias /evidence/images      <%= @webapp_base %>/evidence/images
+    Alias /evidence/pdf         <%= @webapp_base %>/evidence/pdf
+    Alias /evidence/policy      <%= @webapp_base %>/evidence/policy
+    Alias /evidence/references  <%= @webapp_base %>/evidence/references
+    Alias /evidence/scripts     <%= @webapp_base %>/evidence/scripts
+    Alias /evidence/styles      <%= @webapp_base %>/evidence/styles
+    Alias /evidence/thumbnails  <%= @webapp_base %>/evidence/thumbnails
+
+
+    <Directory "/var/www/vhosts/<%= @hostname %>">
+        DirectoryIndex index.jsp index.html
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+    
+    <Directory "<%= @webapp_base %>/evidence">
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    <Location />
+    
+        # Main access block, this allows anonymous access to everything by default
+        Options FollowSymLinks
+        Order allow,deny
+        Allow from all
+        
+        # This block adds expires headers to static files, allowing web browsers to
+        # cache them.
+        ExpiresActive On
+        ExpiresByType text/javascript "A604800"
+        ExpiresByType application/javascript "A604800"
+        ExpiresByType text/css "A604800"
+        ExpiresByType image/x-icon "A31536000"
+        ExpiresByType image/gif "A604800"
+        ExpiresByType image/jpg "A604800"
+        ExpiresByType image/jpeg "A604800"
+        ExpiresByType image/png "A604800"
+
+        Header set Cache-Control "must-revalidate"
+
+        # This block compresses asset files
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css application/javascript
+
+        # Make sure proxies don't deliver the wrong content
+        Header append Vary User-Agent env=!dont-vary
+
+    </Location>
+    
+    <% unless @awstats == false -%>
+    # AWStats configuration
+    
+    ProxyPass /stats     http://awstats.<%= @node[:domain] %>
+    
+    # Workaround for secure access via ELB
+    <% @restricted_ips.each do |ip| -%>
+    SetEnvIF X-FORWARDED-FOR "<%= ip %>" ELBAUTH
+    <% end -%>
+    
+    <Location "/stats">
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
+    <% end -%>
+    
+    # Restricted access to feedback, locked by IP address.
+    <Location "/choices/selenium">
+        Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+        <% @restricted_ips.each do |ip| -%>
+        Allow from <%= ip %>
+        <% end -%>
+        Allow from env=ELBAUTH
+    </Location>
+
+    <IfModule mod_rewrite.c>
+
+        # Rewrite rule for the NHS organ donor subdomain
+        RewriteCond %{HTTP_HOST} ^organdonor\.mapofmedicine\.com$ [NC]
+        RewriteRule ^/evidence/map / [R,L]
+
+        RewriteCond %{HTTP_HOST} ^organdonor\.mapofmedicine\.com$ [NC]
+        RewriteRule ^/$ /evidence/nhsbt/index.html [R,L]
+
+        RewriteEngine on 
+        RewriteRule ^/$ /evidence [R,L]
+            
+        <% unless @awstats == false -%>
+        # Redirect for AWStats
+        RewriteRule ^/stats$ /stats/cgi-bin/awstats.pl?config=<%= @hostname %> [R,L]
+        RewriteRule ^/awstats-icon/(.+) /stats/awstats-icon/$1 [R,L]
+        <% end -%>
+
+    </IfModule>
+
+    # This statement figures out whether X-Forwarded-For is set.
+    SetEnvIf X-FORWARDED-FOR "^.*\..*\..*\..*" behind-elb
+
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm env=!behind-elb
+    CustomLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/access-<%= @hostname %>.log.%Y%m%d 86400" mtm-elb env=behind-elb
+    ErrorLog "|/usr/sbin/rotatelogs <%= @node[:apache][:log_dir] %>/errors-<%= @hostname %>.log.%Y%m%d 86400"
+    
+    # Remote logging directives
+    
+    CustomLog "|/usr/bin/logger -p local6.info -t <%= @hostname %>" mtm env=!behind-elb
+    CustomLog "|/usr/bin/logger -p local6.info -t <%= @hostname %>" mtm-elb env=behind-elb 
+    ErrorLog "|/usr/bin/logger -p local7.err -t <%= @hostname %>"
+
+    # Use the specified error page (under DocumentRoot) for the specified error codes.
+    # They are prettier than the standard Apache pages.
+
+    ErrorDocument 404 /404/index.html 
+
+</VirtualHost>
