@@ -406,7 +406,7 @@ map-sys-commit:					jasong,nitin.shukla,hiran,sachin.samuel
 ########################################################################
 
 
-sysadmin:						support-team
+sysadmin:						nitin.shukla,sachin.samuel
 knowledge:						root
 systems:						sysadmin
 nagios:							nitin.shukla,hiran,sachin.samuel
