@@ -22,6 +22,10 @@ AuthType Basic
 <Limit GET>
 require user MapUser
 </Limit>
+Order Deny,Allow
+Deny from all
+Allow from 80.239.136.230
+Satisfy Any
 </Location>
 
 
