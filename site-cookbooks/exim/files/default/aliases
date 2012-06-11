@@ -622,6 +622,7 @@ test:						test@natbill.hostpilot.com
 
 # IMP http://tracking.mapofmedicine.com/jira/browse/OPS-24754
 caroline.squires-int:				caroline.squires
+caroline.squires:				sysadmin
 
 
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24759
