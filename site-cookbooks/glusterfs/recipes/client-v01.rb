@@ -31,7 +31,6 @@ package "glusterfs-client" do
     package_name "glusterfs-client"
   end
   action :install
-  version "3.0.2"
 end
 
 # Loads the fuse module if this hasn't
