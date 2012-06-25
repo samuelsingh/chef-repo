@@ -30,7 +30,8 @@ package "glusterfs-client" do
   when "debian","ubuntu"
     package_name "glusterfs-client"
   end
-  action :remove
+  action :install
+  version "3.0.2"
 end
 
 # Loads the fuse module if this hasn't
