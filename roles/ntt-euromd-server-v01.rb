@@ -6,11 +6,11 @@ run_list "role[web-server]", "recipe[map-display-3::vhost_v01]", "recipe[map-dis
 override_attributes(
   "map_display" => {
     "vhost_v01" => {
-      "app.mapofmedicine.com" => {
+      "test.app.mapofmedicine.com" => {
         "srv_aliases" => ["app.mapofmedicine.info"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-        "appserver" => "euromd-app-01.map-cloud-01.eu",
+        "appserver" => "md-app-01.map-cloud-01.eu",
         "lb_alive_port" => 8050
       }
     },
@@ -21,7 +21,7 @@ override_attributes(
       "out_dir" => "/var/shared/webinject"
     },
     "lpa_vhost" => {
-      "localcare.mapofmedicine.com" => {
+      "test.localcare.mapofmedicine.com" => {
         "srv_aliases" => [],
         "holding_page" => "false",
         "appserver" => "127.0.0.1",
