@@ -1,6 +1,6 @@
 name "map-cloud-01-eu-common-v04"
 description "Configuration in md-app servers"
-run_list "recipe[zones]", "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]", "role[rsyslog-mom-client]"
+run_list "recipe[zones]", "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]", "recipe[rsyslog_mom]"
 
 override_attributes(
   "zones" => {
