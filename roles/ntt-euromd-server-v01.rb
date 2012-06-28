@@ -7,7 +7,7 @@ override_attributes(
 "apache" => {
     "listen_ports" => [
      "80",
-     "8051",
+     "8050",
    "443"
     ]
 },
