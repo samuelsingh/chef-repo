@@ -1,7 +1,7 @@
 name "ntt-euromd-server-v01"
 description "Configures Euro MD web-application server"
 
-run_list "recipe[map-display-3::time_transactions]"
+run_list "role[web-server]", "recipe[map-display-3::vhost_v01]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::time_transactions]"
 
 override_attributes(
 "apache" => {
