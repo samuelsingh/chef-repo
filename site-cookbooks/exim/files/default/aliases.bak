@@ -145,6 +145,7 @@ customerservice:				customerservice@natbill.hostpilot.com
 customersupport:                                customerservice@natbill.hostpilot.com
 customerservices:                               customerservice@natbill.hostpilot.com 
 
+David.chan:               			David.chan@natbill.hostpilot.com
 deepti.mehta:					deepti.mehta@natbill.hostpilot.com
 deepti                                          deepti.mehta
 deeptim                                         deepti.mehta
@@ -236,7 +237,6 @@ kathryn:						kathryn.holt
 k.holt:							kathryn.holt
 kathrynholt:						kathryn.holt
 
-keif.morris:					Keif.Morris@natbill.hostpilot.com
 
 kim.aspinall:					Kim.Aspinall@natbill.hostpilot.com
 kulvinder.maingi:					Kulvinder.Maingi@natbill.hostpilot.com
@@ -244,10 +244,11 @@ kulvinderm:						 kulvinder.maingi
 k.maingi:						 kulvinder.maingi
 kulvinder:						 kulvinder.maingi
 kulvindermaingi:					 kulvinder.maingi
+keif.morris:                                    keif.morris@natbill.hostpilot.com
 # Aliasing Laura's e-mails to bitbucket, as per OPS-30152
 
 legal:                                  Legal@natbill.hostpilot.com   
-	
+Liz.Rasmussen:                  	    Liz.Rasmussen@natbill.hostpilot.com
 
 manish.rane:					manish.rane@natbill.hostpilot.com
 
@@ -283,8 +284,10 @@ nathaniel.billington:			nat.billington
 n.billington:					nat.billington
 nbillington:					nat.billington
 natbillington:					nat.billington
-Nigel.Potter:					Nigel.Potter@natbill.hostpilot.com
+Neil.Williams:           			Neil.Williams@natbill.hostpilot.com
 
+Nigel.Potter:					Nigel.Potter@natbill.hostpilot.com
+Neil.McWhinnie:                            Neil.McWhinnie@natbill.hostpilot.com                       
 Nicola.Moralee:                 Nicola.Moralee@natbill.hostpilot.com 
 nicola:							nicola.silverstone
 
@@ -332,6 +335,7 @@ rosie:						rosie.hobbs
 r.hobbs:					rosie.hobbs
 rosieh:						rosie.hobbs
 Rosie.Martin:					Rosie.Martin@natbill.hostpilot.com
+Rosie.AnneDaniel:                               Rosie.AnneDaniel@natbill.hostpilot.com                
 
 
 
@@ -368,7 +372,7 @@ wendykimber:					wendy.kimber
 # Map of Medicine team mailing lists
 ########################################################################
 
-support-team:						nitin.shukla,hiran,sachin.samuel
+support-team:						nitin.shukla,hiran,sachin.samuel,jignesh.patel,alan.baldwin
 devcloud:						nitin.shukla,sachin.samuel,duncan.mcintyre,Kulvinder.Maingi
 temp_support:						support-team@natbill.hostpilot.com
 implementation-team:				implementation-team@natbill.hostpilot.com
@@ -404,7 +408,7 @@ map-sys-commit:					jasong,nitin.shukla,hiran,sachin.samuel
 ########################################################################
 
 
-sysadmin:						support-team
+sysadmin:						nitin.shukla,sachin.samuel
 knowledge:						root
 systems:						sysadmin
 nagios:							nitin.shukla,hiran,sachin.samuel
@@ -620,6 +624,7 @@ test:						test@natbill.hostpilot.com
 
 # IMP http://tracking.mapofmedicine.com/jira/browse/OPS-24754
 caroline.squires-int:				caroline.squires
+caroline.squires:				sysadmin
 
 
 # DEV http://tracking.mapofmedicine.com/jira/browse/OPS-24759
