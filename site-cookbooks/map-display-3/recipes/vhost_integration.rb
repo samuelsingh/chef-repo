@@ -19,7 +19,7 @@
 
 include_recipe "apache2"
 
-node[:map_display][:vhost_v01].each do |hostname,params|
+node[:map_display][:vhost_integration].each do |hostname,params|
 
   if defined?(node[:apache][:dir])
 
