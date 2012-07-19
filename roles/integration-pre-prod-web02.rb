@@ -1,5 +1,5 @@
-name "integration-pre-prod-web01"
-description "Configure Integration Web-01 Server"
+name "integration-pre-prod-web02"
+description "Configure Integration Web-02 Server"
 
 run_list "role[web-server]", "recipe[map-display-3::vhost_integration]"
 
