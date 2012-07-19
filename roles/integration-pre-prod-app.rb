@@ -1,7 +1,7 @@
 name "integration-pre-prod-app"
 description "Configures  Integration application server"
 
-run_list "role[tomcat]", "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::rotate_logs]"
+run_list "recipe[map-display-3::application]", "recipe[map-display-3::contentloader]", "recipe[map-display-3::rotate_logs]"
 
 override_attributes(
   "map_display" => {
