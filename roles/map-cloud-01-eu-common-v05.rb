@@ -1,6 +1,6 @@
 name "map-cloud-01-eu-common-v05"
 description "Configuration in md-app servers"
-run_list "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]" 
+run_list "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]"
 
 override_attributes(
   "zones" => {
@@ -14,5 +14,5 @@ override_attributes(
   "ec2" => {
     "ec2_access_key" => "",
     "ec2_secret_key" => ""
-  },
+  }
 )
