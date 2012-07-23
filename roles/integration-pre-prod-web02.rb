@@ -1,5 +1,5 @@
 name "integration-pre-prod-web02"
-description "Configure Integration Web-02 Server"
+description "Configure preprod Web-02 Server"
 
 run_list "role[web-server]", "recipe[map-display-3::vhost_integration]"
 
@@ -13,11 +13,11 @@ override_attributes(
 },
   "map_display" => {
     "vhost_integration" => {
-      "integration.mapofmedicine.com" => {
-        "srv_aliases" => ["integration.mapofmedicine.info"],
+      "preprod.mapofmedicine.com" => {
+        "srv_aliases" => ["preprod.mapofmedicine.info"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-        "appserver" => "integration-app-02.map-cloud-01.eu",
+        "appserver" => "preprod-app-02.map-cloud-01.eu",
 	"lb_alive_port" => 8050
       }
     }
