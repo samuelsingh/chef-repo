@@ -6,7 +6,7 @@ run_list "recipe[tomcat]", "recipe[map-display-3::application]", "recipe[map-dis
 override_attributes(
   "map_display" => {
     "common" => {
-      "dbhost" => "integration-db-01.map-cloud-01.eu",
+      "dbhost" => "preprod-db-01.map-cloud-01.eu",
       "dbname" => "integration_mtmdb01",
       "dbuser" => "mtmuser",
       "dbpass" => "medic1"
