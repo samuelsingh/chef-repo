@@ -1,7 +1,7 @@
 name "integration-pre-prod-web02"
 description "Configure preprod Web-02 Server"
 
-run_list "role[web-server]", "recipe[map-display-3::vhost_integration]"
+run_list "role[web-server]", "recipe[map-display-3::vhost_integration]", "recipe[map-display-3::lpa_vhost]", "recipe[map-display-3::time_transactions]"
 
 override_attributes(
 "apache" => {
