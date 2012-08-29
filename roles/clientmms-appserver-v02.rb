@@ -3,7 +3,7 @@ description "Configures Client MMS application server"
 
 #run_list "role[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]", "recipe[mms::cron]"
 
-run_list "recipe[mms-2::cs-tools]", "recipe[mms-2::cs-batch]", "recipe[mms-2::cron]", role[tomcat]", "recipe[mms-2::application]"
+run_list "recipe[mms-2::cs-tools]", "recipe[mms-2::cs-batch]", "recipe[mms-2::cron]", role[tomcat]"
 
 override_attributes(
   "mms" => {
