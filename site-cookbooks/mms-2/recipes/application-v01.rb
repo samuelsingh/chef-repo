@@ -132,7 +132,7 @@ mount repo_home do
   device "/dev/xvdh1"
   fstype "ext3"
   action [:mount, :enable]
-  only_if "test -b /dev/sdh1"
+  only_if "test -b /dev/xvdh1"
   # TODO: trigger a chown of repo_home to the Tomcat user if a mount happens
 end
 
