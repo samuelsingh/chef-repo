@@ -129,10 +129,10 @@ end
 # as they take so long to construct.  So if one is found where expected, mount it.
 
 mount repo_home do
-  device "/dev/xvdh1"
+  device "/dev/xvdf"
   fstype "ext3"
   action [:mount, :enable]
-  only_if "test -b /dev/xvdh1"
+  only_if "test -b /dev/xvdf"
   # TODO: trigger a chown of repo_home to the Tomcat user if a mount happens
 end
 
