@@ -1,4 +1,4 @@
-name "tomcat"
+name "tomcat-v01"
 description "Configures Apache Tomcat 6 application server"
 
 run_list "recipe[tomcat]", "recipe[tomcat::rotate_logs]" 
