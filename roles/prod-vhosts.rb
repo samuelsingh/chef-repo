@@ -18,7 +18,7 @@ override_attributes(
     "localise.mapofmedicine.com" => {
       "srv_aliases" => [],
       "deploy_dir" => "/var/shared/deployment/prod/client-mms",
-      "appserver" => "clientmms-app-01.map-cloud-01.eu",
+      "appserver" => "clientmms-app-02.map-cloud-01.eu",
       "restricted_ips" => [],
       "holding_page" => "false",
       "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
