@@ -1,6 +1,6 @@
 name "map-cloud-01-eu-common-v05"
 description "Configuration common to all machines in map-cloud-01.eu. V0.5"
-run_list "recipe[zones]", "recipe[glusterfs::client]", "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]", "role[rsyslog-mom-client]"
+run_list "recipe[zones]", "recipe[glusterfs_3_1::server]", "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]", "role[rsyslog-mom-client]"
 
 override_attributes(
   "zones" => {
