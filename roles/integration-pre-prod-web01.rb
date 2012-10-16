@@ -13,11 +13,11 @@ override_attributes(
 },
   "map_display" => {
     "vhost_integration" => {
-      "app.mapofmedicine.com" => {
-        "srv_aliases" => ["app.mapofmedicine.info"],
+      "preprod.mapofmedicine.com" => {
+        "srv_aliases" => ["preprod.mapofmedicine.info"],
         "holding_page" => "false",
         "holding_page_msg" => "This Map of Medicine service is offline for emergency maintenance.  We apologise for any inconvenience this may cause.",
-        "appserver" => "md3-app-01.map-cloud-01.eu",
+        "appserver" => "preprod-app-01.map-cloud-01.eu",
 	"lb_alive_port" => 8050
       }
     },
