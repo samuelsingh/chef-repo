@@ -516,7 +516,7 @@ factory-qa:                     stella.nelson
 dev-feedback:					naeem
 desktopsupport:					desktop-support
 desktop-support:				MaplanSupport@hearst.com
-zendesk:						zendesk@natbill.hostpilot.com
+zendesk:						zendesk@natbill.hostpilot.com,itsm@service-now.com
 
 
 
