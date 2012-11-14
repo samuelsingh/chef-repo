@@ -6,13 +6,13 @@ run_list "recipe[tomcat]", "recipe[map-display-3::application]", "recipe[map-dis
 override_attributes(
   "map_display" => {
     "common" => {
-      "dbhost" => "preprod-db-01.map-cloud-01.eu",
-      "dbname" => "integration_mtmdb01",
+      "dbhost" => "me-md3-db-01.map-cloud-01.eu",
+      "dbname" => "live_mtmdb",
       "dbuser" => "mtmuser",
       "dbpass" => "medic1"
     },
     "application" => {
-      "md_fqdn" =>  "integration.mapofmedicine.com",
+      "md_fqdn" =>  "meapp.mapofmedicine.com",
       "geoip_server" => "geoip.mapofmedicine.com",
       "save_ram" => "true"
     },
