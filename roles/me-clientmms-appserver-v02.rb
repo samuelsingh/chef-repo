@@ -12,7 +12,7 @@ override_attributes(
       "fqdn"=> "melocalise.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "medic1",
-      "dbhost"=> "me-clientmms-db-01.map-cloud-01.eu",
+      "dbhost"=> "clientmms-db-01.map-cloud-01.eu",
       "base"=> "/mnt/mms"
     },
     "application"=> {
