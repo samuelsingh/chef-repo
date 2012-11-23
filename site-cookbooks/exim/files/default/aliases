@@ -248,7 +248,8 @@ kulvinderm:						 kulvinder.maingi
 k.maingi:						 kulvinder.maingi
 kulvinder:						 kulvinder.maingi
 kulvindermaingi:					 kulvinder.maingi
-keif.morris:                                    keif.morris@natbill.hostpilot.com
+#keif.morris:                                    keif.morris@natbill.hostpilot.com
+keif.morris:                                    nitin.shukla,hiran,sachin.samuel,alan.baldwin
 # Aliasing Laura's e-mails to bitbucket, as per OPS-30152
 
 legal:                                  Legal@natbill.hostpilot.com   
