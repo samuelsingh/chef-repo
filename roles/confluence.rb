@@ -1,7 +1,7 @@
 name "confluence"
 description "Configures confluence"
 
-run_list "recipe[confluence_mom::confluence-v01]"
+run_list "recipe[confluence_mom]"
 
 override_attributes(
   "confluence" => {
