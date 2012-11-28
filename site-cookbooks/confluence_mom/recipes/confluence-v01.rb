@@ -10,7 +10,7 @@
 #   grant all privileges on confluence.* to 'confluence'@'localhost' identified by '$confluence_password';
 #   flush privileges;
 #include_recipe "java"
-include_recipe "tomcat"
+include_recipe "tomcat-v01"
 
 remote_file "/etc/init.d/tomcat9001" do
   source "tomcat9001"
