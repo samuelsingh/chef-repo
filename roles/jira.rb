@@ -1,7 +1,7 @@
 name "jira"
 description "Configures jira"
 
-run_list "recipe[jira_mom::jira-v01]"
+run_list "recipe[jira_mom]"
 
 override_attributes(
   "jira" => {
