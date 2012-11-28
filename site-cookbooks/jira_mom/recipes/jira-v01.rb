@@ -26,7 +26,7 @@
 #   grant all privileges on jiradb.* to '$jira_user'@'localhost' identified by '$jira_password';
 #   flush privileges;
 #include_recipe "java"
-include_recipe "tomcat"
+include_recipe "tomcat-v01"
 
 remote_file "/etc/init.d/tomcat9002" do
   source "tomcat9002"
