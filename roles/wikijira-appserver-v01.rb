@@ -1,7 +1,7 @@
 name "wikijira-appserver-v01"
 description "Configures Jira/Wiki application server"
 
-run_list "recipe[tomcat::rotate_logs]", "role[confluence::confluence-v01]", "role[jira::jira-v01]"
+run_list "recipe[tomcat::rotate_logs]", "role[confluence]", "role[jira]"
 
 override_attributes(
   "tomcat" => {
