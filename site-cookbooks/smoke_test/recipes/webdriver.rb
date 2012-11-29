@@ -18,7 +18,7 @@
 #
 
 node[:hudson_agent][:user].nil? ? agent_user = 'root' : agent_user = node[:hudson_agent][:user]
-node[:hudson_agent][:group].nil? ? agent_group = 'root' : agent_group = node[:hudson_agent][:
+node[:hudson_agent][:group].nil? ? agent_group = 'root' : agent_group = node[:hudson_agent][:group]
 
 # Pinning cucumber to specific versions, as it was enough
 # of a nightmare getting it to work in the first place...
