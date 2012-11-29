@@ -7,5 +7,5 @@
   "user": "root",
   "group": "root"
 },
-"run_list": [ "recipe[extra-repos]", "recipe[smoke_test]" ]
+"run_list": [ "recipe[smoke_test::webdriver]" ]
 }
