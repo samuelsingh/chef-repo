@@ -7,7 +7,7 @@ override_attributes(
   "jira" => {
     "run_user" => "tomcat",
     "database_host" => "newjiradb",
-    "version" => "atlassian-jira-4.1.2",
+    "version" => "atlassian-jira-5.2.4",
     "database" => "mysql",
     "database_user" => "jira_user",
     "install_path" => "/var/tomcat/server9002",
