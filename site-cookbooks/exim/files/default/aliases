@@ -420,6 +420,7 @@ LegalDistributionList:                  LegalDistributionList@natbill.hostpilot.
 # Mailing list for receving svn commit emails
 map-dev-commit:					naeem,farrukh,andrew.sowerby,patrick,nitin.shukla,sachin.samuel
 map-sys-commit:					jasong,nitin.shukla,hiran,sachin.samuel
+mesupport:                                      mesupport@natbill.hostpilot.com
 
 
 
