@@ -55,10 +55,10 @@ end
 #end
 
 # Grab firefox data files, if they're not already in place
-remote_file "/var/tmp/#{profile_pkg}" do
-  source profile_pkg
-  backup false
-  mode "0644"
-  notifies :run, resources(:execute => "deploy_firefox_profile")
-  not_if "test -d ~#{agent_user}/.mozilla"
-end
+#remote_file "/var/tmp/#{profile_pkg}" do
+#  source profile_pkg
+#  backup false
+#  mode "0644"
+#  notifies :run, resources(:execute => "deploy_firefox_profile")
+#  not_if "test -d ~#{agent_user}/.mozilla"
+#end
