@@ -38,9 +38,9 @@ package "tightvncserver" do
   action :install
 end
 
-package "firefox" do
-  action :install
-end
+#package "firefox" do
+#  action :install
+#end
 
 if node[:kernel][:machine] == "x86_64"
   profile_pkg = "mozilla-jssh-lucid-64.tar.gz"
@@ -49,10 +49,10 @@ else
 end
 
 # Deploy firefox application
-execute "deploy_firefox_profile" do
-  command "cd ~#{agent_user} && tar xzf /var/tmp/#{profile_pkg} && chown -R #{agent_user}:#{agent_group} .mozilla"
-  action :nothing
-end
+#execute "deploy_firefox_profile" do
+#  command "cd ~#{agent_user} && tar xzf /var/tmp/#{profile_pkg} && chown -R #{agent_user}:#{agent_group} .mozilla"
+#  action :nothing
+#end
 
 # Grab firefox data files, if they're not already in place
 remote_file "/var/tmp/#{profile_pkg}" do
