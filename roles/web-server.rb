@@ -12,6 +12,7 @@ override_attributes(
       "80.239.136.225",   # Address randomly used by FoxDev servers
       "94.175.52.160",    # Andrew's home
       "78.105.68.171"     # Patrick's home
+      "193.240.18.254"    # Fox Court New IP -- Added by Nitin
     ],
     "log_bak_dir" => "/var/shared/backups",
     "log_rotate_dir" => "/var/shared/rotated-logs"
