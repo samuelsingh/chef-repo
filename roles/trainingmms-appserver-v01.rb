@@ -1,4 +1,4 @@
-name "trainingmms-appserver"
+name "trainingmms-appserver-v01"
 description "Configures Training MMS application server"
 
 #run_list "role[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]", "recipe[mms::cron]"
