@@ -37,7 +37,7 @@ set_unless[:mms][:common][:dbhost] = "db"
 set_unless[:mms][:common][:fqdn] = "mms.md-cloud-01.eu"
 set_unless[:mms][:common][:quova_svr] = "geoip.map-cloud-01.eu"
 
-# Used by m2mr2-cs-base.properties
+# Used by m2mr2-cs-base.properties #set_unless[:mms][:application][:me_url] = "http://\#{mm.fqdn}/mapmanager/mapeditor/"#
 set_unless[:mms][:application][:deployment_name] = "unset" # Should be either "Client MMS" or "Map of Medicine Root MMS"
 set_unless[:mms][:application][:deployment][:id] = "0" # Should be set appropriately in JSON properties
 set_unless[:mms][:application][:deployment][:external_start] = "0" # Should be set appropriately in JSON properties
@@ -47,7 +47,6 @@ set_unless[:mms][:application][:quartz][:password] = "password"
 set_unless[:mms][:application][:preview_time] = "22:00" # Format is HH:MM
 set_unless[:mms][:application][:athens_link] = "true" # True for Client MMS, false for Root MMS
 set_unless[:mms][:application][:multiple_views] = "true" # True for Client MMS, false for Root MMS
-#set_unless[:mms][:application][:me_url] = "http://\#{mm.fqdn}/mapmanager/mapeditor/"
 set_unless[:mms][:application][:me_url] = "http://training-mms.mapofmedicine.com/mapmanager/mapeditor/"
 
 
