@@ -47,7 +47,9 @@ set_unless[:mms][:application][:quartz][:password] = "password"
 set_unless[:mms][:application][:preview_time] = "22:00" # Format is HH:MM
 set_unless[:mms][:application][:athens_link] = "true" # True for Client MMS, false for Root MMS
 set_unless[:mms][:application][:multiple_views] = "true" # True for Client MMS, false for Root MMS
-set_unless[:mms][:application][:me_url] = "http://\#{mm.fqdn}/mapmanager/mapeditor/"
+#set_unless[:mms][:application][:me_url] = "http://\#{mm.fqdn}/mapmanager/mapeditor/"
+set_unless[:mms][:application][:me_url] = "http://training-mms.mapofmedicine.com/mapmanager/mapeditor/"
+
 
 # Settings for the jackrabbit repository
 set_unless[:mms][:application][:datastore] = true # True for everywhere except Client MMS
