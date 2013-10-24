@@ -12,7 +12,7 @@ override_attributes(
       "fqdn"=> "training-mms.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "MtMUs3r",
-      "dbhost"=> "sspreprod-db-01.map-cloud-01.eu",
+      "dbhost"=> "ssspreprod-db-01.map-cloud-01.eu",
       "base"=> "/mnt/mms",
 	  "mms","application","me_url" => "http://training-mms.mapofmedicine.com/mapmanager/mapeditor/"
 	  
