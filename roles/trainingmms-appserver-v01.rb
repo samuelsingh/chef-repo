@@ -12,7 +12,7 @@ override_attributes(
       "fqdn"=> "training-mms.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "MtMUs3r",
-      "dbhost"=> "ssspreprod-db-01.map-cloud-01.eu",
+      "dbhost"=> "sspreprod-db-01.map-cloud-01.eu",
       "base"=> "/mnt/mms"  
 	  
 	  
