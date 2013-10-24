@@ -23,7 +23,7 @@ override_attributes(
         "id" => "50",
         "external_start" => "30000001",
         "external_end" => "40000000",
-	"me_url1" => "http://training-mms.mapofmedicine.com/mapmanager/mapeditor"
+	"me_url" => "http://training-mms.mapofmedicine.com/mapmanager/mapeditor"
 		
       },
       "quartz"=> {
