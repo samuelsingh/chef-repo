@@ -28,7 +28,7 @@ override_attributes(
       },
       "quartz"=> {
         "user"=> "quartz@mapofmedicine.com",
-        "password"=> "SoZ8siMi"
+        "password"=> "SoZ8siMi--"
       },
       "repository"=> {
         "dbname"=> "training_repo"
