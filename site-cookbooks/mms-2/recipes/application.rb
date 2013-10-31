@@ -270,10 +270,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         source "mapmanager/mapmanager.xml.erb"
         mode 0644
         variables(
-          :dbuser => node[:mms][:application][:mapmanager][:dbuser],
-          :dbpass => node[:mms][:application][:mapmanager][:dbpass],
-          :dbhost => node[:mms][:application][:mapmanager][:dbhost],
-          :dbname => node[:mms][:application][:mapmanager][:dbname]
+          :dbuser => node[:mms][:common][:dbuser],
+          :dbpass => node[:mms][:common][:dbpass],
+          :dbhost => node[:mms][:common][:dbhost],
+          :dbname => node[:mms][:common][:dbname]
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
@@ -343,10 +343,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         source "mom/mom.xml.erb"
         mode 0644
         variables(
-          :dbuser => node[:mms][:application][:mom][:dbuser],
-          :dbpass => node[:mms][:application][:mom][:dbpass],
-          :dbhost => node[:mms][:application][:mom][:dbhost],
-          :dbname => node[:mms][:application][:mom][:dbname]
+          :dbuser => node[:mms][:common][:dbuser],
+          :dbpass => node[:mms][:common][:dbpass],
+          :dbhost => node[:mms][:common][:dbhost],
+          :dbname => node[:mms][:common][:dbname]
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
@@ -372,10 +372,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         source "mom/adminapp.xml.erb"
         mode 0644
         variables(
-          :dbuser => node[:mms][:application][:mapmanager][:dbuser],
-          :dbpass => node[:mms][:application][:mapmanager][:dbpass],
-          :dbhost => node[:mms][:application][:mapmanager][:dbhost],
-          :dbname => node[:mms][:application][:mapmanager][:dbname]
+          :dbuser => node[:mms][:common][:dbuser],
+          :dbpass => node[:mms][:common][:dbpass],
+          :dbhost => node[:mms][:common][:dbhost],
+          :dbname => node[:mms][:common][:dbname]
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
@@ -390,7 +390,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
 
       ## End: configuration for the adminapp webapp
 
-      ## Start: configuration for the previewloader webapp
+      ## Start: configuration for the previewloader webapp##sss##chaning from [:mms][:application][:mom] to [:mms][:common]
 
       template "#{common_loader}/previewloader-log4j.properties" do
         source "previewloader/previewloader-log4j.properties.erb"
@@ -404,10 +404,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         source "previewloader/previewloader.xml.erb"
         mode 0644
         variables(
-          :dbuser => node[:mms][:application][:mom][:dbuser],
-          :dbpass => node[:mms][:application][:mom][:dbpass],
-          :dbhost => node[:mms][:application][:mom][:dbhost],
-          :dbname => node[:mms][:application][:mom][:dbname]
+          :dbuser => node[:mms][:common][:dbuser],
+          :dbpass => node[:mms][:common][:dbpass],
+          :dbhost => node[:mms][:common][:dbhost],
+          :dbname => node[:mms][:common][:dbname]
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
@@ -417,10 +417,10 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
         mode 0644
         variables(
           :previewpath => previewloader_base,
-          :mom_dbuser => node[:mms][:application][:mom][:dbuser],
-          :mom_dbpass => node[:mms][:application][:mom][:dbpass],
-          :mom_dbhost => node[:mms][:application][:mom][:dbhost],
-          :mom_dbname => node[:mms][:application][:mom][:dbname]
+          :mom_dbuser => node[:mms][:common][:dbuser],
+          :mom_dbpass => node[:mms][:common][:dbpass],
+          :mom_dbhost => node[:mms][:common][:dbhost],
+          :mom_dbname => node[:mms][:common][:dbname]
         )
         only_if "test -d #{common_loader}"
       end
