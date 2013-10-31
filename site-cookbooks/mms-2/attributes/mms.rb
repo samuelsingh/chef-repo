@@ -50,11 +50,11 @@ set_unless[:mms][:application][:multiple_views] = "true" # True for Client MMS, 
 
 
 # Settings for the jackrabbit repository
-set_unless[:mms][:application][:datastore] = true # True for everywhere except Client MMS
-set_unless[:mms][:application][:repository][:dbuser] = node[:mms][:common][:dbuser]
-set_unless[:mms][:application][:repository][:dbpass] = node[:mms][:common][:dbpass]
-set_unless[:mms][:application][:repository][:dbhost] = node[:mms][:common][:dbhost]
-set_unless[:mms][:application][:repository][:dbname] = "crx"
+#set_unless[:mms][:application][:datastore] = true # True for everywhere except Client MMS
+#set_unless[:mms][:application][:repository][:dbuser] = node[:mms][:common][:dbuser]
+#set_unless[:mms][:application][:repository][:dbpass] = node[:mms][:common][:dbpass]
+#set_unless[:mms][:application][:repository][:dbhost] = node[:mms][:common][:dbhost]
+#set_unless[:mms][:application][:repository][:dbname] = "crx"
 
 # Settings for the mcs database
 #sss#set_unless[:mms][:application][:mapmanager][:dbuser] = node[:mms][:common][:dbuser]
@@ -63,10 +63,10 @@ set_unless[:mms][:application][:repository][:dbname] = "crx"
 #sss#set_unless[:mms][:application][:mapmanager][:dbname] = "mcs"
 
 # Settings for the mappreview database
-set_unless[:mms][:application][:mom][:dbuser] = node[:mms][:common][:dbuser]
-set_unless[:mms][:application][:mom][:dbpass] = node[:mms][:common][:dbpass]
-set_unless[:mms][:application][:mom][:dbhost] = node[:mms][:common][:dbhost]
-set_unless[:mms][:application][:mom][:dbname] = "mappreview"
+#set_unless[:mms][:application][:mom][:dbuser] = node[:mms][:common][:dbuser]
+#set_unless[:mms][:application][:mom][:dbpass] = node[:mms][:common][:dbpass]
+#set_unless[:mms][:application][:mom][:dbhost] = node[:mms][:common][:dbhost]
+#set_unless[:mms][:application][:mom][:dbname] = "mappreview"
 
 # Settings for the MMS cron tasks
 set_unless[:mms][:cron][:startstopudrs] = "false"
