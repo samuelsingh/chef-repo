@@ -146,7 +146,7 @@ template "#{repo_home}/repository.xml" do
     :dbuser     => node[:mms][:common][:dbuser],
     :dbpass     => node[:mms][:common][:dbpass],
     :dbhost     => node[:mms][:common][:dbhost],
-    :dbname     => node[:mms][:application][:mapmanager][:dbname]
+    :dbname     => node[:mms][:application][:mapmanager][:dbname],
     :datastore  => node[:mms][:application][:repository][:datastore]
   )
 end
