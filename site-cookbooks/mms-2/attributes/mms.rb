@@ -57,10 +57,10 @@ set_unless[:mms][:application][:repository][:dbhost] = node[:mms][:common][:dbho
 set_unless[:mms][:application][:repository][:dbname] = "crx"
 
 # Settings for the mcs database
-set_unless[:mms][:application][:mapmanager][:dbuser] = node[:mms][:common][:dbuser]
-set_unless[:mms][:application][:mapmanager][:dbpass] = node[:mms][:common][:dbpass]
-set_unless[:mms][:application][:mapmanager][:dbhost] = node[:mms][:common][:dbhost]
-set_unless[:mms][:application][:mapmanager][:dbname] = "mcs"
+#sss#set_unless[:mms][:application][:mapmanager][:dbuser] = node[:mms][:common][:dbuser]
+#sss#set_unless[:mms][:application][:mapmanager][:dbpass] = node[:mms][:common][:dbpass]
+#sss#set_unless[:mms][:application][:mapmanager][:dbhost] = node[:mms][:common][:dbhost]
+#sss#set_unless[:mms][:application][:mapmanager][:dbname] = "mcs"
 
 # Settings for the mappreview database
 set_unless[:mms][:application][:mom][:dbuser] = node[:mms][:common][:dbuser]
