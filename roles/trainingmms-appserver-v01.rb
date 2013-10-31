@@ -12,7 +12,7 @@ override_attributes(
       "fqdn"=> "training-mms.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "MtMUs3r--",
-      "dbhost"=> "preprod-db-01.map-cloud-01.eu",
+      "dbhost"=> "preprod-db-01.map-cloud-01.eu7",
       "base"=> "/mnt/mms"  
 	  
 	  
@@ -23,7 +23,7 @@ override_attributes(
         "id" => "50",
         "external_start" => "30000001",
         "external_end" => "40000000",
-	"me_url" => "http://training-mms.mapofmedicine.com/mapmanager/mapeditor-ss"
+	"me_url" => "http://training-mms.mapofmedicine.com/mapmanager/mapeditor-s0"
 		
       },
       "quartz"=> {
