@@ -31,13 +31,13 @@ override_attributes(
         "password"=> "SoZ8siMi"
       },
       "repository"=> {
-        "dbname"=> "training_repo_new"
+        "dbname"=> "training_repo"
       },
       "mapmanager"=> {
-        "dbname"=> "training_mcs_new"
+        "dbname"=> "training_mcs"
       },
       "mom"=> {
-        "dbname"=> "training_preview_new"
+        "dbname"=> "training_preview"
       },
       "live_md" => {
         "name" => "Euro MD",
