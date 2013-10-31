@@ -143,10 +143,10 @@ template "#{repo_home}/repository.xml" do
   group t_group
   variables(
     :repo_home  => repo_home,
-    :dbuser     => node[:mms][:application][:repository][:dbuser],
-    :dbpass     => node[:mms][:application][:repository][:dbpass],
-    :dbhost     => node[:mms][:application][:repository][:dbhost],
-    :dbname     => node[:mms][:application][:repository][:dbname],
+    :dbuser     => node[:mms][:common][:dbuser],
+    :dbpass     => node[:mms][:common][:dbpass],
+    :dbhost     => node[:mms][:common][:dbhost],
+    :dbname     => node[:mms][:application][:mapmanager][:dbname]
     :datastore  => node[:mms][:application][:repository][:datastore]
   )
 end
