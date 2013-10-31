@@ -10,9 +10,9 @@ override_attributes(
     "common"=> {
       "interactive_usr"=> "sysadmin",
       "fqdn"=> "training-mms.mapofmedicine.com",
-      "dbuser"=> "mtmuser",
-      "dbpass"=> "MtMUs3r--",
-      "dbhost"=> "preprod-db-01.map-cloud-01.eu7",
+      "dbuser"=> "mtmuserree",
+      "dbpass"=> "MtMUs3r--e",
+      "dbhost"=> "preprod-db-01.map-cloud-01.eu7ee",
       "base"=> "/mnt/mms"  
 	  
 	  
