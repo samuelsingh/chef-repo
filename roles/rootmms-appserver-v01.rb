@@ -1,4 +1,4 @@
-name "rootmms-appserver"
+name "rootmms-appserver-v01"
 description "Configures Root MMS application server"
 
 #run_list "role[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]", "recipe[mms::cron]"
