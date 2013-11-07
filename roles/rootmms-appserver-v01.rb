@@ -3,7 +3,7 @@ description "Configures Root MMS application server"
 
 #run_list "role[tomcat]", "recipe[mms]", "recipe[mms::cs-tools]", "recipe[mms::queue-manager]", "recipe[mms::helper-scripts]", "recipe[mms::cron]"
 
-run_list "role[tomcat]", "recipe[mms-2::application]", "recipe[mms-2::cs-tools]", "recipe[mms-2::cs-batch]", "role[prod-jenkins-agent]"
+run_list "role[tomcat-v01]", "recipe[mms-2::application]", "recipe[mms-2::cs-tools]", "recipe[mms-2::cs-batch]", "role[prod-jenkins-agent]"
 
 override_attributes(
   "mms" => {
