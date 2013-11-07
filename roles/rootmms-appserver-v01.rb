@@ -11,7 +11,7 @@ override_attributes(
       "interactive_usr"=> "sysadmin",
       "fqdn"=> "mms.mapofmedicine.com",
       "dbuser"=> "mtmuser",
-      "dbpass"=> "MtMUs3r",
+      "dbpass"=> "MtMUs3re",
       "dbhost"=> "lightmms-db-01.map-cloud-01.eu",
       "base"=> "/mnt/mms"
     },
