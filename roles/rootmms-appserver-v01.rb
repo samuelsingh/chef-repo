@@ -9,7 +9,7 @@ override_attributes(
   "mms" => {
     "common"=> {
       "interactive_usr"=> "sysadmin",
-      "fqdn"=> "mms.mapofmedicine.com",
+      "fqdn"=> "mmsebs.mapofmedicine.com",
       "dbuser"=> "mtmuser",
       "dbpass"=> "medic1",
       "dbhost"=> "lightmms-db-01.map-cloud-01.eu",
