@@ -420,7 +420,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :mom_dbuser => node[:mms][:common][:dbuser],
           :mom_dbpass => node[:mms][:common][:dbpass],
           :mom_dbhost => node[:mms][:common][:dbhost],
-          :mom_dbname => node[:mms][:common][:dbname]
+          :mom_dbname => node[:mms][:mom][:dbname]
         )
         only_if "test -d #{common_loader}"
       end
