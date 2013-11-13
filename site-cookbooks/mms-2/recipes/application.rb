@@ -346,7 +346,7 @@ if defined?(node[:tomcat][:ajp_ports]) && defined?(node[:tomcat][:basedir])
           :dbuser => node[:mms][:common][:dbuser],
           :dbpass => node[:mms][:common][:dbpass],
           :dbhost => node[:mms][:common][:dbhost],
-          :dbname => node[:mms][:application][:mapmanager][:dbname]
+          :dbname => node[:mms][:application][:mom][:dbname]
         )
         only_if "test -d #{server_dir}/conf/Catalina/localhost"
       end
