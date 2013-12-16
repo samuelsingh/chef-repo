@@ -20,7 +20,8 @@ override_attributes(
         "name" => "Root MMS",
         "id" => "1",
         "external_start" => "0",
-        "external_end" => "10000000"
+        "external_end" => "10000000",
+		"me_url" => "http://mmsebs.mapofmedicine.com/mapmanager/mapeditor/"
       },
       "quartz"=> {
         "user"=> "quartz@mapofmedicine.com",
