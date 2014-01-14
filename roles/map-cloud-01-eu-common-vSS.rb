@@ -1,4 +1,4 @@
-name "map-cloud-01-eu-common-v04"
+name "map-cloud-01-eu-common-vSS"
 description "Configuration in md-app servers"
 run_list "recipe[zones]", "recipe[standard_users]", "recipe[sudo]", "recipe[openssh-server-ec2]", "recipe[exim::satellite]", "recipe[mom-scripts]", "recipe[ntp]", "recipe[snmpd]", "recipe[zenoss::client]", "role[rsyslog-mom-client]"
 
