@@ -20,3 +20,13 @@ directory "/var/tmp/ss" do
   mode 00644
   action :delete
 end
+
+
+%w{sam pam cam}.each do |dir|
+directory "/tmp/#{dir}" do
+mode 00775
+owner "root"
+group "root"
+recursive true
+end
+end
