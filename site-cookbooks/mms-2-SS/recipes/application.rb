@@ -18,5 +18,5 @@ directory "/var/tmp/ss" do
   owner "root"
   group "root"
   mode 00644
-  action :create
+  action :delete
 end
