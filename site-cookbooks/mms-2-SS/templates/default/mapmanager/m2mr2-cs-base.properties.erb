@@ -1,0 +1,50 @@
+## Finished updating for mms-2 recipe
+
+mm.home=<%= @mapmanager_base %>
+mm.fqdn=<%= @node[:mms][:common][:fqdn] %>
+
+# location of JCR configuration
+m2mr2.jcr.repositoryHome=<%= @repo_home %>
+m2mr2.jcr.repositoryConfigFile=repository.xml
+
+# location of export folders
+m2mr2.export.publication.deployment.name=<%= @deployment_name %>
+m2mr2.export.folder=<%= @content_out %>
+m2mr2.export.previewsFolder=<%= @previewloader_base %>/input
+
+# synchronization settings
+# unique numeric deployment id
+m2mr2.synchronization.deployment.id=<%= @node[:mms][:application][:deployment][:id] %>
+m2mr2.synchronization.deployment.externalId.start=<%= @node[:mms][:application][:deployment][:external_start] %>
+m2mr2.synchronization.deployment.externalId.end=<%= @node[:mms][:application][:deployment][:external_end] %>
+m2mr2.synchronization.folder=${m2mr2.export.folder}/sync-packages
+m2mr2.synchronization.tempFolder=${m2mr2.synchronization.folder}/tmp
+
+### username and password for QUARTZ jobs ###
+quartz.username=<%= @node[:mms][:application][:quartz][:user] %>
+quartz.password=<%= @node[:mms][:application][:quartz][:password] %>
+
+### scheduled time definition for full map preview ###
+m2mr2.fullMapPreview.seconds=0
+m2mr2.fullMapPreview.minutes=<%= @previewmin %>
+m2mr2.fullMapPreview.hours=<%= @previewhour %>
+
+#workspace.cleanup.*.enabled=
+# true|false
+#workspace.cleanup.*.cron=
+# cron expression
+#workspace.cleanup.*.timeout=
+# 0 - to unlimited
+#workspace.cleanup.*.archiveFolder=
+# empty - do do not archive
+workspace.cleanup.unused.enabled=true
+workspace.cleanup.unused.cron=0 0 3 * * ?
+workspace.cleanup.unused.timeout=1
+workspace.cleanup.interim.enabled=true
+workspace.cleanup.interim.cron=0 20 3 * * ?
+workspace.cleanup.interim.timeout=1
+workspace.cleanup.interim.archiveFolder=/tmp
+workspace.cleanup.historical.enabled=false
+workspace.cleanup.historical.cron=0 40 3 * * ?
+workspace.cleanup.historical.timeout=1
+workspace.cleanup.historical.archiveFolder=/tmp
