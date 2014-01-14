@@ -1,0 +1,17 @@
+#!/bin/bash
+
+FULL_PATH=$@
+OLDFILE=`echo "$FULL_PATH" | rev | cut -d'/' -f1 | rev`
+FILEPATH=`echo "$FULL_PATH" | grep '/' | rev | cut -d'/' -f2- | rev`
+
+NEWFILE=`echo "$OLDFILE" |  sed 's/[^A-Za-z0-9_.]/_/g'`
+
+if [ "$NEWFILE" != "$OLDFILE" ] ; then
+
+  if [ $FILEPATH ] ; then
+    mv "$FILEPATH"/"$OLDFILE" "$FILEPATH"/"$NEWFILE"
+  else
+    mv "$OLDFILE" "$NEWFILE"
+  fi
+
+fi
