@@ -42,3 +42,19 @@ package "apache2" do
   end
   action :install
 end
+
+
+
+
+
+
+%w{rover fido bubbers}.each do |pet_name|
+  execute "feed_pet_#{pet_name}" do
+    command "echo 'Feeding: #{pet_name}'; touch '/tmp/#{pet_name}'"
+    not_if { ::File.exists?("/tmp/#{pet_name}")}
+  end
+end
+
+
+
+
